@@ -14,8 +14,8 @@ GameObject:
   - component: {fileID: 5952646929284545212}
   - component: {fileID: 4738937138069081510}
   m_Layer: 0
-  m_Name: BulletPrefab
-  m_TagString: Untagged
+  m_Name: GreenBulletPrefab
+  m_TagString: GreenBullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -59,7 +59,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 934b22d797539e147895a0709e3ef3df, type: 2}
+  - {fileID: 2100000, guid: 12031066b83c0ee4b989d7e075028b1e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -88,8 +88,8 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 725302358614620086}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
+  m_IsTrigger: 1
+  m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
