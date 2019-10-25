@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class BulletScript : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    float timeAlive = 0.0f;
 
     // Update is called once per frame
     void Update()
     {
-        
+        timeAlive += Time.deltaTime;
+        if (timeAlive > 1.0f)
+        {
+            Destroy(this.gameObject);
+        }
     }
 }
