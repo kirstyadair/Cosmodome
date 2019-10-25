@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 4687391990164004214}
   - component: {fileID: 5932626926222715500}
   - component: {fileID: -8254943225122916791}
-  - component: {fileID: 2127155710024535391}
   m_Layer: 0
   m_Name: RedBulletPrefab
   m_TagString: RedBullet
@@ -124,15 +123,3 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &2127155710024535391
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1837521833119027324}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4611ee8ba8975904ca4ff08bf392645f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
