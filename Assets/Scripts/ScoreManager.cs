@@ -8,6 +8,8 @@ public class ScoreManager : MonoBehaviour
     /// Singleton instance
     /// </summary>
     private static ScoreManager _instance;
+    float timeSinceLastShot = 0.0f;
+    public bool showDamage = true;
 
     public static ScoreManager Instance
     {
@@ -36,8 +38,31 @@ public class ScoreManager : MonoBehaviour
         PlayerScript.OnPlayerShot += PlayerShot;
     }
 
-    void PlayerShot(PlayerTypes shootingPlayer, PlayerTypes shotPlayer)
+    private void Update()
     {
-        Debug.Log("Shot: " + shotPlayer + ", shooting: " + shootingPlayer);
+        timeSinceLastShot += Time.deltaTime;
+        if (timeSinceLastShot > 0.5f)
+        {
+            showDamage = false;
+        }
+        else
+        {
+            showDamage = true;
+        }
+    }
+
+    void PlayerShot(GameObject shotPlayer)
+    {
+        Debug.Log("Shot: " + shotPlayer);
+        Material mat = shotPlayer.GetComponent<Renderer>().material;
+        timeSinceLastShot = 0;
+        
+        if (showDamage)
+        {
+            float emission = Mathf.PingPong(Time.time, 1.0f);
+            Color color = Color.red;
+            Color emissionColour = color * Mathf.LinearToGammaSpace(emission);
+            mat.SetColor("_EmissionColor", emissionColour);
+        }
     }
 }

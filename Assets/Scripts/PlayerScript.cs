@@ -9,32 +9,37 @@ public enum PlayerTypes
 
 public class PlayerScript : MonoBehaviour
 {
-    public delegate void PlayerShot(PlayerTypes playerShooting, PlayerTypes playerHit);
+    public delegate void PlayerShot(GameObject playerHit);
     public static event PlayerShot OnPlayerShot;
     public PlayerTypes playerType;
+    public Light lightsource;
     public int approval;
+    ScoreManager sm;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        sm = ScoreManager.Instance;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (!sm.showDamage)
+        {
+            GetComponent<Renderer>().material.SetColor("_EmissionColor", Color.black);
+        }
     }
 
     void OnTriggerEnter(Collider other)
     {
         if (other.tag == "GreenBullet" && playerType == PlayerTypes.LIGHTWEIGHT)
         {
-            OnPlayerShot.Invoke(PlayerTypes.DAVE, playerType);
+            OnPlayerShot.Invoke(this.gameObject);
         }
         else if (other.tag == "RedBullet" && playerType == PlayerTypes.DAVE)
         {
-            OnPlayerShot.Invoke(PlayerTypes.LIGHTWEIGHT, playerType);
+            OnPlayerShot.Invoke(this.gameObject);
         }
     }
 }
