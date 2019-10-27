@@ -4,7 +4,7 @@ using UnityEngine;
 
 public enum PlayerTypes
 {
-    COMEDIAN, DAREDEVIL, LIGHTWEIGHT, HEAVYWEIGHT, DAVE
+    COMEDIAN, DAREDEVIL, LIGHTWEIGHT, HEAVYWEIGHT, DAVE, NULL
 }
 
 public class PlayerScript : MonoBehaviour

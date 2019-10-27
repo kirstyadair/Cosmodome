@@ -2,6 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum Traps
+{
+    SPIKEWALL, NULL
+}
+
+
 public class ScoreManager : MonoBehaviour
 {
     /// <summary>
@@ -33,9 +39,16 @@ public class ScoreManager : MonoBehaviour
         }
     }
 
-    private void Start()
+    private void OnEnable()
     {
         PlayerScript.OnPlayerShot += PlayerShot;
+        WallScript.OnTrapHit += PlayerHitTrap;
+    }
+
+    private void OnDisable()
+    {
+        PlayerScript.OnPlayerShot -= PlayerShot;
+        WallScript.OnTrapHit -= PlayerHitTrap;
     }
 
     private void Update()
@@ -53,7 +66,6 @@ public class ScoreManager : MonoBehaviour
 
     void PlayerShot(GameObject shotPlayer)
     {
-        Debug.Log("Shot: " + shotPlayer);
         Material mat = shotPlayer.GetComponent<Renderer>().material;
         timeSinceLastShot = 0;
         
@@ -64,5 +76,21 @@ public class ScoreManager : MonoBehaviour
             Color emissionColour = color * Mathf.LinearToGammaSpace(emission);
             mat.SetColor("_EmissionColor", emissionColour);
         }
+    }
+
+    void PlayerHitTrap(GameObject player, Traps trapType)
+    {
+        Debug.Log(player);
+        if (trapType == Traps.SPIKEWALL)
+        {
+            StartCoroutine(FlashDamage(player));
+        }
+    }
+
+    IEnumerator FlashDamage(GameObject player)
+    {
+        player.GetComponent<Renderer>().material.SetColor("_EmissionColor", Color.red);
+        yield return new WaitForSeconds(0.2f);
+        player.GetComponent<Renderer>().material.SetColor("_EmissionColor", Color.black);
     }
 }
