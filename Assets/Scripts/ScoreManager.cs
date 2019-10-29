@@ -13,9 +13,24 @@ public class ScoreManager : MonoBehaviour
     /// <summary>
     /// Singleton instance
     /// </summary>
-    private static ScoreManager _instance;
+    static ScoreManager _instance;
     float timeSinceLastShot = 0.0f;
+
+    // Events
+    public delegate void UpdateScores();
+    public static event UpdateScores OnUpdateScore;
+
+    public List<float> playerApprovals = new List<float>();
+
     public bool showDamage = true;
+    public int numberOfPlayers;
+
+    [Header("Approval Rates")]
+    public float bulletDamageRate;
+    public float lowDamageRate;
+    public float medDamageRate;
+    public float highDamageRate;
+    public float highestDamageRate;
 
     public static ScoreManager Instance
     {
@@ -36,6 +51,14 @@ public class ScoreManager : MonoBehaviour
         if (_instance == null)
         {
             _instance = this;
+        }
+
+        GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+        numberOfPlayers = players.Length;
+        for (int i = 0; i < players.Length; i++)
+        {
+            playerApprovals.Add(players[i].GetComponent<PlayerScript>().approval);
+            players[i].GetComponent<PlayerScript>().placeInScoresList = i;
         }
     }
 
@@ -68,7 +91,10 @@ public class ScoreManager : MonoBehaviour
     {
         Material mat = shotPlayer.GetComponent<Renderer>().material;
         timeSinceLastShot = 0;
-        
+        playerApprovals[shotPlayer.GetComponent<PlayerScript>().placeInScoresList] -= bulletDamageRate;
+        OnUpdateScore.Invoke();
+        UpdatePercentages(shotPlayer.GetComponent<PlayerScript>().placeInScoresList);
+
         if (showDamage)
         {
             float emission = Mathf.PingPong(Time.time, 1.0f);
@@ -80,7 +106,9 @@ public class ScoreManager : MonoBehaviour
 
     void PlayerHitTrap(GameObject player, Traps trapType)
     {
-        Debug.Log(player);
+        playerApprovals[player.GetComponent<PlayerScript>().placeInScoresList] -= lowDamageRate;
+        OnUpdateScore.Invoke();
+        UpdatePercentages(player.GetComponent<PlayerScript>().placeInScoresList);
         if (trapType == Traps.SPIKEWALL)
         {
             StartCoroutine(FlashDamage(player));
@@ -93,4 +121,35 @@ public class ScoreManager : MonoBehaviour
         yield return new WaitForSeconds(0.2f);
         player.GetComponent<Renderer>().material.SetColor("_EmissionColor", Color.black);
     }
+
+    void UpdatePercentages(int positionToPrioritise)
+    {
+        float allScores = 0;
+        for (int i = 0; i < playerApprovals.Count; i++)
+        {
+            allScores += playerApprovals[i];
+        }
+
+        if (allScores < 100)
+        {
+            Debug.Log("Scores less");
+            float a = 100 - playerApprovals[positionToPrioritise];
+            for (int i = 0; i < playerApprovals.Count; i++)
+            {
+                if (i != positionToPrioritise)
+                {
+                    playerApprovals[i] = a / (numberOfPlayers - 1);
+                }
+            }
+
+            OnUpdateScore.Invoke();
+
+        }
+        else if (allScores > 100)
+        {
+            Debug.Log("Scores more");
+        }
+    }
+
+
 }
