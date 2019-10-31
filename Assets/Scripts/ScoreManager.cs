@@ -65,12 +65,14 @@ public class ScoreManager : MonoBehaviour
     private void OnEnable()
     {
         PlayerScript.OnPlayerShot += PlayerShot;
+        PlayerScript.OnPlayerCollision += PlayerCollision;
         WallScript.OnTrapHit += PlayerHitTrap;
     }
 
     private void OnDisable()
     {
         PlayerScript.OnPlayerShot -= PlayerShot;
+        PlayerScript.OnPlayerCollision -= PlayerCollision;
         WallScript.OnTrapHit -= PlayerHitTrap;
     }
 
@@ -104,6 +106,15 @@ public class ScoreManager : MonoBehaviour
         }
     }
 
+    void PlayerCollision(GameObject player)
+    {
+        Debug.Log(player.name + " hit");
+        playerApprovals[player.GetComponent<PlayerScript>().placeInScoresList] -= lowDamageRate;
+        OnUpdateScore.Invoke();
+        UpdatePercentages(player.GetComponent<PlayerScript>().placeInScoresList);
+        StartCoroutine(FlashDamage(player));
+    }
+
     void PlayerHitTrap(GameObject player, Traps trapType)
     {
         playerApprovals[player.GetComponent<PlayerScript>().placeInScoresList] -= lowDamageRate;
@@ -117,9 +128,9 @@ public class ScoreManager : MonoBehaviour
 
     IEnumerator FlashDamage(GameObject player)
     {
-        player.GetComponent<Renderer>().material.SetColor("_EmissionColor", Color.white);
+        player.GetComponent<PlayerScript>().lightsource.enabled = true;
         yield return new WaitForSeconds(0.2f);
-        player.GetComponent<Renderer>().material.SetColor("_EmissionColor", Color.black);
+        player.GetComponent<PlayerScript>().lightsource.enabled = false;
     }
 
     void UpdatePercentages(int positionToPrioritise)
@@ -132,7 +143,6 @@ public class ScoreManager : MonoBehaviour
 
         if (allScores < 100)
         {
-            Debug.Log("Scores less");
             float a = 100 - playerApprovals[positionToPrioritise];
             for (int i = 0; i < playerApprovals.Count; i++)
             {
@@ -147,7 +157,6 @@ public class ScoreManager : MonoBehaviour
         }
         else if (allScores > 100)
         {
-            Debug.Log("Scores more");
             float a = playerApprovals[positionToPrioritise] - 100;
             for (int i = 0; i < playerApprovals.Count; i++)
             {
