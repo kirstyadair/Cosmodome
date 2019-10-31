@@ -117,7 +117,7 @@ public class ScoreManager : MonoBehaviour
 
     IEnumerator FlashDamage(GameObject player)
     {
-        player.GetComponent<Renderer>().material.SetColor("_EmissionColor", Color.red);
+        player.GetComponent<Renderer>().material.SetColor("_EmissionColor", Color.white);
         yield return new WaitForSeconds(0.2f);
         player.GetComponent<Renderer>().material.SetColor("_EmissionColor", Color.black);
     }
@@ -148,6 +148,16 @@ public class ScoreManager : MonoBehaviour
         else if (allScores > 100)
         {
             Debug.Log("Scores more");
+            float a = playerApprovals[positionToPrioritise] - 100;
+            for (int i = 0; i < playerApprovals.Count; i++)
+            {
+                if (i != positionToPrioritise)
+                {
+                    playerApprovals[i] = a / (numberOfPlayers - 1);
+                }
+            }
+
+            OnUpdateScore.Invoke();
         }
     }
 

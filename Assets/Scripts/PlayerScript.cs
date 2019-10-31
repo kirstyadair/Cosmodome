@@ -53,6 +53,16 @@ public class PlayerScript : MonoBehaviour
     void UpdateScores()
     {
         approval = sm.playerApprovals[placeInScoresList];
+        if (approval < 0)
+        {
+            approval = 0;
+            sm.playerApprovals[placeInScoresList] = 0;
+        }
+        else if (approval > 100)
+        {
+            approval = 100;
+            sm.playerApprovals[placeInScoresList] = 100;
+        }
     }
 }
 
