@@ -100,7 +100,7 @@ public class ScoreManager : MonoBehaviour
         if (showDamage)
         {
             float emission = Mathf.PingPong(Time.time, 1.0f);
-            Color color = Color.red;
+            Color color = new Color(1, 0, 1);
             Color emissionColour = color * Mathf.LinearToGammaSpace(emission);
             mat.SetColor("_EmissionColor", emissionColour);
         }
