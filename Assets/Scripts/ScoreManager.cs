@@ -14,7 +14,6 @@ public class ScoreManager : MonoBehaviour
     /// Singleton instance
     /// </summary>
     static ScoreManager _instance;
-    float timeSinceLastShot = 0.0f;
 
     // Events
     public delegate void UpdateScores();
@@ -22,7 +21,6 @@ public class ScoreManager : MonoBehaviour
 
     public List<float> playerApprovals = new List<float>();
 
-    public bool showDamage = true;
     public int numberOfPlayers;
 
     [Header("Approval Rates")]
@@ -76,34 +74,13 @@ public class ScoreManager : MonoBehaviour
         WallScript.OnTrapHit -= PlayerHitTrap;
     }
 
-    private void Update()
-    {
-        timeSinceLastShot += Time.deltaTime;
-        if (timeSinceLastShot > 0.5f)
-        {
-            showDamage = false;
-        }
-        else
-        {
-            showDamage = true;
-        }
-    }
-
     void PlayerShot(GameObject shotPlayer)
     {
-        Material mat = shotPlayer.GetComponent<Renderer>().material;
-        timeSinceLastShot = 0;
         playerApprovals[shotPlayer.GetComponent<PlayerScript>().placeInScoresList] -= bulletDamageRate;
         OnUpdateScore.Invoke();
         UpdatePercentages(shotPlayer.GetComponent<PlayerScript>().placeInScoresList);
 
-        if (showDamage)
-        {
-            float emission = Mathf.PingPong(Time.time, 1.0f);
-            Color color = new Color(1, 0, 1);
-            Color emissionColour = color * Mathf.LinearToGammaSpace(emission);
-            mat.SetColor("_EmissionColor", emissionColour);
-        }
+        StartCoroutine(shotPlayer.GetComponent<PlayerScript>().FlashWithDamage());
     }
 
     void PlayerCollision(GameObject player)
@@ -112,7 +89,9 @@ public class ScoreManager : MonoBehaviour
         playerApprovals[player.GetComponent<PlayerScript>().placeInScoresList] -= lowDamageRate;
         OnUpdateScore.Invoke();
         UpdatePercentages(player.GetComponent<PlayerScript>().placeInScoresList);
-        StartCoroutine(FlashDamage(player));
+
+
+        StartCoroutine(player.GetComponent<PlayerScript>().FlashWithDamage());
     }
 
     void PlayerHitTrap(GameObject player, Traps trapType)
@@ -120,17 +99,11 @@ public class ScoreManager : MonoBehaviour
         playerApprovals[player.GetComponent<PlayerScript>().placeInScoresList] -= lowDamageRate;
         OnUpdateScore.Invoke();
         UpdatePercentages(player.GetComponent<PlayerScript>().placeInScoresList);
+
         if (trapType == Traps.SPIKEWALL)
         {
-            StartCoroutine(FlashDamage(player));
+            StartCoroutine(player.GetComponent<PlayerScript>().FlashWithDamage());
         }
-    }
-
-    IEnumerator FlashDamage(GameObject player)
-    {
-        player.GetComponent<PlayerScript>().lightsource.enabled = true;
-        yield return new WaitForSeconds(0.2f);
-        player.GetComponent<PlayerScript>().lightsource.enabled = false;
     }
 
     void UpdatePercentages(int positionToPrioritise)

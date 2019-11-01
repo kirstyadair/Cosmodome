@@ -15,34 +15,58 @@ public class PlayerScript : MonoBehaviour
     public delegate void PlayerCollision(GameObject playerHit);
     public static event PlayerCollision OnPlayerCollision;
     public PlayerTypes playerType;
-    public Light lightsource;
     public float approval;
     public Text score;
     public int placeInScoresList;
     ScoreManager sm;
 
+    public Material normalMaterial;
+    public Material flashMaterial;
+    public MeshRenderer[] parts;
+    public int flashTimes;
+    public float flashDuration;
+    public float flashGaps;
+
+    public float hitByBulletCooldown = 0;
+    public float timeBetweenHitByBullet = 0.5f;
+    
     // Start is called before the first frame update
     void Start()
     {
-        lightsource.enabled = false;
         sm = ScoreManager.Instance;
         ScoreManager.OnUpdateScore += UpdateScores;
+    }
+
+    public IEnumerator FlashWithDamage()
+    {
+        Debug.Log("Flsh");
+        void Flash() { foreach (MeshRenderer part in parts) part.material = flashMaterial; }
+        void Normal() { foreach (MeshRenderer part in parts) part.material = normalMaterial; }
+
+        for (int i = 0; i < flashTimes; i++)
+        {
+            
+            Flash();
+            yield return new WaitForSeconds(flashDuration);
+            Normal();
+            yield return new WaitForSeconds(flashGaps);
+        }
+
+        Normal();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (!sm.showDamage)
-        {
-            GetComponent<Renderer>().material.SetColor("_EmissionColor", Color.black);
-        }
 
         score.text = playerType.ToString() + ": " + System.Math.Round(approval, 0) + "%";
+        if (hitByBulletCooldown > 0) hitByBulletCooldown -= Time.deltaTime;
         //sm.playerApprovals[placeInScoresList] = approval;
     }
 
     void OnTriggerEnter(Collider other)
     {
+        /*
         if (other.tag == "GreenBullet" && playerType == PlayerTypes.LIGHTWEIGHT)
         {
             OnPlayerShot.Invoke(this.gameObject);
@@ -60,7 +84,20 @@ public class PlayerScript : MonoBehaviour
             {
                 OnPlayerCollision.Invoke(this.gameObject);
             }
-        }
+        }*/
+    }
+
+    public void WasHitByBullet(BulletDeleter bullet)
+    {
+        if (hitByBulletCooldown > 0) return;
+
+        hitByBulletCooldown = timeBetweenHitByBullet;
+        OnPlayerShot?.Invoke(this.gameObject);
+    }
+
+    public void WasCollidedWith()
+    {
+        OnPlayerCollision.Invoke(this.gameObject);
     }
 
     void UpdateScores()

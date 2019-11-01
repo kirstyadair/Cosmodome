@@ -28,6 +28,11 @@ public class ShipController : MonoBehaviour
     public float maxBoosterDeviance = 15;
     public Vector3 prevVelocity;
     public Vector3 targetDirection;
+    public Vector3 turretDirection;
+    public float targetTurretAngle = 0;
+    public float currentTurretAngle = 0;
+    public float turretLerpSpeed = 0.5f;
+    public float thresholdBeforeFiringTurret = 0.2f;
 
     public float impactThreshold = 1f;
     public float hitPause = 0.01f;
@@ -45,12 +50,24 @@ public class ShipController : MonoBehaviour
     public float strafeDebounce = 1f;
     public float control = 1f;
 
+    public GameObject turretObject;
+    public GameObject bulletSpawnA;
+    public GameObject bulletSpawnB;
+    public GameObject bulletPrefab;
+    public bool firedA = true;
+    public float hitByBulletForce = 1f;
+    public float firingForcePushback = 1f;
+    public float fireCooldown;
+    public float timeBetweenBullets;
+
     public GameObject[] hitParticleFX;
     public GameObject randomTextFX;
     PostProcessProfile postProcessProfile;
+    PlayerScript playerScript;
 
     public void Start()
     {
+        playerScript = GetComponent<PlayerScript>();
         postProcessProfile = Camera.main.GetComponent<PostProcessVolume>().profile;
     }
 
@@ -61,6 +78,53 @@ public class ShipController : MonoBehaviour
         float relativeXVelocity = transform.InverseTransformVector(rb.velocity).x;
 
         rb.AddRelativeForce(new Vector3(-relativeXVelocity/2, 0, 0), ForceMode.VelocityChange);
+    }
+
+    public void AimTurret()
+    {
+        targetTurretAngle = Mathf.Atan2(turretDirection.x, turretDirection.z) * Mathf.Rad2Deg;
+        if (turretDirection.magnitude < thresholdBeforeFiringTurret) targetTurretAngle = Mathf.Atan2(transform.forward.x, transform.forward.z) * Mathf.Rad2Deg;
+
+
+        currentTurretAngle = Mathf.LerpAngle(currentTurretAngle, targetTurretAngle, turretLerpSpeed);
+        turretObject.transform.rotation = Quaternion.Euler(-90, -90, currentTurretAngle);
+    }
+
+
+    public void HitByBullet(BulletDeleter bullet)
+    {
+        foreach (GameObject particleFx in hitParticleFX)
+        {
+            Instantiate(particleFx, bullet.transform.position, Quaternion.identity);
+        }
+
+        rb.AddForce(bullet.transform.forward * hitByBulletForce, ForceMode.Impulse);
+
+        playerScript.WasHitByBullet(bullet);
+    }
+
+    public void Fire()
+    {
+        if (fireCooldown > 0) return;
+
+        Vector3 spawnPosition;
+        if (firedA)
+        {
+            firedA = false;
+            spawnPosition = bulletSpawnA.transform.position;
+        } else
+        {
+            firedA = true;
+            spawnPosition = bulletSpawnB.transform.position;
+        }
+
+        GameObject bullet = Instantiate(bulletPrefab, spawnPosition, Quaternion.identity);
+        bullet.transform.rotation = Quaternion.Euler(0, currentTurretAngle, 0);
+        bullet.GetComponent<BulletDeleter>().shooter = this.gameObject;
+
+        fireCooldown = timeBetweenBullets;
+
+        rb.AddForce(bullet.transform.forward * -firingForcePushback, ForceMode.Impulse);
     }
 
     public void HoverAndSelfRight()
@@ -128,6 +192,7 @@ public class ShipController : MonoBehaviour
     public void FixedUpdate()
     {
         HoverAndSelfRight();
+        AimTurret();
 
         rb.AddForce(targetDirection * boostForce * control);
 
@@ -148,6 +213,7 @@ public class ShipController : MonoBehaviour
             rightBooster.transform.localRotation = Quaternion.Euler(new Vector3(0, 0, 0));
         }
 
+        if (fireCooldown > 0) fireCooldown -= Time.deltaTime;
 
 
         this.prevVelocity = rb.velocity;
@@ -155,7 +221,9 @@ public class ShipController : MonoBehaviour
 
     public void OnCollisionEnter(Collision collision)
     {
+
         if (!collision.transform.CompareTag("Ship")) return;
+       
         if (collision.relativeVelocity.magnitude < impactThreshold) return;
 
         Vector3 shipAVelocity = prevVelocity;
@@ -170,15 +238,17 @@ public class ShipController : MonoBehaviour
         StartCoroutine(collision.gameObject.GetComponent<ShipController>().Careen(disabledTime, careenTime));
         StartCoroutine(CameraFX(collision.impulse.magnitude * chromaticAbberation, collision.impulse.magnitude * chromaticAbberationTime));
 
+        collision.transform.gameObject.GetComponent<PlayerScript>().WasCollidedWith();
+
         Vector3 spawnPos = collision.GetContact(0).point;
         foreach (GameObject particleFx in hitParticleFX)
         {
-            
+
             Instantiate(particleFx, spawnPos, Quaternion.identity);
         }
 
         Instantiate(randomTextFX, spawnPos + Vector3.up, Quaternion.identity);
-
+       
         //collision.rigidbody.AddForce(collision.impulse * impactMultiplier);
     }
 
@@ -210,6 +280,9 @@ public class ShipController : MonoBehaviour
     {
         if (inControl)
         {
+            turretDirection = new Vector3(InputManager.ActiveDevice.RightStick.Value.x, 0, InputManager.ActiveDevice.RightStick.Value.y);
+            if (turretDirection.magnitude > thresholdBeforeFiringTurret) Fire();
+
             targetDirection = new Vector3(InputManager.ActiveDevice.LeftStick.Value.x, 0, InputManager.ActiveDevice.LeftStick.Value.y);
             targetDirection.Normalize();
             targetDirection *= InputManager.ActiveDevice.LeftStick.Value.magnitude;
