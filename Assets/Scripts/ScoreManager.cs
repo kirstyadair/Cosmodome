@@ -65,12 +65,14 @@ public class ScoreManager : MonoBehaviour
     private void OnEnable()
     {
         PlayerScript.OnPlayerShot += PlayerShot;
+        PlayerScript.OnPlayerCollision += PlayerCollision;
         WallScript.OnTrapHit += PlayerHitTrap;
     }
 
     private void OnDisable()
     {
         PlayerScript.OnPlayerShot -= PlayerShot;
+        PlayerScript.OnPlayerCollision -= PlayerCollision;
         WallScript.OnTrapHit -= PlayerHitTrap;
     }
 
@@ -98,10 +100,19 @@ public class ScoreManager : MonoBehaviour
         if (showDamage)
         {
             float emission = Mathf.PingPong(Time.time, 1.0f);
-            Color color = Color.red;
+            Color color = new Color(1, 0, 1);
             Color emissionColour = color * Mathf.LinearToGammaSpace(emission);
             mat.SetColor("_EmissionColor", emissionColour);
         }
+    }
+
+    void PlayerCollision(GameObject player)
+    {
+        Debug.Log(player.name + " hit");
+        playerApprovals[player.GetComponent<PlayerScript>().placeInScoresList] -= lowDamageRate;
+        OnUpdateScore.Invoke();
+        UpdatePercentages(player.GetComponent<PlayerScript>().placeInScoresList);
+        StartCoroutine(FlashDamage(player));
     }
 
     void PlayerHitTrap(GameObject player, Traps trapType)
@@ -117,9 +128,9 @@ public class ScoreManager : MonoBehaviour
 
     IEnumerator FlashDamage(GameObject player)
     {
-        player.GetComponent<Renderer>().material.SetColor("_EmissionColor", Color.red);
+        player.GetComponent<PlayerScript>().lightsource.enabled = true;
         yield return new WaitForSeconds(0.2f);
-        player.GetComponent<Renderer>().material.SetColor("_EmissionColor", Color.black);
+        player.GetComponent<PlayerScript>().lightsource.enabled = false;
     }
 
     void UpdatePercentages(int positionToPrioritise)
@@ -132,7 +143,6 @@ public class ScoreManager : MonoBehaviour
 
         if (allScores < 100)
         {
-            Debug.Log("Scores less");
             float a = 100 - playerApprovals[positionToPrioritise];
             for (int i = 0; i < playerApprovals.Count; i++)
             {
@@ -147,7 +157,16 @@ public class ScoreManager : MonoBehaviour
         }
         else if (allScores > 100)
         {
-            Debug.Log("Scores more");
+            float a = playerApprovals[positionToPrioritise] - 100;
+            for (int i = 0; i < playerApprovals.Count; i++)
+            {
+                if (i != positionToPrioritise)
+                {
+                    playerApprovals[i] = a / (numberOfPlayers - 1);
+                }
+            }
+
+            OnUpdateScore.Invoke();
         }
     }
 

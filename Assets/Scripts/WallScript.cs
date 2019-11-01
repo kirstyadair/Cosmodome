@@ -10,6 +10,7 @@ public class WallScript : MonoBehaviour
     PlayerTypes immunePlayer;
     public delegate void TrapHit(GameObject playerHit, Traps trapType);
     public static event TrapHit OnTrapHit;
+    public Material standardMat;
 
     private void Update()
     {
@@ -30,6 +31,8 @@ public class WallScript : MonoBehaviour
             {
                 //Debug.Log("IsInvoking");
                 OnTrapHit.Invoke(playerTouchingType, Traps.SPIKEWALL);
+                isTrap = false;
+                GetComponent<MeshRenderer>().material = standardMat;
             }
         }
     }
