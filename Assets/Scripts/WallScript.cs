@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using InControl;
 
 public class WallScript : MonoBehaviour
 {
@@ -14,11 +15,12 @@ public class WallScript : MonoBehaviour
 
     private void Update()
     {
-        if (playerTouching && Input.GetKey(KeyCode.E))
+        if (playerTouching && Input.GetKey(KeyCode.E) || InputManager.ActiveDevice.Action1.WasPressed)
         {
             isTrap = true;
             SetTrap();
             immunePlayer = playerTouchingType.GetComponent<PlayerScript>().playerType;
+
         }
 
         if (playerTouching && isTrap)
@@ -44,7 +46,7 @@ public class WallScript : MonoBehaviour
             Destroy(other.gameObject);
         }
 
-        if (other.tag == "Player")
+        if (other.tag == "Ship")
         {
             playerTouching = true;
             playerTouchingType = other.gameObject;
