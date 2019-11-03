@@ -8,9 +8,11 @@ public class WallScript : MonoBehaviour
     bool isTrap = false;
     bool playerTouching = false;
     GameObject playerTouchingType;
-    PlayerTypes immunePlayer;
+    GameObject immunePlayer;
     public delegate void TrapHit(GameObject playerHit, Traps trapType);
     public static event TrapHit OnTrapHit;
+    public delegate void TrapSabotaged(GameObject playerImmune, Traps trapType, bool successful);
+    public static event TrapSabotaged OnTrapSabotaged;
     public Material standardMat;
 
     private void Update()
@@ -19,13 +21,33 @@ public class WallScript : MonoBehaviour
         {
             isTrap = true;
             SetTrap();
-            immunePlayer = playerTouchingType.GetComponent<PlayerScript>().playerType;
+            immunePlayer = playerTouchingType;
 
+        }
+
+        if (playerTouching && Input.GetKey(KeyCode.R) || InputManager.ActiveDevice.Action2.WasPressed)
+        {
+            isTrap = true;
+            SabotageTrap();
+            immunePlayer = playerTouchingType;
+            if (Mathf.RoundToInt(Random.Range(0, 1.0f)) == 1)
+            {
+                Debug.Log("sabotage successful");
+                OnTrapSabotaged.Invoke(immunePlayer, Traps.SPIKEWALL, true);
+            }
+            else
+            {
+                Debug.Log("sabotage failed");
+                OnTrapSabotaged.Invoke(immunePlayer, Traps.SPIKEWALL, false);
+            }
+
+            isTrap = false;
+            GetComponent<MeshRenderer>().material = standardMat;
         }
 
         if (playerTouching && isTrap)
         {
-            if (playerTouchingType.GetComponent<PlayerScript>().playerType == immunePlayer)
+            if (playerTouchingType.GetComponent<PlayerScript>().playerType == immunePlayer.GetComponent<PlayerScript>().playerType)
             {
                 //Debug.Log("This player is immune to the trap");
             }
@@ -55,7 +77,7 @@ public class WallScript : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.tag == "Player")
+        if (other.tag == "Ship")
         {
             playerTouching = false;
             playerTouchingType = null;
@@ -65,5 +87,10 @@ public class WallScript : MonoBehaviour
     private void SetTrap()
     {
         GetComponent<MeshRenderer>().material.color = Color.red;
+    }
+
+    private void SabotageTrap()
+    {
+        GetComponent<MeshRenderer>().material.color = Color.blue;
     }
 }

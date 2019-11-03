@@ -58,10 +58,8 @@ public class PlayerScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
         score.text = playerType.ToString() + ": " + System.Math.Round(approval, 0) + "%";
         if (hitByBulletCooldown > 0) hitByBulletCooldown -= Time.deltaTime;
-        //sm.playerApprovals[placeInScoresList] = approval;
     }
 
     void OnTriggerEnter(Collider other)

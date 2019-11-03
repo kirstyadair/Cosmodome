@@ -51,7 +51,12 @@ public class ScoreManager : MonoBehaviour
             _instance = this;
         }
 
-        GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+        
+    }
+
+    private void Start()
+    {
+        GameObject[] players = GameObject.FindGameObjectsWithTag("Ship");
         numberOfPlayers = players.Length;
         for (int i = 0; i < players.Length; i++)
         {
@@ -65,6 +70,7 @@ public class ScoreManager : MonoBehaviour
         PlayerScript.OnPlayerShot += PlayerShot;
         PlayerScript.OnPlayerCollision += PlayerCollision;
         WallScript.OnTrapHit += PlayerHitTrap;
+        WallScript.OnTrapSabotaged += PlayerAttemptSabotage;
     }
 
     private void OnDisable()
@@ -72,6 +78,7 @@ public class ScoreManager : MonoBehaviour
         PlayerScript.OnPlayerShot -= PlayerShot;
         PlayerScript.OnPlayerCollision -= PlayerCollision;
         WallScript.OnTrapHit -= PlayerHitTrap;
+        WallScript.OnTrapSabotaged -= PlayerAttemptSabotage;
     }
 
     void PlayerShot(GameObject shotPlayer)
@@ -90,7 +97,6 @@ public class ScoreManager : MonoBehaviour
         OnUpdateScore.Invoke();
         UpdatePercentages(player.GetComponent<PlayerScript>().placeInScoresList);
 
-
         StartCoroutine(player.GetComponent<PlayerScript>().FlashWithDamage());
     }
 
@@ -103,6 +109,22 @@ public class ScoreManager : MonoBehaviour
         if (trapType == Traps.SPIKEWALL)
         {
             StartCoroutine(player.GetComponent<PlayerScript>().FlashWithDamage());
+        }
+    }
+
+    void PlayerAttemptSabotage(GameObject immunePlayer, Traps trapType, bool successful)
+    {
+        if (successful)
+        {
+            playerApprovals[immunePlayer.GetComponent<PlayerScript>().placeInScoresList] += highestDamageRate;
+            OnUpdateScore.Invoke();
+            UpdatePercentages(immunePlayer.GetComponent<PlayerScript>().placeInScoresList);
+        }
+        else
+        {
+            playerApprovals[immunePlayer.GetComponent<PlayerScript>().placeInScoresList] -= highestDamageRate;
+            OnUpdateScore.Invoke();
+            UpdatePercentages(immunePlayer.GetComponent<PlayerScript>().placeInScoresList);
         }
     }
 
@@ -129,13 +151,14 @@ public class ScoreManager : MonoBehaviour
 
         }
         else if (allScores > 100)
-        {
-            float a = playerApprovals[positionToPrioritise] - 100;
+        { 
+            float a = 100 - playerApprovals[positionToPrioritise];
+            Debug.Log(a);
             for (int i = 0; i < playerApprovals.Count; i++)
             {
                 if (i != positionToPrioritise)
                 {
-                    playerApprovals[i] = a / (numberOfPlayers - 1);
+                    playerApprovals[i] -= a;
                 }
             }
 
