@@ -17,7 +17,7 @@ public class WallScript : MonoBehaviour
 
     private void Update()
     {
-        if (playerTouching && Input.GetKey(KeyCode.E) || InputManager.ActiveDevice.Action1.WasPressed)
+        if (playerTouching && (Input.GetKey(KeyCode.E) || InputManager.ActiveDevice.Action1.WasPressed))
         {
             isTrap = true;
             SetTrap();
@@ -25,7 +25,7 @@ public class WallScript : MonoBehaviour
 
         }
 
-        if (playerTouching && Input.GetKey(KeyCode.R) || InputManager.ActiveDevice.Action2.WasPressed)
+        if (playerTouching && (Input.GetKey(KeyCode.R) || InputManager.ActiveDevice.Action2.WasPressed))
         {
             isTrap = true;
             SabotageTrap();

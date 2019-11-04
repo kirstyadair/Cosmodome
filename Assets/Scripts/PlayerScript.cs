@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -8,6 +9,19 @@ public enum PlayerTypes
     COMEDIAN, DAREDEVIL, LIGHTWEIGHT, HEAVYWEIGHT, DAVE, NULL
 }
 
+[Serializable]
+public class PlayerApproval {
+    public int value = 0;
+    public int percentage;
+
+    public void ChangeApproval(int amount)
+    {
+        if (percentage >= 100) return;
+
+        value += amount;
+    }
+}
+
 public class PlayerScript : MonoBehaviour
 {
     public delegate void PlayerShot(GameObject playerHit);
@@ -15,7 +29,6 @@ public class PlayerScript : MonoBehaviour
     public delegate void PlayerCollision(GameObject playerHit);
     public static event PlayerCollision OnPlayerCollision;
     public PlayerTypes playerType;
-    public float approval;
     public Text score;
     public int placeInScoresList;
     ScoreManager sm;
@@ -29,12 +42,14 @@ public class PlayerScript : MonoBehaviour
 
     public float hitByBulletCooldown = 0;
     public float timeBetweenHitByBullet = 0.5f;
+
+    public PlayerApproval approval = new PlayerApproval();
     
     // Start is called before the first frame update
     void Start()
     {
         sm = ScoreManager.Instance;
-        ScoreManager.OnUpdateScore += UpdateScores;
+        //ScoreManager.OnUpdateScore += UpdateScores;
     }
 
     public IEnumerator FlashWithDamage()
@@ -58,7 +73,7 @@ public class PlayerScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        score.text = playerType.ToString() + ": " + System.Math.Round(approval, 0) + "%";
+        score.text = playerType.ToString() + ": " + approval.percentage + "%";
         if (hitByBulletCooldown > 0) hitByBulletCooldown -= Time.deltaTime;
     }
 
@@ -98,6 +113,7 @@ public class PlayerScript : MonoBehaviour
         OnPlayerCollision.Invoke(this.gameObject);
     }
 
+    /*
     void UpdateScores()
     {
         approval = sm.playerApprovals[placeInScoresList];
@@ -111,6 +127,6 @@ public class PlayerScript : MonoBehaviour
             approval = 100;
             sm.playerApprovals[placeInScoresList] = 100;
         }
-    }
+    }*/
 }
 

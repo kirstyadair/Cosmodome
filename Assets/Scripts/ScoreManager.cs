@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -19,16 +20,17 @@ public class ScoreManager : MonoBehaviour
     public delegate void UpdateScores();
     public static event UpdateScores OnUpdateScore;
 
-    public List<float> playerApprovals = new List<float>();
+   // public List<float> playerApprovals = new List<float>();
+    public List<PlayerScript> players = new List<PlayerScript>();
 
     public int numberOfPlayers;
 
     [Header("Approval Rates")]
-    public float bulletDamageRate;
-    public float lowDamageRate;
-    public float medDamageRate;
-    public float highDamageRate;
-    public float highestDamageRate;
+    public int bulletDamageRate;
+    public int lowDamageRate;
+    public int medDamageRate;
+    public int highDamageRate;
+    public int highestDamageRate;
 
     public static ScoreManager Instance
     {
@@ -56,13 +58,14 @@ public class ScoreManager : MonoBehaviour
 
     private void Start()
     {
-        GameObject[] players = GameObject.FindGameObjectsWithTag("Ship");
-        numberOfPlayers = players.Length;
-        for (int i = 0; i < players.Length; i++)
+        GameObject[] playerGOs = GameObject.FindGameObjectsWithTag("Ship");
+        numberOfPlayers = playerGOs.Length;
+        for (int i = 0; i < playerGOs.Length; i++)
         {
-            playerApprovals.Add(players[i].GetComponent<PlayerScript>().approval);
-            players[i].GetComponent<PlayerScript>().placeInScoresList = i;
+            players.Add(playerGOs[i].GetComponent<PlayerScript>());
         }
+
+        UpdatePercentages();
     }
 
     private void OnEnable()
@@ -83,9 +86,9 @@ public class ScoreManager : MonoBehaviour
 
     void PlayerShot(GameObject shotPlayer)
     {
-        playerApprovals[shotPlayer.GetComponent<PlayerScript>().placeInScoresList] -= bulletDamageRate;
-        OnUpdateScore.Invoke();
-        UpdatePercentages(shotPlayer.GetComponent<PlayerScript>().placeInScoresList);
+        shotPlayer.GetComponent<PlayerScript>().approval.ChangeApproval(-bulletDamageRate);
+        OnUpdateScore?.Invoke();
+        UpdatePercentages();
 
         StartCoroutine(shotPlayer.GetComponent<PlayerScript>().FlashWithDamage());
     }
@@ -93,18 +96,18 @@ public class ScoreManager : MonoBehaviour
     void PlayerCollision(GameObject player)
     {
         Debug.Log(player.name + " hit");
-        playerApprovals[player.GetComponent<PlayerScript>().placeInScoresList] -= lowDamageRate;
-        OnUpdateScore.Invoke();
-        UpdatePercentages(player.GetComponent<PlayerScript>().placeInScoresList);
+        player.GetComponent<PlayerScript>().approval.ChangeApproval(-lowDamageRate);
+        OnUpdateScore?.Invoke();
+        UpdatePercentages();
 
         StartCoroutine(player.GetComponent<PlayerScript>().FlashWithDamage());
     }
 
     void PlayerHitTrap(GameObject player, Traps trapType)
     {
-        playerApprovals[player.GetComponent<PlayerScript>().placeInScoresList] -= lowDamageRate;
-        OnUpdateScore.Invoke();
-        UpdatePercentages(player.GetComponent<PlayerScript>().placeInScoresList);
+        player.GetComponent<PlayerScript>().approval.ChangeApproval(-lowDamageRate);
+        OnUpdateScore?.Invoke();
+        UpdatePercentages();
 
         if (trapType == Traps.SPIKEWALL)
         {
@@ -112,57 +115,41 @@ public class ScoreManager : MonoBehaviour
         }
     }
 
-    void PlayerAttemptSabotage(GameObject immunePlayer, Traps trapType, bool successful)
+    void PlayerAttemptSabotage(GameObject player, Traps trapType, bool successful)
     {
         if (successful)
         {
-            playerApprovals[immunePlayer.GetComponent<PlayerScript>().placeInScoresList] += highestDamageRate;
-            OnUpdateScore.Invoke();
-            UpdatePercentages(immunePlayer.GetComponent<PlayerScript>().placeInScoresList);
+            player.GetComponent<PlayerScript>().approval.ChangeApproval(highestDamageRate);
+            OnUpdateScore?.Invoke();
+            UpdatePercentages();
         }
         else
         {
-            playerApprovals[immunePlayer.GetComponent<PlayerScript>().placeInScoresList] -= highestDamageRate;
-            OnUpdateScore.Invoke();
-            UpdatePercentages(immunePlayer.GetComponent<PlayerScript>().placeInScoresList);
+            player.GetComponent<PlayerScript>().approval.ChangeApproval(-highestDamageRate);
+            OnUpdateScore?.Invoke();
+            UpdatePercentages();
         }
     }
 
-    void UpdatePercentages(int positionToPrioritise)
+    void UpdatePercentages()
     {
-        float allScores = 0;
-        for (int i = 0; i < playerApprovals.Count; i++)
+        int total = 0;
+
+        foreach (PlayerScript player in players)
         {
-            allScores += playerApprovals[i];
+            player.approval.value = Mathf.Max(0, player.approval.value);
+            total += player.approval.value;
         }
-
-        if (allScores < 100)
+        foreach (PlayerScript player in players)
         {
-            float a = 100 - playerApprovals[positionToPrioritise];
-            for (int i = 0; i < playerApprovals.Count; i++)
+            Debug.Log(total);
+            try
             {
-                if (i != positionToPrioritise)
-                {
-                    playerApprovals[i] = a / (numberOfPlayers - 1);
-                }
-            }
-
-            OnUpdateScore.Invoke();
-
-        }
-        else if (allScores > 100)
-        { 
-            float a = 100 - playerApprovals[positionToPrioritise];
-            Debug.Log(a);
-            for (int i = 0; i < playerApprovals.Count; i++)
+                player.approval.percentage = Mathf.RoundToInt(((float)player.approval.value / (float)total) * 100);
+            } catch (DivideByZeroException e)
             {
-                if (i != positionToPrioritise)
-                {
-                    playerApprovals[i] -= a;
-                }
+                player.approval.percentage = 0;
             }
-
-            OnUpdateScore.Invoke();
         }
     }
 
