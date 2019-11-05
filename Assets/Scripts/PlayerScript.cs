@@ -28,6 +28,21 @@ public class PlayerScript : MonoBehaviour
     public static event PlayerShot OnPlayerShot;
     public delegate void PlayerCollision(GameObject playerHit);
     public static event PlayerCollision OnPlayerCollision;
+
+    //AnnouncerAudio Events Could be used for more though :3
+    public delegate void AnnouncerEvent();
+    public static event AnnouncerEvent PlayerShotHit;
+    public static event AnnouncerEvent PlayerTrapTrigger;
+    public static event AnnouncerEvent PlayerTrapSetup;
+    public static event AnnouncerEvent PlayerOnPlayerCollision;
+    public static event AnnouncerEvent PlayerTaunting;
+    //The maybe do pile if there is time
+    public static event AnnouncerEvent ComedianInactive;
+    public static event AnnouncerEvent DaredevilNearPlayerMiss;
+    public static event AnnouncerEvent DaredevilNearTrapMiss;
+    public static event AnnouncerEvent LightweightEngineDisable;
+
+
     public PlayerTypes playerType;
     public Text score;
     public int placeInScoresList;
@@ -106,11 +121,14 @@ public class PlayerScript : MonoBehaviour
 
         hitByBulletCooldown = timeBetweenHitByBullet;
         OnPlayerShot?.Invoke(this.gameObject);
+        PlayerShotHit();
+
     }
 
     public void WasCollidedWith()
     {
         OnPlayerCollision.Invoke(this.gameObject);
+        PlayerOnPlayerCollision();
     }
 
     /*
