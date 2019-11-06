@@ -299,6 +299,12 @@ public class ShipController : MonoBehaviour
 
             if (strafeCooldown <= 0)
             {
+                if (InputManager.ActiveDevice.LeftStickButton.WasPressed)
+                {
+                    rb.AddForce(targetDirection * strafeForce, ForceMode.Impulse);
+                }
+
+                /*
                 if (InputManager.ActiveDevice.LeftTrigger.WasPressed)
                 {
                     rb.AddRelativeForce(Vector3.left * strafeForce, ForceMode.Impulse);
@@ -311,7 +317,7 @@ public class ShipController : MonoBehaviour
                     rb.AddRelativeForce(Vector3.right * strafeForce, ForceMode.Impulse);
                     StartCoroutine(StopStrafe(stopStrafeAfter));
                     strafeCooldown = strafeDebounce;
-                }
+                }*/
             } else
             {
                 strafeCooldown -= Time.deltaTime;
