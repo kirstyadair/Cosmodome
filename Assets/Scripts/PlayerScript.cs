@@ -121,14 +121,14 @@ public class PlayerScript : MonoBehaviour
 
         hitByBulletCooldown = timeBetweenHitByBullet;
         OnPlayerShot?.Invoke(this.gameObject);
-        PlayerShotHit();
+        PlayerShotHit?.Invoke();
 
     }
 
     public void WasCollidedWith()
     {
         OnPlayerCollision.Invoke(this.gameObject);
-        PlayerOnPlayerCollision();
+        PlayerOnPlayerCollision?.Invoke();
     }
 
     /*
