@@ -5,8 +5,8 @@ using UnityEngine;
 public class CrowdManager : MonoBehaviour
 {
     int playerCount;
-    int[] playerScores;
-    int[] numOfSupporters;
+    float[] playerScores;
+    float[] numOfSupporters;
     
     ScoreManager sm;
     GameObject[] crowdMembers;
@@ -15,9 +15,10 @@ public class CrowdManager : MonoBehaviour
     void Start()
     {
         sm = ScoreManager.Instance;
+        Debug.Log(sm.players.Count);
         playerCount = sm.players.Count;
-        playerScores = new int[playerCount];
-        numOfSupporters = new int[playerCount];
+        playerScores = new float[playerCount];
+        numOfSupporters = new float[playerCount];
         crowdMembers = GameObject.FindGameObjectsWithTag("Crowd");
     }
 
@@ -28,9 +29,7 @@ public class CrowdManager : MonoBehaviour
         {
             playerScores[i] = sm.players[i].approval.percentage;
             numOfSupporters[i] = crowdMembers.Length * (playerScores[i] / 100);
-            Debug.Log(numOfSupporters[i]);
+            Debug.Log(crowdMembers.Length);
         }
-
-        
     }
 }

@@ -52,20 +52,20 @@ public class ScoreManager : MonoBehaviour
         {
             _instance = this;
         }
-
-        
-    }
-
-    private void Start()
-    {
         GameObject[] playerGOs = GameObject.FindGameObjectsWithTag("Ship");
         numberOfPlayers = playerGOs.Length;
         for (int i = 0; i < playerGOs.Length; i++)
         {
             players.Add(playerGOs[i].GetComponent<PlayerScript>());
         }
-
         UpdatePercentages();
+    }
+
+    private void Start()
+    {
+        
+
+        
     }
 
     private void OnEnable()
