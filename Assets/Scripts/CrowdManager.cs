@@ -38,22 +38,17 @@ public class CrowdManager : MonoBehaviour
     void UpdateCrowdSupport()
     {
         float minVal = 0;
-        // Array positions 0 - numOfSupporters[0] go red
+
         for (int i = 0; i < playerCount; i++)
         {
             for (int j = 0; j < crowdMembers.Length; j++)
             {
-                if(j >= minVal && j < numOfSupporters[i])
+                if(j >= minVal && j < (minVal + numOfSupporters[i]))
                 {
                     crowdMembers[j].GetComponent<Renderer>().material = colors[i];
                 }
             }
             minVal = numOfSupporters[i];
         }
-        // Array positions numOfSupporters[0]+1 to numOfSupporters[1] go blue
-
-        // Array positions numOfSupporters[1]+1 to numOfSupporters[2] go green
-
-        // Array positions numOfSupporters[2]+1 to crowdMembers.length go yellow
     }
 }
