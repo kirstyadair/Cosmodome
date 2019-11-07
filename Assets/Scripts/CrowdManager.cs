@@ -39,9 +39,9 @@ public class CrowdManager : MonoBehaviour
         {
             for (int j = 0; j < crowdMembers.Length; j++)
             {
-                if(j >= minVal && j < numOfSupporters[i])
+                if(j >= minVal && j < numOfSupporters[0])
                 {
-                    Debug.Log();
+                    Debug.Log("a");
                 }
             }
         }
