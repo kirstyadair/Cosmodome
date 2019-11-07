@@ -15,7 +15,6 @@ public class CrowdManager : MonoBehaviour
     void Start()
     {
         sm = ScoreManager.Instance;
-        Debug.Log(sm.players.Count);
         playerCount = sm.players.Count;
         playerScores = new float[playerCount];
         numOfSupporters = new float[playerCount];
@@ -29,7 +28,27 @@ public class CrowdManager : MonoBehaviour
         {
             playerScores[i] = sm.players[i].approval.percentage;
             numOfSupporters[i] = crowdMembers.Length * (playerScores[i] / 100);
-            Debug.Log(crowdMembers.Length);
         }
+    }
+
+    void UpdateCrowdSupport()
+    {
+        int minVal = 0;
+        // Array positions 0 - numOfSupporters[0] go red
+        for (int i = 0; i < playerCount; i++)
+        {
+            for (int j = 0; j < crowdMembers.Length; j++)
+            {
+                if(j >= minVal && j < numOfSupporters[i])
+                {
+                    Debug.Log();
+                }
+            }
+        }
+        // Array positions numOfSupporters[0]+1 to numOfSupporters[1] go blue
+
+        // Array positions numOfSupporters[1]+1 to numOfSupporters[2] go green
+
+        // Array positions numOfSupporters[2]+1 to crowdMembers.length go yellow
     }
 }
