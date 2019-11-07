@@ -194,6 +194,16 @@ public class ShipController : MonoBehaviour
         HoverAndSelfRight();
         AimTurret();
 
+       
+        var emissionLeft = psLeft.emission;
+        var emissionRight = psRight.emission;
+
+        int emissionAmount = (int)Mathf.Max(psEmitIdle, psEmit * (targetDirection.magnitude));
+        Color finalColor = boosterColour * Mathf.LinearToGammaSpace(Mathf.Max(lightIntensityIdle, lightIntensity * emissionAmount));
+
+        boosterLightPlane.material.SetColor("_EmissionColor", finalColor);
+
+        emissionLeft.rateOverTime = emissionRight.rateOverTime = emissionAmount;
         rb.AddForce(targetDirection * boostForce * control);
 
         float angle = Vector3.Angle(transform.forward, targetDirection);
@@ -214,7 +224,7 @@ public class ShipController : MonoBehaviour
         }
 
         if (fireCooldown > 0) fireCooldown -= Time.deltaTime;
-
+        if (strafeCooldown > 0) strafeCooldown -= Time.deltaTime;
 
         this.prevVelocity = rb.velocity;
     }
@@ -275,58 +285,20 @@ public class ShipController : MonoBehaviour
         other.AddForce(forceAfter, ForceMode.Impulse);
     }
 
+    public void Boost()
+    {
+        if (strafeCooldown <= 0)
+        {
+            //InputManager.ActiveDevice.LeftStickButton.WasPressed
+            rb.AddForce(targetDirection * strafeForce, ForceMode.Impulse);
+            strafeCooldown = strafeDebounce;
+        }
+    }
+
+
     // Update is called once per frame
     void Update()
     {
-        if (inControl)
-        {
-            turretDirection = new Vector3(InputManager.ActiveDevice.RightStick.Value.x, 0, InputManager.ActiveDevice.RightStick.Value.y);
-            if (turretDirection.magnitude > thresholdBeforeFiringTurret) Fire();
 
-            targetDirection = new Vector3(InputManager.ActiveDevice.LeftStick.Value.x, 0, InputManager.ActiveDevice.LeftStick.Value.y);
-            targetDirection.Normalize();
-            targetDirection *= InputManager.ActiveDevice.LeftStick.Value.magnitude;
-
-            var emissionLeft = psLeft.emission;
-            var emissionRight = psRight.emission;
-
-            int emissionAmount = (int)Mathf.Max(psEmitIdle, psEmit * InputManager.ActiveDevice.LeftStick.Value.magnitude);
-            emissionLeft.rateOverTime = emissionRight.rateOverTime = emissionAmount;
-
-            Color finalColor = boosterColour * Mathf.LinearToGammaSpace(Mathf.Max(lightIntensityIdle, lightIntensity * InputManager.ActiveDevice.LeftStick.Value.magnitude));
-
-            boosterLightPlane.material.SetColor("_EmissionColor", finalColor);
-
-            if (strafeCooldown <= 0)
-            {
-                if (InputManager.ActiveDevice.LeftStickButton.WasPressed)
-                {
-                    rb.AddForce(targetDirection * strafeForce, ForceMode.Impulse);
-                }
-
-                /*
-                if (InputManager.ActiveDevice.LeftTrigger.WasPressed)
-                {
-                    rb.AddRelativeForce(Vector3.left * strafeForce, ForceMode.Impulse);
-                    StartCoroutine(StopStrafe(stopStrafeAfter));
-                    strafeCooldown = strafeDebounce;
-                }
-
-                if (InputManager.ActiveDevice.RightTrigger.WasPressed)
-                {
-                    rb.AddRelativeForce(Vector3.right * strafeForce, ForceMode.Impulse);
-                    StartCoroutine(StopStrafe(stopStrafeAfter));
-                    strafeCooldown = strafeDebounce;
-                }*/
-            } else
-            {
-                strafeCooldown -= Time.deltaTime;
-            }
-        } else
-        {
-            targetDirection = GameObject.Find("Center").transform.position - this.transform.position;
-            if (targetDirection.magnitude < 1f) targetDirection = Vector3.zero;
-            else targetDirection.Normalize();
-        }
     }
 }

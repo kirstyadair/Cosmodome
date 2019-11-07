@@ -21,6 +21,11 @@ public class BulletDeleter : MonoBehaviour
         this.transform.position += this.transform.forward * bulletForce;
     }
 
+    public void OnCollisionEnter(Collision collision)
+    {
+        Destroy(this.gameObject);
+    }
+
     public void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Ship") && other.gameObject != shooter)
@@ -28,7 +33,5 @@ public class BulletDeleter : MonoBehaviour
             other.GetComponent<ShipController>().HitByBullet(this);
             Destroy(this.gameObject);
         }
-
-        
     }
 }

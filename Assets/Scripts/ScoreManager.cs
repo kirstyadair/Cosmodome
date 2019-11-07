@@ -1,4 +1,5 @@
-﻿using System;
+﻿using InControl;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -32,6 +33,34 @@ public class ScoreManager : MonoBehaviour
     public int highDamageRate;
     public int highestDamageRate;
 
+    public void Update()
+    {
+        if (InputManager.ActiveDevice.Action1.WasPressed)
+        {
+            PlayerScript firstPlayerWithoutAController = null;
+
+            foreach (PlayerScript player in players)
+            {
+                // make sure no other player is using this controller
+                if (player.inputDevice == InputManager.ActiveDevice) return;
+
+                // find the first player without a controller
+                if (firstPlayerWithoutAController == null && player.inputDevice == null) firstPlayerWithoutAController = player;
+            }
+
+            if (firstPlayerWithoutAController != null) firstPlayerWithoutAController.inputDevice = InputManager.ActiveDevice;
+
+        }
+    }
+
+    public void OnDeviceDetached(InputDevice device)
+    {
+        foreach (PlayerScript player in players)
+        {
+            if (player.inputDevice == device) player.inputDevice = null;
+        }
+    }
+
     public static ScoreManager Instance
     {
         get
@@ -63,8 +92,8 @@ public class ScoreManager : MonoBehaviour
 
     private void Start()
     {
-        
 
+        InputManager.OnDeviceDetached += OnDeviceDetached;
         
     }
 

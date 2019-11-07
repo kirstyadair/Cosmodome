@@ -1,4 +1,5 @@
-﻿using System;
+﻿using InControl;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -42,7 +43,7 @@ public class PlayerScript : MonoBehaviour
     public static event AnnouncerEvent DaredevilNearTrapMiss;
     public static event AnnouncerEvent LightweightEngineDisable;
 
-
+    public int playerNumber;
     public PlayerTypes playerType;
     public Text score;
     public int placeInScoresList;
@@ -58,12 +59,16 @@ public class PlayerScript : MonoBehaviour
     public float hitByBulletCooldown = 0;
     public float timeBetweenHitByBullet = 0.5f;
 
+    ShipController controller;
     public PlayerApproval approval = new PlayerApproval();
+
+    public InputDevice inputDevice;
     
     // Start is called before the first frame update
     void Start()
     {
         sm = ScoreManager.Instance;
+        controller = GetComponent<ShipController>();
         //ScoreManager.OnUpdateScore += UpdateScores;
     }
 
@@ -90,6 +95,33 @@ public class PlayerScript : MonoBehaviour
     {
         score.text = playerType.ToString() + ": " + approval.percentage + "%";
         if (hitByBulletCooldown > 0) hitByBulletCooldown -= Time.deltaTime;
+
+        if (inputDevice != null)
+        {
+            controller.turretDirection = new Vector3(inputDevice.RightStick.Value.x, 0, inputDevice.RightStick.Value.y);
+            if (controller.turretDirection.magnitude > controller.thresholdBeforeFiringTurret) controller.Fire();
+
+            controller.targetDirection = new Vector3(inputDevice.LeftStick.Value.x, 0, inputDevice.LeftStick.Value.y);
+            controller.targetDirection.Normalize();
+            controller.targetDirection *= inputDevice.LeftStick.Value.magnitude;
+
+            if (inputDevice.LeftStickButton.WasPressed)
+            {
+                controller.Boost();
+            }
+
+        } else if (playerNumber == 1)
+        {
+            // if player 1, default to keyboard controls
+            controller.targetDirection = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+            controller.targetDirection.Normalize();
+        } else
+        {
+            // just go to center
+            controller.targetDirection = GameObject.Find("Center").transform.position - this.transform.position;
+            if (controller.targetDirection.magnitude < 1f) controller.targetDirection = Vector3.zero;
+            else controller.targetDirection.Normalize();
+        }
     }
 
     void OnTriggerEnter(Collider other)
@@ -130,6 +162,7 @@ public class PlayerScript : MonoBehaviour
         OnPlayerCollision.Invoke(this.gameObject);
         PlayerOnPlayerCollision?.Invoke();
     }
+
 
     /*
     void UpdateScores()
