@@ -7,6 +7,10 @@ public class CrowdManager : MonoBehaviour
     int playerCount;
     float[] playerScores;
     float[] numOfSupporters;
+    public Material red;
+    public Material blue;
+    public Material green;
+    public Material yellow;
     
     ScoreManager sm;
     GameObject[] crowdMembers;
@@ -19,6 +23,7 @@ public class CrowdManager : MonoBehaviour
         playerScores = new float[playerCount];
         numOfSupporters = new float[playerCount];
         crowdMembers = GameObject.FindGameObjectsWithTag("Crowd");
+        
     }
 
     // Update is called once per frame
@@ -29,6 +34,8 @@ public class CrowdManager : MonoBehaviour
             playerScores[i] = sm.players[i].approval.percentage;
             numOfSupporters[i] = crowdMembers.Length * (playerScores[i] / 100);
         }
+        UpdateCrowdSupport();
+        
     }
 
     void UpdateCrowdSupport()
