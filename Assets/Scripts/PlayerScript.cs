@@ -17,15 +17,16 @@ public class PlayerApproval {
 
     public void ChangeApproval(int amount)
     {
-        if (percentage >= 100) return;
-
+        Debug.Log("changing approval by " + amount);
         value += amount;
+        if (value > 100) value = 100;
+        if (value < 0) value = 0;
     }
 }
 
 public class PlayerScript : MonoBehaviour
 {
-    public delegate void PlayerShot(GameObject playerHit);
+    public delegate void PlayerShot(GameObject playerHit, GameObject shooter);
     public static event PlayerShot OnPlayerShot;
     public delegate void PlayerCollision(GameObject playerHit);
     public static event PlayerCollision OnPlayerCollision;
@@ -152,7 +153,7 @@ public class PlayerScript : MonoBehaviour
         if (hitByBulletCooldown > 0) return;
 
         hitByBulletCooldown = timeBetweenHitByBullet;
-        OnPlayerShot?.Invoke(this.gameObject);
+        OnPlayerShot?.Invoke(this.gameObject, bullet.shooter);
         PlayerShotHit?.Invoke();
 
     }

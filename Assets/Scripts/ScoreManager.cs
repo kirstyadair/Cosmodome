@@ -113,14 +113,17 @@ public class ScoreManager : MonoBehaviour
         WallScript.OnTrapSabotaged -= PlayerAttemptSabotage;
     }
 
-    void PlayerShot(GameObject shotPlayer)
+    void PlayerShot(GameObject shotPlayer, GameObject shooter)
     {
         shotPlayer.GetComponent<PlayerScript>().approval.ChangeApproval(-bulletDamageRate);
+        shooter.GetComponent<PlayerScript>().approval.ChangeApproval(bulletDamageRate);
+
         OnUpdateScore?.Invoke();
         UpdatePercentages();
 
         StartCoroutine(shotPlayer.GetComponent<PlayerScript>().FlashWithDamage());
     }
+
 
     void PlayerCollision(GameObject player)
     {
@@ -166,12 +169,12 @@ public class ScoreManager : MonoBehaviour
 
         foreach (PlayerScript player in players)
         {
-            player.approval.value = Mathf.Max(0, player.approval.value);
+            //player.approval.value = Mathf.Max(0, player.approval.value);
             total += player.approval.value;
         }
+
         foreach (PlayerScript player in players)
         {
-            Debug.Log(total);
             try
             {
                 player.approval.percentage = Mathf.RoundToInt(((float)player.approval.value / (float)total) * 100);
