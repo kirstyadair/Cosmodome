@@ -18,8 +18,8 @@ public class AudioEvent : MonoBehaviour
     void OnEnable()
     {
         PlayerScript.PlayerShotHit += AudioPlayerShot;
-        PlayerScript.PlayerTrapTrigger += AudioPlayerTrapTrigger;
-        PlayerScript.PlayerTrapSetup += AudioPlayerTrapSetup;
+        WallScript.PlayerTrapTrigger += AudioPlayerTrapTrigger;
+        WallScript.PlayerTrapSetup += AudioPlayerTrapSetup;
         PlayerScript.PlayerOnPlayerCollision += AudioPlayerOnPlayerCollision;
         PlayerScript.PlayerTaunting += AudioPlayerTaunting;
     }
@@ -27,8 +27,8 @@ public class AudioEvent : MonoBehaviour
      void OnDisable()
     {
         PlayerScript.PlayerShotHit -= AudioPlayerShot;
-        PlayerScript.PlayerTrapTrigger -= AudioPlayerTrapTrigger;
-        PlayerScript.PlayerTrapSetup -= AudioPlayerTrapSetup;
+        WallScript.PlayerTrapTrigger -= AudioPlayerTrapTrigger;
+        WallScript.PlayerTrapSetup -= AudioPlayerTrapSetup;
         PlayerScript.PlayerOnPlayerCollision -= AudioPlayerOnPlayerCollision;
         PlayerScript.PlayerTaunting -= AudioPlayerTaunting;
     }

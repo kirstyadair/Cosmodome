@@ -34,8 +34,8 @@ public class PlayerScript : MonoBehaviour
     //AnnouncerAudio Events Could be used for more though :3
     public delegate void AnnouncerEvent();
     public static event AnnouncerEvent PlayerShotHit;
-    public static event AnnouncerEvent PlayerTrapTrigger;
-    public static event AnnouncerEvent PlayerTrapSetup;
+    
+    
     public static event AnnouncerEvent PlayerOnPlayerCollision;
     public static event AnnouncerEvent PlayerTaunting;
     //The maybe do pile if there is time

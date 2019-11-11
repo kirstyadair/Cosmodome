@@ -13,6 +13,11 @@ public class WallScript : MonoBehaviour
     public static event TrapHit OnTrapHit;
     public delegate void TrapSabotaged(GameObject playerImmune, Traps trapType, bool successful);
     public static event TrapSabotaged OnTrapSabotaged;
+
+    public delegate void AnnouncerEvent();
+    public static event AnnouncerEvent PlayerTrapSetup;
+    public static event AnnouncerEvent PlayerTrapTrigger;
+
     public Material standardMat;
 
     private void Update()
@@ -22,6 +27,7 @@ public class WallScript : MonoBehaviour
             isTrap = true;
             SetTrap();
             immunePlayer = playerTouchingType;
+            PlayerTrapSetup?.Invoke();
 
         }
 
@@ -57,6 +63,7 @@ public class WallScript : MonoBehaviour
                 OnTrapHit.Invoke(playerTouchingType, Traps.SPIKEWALL);
                 isTrap = false;
                 GetComponent<MeshRenderer>().material = standardMat;
+                PlayerTrapTrigger?.Invoke();
             }
         }
     }
