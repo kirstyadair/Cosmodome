@@ -6,7 +6,7 @@ public class CrowdManager : MonoBehaviour
 {
     int playerCount;
     float[] playerScores;
-    float[] numOfSupporters;
+    public float[] numOfSupporters;
     public Material[] colors;
     
     ScoreManager sm;
@@ -48,7 +48,7 @@ public class CrowdManager : MonoBehaviour
                     crowdMembers[j].GetComponent<Renderer>().material = colors[i];
                 }
             }
-            minVal = numOfSupporters[i];
+            minVal += numOfSupporters[i];
         }
     }
 }
