@@ -23,7 +23,7 @@ public class PlayerApproval {
         value += amount;
         if (value > 100) value = 100;
         if (value < 0) value = 0;
-        spotlight.intensity = maxBrightness * ((float)value/100);
+        spotlight.intensity = maxBrightness * percentage/100f;
     }
 }
 
@@ -73,6 +73,7 @@ public class PlayerScript : MonoBehaviour
     {
         sm = ScoreManager.Instance;
         controller = GetComponent<ShipController>();
+        approval.ChangeApproval(0);
         //ScoreManager.OnUpdateScore += UpdateScores;
     }
 
