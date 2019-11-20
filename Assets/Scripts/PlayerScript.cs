@@ -14,6 +14,8 @@ public enum PlayerTypes
 public class PlayerApproval {
     public int value = 0;
     public int percentage;
+    public Light spotlight;
+    public int maxBrightness;
 
     public void ChangeApproval(int amount)
     {
@@ -21,6 +23,7 @@ public class PlayerApproval {
         value += amount;
         if (value > 100) value = 100;
         if (value < 0) value = 0;
+        spotlight.intensity = maxBrightness * ((float)value/100);
     }
 }
 
