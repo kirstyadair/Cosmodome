@@ -10,7 +10,7 @@ public class CrowdManager : MonoBehaviour
     public Material[] colors;
     
     ScoreManager sm;
-    GameObject[] crowdMembers;
+    public GameObject[] crowdMembers;
 
     // Start is called before the first frame update
     void Start()
@@ -45,7 +45,11 @@ public class CrowdManager : MonoBehaviour
             {
                 if(j >= minVal && j < (minVal + numOfSupporters[i]))
                 {
-                    crowdMembers[j].GetComponent<Renderer>().material = colors[i];
+                    CrowdMemberScript[] cms = crowdMembers[j].GetComponentsInChildren<CrowdMemberScript>();
+                    for (int k = 0; k < cms.Length; k++)
+                    {
+                        cms[k].mat = colors[i];
+                    }
                 }
             }
             minVal += numOfSupporters[i];
