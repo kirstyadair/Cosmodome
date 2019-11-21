@@ -9,7 +9,7 @@ public class CrowdMemberScript : MonoBehaviour
 
     void Start()
     {
-        
+
     }
 
     void Update()
