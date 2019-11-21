@@ -26,9 +26,12 @@ public class ShipController : MonoBehaviour
     public Transform leftBooster;
     public Transform rightBooster;
     public float maxBoosterDeviance = 15;
+    public Vector3 boosterRotateAxis;
     public Vector3 prevVelocity;
     public Vector3 targetDirection;
     public Vector3 turretDirection;
+    public Vector3 turretRotateAxis;
+    public Vector3 turretRotateOffset;
     public float targetTurretAngle = 0;
     public float currentTurretAngle = 0;
     public float turretLerpSpeed = 0.5f;
@@ -50,7 +53,7 @@ public class ShipController : MonoBehaviour
     public float strafeDebounce = 1f;
     public float control = 1f;
 
-    public GameObject turretObject;
+    public GameObject[] turretObjects;
     public GameObject bulletSpawnA;
     public GameObject bulletSpawnB;
     public GameObject bulletPrefab;
@@ -87,7 +90,8 @@ public class ShipController : MonoBehaviour
 
 
         currentTurretAngle = Mathf.LerpAngle(currentTurretAngle, targetTurretAngle, turretLerpSpeed);
-        turretObject.transform.rotation = Quaternion.Euler(-90, -90, currentTurretAngle);
+
+        foreach (GameObject turretObject in turretObjects) turretObject.transform.rotation = Quaternion.Euler((turretRotateAxis * currentTurretAngle) + turretRotateOffset);
     }
 
 
@@ -215,8 +219,8 @@ public class ShipController : MonoBehaviour
             rb.AddTorque(axis * angle * selfRightingTorque * control);
 
             float moveBoostersBy = axis.y * maxBoosterDeviance;
-            leftBooster.transform.localRotation = Quaternion.Euler(new Vector3(0, 0, moveBoostersBy));
-            rightBooster.transform.localRotation = Quaternion.Euler(new Vector3(0, 0, moveBoostersBy));
+            leftBooster.transform.localRotation = Quaternion.Euler(boosterRotateAxis * moveBoostersBy);
+            rightBooster.transform.localRotation = Quaternion.Euler(boosterRotateAxis * moveBoostersBy);
         } else
         {
             leftBooster.transform.localRotation = Quaternion.Euler(new Vector3(0, 0, 0));
