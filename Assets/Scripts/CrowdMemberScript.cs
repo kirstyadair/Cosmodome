@@ -14,8 +14,8 @@ public class CrowdMemberScript : MonoBehaviour
 
     void Update()
     {
-        bothMats = GetComponent<MeshRenderer>().materials;
+        bothMats = GetComponent<MeshRenderer>().sharedMaterials;
         bothMats[1] = mat;
-        GetComponent<MeshRenderer>().materials = bothMats;
+        GetComponent<MeshRenderer>().sharedMaterials = bothMats;
     }
 }
