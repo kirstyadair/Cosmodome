@@ -1,4 +1,4 @@
-﻿using System.Collections;
+﻿    using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -11,8 +11,11 @@ public class AudioEvent : MonoBehaviour
     public AudioClip[] AudioArrayPlayerTaunting;
 
     public AudioSource AudioPlayer;
+
+
+    private GameObject subtitle;
     
-    bool isPlaying = false;
+    public bool isPlaying = false;
     
 
     void OnEnable()
@@ -35,7 +38,7 @@ public class AudioEvent : MonoBehaviour
 
     void Start()
     {
-        
+        subtitle = GameObject.Find("Subtitles");
     }
 
     IEnumerator WaitForSound(AudioSource source)
@@ -44,12 +47,16 @@ public class AudioEvent : MonoBehaviour
         source.Play();
         yield return new WaitForSeconds(source.clip.length);
 
+        
+        
+
         isPlaying = false;
         
     }
-    void AudioPlayerChangeSoundClip(AudioClip[] audioArray, AudioSource source)
+    void AudioPlayerChangeSoundClip(AudioClip[] audioArray, AudioSource source, int randomClip)
     {
-        source.clip = audioArray[Random.Range(0, audioArray.Length)];
+        
+        source.clip = audioArray[randomClip];
         AudioPlayerPlaySound();
     }
 
@@ -66,7 +73,9 @@ public class AudioEvent : MonoBehaviour
     {
         if (!isPlaying)
         {
-            AudioPlayerChangeSoundClip(AudioArrayPlayerShot, AudioPlayer);
+            int randomClip = Random.Range(0, AudioArrayPlayerShot.Length);
+            AudioPlayerChangeSoundClip(AudioArrayPlayerShot, AudioPlayer,randomClip);
+            subtitle.GetComponent<AnnouncerDialouge>().DisplayPlayerShotSubtitle(randomClip);
         }  
     }
 
@@ -74,7 +83,9 @@ public class AudioEvent : MonoBehaviour
     {
         if (!isPlaying)
         {
-            AudioPlayerChangeSoundClip(AudioArrayPlayerTrapTrigger, AudioPlayer);
+            int randomClip = Random.Range(0, AudioArrayPlayerTrapTrigger.Length);
+            AudioPlayerChangeSoundClip(AudioArrayPlayerTrapTrigger, AudioPlayer,randomClip);
+            subtitle.GetComponent<AnnouncerDialouge>().DiaplayPlayerTrapTriggerSubtitle(randomClip);
         }
 
     }
@@ -83,7 +94,9 @@ public class AudioEvent : MonoBehaviour
     {
         if (!isPlaying)
         {
-            AudioPlayerChangeSoundClip(AudioArrayPlayerTrapSetup, AudioPlayer);
+            int randomClip = Random.Range(0, AudioArrayPlayerTrapSetup.Length);
+            AudioPlayerChangeSoundClip(AudioArrayPlayerTrapSetup, AudioPlayer,randomClip);
+            subtitle.GetComponent<AnnouncerDialouge>().DiaplayPlayerTrapSetupSubtitle(randomClip);
         }
     }
 
@@ -91,7 +104,9 @@ public class AudioEvent : MonoBehaviour
     {
         if (!isPlaying)
         {
-            AudioPlayerChangeSoundClip(AudioArrayPlayerOnPlayerCollision, AudioPlayer);
+            int randomClip = Random.Range(0, AudioArrayPlayerOnPlayerCollision.Length);
+            AudioPlayerChangeSoundClip(AudioArrayPlayerOnPlayerCollision, AudioPlayer, randomClip);
+            subtitle.GetComponent<AnnouncerDialouge>().DisplayPlayerOnPlayerCollisionSubtitle(randomClip);
         }
     }
 
