@@ -13719,6 +13719,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 639354284}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &384061621 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8408824496099055426, guid: a6efeaef6a78c124a8b11f849076d2e2,
+    type: 3}
+  m_PrefabInstance: {fileID: 3814276256498036583}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &387504837
 GameObject:
   m_ObjectHideFlags: 0
@@ -15032,6 +15038,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5d1fe222b6689974cbee2621df53c628, type: 3}
+--- !u!4 &503252604 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1999732999612897282, guid: 4f46c2e901006134f887a343b2416ab3,
+    type: 3}
+  m_PrefabInstance: {fileID: 1999732999723668988}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &504217850
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -30127,6 +30139,7 @@ GameObject:
   - component: {fileID: 963194226}
   - component: {fileID: 963194230}
   - component: {fileID: 963194229}
+  - component: {fileID: 963194231}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -30169,7 +30182,7 @@ Camera:
   far clip plane: 1000
   field of view: 34
   orthographic: 0
-  orthographic size: 5
+  orthographic size: 9.16
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -30276,6 +30289,27 @@ MonoBehaviour:
   m_BeforeTransparentBundles: []
   m_BeforeStackBundles: []
   m_AfterStackBundles: []
+--- !u!114 &963194231
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 963194225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43a40615452264e4abdd1623bd3b7ec2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shipObjects: []
+  shipPositions:
+  - {fileID: 503252604}
+  - {fileID: 384061621}
+  mainCamera: {fileID: 963194227}
+  dampeningTime: 0.4
+  screenEdgeBuff: 8
+  minSize: 6.5
+  desiredPos: {x: 0, y: 0, z: 0}
 --- !u!1001 &970714555
 PrefabInstance:
   m_ObjectHideFlags: 0
