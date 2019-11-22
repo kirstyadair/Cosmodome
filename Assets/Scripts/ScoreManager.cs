@@ -33,11 +33,15 @@ public class ScoreManager : MonoBehaviour
     public int highDamageRate;
     public int highestDamageRate;
 
+    public Color[] playerColours;
+
     public void Update()
     {
         if (InputManager.ActiveDevice.Action1.WasPressed)
         {
             PlayerScript firstPlayerWithoutAController = null;
+
+            int lowestPlayerNumber = 100;
 
             foreach (PlayerScript player in players)
             {
@@ -45,10 +49,19 @@ public class ScoreManager : MonoBehaviour
                 if (player.inputDevice == InputManager.ActiveDevice) return;
 
                 // find the first player without a controller
-                if (firstPlayerWithoutAController == null && player.inputDevice == null) firstPlayerWithoutAController = player;
+                if (player.inputDevice == null && player.playerNumber < lowestPlayerNumber)
+                {
+                    firstPlayerWithoutAController = player;
+                    lowestPlayerNumber = player.playerNumber;
+                }
             }
 
-            if (firstPlayerWithoutAController != null) firstPlayerWithoutAController.inputDevice = InputManager.ActiveDevice;
+            if (firstPlayerWithoutAController != null)
+            {
+                firstPlayerWithoutAController.inputDevice = InputManager.ActiveDevice;
+                firstPlayerWithoutAController.EnableRing(playerColours[firstPlayerWithoutAController.playerNumber - 1]);
+                //InputManager.ActiveDevice.Vibrate(100);
+            }
 
         }
     }

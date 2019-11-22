@@ -63,6 +63,9 @@ public class PlayerScript : MonoBehaviour
     public float hitByBulletCooldown = 0;
     public float timeBetweenHitByBullet = 0.5f;
 
+    public GameObject ring;
+    public float ringHeight;
+
     ShipController controller;
     public PlayerApproval approval = new PlayerApproval();
 
@@ -95,9 +98,38 @@ public class PlayerScript : MonoBehaviour
         Normal();
     }
 
+    public void EnableRing(Color color)
+    {
+        float alpha = ring.GetComponent<SpriteRenderer>().color.a;
+        color.a = alpha;
+        ring.SetActive(true);
+        ring.GetComponent<SpriteRenderer>().color = color;
+
+        // put ring on the floor
+        Vector3 position = this.transform.position;
+        position.y = ringHeight;
+        ring.transform.position = position;
+        ring.transform.up = Vector3.forward;
+
+    }
+
+    public void DisableRing()
+    {
+        ring.SetActive(false);
+    }
+
     // Update is called once per frame
     void Update()
     {
+        if (ring.activeSelf)
+        {
+            // put ring on the floor
+            Vector3 position = this.transform.position;
+            position.y = ringHeight;
+            ring.transform.position = position;
+            ring.transform.up = Vector3.forward;
+        }
+
         score.text = playerType.ToString() + ": " + approval.percentage + "%";
         if (hitByBulletCooldown > 0) hitByBulletCooldown -= Time.deltaTime;
 
