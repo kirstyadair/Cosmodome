@@ -70,11 +70,7 @@ public class ScoreManager : MonoBehaviour
     {
         foreach (PlayerScript player in players)
         {
-            if (player.inputDevice == device)
-            {
-                player.inputDevice = null;
-                player.DisableRing();
-            }
+            if (player.inputDevice == device) player.inputDevice = null;
         }
     }
 
