@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public enum Traps
 {
@@ -25,6 +26,8 @@ public class ScoreManager : MonoBehaviour
     public List<PlayerScript> players = new List<PlayerScript>();
 
     public int numberOfPlayers;
+    public float timeLeftInRound = 90;
+    public Text timeText;
 
     [Header("Approval Rates")]
     public int bulletDamageRate;
@@ -37,6 +40,12 @@ public class ScoreManager : MonoBehaviour
 
     public void Update()
     {
+        timeLeftInRound -= Time.deltaTime;
+        timeText.text = Mathf.RoundToInt(timeLeftInRound).ToString();
+
+        if (timeLeftInRound < 10) timeText.color = Color.red;
+        else timeText.color = Color.white;
+        
         if (InputManager.ActiveDevice.Action1.WasPressed)
         {
             PlayerScript firstPlayerWithoutAController = null;
@@ -64,6 +73,8 @@ public class ScoreManager : MonoBehaviour
             }
 
         }
+
+
     }
 
     public void OnDeviceDetached(InputDevice device)
