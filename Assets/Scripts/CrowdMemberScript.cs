@@ -19,11 +19,10 @@ public class CrowdMemberScript : MonoBehaviour
 
     void Update()
     {
-        if (newMat != null)
+        if (newMat != null && mat != null)
         {
             if (newMat.name != mat.name)
             {
-                Debug.Log("Updating");
                 bothMats = mr.sharedMaterials;
                 bothMats[1] = newMat;
                 mr.sharedMaterials = bothMats;
