@@ -45,7 +45,7 @@ public class ScoreManager : MonoBehaviour
 
         if (timeLeftInRound < 10) timeText.color = Color.red;
         else timeText.color = Color.white;
-        
+
         if (InputManager.ActiveDevice.Action1.WasPressed)
         {
             PlayerScript firstPlayerWithoutAController = null;
@@ -74,7 +74,19 @@ public class ScoreManager : MonoBehaviour
 
         }
 
+        if (timeLeftInRound <= 0)
+        {
+            PlayerScript currentLowest = players[0];
+            for (int i = 1; i < players.Count; i++)
+            {
+                if (players[i].approval.percentage < currentLowest.approval.percentage) currentLowest = players[i];
+            }
 
+            // do something interesting here for player elimination
+            currentLowest.gameObject.SetActive(false);
+
+            timeLeftInRound = 90.0f;
+        }
     }
 
     public void OnDeviceDetached(InputDevice device)
