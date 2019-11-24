@@ -130,7 +130,7 @@ public class PlayerScript : MonoBehaviour
             ring.transform.up = Vector3.forward;
         }
 
-        score.text = playerType.ToString() + ": " + approval.percentage + "%";
+        score.text =approval.percentage + "%";
         if (hitByBulletCooldown > 0) hitByBulletCooldown -= Time.deltaTime;
 
         if (inputDevice != null)
