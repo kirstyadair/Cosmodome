@@ -48,7 +48,7 @@ public class CrowdManager : MonoBehaviour
                     CrowdMemberScript[] cms = crowdMembers[j].GetComponentsInChildren<CrowdMemberScript>();
                     for (int k = 0; k < cms.Length; k++)
                     {
-                        cms[k].mat = colors[i];
+                        cms[k].newMat = colors[i];
                     }
                 }
             }

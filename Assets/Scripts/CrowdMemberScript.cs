@@ -5,6 +5,7 @@ using UnityEngine;
 public class CrowdMemberScript : MonoBehaviour
 {
     public Material mat;
+    public Material newMat;
     public Material[] bothMats;
     MeshRenderer mr;
     public MeshRenderer gmr1;
@@ -18,12 +19,19 @@ public class CrowdMemberScript : MonoBehaviour
 
     void Update()
     {
-        bothMats = mr.sharedMaterials;
-        bothMats[1] = mat;
-        mr.sharedMaterials = bothMats;
+        if (newMat != null && mat != null)
+        {
+            if (newMat.name != mat.name)
+            {
+                bothMats = mr.sharedMaterials;
+                bothMats[1] = newMat;
+                mr.sharedMaterials = bothMats;
 
-        gmr1.material = mat;
-        gmr2.material = mat;
-        gmr3.material = mat;
+                gmr1.material = newMat;
+                gmr2.material = newMat;
+                gmr3.material = newMat;
+            }
+
+        }
     }
 }

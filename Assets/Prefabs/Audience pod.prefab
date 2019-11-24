@@ -493,7 +493,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f73541906784ea5488485c083903005a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mat: {fileID: 0}
+  mat: {fileID: 2100000, guid: 58085b94d2ad619479bcb1d7fda9e5a4, type: 2}
+  newMat: {fileID: 0}
   bothMats: []
   gmr1: {fileID: 1715485419}
   gmr2: {fileID: 153443776}
@@ -511,6 +512,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mat: {fileID: 0}
+  newMat: {fileID: 0}
   bothMats: []
   gmr1: {fileID: 1715485419}
   gmr2: {fileID: 153443776}
