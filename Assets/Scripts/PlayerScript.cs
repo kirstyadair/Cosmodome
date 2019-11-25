@@ -68,6 +68,10 @@ public class PlayerScript : MonoBehaviour
 
     ShipController controller;
     public PlayerApproval approval = new PlayerApproval();
+    public RawImage smallArrow;
+    public RawImage largeArrow;
+    public RawImage smallArrowPlus;
+    public RawImage largeArrowPlus;
 
     public InputDevice inputDevice;
     
@@ -77,6 +81,14 @@ public class PlayerScript : MonoBehaviour
         sm = ScoreManager.Instance;
         controller = GetComponent<ShipController>();
         approval.ChangeApproval(0);
+
+        Color tempColor = largeArrow.color;
+        tempColor.a = 0f;
+        largeArrow.color = tempColor;
+        smallArrow.color = tempColor;
+        smallArrowPlus.color = tempColor;
+        largeArrowPlus.color = tempColor;
+        
         //ScoreManager.OnUpdateScore += UpdateScores;
     }
 
@@ -97,6 +109,59 @@ public class PlayerScript : MonoBehaviour
 
         Normal();
     }
+
+    
+
+    public IEnumerator ArrowFlash(float timeMultiplier, int arrowType,int plusOrMinus)
+    {
+        //Small arrow = 0 | Larg arrow = 1
+        //Plus arrow = 1 | Minus arrow = 0
+
+        if(arrowType == 0 && plusOrMinus == 0)
+        {
+            smallArrow.color = new Color(smallArrow.color.r, smallArrow.color.g, smallArrow.color.b, 1);
+
+            while (smallArrow.color.a > 0.0f)
+            {
+                smallArrow.color = new Color(smallArrow.color.r, smallArrow.color.g, smallArrow.color.b, smallArrow.color.a - (Time.deltaTime * timeMultiplier));
+                yield return null;
+            }
+        }
+
+        if(arrowType ==1&&plusOrMinus ==0)
+        {
+            largeArrow.color = new Color(largeArrow.color.r, largeArrow.color.g, largeArrow.color.b, 1);
+
+            while (largeArrow.color.a > 0.0f)
+            {
+                largeArrow.color = new Color(largeArrow.color.r, largeArrow.color.g, largeArrow.color.b, largeArrow.color.a - (Time.deltaTime * timeMultiplier));
+                yield return null;
+            }
+        }
+        if (arrowType == 0 && plusOrMinus == 1)
+        {
+            smallArrowPlus.color = new Color(smallArrowPlus.color.r, smallArrowPlus.color.g, smallArrowPlus.color.b, 1);
+
+            while (smallArrowPlus.color.a > 0.0f)
+            {
+                smallArrowPlus.color = new Color(smallArrowPlus.color.r, smallArrowPlus.color.g, smallArrowPlus.color.b, smallArrowPlus.color.a - (Time.deltaTime * timeMultiplier));
+                yield return null;
+            }
+        }
+        if (arrowType == 1 && plusOrMinus == 1)
+        {
+            largeArrowPlus.color = new Color(largeArrowPlus.color.r, largeArrowPlus.color.g, largeArrowPlus.color.b, 1);
+
+            while (largeArrowPlus.color.a > 0.0f)
+            {
+                largeArrowPlus.color = new Color(largeArrowPlus.color.r, largeArrowPlus.color.g, largeArrowPlus.color.b, largeArrowPlus.color.a - (Time.deltaTime * timeMultiplier));
+                yield return null;
+            }
+        }
+
+    }
+
+    
 
     public void EnableRing(Color color)
     {
@@ -198,6 +263,7 @@ public class PlayerScript : MonoBehaviour
     {
         OnPlayerCollision.Invoke(this.gameObject);
         PlayerOnPlayerCollision?.Invoke();
+        
     }
 
 
