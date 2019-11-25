@@ -68,10 +68,12 @@ public class PlayerScript : MonoBehaviour
 
     ShipController controller;
     public PlayerApproval approval = new PlayerApproval();
+    //Bens code change start
     public RawImage smallArrow;
     public RawImage largeArrow;
     public RawImage smallArrowPlus;
     public RawImage largeArrowPlus;
+    //Bens Code change end
 
     public InputDevice inputDevice;
     
@@ -111,7 +113,7 @@ public class PlayerScript : MonoBehaviour
     }
 
     
-
+    //Bens code change start
     public IEnumerator ArrowFlash(float timeMultiplier, int arrowType,int plusOrMinus)
     {
         //Small arrow = 0 | Larg arrow = 1
@@ -160,7 +162,7 @@ public class PlayerScript : MonoBehaviour
         }
 
     }
-
+    //Bens code change end
     
 
     public void EnableRing(Color color)
@@ -195,7 +197,9 @@ public class PlayerScript : MonoBehaviour
             ring.transform.up = Vector3.forward;
         }
 
+        //Bens code change start
         score.text =approval.percentage + "%";
+        //Bens code change end
         if (hitByBulletCooldown > 0) hitByBulletCooldown -= Time.deltaTime;
 
         if (inputDevice != null)

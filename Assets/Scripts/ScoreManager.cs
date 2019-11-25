@@ -153,9 +153,10 @@ public class ScoreManager : MonoBehaviour
     {
         shotPlayer.GetComponent<PlayerScript>().approval.ChangeApproval(-bulletDamageRate);
         shooter.GetComponent<PlayerScript>().approval.ChangeApproval(bulletDamageRate);
+        //Bens code change start
         StartCoroutine(shotPlayer.GetComponent<PlayerScript>().ArrowFlash(.5f,0,0));
         StartCoroutine(shooter.GetComponent<PlayerScript>().ArrowFlash(.5f,0,1));
-
+        //Bens code change end
         OnUpdateScore?.Invoke();
         UpdatePercentages();
 
@@ -169,7 +170,9 @@ public class ScoreManager : MonoBehaviour
         player.GetComponent<PlayerScript>().approval.ChangeApproval(-lowDamageRate);
         OnUpdateScore?.Invoke();
         UpdatePercentages();
+        //Bens code change start
         StartCoroutine(player.GetComponent<PlayerScript>().ArrowFlash(.5f,1,0));
+        //Bens code change end
         StartCoroutine(player.GetComponent<PlayerScript>().FlashWithDamage());
     }
 
