@@ -73,6 +73,8 @@ public class PlayerScript : MonoBehaviour
     public RawImage largeArrowPlus;
 
     public InputDevice inputDevice;
+
+    public GameObject ps;
     
     // Start is called before the first frame update
     void Start()
