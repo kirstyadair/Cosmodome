@@ -23,7 +23,6 @@ public class PlayerApproval {
         value += amount;
         if (value > 100) value = 100;
         if (value < 0) value = 0;
-        spotlight.intensity = maxBrightness * percentage/100f;
     }
 }
 
@@ -74,6 +73,8 @@ public class PlayerScript : MonoBehaviour
     public RawImage largeArrowPlus;
 
     public InputDevice inputDevice;
+
+    public GameObject ps;
     
     // Start is called before the first frame update
     void Start()

@@ -5386,6 +5386,11 @@ MonoBehaviour:
     percentage: 0
     spotlight: {fileID: 2970238053789043943}
     maxBrightness: 10
+  smallArrow: {fileID: 0}
+  largeArrow: {fileID: 0}
+  smallArrowPlus: {fileID: 0}
+  largeArrowPlus: {fileID: 0}
+  ps: {fileID: 0}
 --- !u!1 &5054726521774457933
 GameObject:
   m_ObjectHideFlags: 0
