@@ -9,16 +9,25 @@ public class ArenaCannonScript : MonoBehaviour
     Coroutine closeAfterTime;
     Animator animator;
 
+    Vector3 direction;
+    public ArenaCannonMissile[] missiles;
+
     // Start is called before the first frame update
     void Start()
     {
         animator = GetComponent<Animator>();    
     }
 
-    // Update is called once per frame
-    void Update()
+    public void FireAnimationTrigger()
     {
-        
+        foreach (ArenaCannonMissile missile in missiles)
+        {
+            if (!missile.isFired)
+            {
+                missile.Fire(direction);
+                return;
+            }
+        }
     }
 
     public void Activate()
@@ -43,11 +52,17 @@ public class ArenaCannonScript : MonoBehaviour
     {
         //direction.y = 0
 
+        this.direction = direction;
         turret.transform.right = -direction;
         turret.transform.Rotate(new Vector3(-90, 0, 0), Space.Self);
         //turret.transform.forward = Vector3.up;
 
         if (isOpen) return;
+
+        foreach (ArenaCannonMissile missile in missiles)
+        {
+            if (missile.isFired) missile.Restore();
+        }
 
         animator.SetBool("Open", true);
         isOpen = true;
