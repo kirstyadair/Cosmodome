@@ -83,7 +83,8 @@ public class ScoreManager : MonoBehaviour
             }
 
             // do something interesting here for player elimination
-            currentLowest.gameObject.SetActive(false);
+            StartCoroutine(Explode(currentLowest));
+            
 
             timeLeftInRound = 90.0f;
         }
@@ -225,6 +226,13 @@ public class ScoreManager : MonoBehaviour
                 player.approval.percentage = 0;
             }
         }
+    }
+
+    IEnumerator Explode(PlayerScript currentLowest)
+    {
+        GameObject.Instantiate(currentLowest.ps, currentLowest.transform.position, Quaternion.identity);
+        yield return new WaitForSeconds(0.1f);
+        currentLowest.gameObject.SetActive(false);
     }
 
 
