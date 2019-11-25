@@ -23,7 +23,6 @@ public class PlayerApproval {
         value += amount;
         if (value > 100) value = 100;
         if (value < 0) value = 0;
-        spotlight.intensity = maxBrightness * percentage/100f;
     }
 }
 

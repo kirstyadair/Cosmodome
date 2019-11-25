@@ -84403,6 +84403,11 @@ PrefabInstance:
       propertyPath: smallArrowPlus
       value: 
       objectReference: {fileID: 1168744443}
+    - target: {fileID: 3831614855695622483, guid: a6efeaef6a78c124a8b11f849076d2e2,
+        type: 3}
+      propertyPath: approval.value
+      value: 40
+      objectReference: {fileID: 0}
     - target: {fileID: 1825309992592634767, guid: a6efeaef6a78c124a8b11f849076d2e2,
         type: 3}
       propertyPath: m_Enabled
