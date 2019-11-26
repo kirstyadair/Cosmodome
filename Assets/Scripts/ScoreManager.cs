@@ -72,7 +72,7 @@ public class ScoreManager : MonoBehaviour
             if (firstPlayerWithoutAController != null)
             {
                 firstPlayerWithoutAController.inputDevice = InputManager.ActiveDevice;
-                firstPlayerWithoutAController.EnableRing(playerColours[firstPlayerWithoutAController.playerNumber - 1]);
+                firstPlayerWithoutAController.EnableRing(firstPlayerWithoutAController.playerColor);
                 //InputManager.ActiveDevice.Vibrate(100);
             }
 

@@ -52,7 +52,7 @@ public class PlayerScript : MonoBehaviour
     public Text score;
     public int placeInScoresList;
     ScoreManager sm;
-
+    public Color playerColor;
     public Material normalMaterial;
     public Material flashMaterial;
     public MeshRenderer[] parts;
@@ -199,7 +199,8 @@ public class PlayerScript : MonoBehaviour
             Vector3 position = this.transform.position;
             position.y = ringHeight;
             ring.transform.position = position;
-            ring.transform.up = Vector3.forward;
+            //ring.transform.up = Vector3.forward;
+            ring.transform.rotation = Quaternion.LookRotation(Vector3.up, this.transform.forward);
         }
 
         //Bens code change start
