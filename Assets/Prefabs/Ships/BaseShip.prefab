@@ -5337,6 +5337,8 @@ MonoBehaviour:
   stopStrafeAfter: 0.1
   strafeDebounce: 0.2
   control: 1
+  vibrationMultiplier: 1
+  vibrationLengthMultiplier: 0.05
   turretObjects: []
   bulletSpawnA: {fileID: 826089874228353258}
   bulletSpawnB: {fileID: 3803701663177008890}

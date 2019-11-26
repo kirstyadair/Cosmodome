@@ -53,6 +53,9 @@ public class ShipController : MonoBehaviour
     public float strafeDebounce = 1f;
     public float control = 1f;
 
+    public float vibrationMultiplier = 1f;
+    public float vibrationLengthMultiplier = 1f;
+
     public GameObject[] turretObjects;
     public GameObject bulletSpawnA;
     public GameObject bulletSpawnB;
@@ -152,7 +155,6 @@ public class ShipController : MonoBehaviour
     {
         if (control < 1f) yield break;
 
-        Debug.Log("Careening for " + time, this);
         float prevAngularDrag = rb.angularDrag;
         rb.angularDrag = 0;
         control = 0;
@@ -170,7 +172,6 @@ public class ShipController : MonoBehaviour
             yield return null;
         }
 
-        Debug.Log("Careened");
         rb.angularDrag = prevAngularDrag;
         control = 1f;
     }
@@ -246,6 +247,9 @@ public class ShipController : MonoBehaviour
         if (shipAVelocity.magnitude < shipBVelocity.magnitude) return;
 
         if (control < 1 || collision.gameObject.GetComponent<ShipController>().control < 1) return;
+
+        this.GetComponent<PlayerScript>().Vibrate((collision.impulse.magnitude * vibrationMultiplier), (collision.impulse.magnitude * vibrationLengthMultiplier));
+        collision.gameObject.GetComponent<PlayerScript>().Vibrate((collision.impulse.magnitude * vibrationMultiplier), (collision.impulse.magnitude * vibrationLengthMultiplier));
 
         StartCoroutine(HitPause(collision.rigidbody, Mathf.Min(hitPause, (collision.impulse.magnitude / 15) * hitPause), -collision.relativeVelocity * impactMultiplier));
         StartCoroutine(collision.gameObject.GetComponent<ShipController>().Careen(disabledTime, careenTime));

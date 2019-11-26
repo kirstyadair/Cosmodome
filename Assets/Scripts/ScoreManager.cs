@@ -42,6 +42,8 @@ public class ScoreManager : MonoBehaviour
     public PlayerScript winningPlayer;
     public CrowdManager cm;
 
+
+
     public void Update()
     {
         timeLeftInRound -= Time.deltaTime;
@@ -72,8 +74,10 @@ public class ScoreManager : MonoBehaviour
             if (firstPlayerWithoutAController != null)
             {
                 firstPlayerWithoutAController.inputDevice = InputManager.ActiveDevice;
+
+                InputManager.ActiveDevice.SetLightColor(firstPlayerWithoutAController.playerColor);// firstPlayerWithoutAController.playerColor);
+                firstPlayerWithoutAController.Vibrate(0.5f, 0.5f);
                 firstPlayerWithoutAController.EnableRing(firstPlayerWithoutAController.playerColor);
-                //InputManager.ActiveDevice.Vibrate(100);
             }
 
         }

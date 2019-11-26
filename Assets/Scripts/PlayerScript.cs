@@ -169,7 +169,24 @@ public class PlayerScript : MonoBehaviour
 
     }
     //Bens code change end
-    
+
+    public void Vibrate(float strength, float time)
+    {
+        if (inputDevice == null) return;
+
+        Debug.Log("Vibrating " + strength + " for " + time + "s", gameObject);
+        inputDevice.Vibrate(strength);
+        StartCoroutine(StopVibratingAfter(time));
+    }
+
+    IEnumerator StopVibratingAfter(float time)
+    {
+        yield return new WaitForSeconds(time);
+        if (inputDevice == null) yield break;
+
+        inputDevice.StopVibration();
+    }
+
 
     public void EnableRing(Color color)
     {
@@ -273,6 +290,7 @@ public class PlayerScript : MonoBehaviour
     {
         if (hitByBulletCooldown > 0) return;
 
+        Vibrate(0.5f, 0.2f);
         hitByBulletCooldown = timeBetweenHitByBullet;
         OnPlayerShot?.Invoke(this.gameObject, bullet.shooter);
         PlayerShotHit?.Invoke();
@@ -283,7 +301,7 @@ public class PlayerScript : MonoBehaviour
     {
         OnPlayerCollision.Invoke(this.gameObject);
         PlayerOnPlayerCollision?.Invoke();
-        
+  
     }
 
     public void WasHitWithArenaCannon(PlayerScript shooter)
@@ -291,6 +309,8 @@ public class PlayerScript : MonoBehaviour
         OnPlayerHitByArenaCannon?.Invoke(this.gameObject, shooter.gameObject);
         PlayerShotHit?.Invoke();
         StartCoroutine(controller.Careen(controller.disabledTime, controller.careenTime));
+
+        Vibrate(5f,1f);
     }
 
 
