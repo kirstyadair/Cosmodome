@@ -39,6 +39,8 @@ public class ScoreManager : MonoBehaviour
 
     public Color[] playerColours;
 
+    public PlayerScript winningPlayer;
+
     public void Update()
     {
         timeLeftInRound -= Time.deltaTime;
@@ -78,6 +80,7 @@ public class ScoreManager : MonoBehaviour
         if (timeLeftInRound <= 0)
         {
             PlayerScript currentLowest = players[0];
+
             for (int i = 1; i < players.Count; i++)
             {
                 if (players[i].approval.percentage < currentLowest.approval.percentage) currentLowest = players[i];
@@ -85,9 +88,18 @@ public class ScoreManager : MonoBehaviour
 
             // do something interesting here for player elimination
             StartCoroutine(Explode(currentLowest));
-            
 
             timeLeftInRound = 90.0f;
+        }
+        else
+        {
+            PlayerScript currentHighest = players[0];
+
+            for (int i = 1; i < players.Count; i++)
+            {
+                if (players[i].approval.percentage > currentHighest.approval.percentage) currentHighest = players[i];
+            }
+            winningPlayer = currentHighest;
         }
     }
 

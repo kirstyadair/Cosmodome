@@ -4490,6 +4490,7 @@ MonoBehaviour:
   - {r: 0, g: 0.6126497, b: 1, a: 1}
   - {r: 0.41037738, g: 1, b: 0.43581212, a: 1}
   - {r: 1, g: 0.9048885, b: 0, a: 1}
+  winningPlayer: {fileID: 0}
 --- !u!1 &204731790
 GameObject:
   m_ObjectHideFlags: 0
@@ -38745,7 +38746,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f27527d01068b3d44bacf930e17adbf4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  track: {fileID: 2061033846}
   speed: 2
   distance: 1
   invertChance: 0.01
@@ -41765,9 +41765,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   numOfSupporters: []
   colors:
-  - {fileID: 2100000, guid: dfff512f3cb88804cbcec9b493ea2515, type: 2}
-  - {fileID: 2100000, guid: 58085b94d2ad619479bcb1d7fda9e5a4, type: 2}
   - {fileID: 2100000, guid: e7c2e5ddf65fd2d42b29c0792b818d9a, type: 2}
+  - {fileID: 2100000, guid: 58085b94d2ad619479bcb1d7fda9e5a4, type: 2}
+  - {fileID: 2100000, guid: dfff512f3cb88804cbcec9b493ea2515, type: 2}
   - {fileID: 2100000, guid: 6cc732126ba3e5648970f8f539950089, type: 2}
   crowdMembers: []
 --- !u!1 &1022648717
@@ -41815,7 +41815,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f27527d01068b3d44bacf930e17adbf4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  track: {fileID: 1856777773}
   speed: 2
   distance: 1
   invertChance: 0.01
@@ -79019,7 +79018,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1856777772
 Transform:
   m_ObjectHideFlags: 0
@@ -82626,7 +82625,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2061033845
 Transform:
   m_ObjectHideFlags: 0
@@ -104725,6 +104724,11 @@ PrefabInstance:
       propertyPath: ps
       value: 
       objectReference: {fileID: 1445751588}
+    - target: {fileID: 6511922124683423251, guid: 4f46c2e901006134f887a343b2416ab3,
+        type: 3}
+      propertyPath: approval.value
+      value: 40
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4f46c2e901006134f887a343b2416ab3, type: 3}
 --- !u!23 &2539464920609806784
@@ -104885,7 +104889,7 @@ PrefabInstance:
     - target: {fileID: 8408824496099055425, guid: a6efeaef6a78c124a8b11f849076d2e2,
         type: 3}
       propertyPath: m_Name
-      value: Comedian
+      value: Heavyweight
       objectReference: {fileID: 0}
     - target: {fileID: 8408824496099055426, guid: a6efeaef6a78c124a8b11f849076d2e2,
         type: 3}
@@ -104972,6 +104976,16 @@ PrefabInstance:
       propertyPath: ps
       value: 
       objectReference: {fileID: 1445751588}
+    - target: {fileID: 3831614855695622483, guid: a6efeaef6a78c124a8b11f849076d2e2,
+        type: 3}
+      propertyPath: playerType
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3831614855695622483, guid: a6efeaef6a78c124a8b11f849076d2e2,
+        type: 3}
+      propertyPath: approval.value
+      value: 60
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a6efeaef6a78c124a8b11f849076d2e2, type: 3}
 --- !u!33 &4497208305764149986
@@ -105420,7 +105434,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: ecd18bc8b35cf8f4292a02d25753acaa, type: 2}
+  - {fileID: 2100000, guid: e7c2e5ddf65fd2d42b29c0792b818d9a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
