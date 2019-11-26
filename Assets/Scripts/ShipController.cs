@@ -63,7 +63,11 @@ public class ShipController : MonoBehaviour
     public bool firedA = true;
     public float hitByBulletForce = 1f;
     public float firingForcePushback = 1f;
-    public float fireCooldown;
+    float fireCooldown;
+    float burstCooldown;
+    float amountOfBursts = 0;
+    public float burstCount = 5;
+    public float timeBetweenBursts;
     public float timeBetweenBullets;
 
     public GameObject[] hitParticleFX;
@@ -112,7 +116,7 @@ public class ShipController : MonoBehaviour
 
     public void Fire()
     {
-        if (fireCooldown > 0) return;
+        if (fireCooldown > 0 || burstCooldown > 0) return;
 
         Vector3 spawnPosition;
         if (firedA)
@@ -125,6 +129,7 @@ public class ShipController : MonoBehaviour
             spawnPosition = bulletSpawnB.transform.position;
         }
 
+        GetComponent<PlayerScript>().Vibrate(1f, 0.1f);
         GameObject bullet = Instantiate(bulletPrefab, spawnPosition, Quaternion.identity);
         bullet.transform.rotation = Quaternion.Euler(0, currentTurretAngle, 0);
         bullet.GetComponent<BulletDeleter>().shooter = this.gameObject;
@@ -132,6 +137,14 @@ public class ShipController : MonoBehaviour
         fireCooldown = timeBetweenBullets;
 
         rb.AddForce(bullet.transform.forward * -firingForcePushback, ForceMode.Impulse);
+
+        amountOfBursts++;
+        if (amountOfBursts >= burstCount)
+        {
+            GetComponent<PlayerScript>().DisableTurretRing();
+            burstCooldown = timeBetweenBursts;
+            amountOfBursts = 0;
+        }
     }
 
     public void HoverAndSelfRight()
@@ -230,6 +243,11 @@ public class ShipController : MonoBehaviour
 
         if (fireCooldown > 0) fireCooldown -= Time.deltaTime;
         if (strafeCooldown > 0) strafeCooldown -= Time.deltaTime;
+        if (burstCooldown > 0)
+        {
+            burstCooldown -= Time.deltaTime;
+            if (burstCooldown <= 0) GetComponent<PlayerScript>().EnableTurretRing();
+        }
 
         this.prevVelocity = rb.velocity;
     }

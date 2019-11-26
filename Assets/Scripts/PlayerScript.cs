@@ -234,14 +234,15 @@ public class PlayerScript : MonoBehaviour
         if (inputDevice != null)
         {
             controller.turretDirection = new Vector3(inputDevice.RightStick.Value.x, 0, inputDevice.RightStick.Value.y);
-            if (controller.turretDirection.magnitude > controller.thresholdBeforeFiringTurret) controller.Fire();
+
+            if (inputDevice.RightBumper.IsPressed) controller.Fire();
 
             isActivatingTrap = inputDevice.Action1.IsPressed;
             controller.targetDirection = new Vector3(inputDevice.LeftStick.Value.x, 0, inputDevice.LeftStick.Value.y);
             controller.targetDirection.Normalize();
             controller.targetDirection *= inputDevice.LeftStick.Value.magnitude;
 
-            if (inputDevice.LeftStickButton.WasPressed)
+            if (inputDevice.LeftBumper.WasPressed)
             {
                 controller.Boost();
             }
@@ -311,6 +312,24 @@ public class PlayerScript : MonoBehaviour
         StartCoroutine(controller.Careen(controller.disabledTime, controller.careenTime));
 
         Vibrate(5f,1f);
+    }
+
+    public void DisableTurretRing()
+    {
+        Color color = Color.black;
+        float alpha = turretRing.GetComponent<SpriteRenderer>().color.a;
+        color.a = alpha;
+
+        turretRing.GetComponent<SpriteRenderer>().color = color;
+    }
+
+    public void EnableTurretRing()
+    {
+        Color color = playerColor;
+        float alpha = turretRing.GetComponent<SpriteRenderer>().color.a;
+        color.a = alpha;
+
+        turretRing.GetComponent<SpriteRenderer>().color = color;
     }
 
 
