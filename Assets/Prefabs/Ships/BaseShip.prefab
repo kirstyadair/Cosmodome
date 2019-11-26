@@ -5327,7 +5327,7 @@ MonoBehaviour:
   thresholdBeforeFiringTurret: 0.2
   impactThreshold: 12
   hitPause: 0.1
-  impactMultiplier: -2
+  impactMultiplier: 1.5
   disabledTime: 0.5
   careenTime: 1
   chromaticAbberation: 0.1
@@ -5390,6 +5390,7 @@ MonoBehaviour:
   largeArrow: {fileID: 0}
   smallArrowPlus: {fileID: 0}
   largeArrowPlus: {fileID: 0}
+  isActivatingTrap: 0
   ps: {fileID: 0}
 --- !u!1 &5054726521774457933
 GameObject:
@@ -10421,6 +10422,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Dave's ship
       objectReference: {fileID: 0}
+    - target: {fileID: -5097543003843294816, guid: 036ebfa56a2625b4eb4a5857a5ee95de,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a30519c037d0a264eabb0352f7abbc31, type: 2}
     - target: {fileID: -4216859302048453862, guid: 036ebfa56a2625b4eb4a5857a5ee95de,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -10516,11 +10522,6 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0.5078201
       objectReference: {fileID: 0}
-    - target: {fileID: -5097543003843294816, guid: 036ebfa56a2625b4eb4a5857a5ee95de,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: a30519c037d0a264eabb0352f7abbc31, type: 2}
     - target: {fileID: 106206116153664855, guid: 036ebfa56a2625b4eb4a5857a5ee95de,
         type: 3}
       propertyPath: m_Materials.Array.data[0]

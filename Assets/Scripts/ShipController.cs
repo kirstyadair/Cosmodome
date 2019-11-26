@@ -152,7 +152,7 @@ public class ShipController : MonoBehaviour
     {
         if (control < 1f) yield break;
 
-        Debug.Log("Careening for " + time);
+        Debug.Log("Careening for " + time, this);
         float prevAngularDrag = rb.angularDrag;
         rb.angularDrag = 0;
         control = 0;
@@ -246,9 +246,8 @@ public class ShipController : MonoBehaviour
         if (shipAVelocity.magnitude < shipBVelocity.magnitude) return;
 
         if (control < 1 || collision.gameObject.GetComponent<ShipController>().control < 1) return;
-        Debug.Log("BOOM!");
 
-        StartCoroutine(HitPause(collision.rigidbody, Mathf.Min(hitPause, (collision.impulse.magnitude / 15) * hitPause), -collision.impulse * impactMultiplier));
+        StartCoroutine(HitPause(collision.rigidbody, Mathf.Min(hitPause, (collision.impulse.magnitude / 15) * hitPause), -collision.relativeVelocity * impactMultiplier));
         StartCoroutine(collision.gameObject.GetComponent<ShipController>().Careen(disabledTime, careenTime));
         StartCoroutine(CameraFX(collision.impulse.magnitude * chromaticAbberation, collision.impulse.magnitude * chromaticAbberationTime));
 

@@ -35,6 +35,7 @@ public class ScoreManager : MonoBehaviour
     public int medDamageRate;
     public int highDamageRate;
     public int highestDamageRate;
+    public int arenaCannonRate;
 
     public Color[] playerColours;
 
@@ -138,6 +139,7 @@ public class ScoreManager : MonoBehaviour
     {
         PlayerScript.OnPlayerShot += PlayerShot;
         PlayerScript.OnPlayerCollision += PlayerCollision;
+        PlayerScript.OnPlayerHitByArenaCannon += PlayerHitByArenaCannon;
         WallScript.OnTrapHit += PlayerHitTrap;
         WallScript.OnTrapSabotaged += PlayerAttemptSabotage;
     }
@@ -157,6 +159,20 @@ public class ScoreManager : MonoBehaviour
         //Bens code change start
         StartCoroutine(shotPlayer.GetComponent<PlayerScript>().ArrowFlash(.5f,0,0));
         StartCoroutine(shooter.GetComponent<PlayerScript>().ArrowFlash(.5f,0,1));
+        //Bens code change end
+        OnUpdateScore?.Invoke();
+        UpdatePercentages();
+
+        StartCoroutine(shotPlayer.GetComponent<PlayerScript>().FlashWithDamage());
+    }
+
+    void PlayerHitByArenaCannon(GameObject shotPlayer, GameObject shooter)
+    {
+        shotPlayer.GetComponent<PlayerScript>().approval.ChangeApproval(-arenaCannonRate);
+        shooter.GetComponent<PlayerScript>().approval.ChangeApproval(arenaCannonRate);
+        //Bens code change start
+        StartCoroutine(shotPlayer.GetComponent<PlayerScript>().ArrowFlash(1f, 0, 0));
+        StartCoroutine(shooter.GetComponent<PlayerScript>().ArrowFlash(1f, 0, 1));
         //Bens code change end
         OnUpdateScore?.Invoke();
         UpdatePercentages();

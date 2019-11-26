@@ -8,6 +8,7 @@ public class ArenaCannonMissile : MonoBehaviour
     Quaternion startRotation;
     Transform startParent;
 
+    public PlayerScript firer;
     public GameObject fireFX;
     public GameObject spawnExplosionGO;
     Vector3 fireDirection;
@@ -16,15 +17,30 @@ public class ArenaCannonMissile : MonoBehaviour
     public float velocity = 0;
     public float lifetime = 5f;
     float timeAlive = 0;
+    public float smashForce;
 
-    // Start is called before the first frame update
-    void Start()
+    public void OnTriggerEnter(Collider other)
     {
-       
+        if (!isFired) return;
+
+        if (other.CompareTag("Ship") && other.GetComponent<PlayerScript>() != firer)
+        {
+            Hit(other.GetComponent<PlayerScript>());
+        }
+    }
+
+    public void Hit(PlayerScript target)
+    {
+        target.GetComponent<Rigidbody>().AddForce(fireDirection * smashForce, ForceMode.Impulse);
+        GameObject explosion = Instantiate(spawnExplosionGO);
+        explosion.transform.position = this.transform.position;
+        target.WasHitWithArenaCannon(firer);
+        Restore();
     }
 
     public void Restore()
     {
+        firer = null;
         velocity = 0;
         this.transform.SetParent(startParent);
         this.transform.localPosition = startPosition;
@@ -33,8 +49,10 @@ public class ArenaCannonMissile : MonoBehaviour
         fireFX.SetActive(false);
     }
 
-    public void Fire(Vector3 direction)
+    public void Fire(Vector3 direction, PlayerScript firer)
     {
+        this.firer = firer;
+        direction.y = this.transform.position.y;
         startParent = this.transform.parent;
         startPosition = this.transform.localPosition;
         startRotation = this.transform.localRotation;
@@ -46,8 +64,6 @@ public class ArenaCannonMissile : MonoBehaviour
         this.transform.SetParent(null, true);
         fireDirection = direction;
         timeAlive = 0;
-
-        Debug.Log("kaboom");
     }
 
     // Update is called once per frame

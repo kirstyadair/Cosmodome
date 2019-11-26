@@ -23,7 +23,7 @@ public class TestTrapController : MonoBehaviour
 
     public void ActivateButtonClicked()
     {
-        arenaCannon.Activate();
+        arenaCannon.Activate(null);
     }
 
     public void Update()

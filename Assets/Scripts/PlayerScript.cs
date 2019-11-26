@@ -30,6 +30,7 @@ public class PlayerScript : MonoBehaviour
 {
     public delegate void PlayerShot(GameObject playerHit, GameObject shooter);
     public static event PlayerShot OnPlayerShot;
+    public static event PlayerShot OnPlayerHitByArenaCannon;
     public delegate void PlayerCollision(GameObject playerHit);
     public static event PlayerCollision OnPlayerCollision;
 
@@ -75,6 +76,8 @@ public class PlayerScript : MonoBehaviour
     //Bens Code change end
 
     public InputDevice inputDevice;
+
+    public bool isActivatingTrap = false;
 
     public GameObject ps;
     
@@ -208,6 +211,7 @@ public class PlayerScript : MonoBehaviour
             controller.turretDirection = new Vector3(inputDevice.RightStick.Value.x, 0, inputDevice.RightStick.Value.y);
             if (controller.turretDirection.magnitude > controller.thresholdBeforeFiringTurret) controller.Fire();
 
+            isActivatingTrap = inputDevice.Action1.IsPressed;
             controller.targetDirection = new Vector3(inputDevice.LeftStick.Value.x, 0, inputDevice.LeftStick.Value.y);
             controller.targetDirection.Normalize();
             controller.targetDirection *= inputDevice.LeftStick.Value.magnitude;
@@ -222,12 +226,15 @@ public class PlayerScript : MonoBehaviour
             // if player 1, default to keyboard controls
             controller.targetDirection = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
             controller.targetDirection.Normalize();
+            isActivatingTrap = Input.GetKey(KeyCode.X);
         } else
         {
             // just go to center
+            isActivatingTrap = false;
+            /*
             controller.targetDirection = GameObject.Find("Center").transform.position - this.transform.position;
             if (controller.targetDirection.magnitude < 1f) controller.targetDirection = Vector3.zero;
-            else controller.targetDirection.Normalize();
+            else controller.targetDirection.Normalize();*/
         }
     }
 
@@ -269,6 +276,13 @@ public class PlayerScript : MonoBehaviour
         OnPlayerCollision.Invoke(this.gameObject);
         PlayerOnPlayerCollision?.Invoke();
         
+    }
+
+    public void WasHitWithArenaCannon(PlayerScript shooter)
+    {
+        OnPlayerHitByArenaCannon?.Invoke(this.gameObject, shooter.gameObject);
+        PlayerShotHit?.Invoke();
+        StartCoroutine(controller.Careen(controller.disabledTime, controller.careenTime));
     }
 
 

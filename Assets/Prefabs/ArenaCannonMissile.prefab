@@ -135,6 +135,7 @@ GameObject:
   - component: {fileID: 2282780244690356573}
   - component: {fileID: 5517641693681661348}
   - component: {fileID: 8776437167989072779}
+  - component: {fileID: 2571043150603895921}
   m_Layer: 0
   m_Name: ArenaCannonMissile
   m_TagString: Untagged
@@ -216,6 +217,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a25d57a5b62ea454b9b978be509306ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  firer: {fileID: 0}
   fireFX: {fileID: 4239506726127884874}
   spawnExplosionGO: {fileID: 6895797905462260700, guid: ae78e66bb6864224595fca93ccf6ecda,
     type: 3}
@@ -223,6 +225,20 @@ MonoBehaviour:
   fireSpeed: 1
   velocity: 0
   lifetime: 5
+  smashForce: 5
+--- !u!65 &2571043150603895921
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6101902429967974776}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 10.370081, y: 26.905035, z: 8.943135}
+  m_Center: {x: -3.574084, y: 2.6062357, z: 2.9279797}
 --- !u!1001 &3568390592710038099
 PrefabInstance:
   m_ObjectHideFlags: 0
