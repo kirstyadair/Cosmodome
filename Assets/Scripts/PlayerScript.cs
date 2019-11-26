@@ -78,6 +78,7 @@ public class PlayerScript : MonoBehaviour
     public InputDevice inputDevice;
 
     public bool isActivatingTrap = false;
+    //public bool isActive = true;
 
     public GameObject ps;
     

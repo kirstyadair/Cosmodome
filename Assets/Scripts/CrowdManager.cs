@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CrowdManager : MonoBehaviour
 {
-    int playerCount;
+    public int playerCount;
     float[] playerScores;
     public float[] numOfSupporters;
     public Material[] colors;
@@ -30,6 +30,7 @@ public class CrowdManager : MonoBehaviour
         {
             playerScores[i] = sm.players[i].approval.percentage;
             numOfSupporters[i] = crowdMembers.Length * (playerScores[i] / 100);
+            Debug.Log(numOfSupporters[i]);
         }
         UpdateCrowdSupport();
         
@@ -54,5 +55,12 @@ public class CrowdManager : MonoBehaviour
             }
             minVal += numOfSupporters[i];
         }
+    }
+
+    public void RecalculateCrowd()
+    {
+        playerCount = sm.players.Count;
+        playerScores = new float[playerCount];
+        numOfSupporters = new float[playerCount];
     }
 }

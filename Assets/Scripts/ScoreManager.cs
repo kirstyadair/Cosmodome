@@ -40,6 +40,7 @@ public class ScoreManager : MonoBehaviour
     public Color[] playerColours;
 
     public PlayerScript winningPlayer;
+    public CrowdManager cm;
 
     public void Update()
     {
@@ -260,6 +261,10 @@ public class ScoreManager : MonoBehaviour
     {
         GameObject.Instantiate(currentLowest.ps, currentLowest.transform.position, Quaternion.identity);
         yield return new WaitForSeconds(0.1f);
+        players.Remove(currentLowest);
+        cm.RecalculateCrowd();
+        numberOfPlayers--;
+        UpdatePercentages();
         currentLowest.gameObject.SetActive(false);
     }
 
