@@ -64,6 +64,7 @@ public class PlayerScript : MonoBehaviour
     public float timeBetweenHitByBullet = 0.5f;
 
     public GameObject ring;
+    public GameObject turretRing;
     public float ringHeight;
 
     ShipController controller;
@@ -177,6 +178,8 @@ public class PlayerScript : MonoBehaviour
         ring.SetActive(true);
         ring.GetComponent<SpriteRenderer>().color = color;
 
+        turretRing.GetComponent<SpriteRenderer>().color = color;
+
         // put ring on the floor
         Vector3 position = this.transform.position;
         position.y = ringHeight;
@@ -201,6 +204,9 @@ public class PlayerScript : MonoBehaviour
             ring.transform.position = position;
             //ring.transform.up = Vector3.forward;
             ring.transform.rotation = Quaternion.LookRotation(Vector3.up, this.transform.forward);
+
+            if (controller.turretDirection.magnitude > 0) turretRing.transform.rotation = Quaternion.LookRotation(Vector3.up, controller.turretDirection);
+            else turretRing.transform.rotation = ring.transform.rotation;
         }
 
         //Bens code change start
