@@ -52,7 +52,7 @@ public class ArenaCannonMissile : MonoBehaviour
     public void Fire(Vector3 direction, PlayerScript firer)
     {
         this.firer = firer;
-        direction.y = this.transform.position.y;
+        direction.y = 0;//this.transform.position.y;
         startParent = this.transform.parent;
         startPosition = this.transform.localPosition;
         startRotation = this.transform.localRotation;

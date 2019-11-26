@@ -1582,6 +1582,7 @@ MonoBehaviour:
   isOpen: 0
   turret: {fileID: 4614152756552462985}
   spotLight: {fileID: 2702791663670223716}
+  rotationAmount: 10
   missiles:
   - {fileID: 4804002435482454394}
   - {fileID: 7288121875245949218}
