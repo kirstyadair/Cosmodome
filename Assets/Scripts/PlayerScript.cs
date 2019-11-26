@@ -233,10 +233,10 @@ public class PlayerScript : MonoBehaviour
         {
             // just go to center
             isActivatingTrap = false;
-            /*
+            
             controller.targetDirection = GameObject.Find("Center").transform.position - this.transform.position;
             if (controller.targetDirection.magnitude < 1f) controller.targetDirection = Vector3.zero;
-            else controller.targetDirection.Normalize();*/
+            else controller.targetDirection.Normalize();
         }
     }
 
