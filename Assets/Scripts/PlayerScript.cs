@@ -52,7 +52,7 @@ public class PlayerScript : MonoBehaviour
     public Text score;
     public int placeInScoresList;
     ScoreManager sm;
-
+    public Color playerColor;
     public Material normalMaterial;
     public Material flashMaterial;
     public MeshRenderer[] parts;
@@ -64,6 +64,7 @@ public class PlayerScript : MonoBehaviour
     public float timeBetweenHitByBullet = 0.5f;
 
     public GameObject ring;
+    public GameObject turretRing;
     public float ringHeight;
 
     ShipController controller;
@@ -168,7 +169,24 @@ public class PlayerScript : MonoBehaviour
 
     }
     //Bens code change end
-    
+
+    public void Vibrate(float strength, float time)
+    {
+        if (inputDevice == null) return;
+
+        Debug.Log("Vibrating " + strength + " for " + time + "s", gameObject);
+        inputDevice.Vibrate(strength);
+        StartCoroutine(StopVibratingAfter(time));
+    }
+
+    IEnumerator StopVibratingAfter(float time)
+    {
+        yield return new WaitForSeconds(time);
+        if (inputDevice == null) yield break;
+
+        inputDevice.StopVibration();
+    }
+
 
     public void EnableRing(Color color)
     {
@@ -176,6 +194,8 @@ public class PlayerScript : MonoBehaviour
         color.a = alpha;
         ring.SetActive(true);
         ring.GetComponent<SpriteRenderer>().color = color;
+
+        turretRing.GetComponent<SpriteRenderer>().color = color;
 
         // put ring on the floor
         Vector3 position = this.transform.position;
@@ -199,7 +219,11 @@ public class PlayerScript : MonoBehaviour
             Vector3 position = this.transform.position;
             position.y = ringHeight;
             ring.transform.position = position;
-            ring.transform.up = Vector3.forward;
+            //ring.transform.up = Vector3.forward;
+            ring.transform.rotation = Quaternion.LookRotation(Vector3.up, this.transform.forward);
+
+            if (controller.turretDirection.magnitude > 0) turretRing.transform.rotation = Quaternion.LookRotation(Vector3.up, controller.turretDirection);
+            else turretRing.transform.rotation = ring.transform.rotation;
         }
 
         //Bens code change start
@@ -210,14 +234,15 @@ public class PlayerScript : MonoBehaviour
         if (inputDevice != null)
         {
             controller.turretDirection = new Vector3(inputDevice.RightStick.Value.x, 0, inputDevice.RightStick.Value.y);
-            if (controller.turretDirection.magnitude > controller.thresholdBeforeFiringTurret) controller.Fire();
+
+            if (inputDevice.RightBumper.IsPressed) controller.Fire();
 
             isActivatingTrap = inputDevice.Action1.IsPressed;
             controller.targetDirection = new Vector3(inputDevice.LeftStick.Value.x, 0, inputDevice.LeftStick.Value.y);
             controller.targetDirection.Normalize();
             controller.targetDirection *= inputDevice.LeftStick.Value.magnitude;
 
-            if (inputDevice.LeftStickButton.WasPressed)
+            if (inputDevice.LeftBumper.WasPressed)
             {
                 controller.Boost();
             }
@@ -232,10 +257,10 @@ public class PlayerScript : MonoBehaviour
         {
             // just go to center
             isActivatingTrap = false;
-            /*
+            
             controller.targetDirection = GameObject.Find("Center").transform.position - this.transform.position;
             if (controller.targetDirection.magnitude < 1f) controller.targetDirection = Vector3.zero;
-            else controller.targetDirection.Normalize();*/
+            else controller.targetDirection.Normalize();
         }
     }
 
@@ -266,6 +291,7 @@ public class PlayerScript : MonoBehaviour
     {
         if (hitByBulletCooldown > 0) return;
 
+        Vibrate(0.5f, 0.2f);
         hitByBulletCooldown = timeBetweenHitByBullet;
         OnPlayerShot?.Invoke(this.gameObject, bullet.shooter);
         PlayerShotHit?.Invoke();
@@ -276,7 +302,7 @@ public class PlayerScript : MonoBehaviour
     {
         OnPlayerCollision.Invoke(this.gameObject);
         PlayerOnPlayerCollision?.Invoke();
-        
+  
     }
 
     public void WasHitWithArenaCannon(PlayerScript shooter)
@@ -284,6 +310,26 @@ public class PlayerScript : MonoBehaviour
         OnPlayerHitByArenaCannon?.Invoke(this.gameObject, shooter.gameObject);
         PlayerShotHit?.Invoke();
         StartCoroutine(controller.Careen(controller.disabledTime, controller.careenTime));
+
+        Vibrate(5f,1f);
+    }
+
+    public void DisableTurretRing()
+    {
+        Color color = Color.black;
+        float alpha = turretRing.GetComponent<SpriteRenderer>().color.a;
+        color.a = alpha;
+
+        turretRing.GetComponent<SpriteRenderer>().color = color;
+    }
+
+    public void EnableTurretRing()
+    {
+        Color color = playerColor;
+        float alpha = turretRing.GetComponent<SpriteRenderer>().color.a;
+        color.a = alpha;
+
+        turretRing.GetComponent<SpriteRenderer>().color = color;
     }
 
 

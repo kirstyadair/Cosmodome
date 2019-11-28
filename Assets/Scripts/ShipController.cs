@@ -53,6 +53,9 @@ public class ShipController : MonoBehaviour
     public float strafeDebounce = 1f;
     public float control = 1f;
 
+    public float vibrationMultiplier = 1f;
+    public float vibrationLengthMultiplier = 1f;
+
     public GameObject[] turretObjects;
     public GameObject bulletSpawnA;
     public GameObject bulletSpawnB;
@@ -60,7 +63,11 @@ public class ShipController : MonoBehaviour
     public bool firedA = true;
     public float hitByBulletForce = 1f;
     public float firingForcePushback = 1f;
-    public float fireCooldown;
+    float fireCooldown;
+    float burstCooldown;
+    float amountOfBursts = 0;
+    public float burstCount = 5;
+    public float timeBetweenBursts;
     public float timeBetweenBullets;
 
     public GameObject[] hitParticleFX;
@@ -109,7 +116,7 @@ public class ShipController : MonoBehaviour
 
     public void Fire()
     {
-        if (fireCooldown > 0) return;
+        if (fireCooldown > 0 || burstCooldown > 0) return;
 
         Vector3 spawnPosition;
         if (firedA)
@@ -122,6 +129,7 @@ public class ShipController : MonoBehaviour
             spawnPosition = bulletSpawnB.transform.position;
         }
 
+        GetComponent<PlayerScript>().Vibrate(1f, 0.1f);
         GameObject bullet = Instantiate(bulletPrefab, spawnPosition, Quaternion.identity);
         bullet.transform.rotation = Quaternion.Euler(0, currentTurretAngle, 0);
         bullet.GetComponent<BulletDeleter>().shooter = this.gameObject;
@@ -129,6 +137,14 @@ public class ShipController : MonoBehaviour
         fireCooldown = timeBetweenBullets;
 
         rb.AddForce(bullet.transform.forward * -firingForcePushback, ForceMode.Impulse);
+
+        amountOfBursts++;
+        if (amountOfBursts >= burstCount)
+        {
+            GetComponent<PlayerScript>().DisableTurretRing();
+            burstCooldown = timeBetweenBursts;
+            amountOfBursts = 0;
+        }
     }
 
     public void HoverAndSelfRight()
@@ -152,7 +168,6 @@ public class ShipController : MonoBehaviour
     {
         if (control < 1f) yield break;
 
-        Debug.Log("Careening for " + time, this);
         float prevAngularDrag = rb.angularDrag;
         rb.angularDrag = 0;
         control = 0;
@@ -170,7 +185,6 @@ public class ShipController : MonoBehaviour
             yield return null;
         }
 
-        Debug.Log("Careened");
         rb.angularDrag = prevAngularDrag;
         control = 1f;
     }
@@ -229,6 +243,11 @@ public class ShipController : MonoBehaviour
 
         if (fireCooldown > 0) fireCooldown -= Time.deltaTime;
         if (strafeCooldown > 0) strafeCooldown -= Time.deltaTime;
+        if (burstCooldown > 0)
+        {
+            burstCooldown -= Time.deltaTime;
+            if (burstCooldown <= 0) GetComponent<PlayerScript>().EnableTurretRing();
+        }
 
         this.prevVelocity = rb.velocity;
     }
@@ -246,6 +265,9 @@ public class ShipController : MonoBehaviour
         if (shipAVelocity.magnitude < shipBVelocity.magnitude) return;
 
         if (control < 1 || collision.gameObject.GetComponent<ShipController>().control < 1) return;
+
+        this.GetComponent<PlayerScript>().Vibrate((collision.impulse.magnitude * vibrationMultiplier), (collision.impulse.magnitude * vibrationLengthMultiplier));
+        collision.gameObject.GetComponent<PlayerScript>().Vibrate((collision.impulse.magnitude * vibrationMultiplier), (collision.impulse.magnitude * vibrationLengthMultiplier));
 
         StartCoroutine(HitPause(collision.rigidbody, Mathf.Min(hitPause, (collision.impulse.magnitude / 15) * hitPause), -collision.relativeVelocity * impactMultiplier));
         StartCoroutine(collision.gameObject.GetComponent<ShipController>().Careen(disabledTime, careenTime));

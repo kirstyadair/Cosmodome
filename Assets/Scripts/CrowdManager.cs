@@ -30,7 +30,6 @@ public class CrowdManager : MonoBehaviour
         {
             playerScores[i] = sm.players[i].approval.percentage;
             numOfSupporters[i] = crowdMembers.Length * (playerScores[i] / 100);
-            Debug.Log(numOfSupporters[i]);
         }
         UpdateCrowdSupport();
         

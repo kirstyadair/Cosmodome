@@ -15,6 +15,7 @@ public class ArenaCannonScript : MonoBehaviour
     Animator animator;
     public GameObject spotLight;
 
+    public float rotationAmount = 50f;
     Vector3 direction;
     public ArenaCannonMissile[] missiles;
 
@@ -39,6 +40,9 @@ public class ArenaCannonScript : MonoBehaviour
 
     public void FireAnimationTrigger()
     {
+        turret.transform.Rotate(new Vector3(0, 0, 1), rotationAmount);
+        direction = Quaternion.Euler(0, rotationAmount, 0) * direction;
+
         foreach (ArenaCannonMissile missile in missiles)
         {
             if (!missile.isFired)
@@ -47,6 +51,8 @@ public class ArenaCannonScript : MonoBehaviour
                 return;
             }
         }
+
+
     }
 
     public void OnSelected(PlayerScript player)
@@ -57,6 +63,7 @@ public class ArenaCannonScript : MonoBehaviour
     public void OnDeselected(PlayerScript player)
     {
         animator.SetBool("Selection", false);
+        beingActivatedFor = 0;
     }
 
     public void OnActivationStart(PlayerScript playerScript)
