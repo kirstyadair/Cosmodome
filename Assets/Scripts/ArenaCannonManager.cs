@@ -20,6 +20,9 @@ public class ArenaCannonManager : MonoBehaviour
     [Header("How long a cannon stays open for")]
     public float stayOpenFor;
 
+    public delegate void OpenCannon();
+    public static event OpenCannon OnOpenCannon;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -35,6 +38,8 @@ public class ArenaCannonManager : MonoBehaviour
     public void Open()
     {
         if (Random.Range(0f, 1f) <= chanceOfOpeningMultiple) Open();
+
+        OnOpenCannon.Invoke();
 
         List<ArenaCannonScript> closedCannons = new List<ArenaCannonScript>();
         foreach (ArenaCannonScript arenaCannon in arenaCannons)

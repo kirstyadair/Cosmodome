@@ -19,6 +19,9 @@ public class ArenaCannonMissile : MonoBehaviour
     float timeAlive = 0;
     public float smashForce;
 
+    public delegate void FireCannon();
+    public static event FireCannon OnFireCannon;
+
     public void OnTriggerEnter(Collider other)
     {
         if (!isFired) return;
@@ -51,6 +54,7 @@ public class ArenaCannonMissile : MonoBehaviour
 
     public void Fire(Vector3 direction, PlayerScript firer)
     {
+        OnFireCannon.Invoke();
         this.firer = firer;
         direction.y = 0;//this.transform.position.y;
         startParent = this.transform.parent;
