@@ -23,6 +23,7 @@ public class AudioManager : MonoBehaviour
     void OnEnable()
     {
         PlayerScript.OnPlayerCollision += PlayerCollision;
+        ShipController.OnPlayerShooting += PlayerShooting;
     }
 
     // Update is called once per frame
@@ -37,5 +38,14 @@ public class AudioManager : MonoBehaviour
         audioSource.pitch = 0.5f + Random.value;
         audioSource.PlayOneShot(crash);
         audioSource.PlayOneShot(metalScrape);
+    }
+
+
+    void PlayerShooting()
+    {
+        audioSource.volume = 0.2f;
+        audioSource.pitch = Random.value * 2;
+        if (Random.value > 0.5f) audioSource.PlayOneShot(weaponFire1);
+        else audioSource.PlayOneShot(weaponFire2);
     }
 }

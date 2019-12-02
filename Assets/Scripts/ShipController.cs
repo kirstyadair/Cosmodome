@@ -75,6 +75,9 @@ public class ShipController : MonoBehaviour
     PostProcessProfile postProcessProfile;
     PlayerScript playerScript;
 
+    public delegate void PlayerShooting();
+    public static event PlayerShooting OnPlayerShooting;
+
     public void Start()
     {
         playerScript = GetComponent<PlayerScript>();
@@ -116,8 +119,10 @@ public class ShipController : MonoBehaviour
 
     public void Fire()
     {
+        
         if (fireCooldown > 0 || burstCooldown > 0) return;
-
+        OnPlayerShooting.Invoke();
+        
         Vector3 spawnPosition;
         if (firedA)
         {
