@@ -14,6 +14,8 @@ public class AudioManager : MonoBehaviour
         ShipController.OnPlayerShooting += PlayerShooting;
         ArenaCannonManager.OnOpenCannon += OpenCannon;
         ArenaCannonMissile.OnFireCannon += FireCannon;
+        ScoreManager.OnExplodePlayer += ExplodePlayer;
+        ArenaCannonScript.OnTrapActivate += TrapActivated;
     }
 
     // Update is called once per frame
@@ -53,6 +55,24 @@ public class AudioManager : MonoBehaviour
         audioSource.volume = clips[4].volume;
         audioSource.pitch = UnityEngine.Random.value * 2;
         audioSource.PlayOneShot(clips[4].clip);
+    }
+
+
+    void ExplodePlayer()
+    {
+        audioSource.volume = clips[15].volume;
+        audioSource.PlayOneShot(clips[15].clip);
+        audioSource.volume = clips[7].volume;
+        audioSource.PlayOneShot(clips[7].clip);
+        audioSource.PlayOneShot(clips[0].clip);
+        
+    }
+
+
+    void TrapActivated()
+    {
+        audioSource.volume = clips[12].volume;
+        audioSource.PlayOneShot(clips[12].clip);
     }
 }
 

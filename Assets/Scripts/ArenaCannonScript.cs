@@ -19,6 +19,9 @@ public class ArenaCannonScript : MonoBehaviour
     Vector3 direction;
     public ArenaCannonMissile[] missiles;
 
+    public delegate void TrapActivate();
+    public static event TrapActivate OnTrapActivate;
+
     public Image activationProgressSprite;
 
     [Header("How long the player needs to hold X button for")]
@@ -88,7 +91,7 @@ public class ArenaCannonScript : MonoBehaviour
     public void Activate(PlayerScript player)
     {
         if (!isOpen) return;
-
+        OnTrapActivate.Invoke();
         animator.SetTrigger("Fire");
 
         if (closeAfterTime != null)

@@ -21,6 +21,8 @@ public class ScoreManager : MonoBehaviour
     // Events
     public delegate void UpdateScores();
     public static event UpdateScores OnUpdateScore;
+    public delegate void ExplodePlayer();
+    public static event ExplodePlayer OnExplodePlayer;
 
    // public List<float> playerApprovals = new List<float>();
     public List<PlayerScript> players = new List<PlayerScript>();
@@ -265,6 +267,7 @@ public class ScoreManager : MonoBehaviour
     {
         GameObject.Instantiate(currentLowest.ps, currentLowest.transform.position, Quaternion.identity);
         yield return new WaitForSeconds(0.1f);
+        OnExplodePlayer.Invoke();
         players.Remove(currentLowest);
         cm.RecalculateCrowd();
         numberOfPlayers--;
