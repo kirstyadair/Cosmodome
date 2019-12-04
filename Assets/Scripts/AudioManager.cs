@@ -1,23 +1,11 @@
-﻿using System.Collections;
+﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class AudioManager : MonoBehaviour
 {
     AudioSource audioSource;
-    public AudioClip metalScrape;
-    public AudioClip crowdCheer;
-    public AudioClip eliminationBuzz;
-    public AudioClip ballAppears;
-    public AudioClip ballHits;
-    public AudioClip cannonAppears;
-    public AudioClip cannonHits;
-    public AudioClip crash;
-    public AudioClip wallCrash;
-    public AudioClip reload;
-    public AudioClip sabotage;
-    public AudioClip weaponFire1;
-    public AudioClip weaponFire2;
+    public AudioClips[] clips = new AudioClips[13];
 
     // Start is called before the first frame update
     void OnEnable()
@@ -36,34 +24,42 @@ public class AudioManager : MonoBehaviour
 
     void PlayerCollision(GameObject playerHit)
     {
-        audioSource.volume = 0.2f;
-        audioSource.pitch = 0.5f + Random.value;
-        audioSource.PlayOneShot(crash);
-        audioSource.PlayOneShot(metalScrape);
+        audioSource.volume = clips[5].volume;
+        audioSource.pitch = 0.5f + UnityEngine.Random.value;
+        audioSource.PlayOneShot(clips[5].clip);
+        audioSource.PlayOneShot(clips[8].clip);
     }
 
 
     void PlayerShooting()
     {
-        audioSource.volume = 0.2f;
-        audioSource.pitch = Random.value * 2;
-        if (Random.value > 0.5f) audioSource.PlayOneShot(weaponFire1);
-        else audioSource.PlayOneShot(weaponFire2);
+        audioSource.volume = clips[13].volume;
+        audioSource.pitch = UnityEngine.Random.value * 2;
+        if (UnityEngine.Random.value > 0.5f) audioSource.PlayOneShot(clips[13].clip);
+        else audioSource.PlayOneShot(clips[14].clip);
     }
 
 
     void OpenCannon()
     {
-        audioSource.volume = 0.5f;
-        audioSource.pitch = Random.value * 2;
-        audioSource.PlayOneShot(cannonAppears);
+        audioSource.volume = clips[3].volume;
+        audioSource.pitch = UnityEngine.Random.value * 2;
+        audioSource.PlayOneShot(clips[3].clip);
     }
 
 
     void FireCannon()
     {
-        audioSource.volume = 0.5f;
-        audioSource.pitch = Random.value * 2;
-        audioSource.PlayOneShot(cannonHits);
+        audioSource.volume = clips[4].volume;
+        audioSource.pitch = UnityEngine.Random.value * 2;
+        audioSource.PlayOneShot(clips[4].clip);
     }
+}
+
+[Serializable]
+public class AudioClips
+{
+    public AudioClip clip;
+    [Range(0,1)]public float volume;
+
 }

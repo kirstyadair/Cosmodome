@@ -5463,7 +5463,7 @@ ParticleSystem:
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
   looping: 1
-  prewarm: 0
+  prewarm: 1
   playOnAwake: 1
   useUnscaledTime: 0
   autoRandomSeed: 1
@@ -5584,7 +5584,7 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 0.97
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -5700,7 +5700,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1.71
+      scalar: 2.42
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -6016,7 +6016,7 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     randomizeRotationDirection: 0
-    maxNumParticles: 1000
+    maxNumParticles: 26
     size3D: 0
     rotation3D: 0
     gravityModifier:
@@ -20899,7 +20899,7 @@ ParticleSystem:
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
   looping: 1
-  prewarm: 0
+  prewarm: 1
   playOnAwake: 1
   useUnscaledTime: 0
   autoRandomSeed: 1
@@ -21020,7 +21020,7 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 0.97
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -21136,7 +21136,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1.71
+      scalar: 2.42
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -21452,7 +21452,7 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     randomizeRotationDirection: 0
-    maxNumParticles: 1000
+    maxNumParticles: 26
     size3D: 0
     rotation3D: 0
     gravityModifier:
@@ -34209,7 +34209,7 @@ ParticleSystem:
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
   looping: 1
-  prewarm: 0
+  prewarm: 1
   playOnAwake: 1
   useUnscaledTime: 0
   autoRandomSeed: 1
@@ -34762,7 +34762,7 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     randomizeRotationDirection: 0
-    maxNumParticles: 1000
+    maxNumParticles: 2229
     size3D: 0
     rotation3D: 0
     gravityModifier:
@@ -39043,7 +39043,7 @@ ParticleSystem:
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
   looping: 1
-  prewarm: 0
+  prewarm: 1
   playOnAwake: 1
   useUnscaledTime: 0
   autoRandomSeed: 1
@@ -39596,7 +39596,7 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     randomizeRotationDirection: 0
-    maxNumParticles: 1000
+    maxNumParticles: 2229
     size3D: 0
     rotation3D: 0
     gravityModifier:
@@ -52747,19 +52747,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8394b1d332466c546a5a6a9f2f84bf0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  metalScrape: {fileID: 8300000, guid: 5d69c2ea90960f441b3ffeb8425f2647, type: 3}
-  crowdCheer: {fileID: 8300000, guid: e0f06a470f0c0d34ea00d7f48226cc28, type: 3}
-  eliminationBuzz: {fileID: 8300000, guid: 03d260b48390bca4a96877b841b96ab1, type: 3}
-  ballAppears: {fileID: 8300000, guid: eb930cc72787523478455692d27fa2d6, type: 3}
-  ballHits: {fileID: 8300000, guid: c27ee0a8113bcc34398f15de8db41247, type: 3}
-  cannonAppears: {fileID: 8300000, guid: 48ac83763f505ec43a68d66a110772c0, type: 3}
-  cannonHits: {fileID: 8300000, guid: 429fbb689362c734ea9eec1f31fe8a29, type: 3}
-  crash: {fileID: 8300000, guid: c93f05fe638bb494fa36c8ca42153154, type: 3}
-  wallCrash: {fileID: 8300000, guid: f93bbdd9068a8a149b5ad790cb172779, type: 3}
-  reload: {fileID: 8300000, guid: 502f486f1d4feef498872dfbbedaa9c3, type: 3}
-  sabotage: {fileID: 8300000, guid: 951bacdd8441cf44284803048e4341f3, type: 3}
-  weaponFire1: {fileID: 8300000, guid: ebdfd51f67e06d44782b754d1866eed9, type: 3}
-  weaponFire2: {fileID: 8300000, guid: 8ff6beb85b734c644a9221eb5bc73dea, type: 3}
+  clips:
+  - clip: {fileID: 8300000, guid: 03d260b48390bca4a96877b841b96ab1, type: 3}
+    volume: 0.2
+  - clip: {fileID: 8300000, guid: eb930cc72787523478455692d27fa2d6, type: 3}
+    volume: 0.2
+  - clip: {fileID: 8300000, guid: c27ee0a8113bcc34398f15de8db41247, type: 3}
+    volume: 0.2
+  - clip: {fileID: 8300000, guid: 48ac83763f505ec43a68d66a110772c0, type: 3}
+    volume: 0.2
+  - clip: {fileID: 8300000, guid: 429fbb689362c734ea9eec1f31fe8a29, type: 3}
+    volume: 0.2
+  - clip: {fileID: 8300000, guid: c93f05fe638bb494fa36c8ca42153154, type: 3}
+    volume: 0.2
+  - clip: {fileID: 8300000, guid: f93bbdd9068a8a149b5ad790cb172779, type: 3}
+    volume: 0.2
+  - clip: {fileID: 8300000, guid: e0f06a470f0c0d34ea00d7f48226cc28, type: 3}
+    volume: 0.2
+  - clip: {fileID: 8300000, guid: 5d69c2ea90960f441b3ffeb8425f2647, type: 3}
+    volume: 0.2
+  - clip: {fileID: 8300000, guid: 502f486f1d4feef498872dfbbedaa9c3, type: 3}
+    volume: 0.2
+  - clip: {fileID: 8300000, guid: 951bacdd8441cf44284803048e4341f3, type: 3}
+    volume: 0.2
+  - clip: {fileID: 8300000, guid: 368dc54b2d7a8ac49b86e2224389d2d7, type: 3}
+    volume: 0.2
+  - clip: {fileID: 8300000, guid: 31c36fa7aae02944d8179955cde3793c, type: 3}
+    volume: 0.2
+  - clip: {fileID: 8300000, guid: ebdfd51f67e06d44782b754d1866eed9, type: 3}
+    volume: 0.2
+  - clip: {fileID: 8300000, guid: 8ff6beb85b734c644a9221eb5bc73dea, type: 3}
+    volume: 0.2
 --- !u!82 &1406280093
 AudioSource:
   m_ObjectHideFlags: 0
@@ -57873,7 +57891,7 @@ ParticleSystem:
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
   looping: 1
-  prewarm: 0
+  prewarm: 1
   playOnAwake: 1
   useUnscaledTime: 0
   autoRandomSeed: 1
@@ -57994,7 +58012,7 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 0.97
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -58110,7 +58128,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1.71
+      scalar: 2.42
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -58426,7 +58444,7 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     randomizeRotationDirection: 0
-    maxNumParticles: 1000
+    maxNumParticles: 26
     size3D: 0
     rotation3D: 0
     gravityModifier:
@@ -73340,7 +73358,7 @@ ParticleSystem:
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
   looping: 1
-  prewarm: 0
+  prewarm: 1
   playOnAwake: 1
   useUnscaledTime: 0
   autoRandomSeed: 1
@@ -73461,7 +73479,7 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 0.97
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -73577,7 +73595,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1.71
+      scalar: 2.42
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -73893,7 +73911,7 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     randomizeRotationDirection: 0
-    maxNumParticles: 1000
+    maxNumParticles: 26
     size3D: 0
     rotation3D: 0
     gravityModifier:
