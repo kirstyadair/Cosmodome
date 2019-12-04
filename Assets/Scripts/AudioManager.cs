@@ -16,6 +16,7 @@ public class AudioManager : MonoBehaviour
         ArenaCannonMissile.OnFireCannon += FireCannon;
         ScoreManager.OnExplodePlayer += ExplodePlayer;
         ArenaCannonScript.OnTrapActivate += TrapActivated;
+        ShipController.OnPlayerReload += Reload;
     }
 
     // Update is called once per frame
@@ -73,6 +74,13 @@ public class AudioManager : MonoBehaviour
     {
         audioSource.volume = clips[12].volume;
         audioSource.PlayOneShot(clips[12].clip);
+    }
+
+
+    void Reload()
+    {
+        audioSource.volume = clips[9].volume;
+        audioSource.PlayOneShot(clips[9].clip);
     }
 }
 

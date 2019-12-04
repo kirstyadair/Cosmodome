@@ -77,6 +77,8 @@ public class ShipController : MonoBehaviour
 
     public delegate void PlayerShooting();
     public static event PlayerShooting OnPlayerShooting;
+    public delegate void PlayerReload();
+    public static event PlayerReload OnPlayerReload;
 
     public void Start()
     {
@@ -251,7 +253,11 @@ public class ShipController : MonoBehaviour
         if (burstCooldown > 0)
         {
             burstCooldown -= Time.deltaTime;
-            if (burstCooldown <= 0) GetComponent<PlayerScript>().EnableTurretRing();
+            if (burstCooldown <= 0) 
+            {
+                GetComponent<PlayerScript>().EnableTurretRing();
+                OnPlayerReload.Invoke();
+            }
         }
 
         this.prevVelocity = rb.velocity;

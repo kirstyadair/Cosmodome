@@ -4929,7 +4929,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   players: []
   numberOfPlayers: 0
-  timeLeftInRound: 90
+  timeLeftInRound: 2
   timeText: {fileID: 1470029490}
   bulletDamageRate: 1
   lowDamageRate: 5
@@ -52763,7 +52763,7 @@ MonoBehaviour:
   - clip: {fileID: 8300000, guid: f93bbdd9068a8a149b5ad790cb172779, type: 3}
     volume: 0.2
   - clip: {fileID: 8300000, guid: e0f06a470f0c0d34ea00d7f48226cc28, type: 3}
-    volume: 0.2
+    volume: 0.44
   - clip: {fileID: 8300000, guid: 5d69c2ea90960f441b3ffeb8425f2647, type: 3}
     volume: 0.2
   - clip: {fileID: 8300000, guid: 502f486f1d4feef498872dfbbedaa9c3, type: 3}
@@ -52778,6 +52778,8 @@ MonoBehaviour:
     volume: 0.2
   - clip: {fileID: 8300000, guid: 8ff6beb85b734c644a9221eb5bc73dea, type: 3}
     volume: 0.2
+  - clip: {fileID: 8300000, guid: 66cc8266e45e86149ba3ccb91dad8bdf, type: 3}
+    volume: 0.5
 --- !u!82 &1406280093
 AudioSource:
   m_ObjectHideFlags: 0
