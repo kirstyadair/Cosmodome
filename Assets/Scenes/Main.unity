@@ -6184,7 +6184,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4882558394911734, guid: 7e48ba6b1b968764490bbc70b66e3fe1, type: 3}
       propertyPath: m_RootOrder
-      value: 10
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 4882558394911734, guid: 7e48ba6b1b968764490bbc70b66e3fe1, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -23635,14 +23635,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shipObjects: []
+  sourceShip: {fileID: 503252604}
   shipPositions:
-  - {fileID: 503252604}
   - {fileID: 384061621}
+  - {fileID: 503252604}
   mainCamera: {fileID: 963194227}
-  dampeningTime: 0.4
-  screenEdgeBuff: 8
-  minSize: 6.5
-  desiredPos: {x: 0, y: 0, z: 0}
+  dampeningTime: 0.2
+  screenEdgeBuff: 4
+  minZoomDistance: 4
+  distances: []
+  currentMaxDistance: 0
 --- !u!1 &970679615
 GameObject:
   m_ObjectHideFlags: 0

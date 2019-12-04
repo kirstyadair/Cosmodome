@@ -5,17 +5,21 @@ using UnityEngine;
 public class CameraMovement : MonoBehaviour
 {
     public List<GameObject> shipObjects;
+    public Transform sourceShip;
     public List<Transform> shipPositions;
     public Camera mainCamera;
 
-    public float dampeningTime = 0.4f;//The time taken for the camera to reajust
-    public float screenEdgeBuff = 8f;//The space between the edge of the screen and any objects at the top or bottom of the screen
-    public float minSize = 2f; //Minimum orthographic size the cam can be
+    public float dampeningTime;//The time taken for the camera to reajust
+    public float screenEdgeBuff;//The space between the edge of the screen and any objects at the top or bottom of the screen
+    public float minZoomDistance;
 
-  
+
+    public List<float> distances;
+    public float currentMaxDistance;
+    
     private float zoomSpeed; //Speed for the smoothing of the orphographic
     private Vector3 moveVelocity; //Speed for the smoothing of the camera movement
-    public Vector3 desiredPos;
+    //public Vector3 centerPoint;
 
     // Start is called before the first frame update
     void Start()
@@ -56,62 +60,50 @@ public class CameraMovement : MonoBehaviour
        
         center = minPoint + .5f * (maxPoint - minPoint);
 
-        center.y = transform.position.y;
-        center.z = transform.position.z;
-
-
         return center;
 
     }
 
-    private void Move()
+    void FindDistance(List<Transform>targets)
     {
-        desiredPos = FindCenter(shipPositions);
-        
-        transform.position = Vector3.SmoothDamp(transform.position, desiredPos, ref moveVelocity, dampeningTime);
+        distances.Clear();
+        foreach(Transform transform in targets)
+        {
+            float dist = Vector3.Distance(sourceShip.position, transform.position);
+            distances.Add(dist);
+        }
+
+        distances.Sort();
+        currentMaxDistance = distances[targets.Count - 1];
+    }
+
+    private void Move(Camera cam)
+    {
+        Vector3 centerPoint = FindCenter(shipPositions);
+        FindDistance(shipPositions);
+        Vector3 cameraDestination = centerPoint - cam.transform.forward * currentMaxDistance * minZoomDistance;
+        Vector3 smoothMove = Vector3.Lerp(cam.transform.position,cameraDestination,dampeningTime);
+        cam.transform.position = smoothMove;
+
+
+        if ((cameraDestination-cam.transform.position).magnitude<=0.05f)
+        {
+            cam.transform.position = cameraDestination;
+        }
     }
 
 
     private void Zoom()
     {
-        float requiredSize = FindRequiredSize(shipPositions);
-        mainCamera.fieldOfView = Mathf.SmoothDamp(mainCamera.fieldOfView, requiredSize, ref zoomSpeed, dampeningTime);
-    }
-
-
-    private float FindRequiredSize(List<Transform> targets)
-    {
-        Vector3 desiredLocalPos = transform.InverseTransformPoint(desiredPos);
-
-        float size = 0f;
         
-        for(int i =1; i<targets.Count;i++)
-        {
-            
-            Vector3 targetLocalPos = transform.InverseTransformPoint(targets[i].position);
-
-            Vector3 desiredPosToTarget = targetLocalPos - desiredLocalPos;
-
-            size = Mathf.Max(size, Mathf.Abs(desiredPosToTarget.x));
-
-            size = Mathf.Max(size, Mathf.Abs(desiredPosToTarget.y));
-
-            size = Mathf.Max(size, Mathf.Abs(desiredPosToTarget.z));
-        }
-
-        size += screenEdgeBuff;
-
-        size = Mathf.Max(size, minSize);
-
-        return size;
-
     }
 
+
+    
     public void SetStartPositionAndSize()
     {
         FindCenter(shipPositions);
 
-        mainCamera.transform.position = desiredPos;
 
         
 
@@ -120,9 +112,8 @@ public class CameraMovement : MonoBehaviour
     void LateUpdate()
     {
 
-        Move();
-        //zoom is the problem
-        //Zoom();
+        Move(mainCamera);
+        
 
     }
 }

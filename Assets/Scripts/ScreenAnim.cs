@@ -5,13 +5,12 @@ using UnityEngine;
 
 public class ScreenAnim : MonoBehaviour
 {
-    public GameObject screens;
-    public GameObject[] videoPlayers;
+    public VideoPlayer activePlayer, otherPlayer;
     public VideoClip[] clips;
+    VideoClip nextClip;
     public GameObject player;
 
-    int videoPlayerActive;
-
+  
     public enum Animation
     {
         IDLE,
@@ -22,62 +21,48 @@ public class ScreenAnim : MonoBehaviour
 
     private void Start()
     {
+        PrepareChange(Animation.IDLE);
+        SwitchVideoPlayerTo(activePlayer);
         
-        videoPlayers[0].enabled = true;
-        videoPlayers[1].enabled = false;
-        videoPlayers[0].clip = clips[(int)Animation.IDLE];
-        Eliminated();
+        
     }
 
     void Idle()
     {
         PrepareChange(Animation.IDLE);
-        
+        SwitchVideoPlayerTo(activePlayer);
     }
 
     void ShowingOff()
     {
-        PrepareChange(Animation.SHOWBOAT);
     }
 
     void Scared()
     {
-        PrepareChange(Animation.SCARED);
     }
     
 
     void Eliminated()
     {
         PrepareChange(Animation.ELIMINATED);
+        SwitchVideoPlayerTo(activePlayer);
     }
 
 
-    IEnumerator PrepareChange(Animation clipToPlay)
+    void PrepareChange(Animation clipToPlay)
     {
-        if(videoPlayers[0].enabled==true)
-        {
-            videoPlayers[1].clip = clips[(int)clipToPlay];
-        }
-        if(videoPlayers[1].enabled==true)
-        {
-            videoPlayers[0].clip = clips[(int)clipToPlay];
-        }
+        nextClip = clips[(int)clipToPlay];
+        otherPlayer.clip = nextClip;
+        otherPlayer.Play();
 
-        yield return new WaitForSeconds(0.2f);
+    }
 
-        if(videoPlayers[0].enabled == true)
-        {
-            videoPlayers[0].enabled = false;
-            videoPlayers[1].enabled = true;
-            videoPlayers[1].Play();
-        }
-        if (videoPlayers[1].enabled == true)
-        {
-            videoPlayers[1].enabled = false;
-            videoPlayers[0].enabled = true;
-            videoPlayers[0].Play();
-        }
-
+    void SwitchVideoPlayerTo(VideoPlayer thisCam)
+    {
+        activePlayer = otherPlayer;
+        otherPlayer = thisCam;
+        activePlayer.targetCameraAlpha = 1;
+        otherPlayer.targetCameraAlpha = 0f;
     }
 
     void Update()
