@@ -9,6 +9,7 @@ public class AudioEvent : MonoBehaviour
     public AudioClip[] AudioArrayPlayerTrapSetup;
     public AudioClip[] AudioArrayPlayerOnPlayerCollision;
     public AudioClip[] AudioArrayPlayerTaunting;
+    public AudioClip[] AudioArrayPlyerEliminated;
 
     public AudioSource AudioPlayer;
 
@@ -25,6 +26,7 @@ public class AudioEvent : MonoBehaviour
         WallScript.PlayerTrapSetup += AudioPlayerTrapSetup;
         PlayerScript.PlayerOnPlayerCollision += AudioPlayerOnPlayerCollision;
         PlayerScript.PlayerTaunting += AudioPlayerTaunting;
+        ScoreManager.OnPlayerEliminated += AudioPlayerEliminated;
     }
 
      void OnDisable()
@@ -34,6 +36,7 @@ public class AudioEvent : MonoBehaviour
         WallScript.PlayerTrapSetup -= AudioPlayerTrapSetup;
         PlayerScript.PlayerOnPlayerCollision -= AudioPlayerOnPlayerCollision;
         PlayerScript.PlayerTaunting -= AudioPlayerTaunting;
+        ScoreManager.OnPlayerEliminated -= AudioPlayerEliminated;
     }
 
     void Start()
@@ -57,7 +60,14 @@ public class AudioEvent : MonoBehaviour
     {
         
         source.clip = audioArray[randomClip];
-        AudioPlayerPlaySound();
+        float chance = 0.50f;
+        float rand = Random.value;
+        print(rand);
+        if(rand <= chance)
+        {
+            AudioPlayerPlaySound();
+        }
+        
     }
 
     void AudioPlayerPlaySound()
@@ -67,7 +77,15 @@ public class AudioEvent : MonoBehaviour
 
    
     
-    
+    void AudioPlayerEliminated()
+    {
+        if (!isPlaying)
+        {
+            int randomClip = Random.Range(0, AudioArrayPlyerEliminated.Length);
+            AudioPlayerChangeSoundClip(AudioArrayPlyerEliminated, AudioPlayer, randomClip);
+            subtitle.GetComponent<AnnouncerDialouge>().DisplayPlayerShotSubtitle(randomClip);
+        }
+    }
 
     void AudioPlayerShot()
     {

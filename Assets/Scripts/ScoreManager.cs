@@ -23,6 +23,8 @@ public class ScoreManager : MonoBehaviour
     public static event UpdateScores OnUpdateScore;
     public delegate void ExplodePlayer();
     public static event ExplodePlayer OnExplodePlayer;
+    public delegate void PlayerEliminated();
+    public static event PlayerEliminated OnPlayerEliminated;
 
    // public List<float> playerApprovals = new List<float>();
     public List<PlayerScript> players = new List<PlayerScript>();
