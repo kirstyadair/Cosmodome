@@ -650,7 +650,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 29024198}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 02126c96aec9e7146983e8b01d2f8a38, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -2828,7 +2828,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 97971280}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 02126c96aec9e7146983e8b01d2f8a38, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -3148,7 +3148,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 106427719}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 02126c96aec9e7146983e8b01d2f8a38, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -3774,7 +3774,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 139908675}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 02126c96aec9e7146983e8b01d2f8a38, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -4628,7 +4628,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 189953350}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 02126c96aec9e7146983e8b01d2f8a38, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -11292,6 +11292,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: BumperBallPipe (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 2029119944656158031, guid: 32b906885ada20146a61e8def0cdd80a,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 123
+      objectReference: {fileID: 0}
     - target: {fileID: 3078839816801990528, guid: 32b906885ada20146a61e8def0cdd80a,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -11347,6 +11352,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 124466951333707421, guid: 32b906885ada20146a61e8def0cdd80a,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 123
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 32b906885ada20146a61e8def0cdd80a, type: 3}
 --- !u!4 &259897432 stripped
@@ -11355,6 +11365,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 259897431}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &259897433 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5396742482786391847, guid: 32b906885ada20146a61e8def0cdd80a,
+    type: 3}
+  m_PrefabInstance: {fileID: 259897431}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02b3ce9cafea44045920814fa4eb68d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &259953625
 GameObject:
   m_ObjectHideFlags: 0
@@ -11920,7 +11942,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 300875421}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 02126c96aec9e7146983e8b01d2f8a38, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -12669,7 +12691,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 333881469}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 02126c96aec9e7146983e8b01d2f8a38, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -12799,7 +12821,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 335624879}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 02126c96aec9e7146983e8b01d2f8a38, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -13569,6 +13591,7 @@ Transform:
   - {fileID: 1620431510}
   - {fileID: 1596345691}
   - {fileID: 514567684}
+  - {fileID: 1696430060}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -13689,7 +13712,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 387504837}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 02126c96aec9e7146983e8b01d2f8a38, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -14508,7 +14531,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 421756245}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 02126c96aec9e7146983e8b01d2f8a38, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -15386,7 +15409,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 435259485}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 02126c96aec9e7146983e8b01d2f8a38, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -19854,7 +19877,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 589550349}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 02126c96aec9e7146983e8b01d2f8a38, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -19932,6 +19955,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: BumperBallPipe (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 2029119944656158031, guid: 32b906885ada20146a61e8def0cdd80a,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 123
+      objectReference: {fileID: 0}
     - target: {fileID: 3078839816801990528, guid: 32b906885ada20146a61e8def0cdd80a,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -19987,6 +20015,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 124466951333707421, guid: 32b906885ada20146a61e8def0cdd80a,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 123
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 32b906885ada20146a61e8def0cdd80a, type: 3}
 --- !u!4 &590111137 stripped
@@ -19995,6 +20028,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 590111136}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &590111138 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5396742482786391847, guid: 32b906885ada20146a61e8def0cdd80a,
+    type: 3}
+  m_PrefabInstance: {fileID: 590111136}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02b3ce9cafea44045920814fa4eb68d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &591416276
 GameObject:
   m_ObjectHideFlags: 0
@@ -20668,6 +20713,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: BumperBallPipe (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 2029119944656158031, guid: 32b906885ada20146a61e8def0cdd80a,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 123
+      objectReference: {fileID: 0}
     - target: {fileID: 3078839816801990528, guid: 32b906885ada20146a61e8def0cdd80a,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -20723,6 +20773,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 124466951333707421, guid: 32b906885ada20146a61e8def0cdd80a,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 123
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 32b906885ada20146a61e8def0cdd80a, type: 3}
 --- !u!4 &617280491 stripped
@@ -20731,6 +20786,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 617280490}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &617280492 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5396742482786391847, guid: 32b906885ada20146a61e8def0cdd80a,
+    type: 3}
+  m_PrefabInstance: {fileID: 617280490}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02b3ce9cafea44045920814fa4eb68d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &617776660
 GameObject:
   m_ObjectHideFlags: 0
@@ -27039,7 +27106,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 648420569}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 02126c96aec9e7146983e8b01d2f8a38, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -28646,7 +28713,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 729940886}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 02126c96aec9e7146983e8b01d2f8a38, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -32741,7 +32808,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 933791995}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 02126c96aec9e7146983e8b01d2f8a38, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -33924,7 +33991,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 972532316}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 02126c96aec9e7146983e8b01d2f8a38, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -34548,7 +34615,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1006497959}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 02126c96aec9e7146983e8b01d2f8a38, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -34640,7 +34707,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1007124931}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 02126c96aec9e7146983e8b01d2f8a38, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -45748,7 +45815,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1062299135}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 02126c96aec9e7146983e8b01d2f8a38, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -48519,7 +48586,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1162688455}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 02126c96aec9e7146983e8b01d2f8a38, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -48765,7 +48832,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1179562610}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 02126c96aec9e7146983e8b01d2f8a38, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -49658,7 +49725,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1207031505}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 02126c96aec9e7146983e8b01d2f8a38, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -49750,7 +49817,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1209563234}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 02126c96aec9e7146983e8b01d2f8a38, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -49842,7 +49909,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1209690148}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 02126c96aec9e7146983e8b01d2f8a38, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -52264,7 +52331,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1364905641}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 02126c96aec9e7146983e8b01d2f8a38, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -52786,7 +52853,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1382297835}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 02126c96aec9e7146983e8b01d2f8a38, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -56856,7 +56923,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1535847801}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 02126c96aec9e7146983e8b01d2f8a38, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -57101,6 +57168,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1560435013}
+  - component: {fileID: 1560435014}
   m_Layer: 0
   m_Name: BumperBall
   m_TagString: Untagged
@@ -57122,6 +57190,28 @@ Transform:
   m_Father: {fileID: 985333017}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1560435014
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1560435012}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 898c6746d756bcc46820018050378471, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Help: If you want to change the properties of the bumper ball, such as live time
+    and explosion force, open the bumper ball prefab
+  bumperBallPipes:
+  - {fileID: 3407129031029389893}
+  - {fileID: 590111138}
+  - {fileID: 617280492}
+  - {fileID: 259897433}
+  fireEverySeconds: 60000
+  chanceOfFiringMultiple: 0.1
+  warningTime: 3
 --- !u!1 &1561294075
 GameObject:
   m_ObjectHideFlags: 0
@@ -57491,7 +57581,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1569397894}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 02126c96aec9e7146983e8b01d2f8a38, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -65808,6 +65898,50 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1696315918}
   m_Mesh: {fileID: -7513297493162946847, guid: d2e14d5b711ed7140a51b2958eca0b01, type: 3}
+--- !u!1 &1696430059
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1696430060}
+  - component: {fileID: 1696430061}
+  m_Layer: 0
+  m_Name: Floor Collider
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1696430060
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1696430059}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 372045877}
+  m_RootOrder: 35
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &1696430061
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1696430059}
+  m_Material: {fileID: 13400000, guid: 02126c96aec9e7146983e8b01d2f8a38, type: 2}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 42.406925, y: 1, z: 21.305195}
+  m_Center: {x: -4.0777836, y: -0.74, z: 10.152597}
 --- !u!1 &1708658269
 GameObject:
   m_ObjectHideFlags: 0
@@ -68493,7 +68627,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1829744177}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 02126c96aec9e7146983e8b01d2f8a38, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -70593,7 +70727,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1958579863}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 02126c96aec9e7146983e8b01d2f8a38, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -71772,7 +71906,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2007202936}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 02126c96aec9e7146983e8b01d2f8a38, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -80918,6 +81052,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: BumperBallPipe
       objectReference: {fileID: 0}
+    - target: {fileID: 2029119944656158031, guid: 32b906885ada20146a61e8def0cdd80a,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 123
+      objectReference: {fileID: 0}
     - target: {fileID: 3078839816801990528, guid: 32b906885ada20146a61e8def0cdd80a,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -80973,8 +81112,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 124466951333707421, guid: 32b906885ada20146a61e8def0cdd80a,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 123
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 32b906885ada20146a61e8def0cdd80a, type: 3}
+--- !u!114 &3407129031029389893 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5396742482786391847, guid: 32b906885ada20146a61e8def0cdd80a,
+    type: 3}
+  m_PrefabInstance: {fileID: 3407129031029389892}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02b3ce9cafea44045920814fa4eb68d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!33 &3423080051314593061
 MeshFilter:
   m_ObjectHideFlags: 0
