@@ -283,6 +283,9 @@ public class ScoreManager : MonoBehaviour
         GameObject.Instantiate(currentLowest.ps, currentLowest.transform.position, Quaternion.identity);
         yield return new WaitForSeconds(0.1f);
         OnExplodePlayer.Invoke();
+        OnPlayerEliminated?.Invoke();
+
+
         players.Remove(currentLowest);
         cm.colors.Remove(currentLowest.playerColor);
         cm.RecalculateCrowd();

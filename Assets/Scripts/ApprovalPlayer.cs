@@ -79,19 +79,19 @@ public class ApprovalPlayer : MonoBehaviour
             int changeInApproval = approvalValue  - currentAppoval;
             print(changeInApproval);
 
-            if(changeInApproval == -3 )
+            if(changeInApproval <= -3 )
             {
                 StartPlayerApproval(3);
             }
-            if (changeInApproval == -1|| changeInApproval == -2)
+            if (changeInApproval <= -1 && changeInApproval >= -2)
             {
                 StartPlayerApproval(4);
             }
-            if(changeInApproval==3)
+            if(changeInApproval>=3)
             {
                 StartPlayerApproval(1);
             }
-            if (changeInApproval == 1 || changeInApproval == 2)
+            if (changeInApproval >= 1 && changeInApproval <=2)
             {
                 StartPlayerApproval(2);
             }

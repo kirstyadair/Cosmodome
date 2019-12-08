@@ -60,14 +60,9 @@ public class AudioEvent : MonoBehaviour
     {
         
         source.clip = audioArray[randomClip];
-        float chance = 0.50f;
-        float rand = Random.value;
-        print(rand);
-        if(rand <= chance)
-        {
-            AudioPlayerPlaySound();
-        }
+        AudioPlayerPlaySound();
         
+
     }
 
     void AudioPlayerPlaySound()
@@ -91,9 +86,15 @@ public class AudioEvent : MonoBehaviour
     {
         if (!isPlaying)
         {
-            int randomClip = Random.Range(0, AudioArrayPlayerShot.Length);
-            AudioPlayerChangeSoundClip(AudioArrayPlayerShot, AudioPlayer,randomClip);
-            subtitle.GetComponent<AnnouncerDialouge>().DisplayPlayerShotSubtitle(randomClip);
+            float chance = 0.50f;
+            float rand = Random.value;
+            if (rand <= chance)
+            {
+                int randomClip = Random.Range(0, AudioArrayPlayerShot.Length);
+                AudioPlayerChangeSoundClip(AudioArrayPlayerShot, AudioPlayer, randomClip);
+                subtitle.GetComponent<AnnouncerDialouge>().DisplayPlayerShotSubtitle(randomClip);
+            }
+            
         }  
     }
 
@@ -101,9 +102,15 @@ public class AudioEvent : MonoBehaviour
     {
         if (!isPlaying)
         {
-            int randomClip = Random.Range(0, AudioArrayPlayerTrapTrigger.Length);
-            AudioPlayerChangeSoundClip(AudioArrayPlayerTrapTrigger, AudioPlayer,randomClip);
-            subtitle.GetComponent<AnnouncerDialouge>().DiaplayPlayerTrapTriggerSubtitle(randomClip);
+            float chance = 0.50f;
+            float rand = Random.value;
+            if (rand <= chance)
+            {
+                int randomClip = Random.Range(0, AudioArrayPlayerTrapTrigger.Length);
+                AudioPlayerChangeSoundClip(AudioArrayPlayerTrapTrigger, AudioPlayer, randomClip);
+                subtitle.GetComponent<AnnouncerDialouge>().DiaplayPlayerTrapTriggerSubtitle(randomClip);
+            }
+            
         }
 
     }
@@ -112,9 +119,15 @@ public class AudioEvent : MonoBehaviour
     {
         if (!isPlaying)
         {
-            int randomClip = Random.Range(0, AudioArrayPlayerTrapSetup.Length);
-            AudioPlayerChangeSoundClip(AudioArrayPlayerTrapSetup, AudioPlayer,randomClip);
-            subtitle.GetComponent<AnnouncerDialouge>().DiaplayPlayerTrapSetupSubtitle(randomClip);
+            float chance = 0.50f;
+            float rand = Random.value;
+            if (rand <= chance)
+            {
+                int randomClip = Random.Range(0, AudioArrayPlayerTrapSetup.Length);
+                AudioPlayerChangeSoundClip(AudioArrayPlayerTrapSetup, AudioPlayer, randomClip);
+                subtitle.GetComponent<AnnouncerDialouge>().DiaplayPlayerTrapSetupSubtitle(randomClip);
+            }
+            
         }
     }
 
@@ -122,9 +135,16 @@ public class AudioEvent : MonoBehaviour
     {
         if (!isPlaying)
         {
-            int randomClip = Random.Range(0, AudioArrayPlayerOnPlayerCollision.Length);
-            AudioPlayerChangeSoundClip(AudioArrayPlayerOnPlayerCollision, AudioPlayer, randomClip);
-            subtitle.GetComponent<AnnouncerDialouge>().DisplayPlayerOnPlayerCollisionSubtitle(randomClip);
+            float chance = 0.50f;
+            float rand = Random.value;
+            print(rand);
+            if (rand <= chance)
+            {
+                int randomClip = Random.Range(0, AudioArrayPlayerOnPlayerCollision.Length);
+                AudioPlayerChangeSoundClip(AudioArrayPlayerOnPlayerCollision, AudioPlayer, randomClip);
+                subtitle.GetComponent<AnnouncerDialouge>().DisplayPlayerOnPlayerCollisionSubtitle(randomClip);
+            }
+            
         }
     }
 

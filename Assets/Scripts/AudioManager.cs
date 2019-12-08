@@ -42,6 +42,12 @@ public class AudioManager : MonoBehaviour
         else audioSource.PlayOneShot(clips[14].clip);
     }
 
+    void PlayerScream()
+    {
+        int rand = UnityEngine.Random.Range(16, 18);
+        audioSource.volume = clips[rand].volume;
+        audioSource.PlayOneShot(clips[rand].clip);
+    }
 
     void OpenCannon()
     {
@@ -65,7 +71,9 @@ public class AudioManager : MonoBehaviour
         audioSource.PlayOneShot(clips[15].clip);
         audioSource.volume = clips[7].volume;
         audioSource.PlayOneShot(clips[7].clip);
+        audioSource.volume = clips[0].volume;
         audioSource.PlayOneShot(clips[0].clip);
+        PlayerScream();
         
     }
 
