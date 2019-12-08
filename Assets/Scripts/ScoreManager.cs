@@ -79,9 +79,9 @@ public class ScoreManager : MonoBehaviour
             {
                 firstPlayerWithoutAController.inputDevice = InputManager.ActiveDevice;
 
-                InputManager.ActiveDevice.SetLightColor(firstPlayerWithoutAController.playerColor);// firstPlayerWithoutAController.playerColor);
+                InputManager.ActiveDevice.SetLightColor(firstPlayerWithoutAController.playerColor.color);// firstPlayerWithoutAController.playerColor);
                 firstPlayerWithoutAController.Vibrate(0.5f, 0.5f);
-                firstPlayerWithoutAController.EnableRing(firstPlayerWithoutAController.playerColor);
+                firstPlayerWithoutAController.EnableRing(firstPlayerWithoutAController.playerColor.color);
             }
 
         }
@@ -271,6 +271,7 @@ public class ScoreManager : MonoBehaviour
         yield return new WaitForSeconds(0.1f);
         OnExplodePlayer.Invoke();
         players.Remove(currentLowest);
+        cm.colors.Remove(currentLowest.playerColor);
         cm.RecalculateCrowd();
         numberOfPlayers--;
         UpdatePercentages();

@@ -52,7 +52,7 @@ public class PlayerScript : MonoBehaviour
     public Text score;
     public int placeInScoresList;
     ScoreManager sm;
-    public Color playerColor;
+    public Material playerColor;
     public Material normalMaterial;
     public Material flashMaterial;
     public MeshRenderer[] parts;
@@ -325,7 +325,7 @@ public class PlayerScript : MonoBehaviour
 
     public void EnableTurretRing()
     {
-        Color color = playerColor;
+        Color color = playerColor.color;
         float alpha = turretRing.GetComponent<SpriteRenderer>().color.a;
         color.a = alpha;
 

@@ -82699,6 +82699,11 @@ PrefabInstance:
       propertyPath: playerColor.a
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6511922124683423251, guid: 4f46c2e901006134f887a343b2416ab3,
+        type: 3}
+      propertyPath: playerColor
+      value: 
+      objectReference: {fileID: 2100000, guid: 58085b94d2ad619479bcb1d7fda9e5a4, type: 2}
     - target: {fileID: 7685790430323404319, guid: 4f46c2e901006134f887a343b2416ab3,
         type: 3}
       propertyPath: timeBetweenBursts
@@ -82983,6 +82988,11 @@ PrefabInstance:
       propertyPath: playerColor.a
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3831614855695622483, guid: a6efeaef6a78c124a8b11f849076d2e2,
+        type: 3}
+      propertyPath: playerColor
+      value: 
+      objectReference: {fileID: 2100000, guid: e7c2e5ddf65fd2d42b29c0792b818d9a, type: 2}
     - target: {fileID: 421990837281235295, guid: a6efeaef6a78c124a8b11f849076d2e2,
         type: 3}
       propertyPath: boosterColour.r

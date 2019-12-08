@@ -7,7 +7,7 @@ public class CrowdManager : MonoBehaviour
     public int playerCount;
     float[] playerScores;
     public float[] numOfSupporters;
-    public Material[] colors;
+    public List<Material> colors;
     
     ScoreManager sm;
     public GameObject[] crowdMembers;
