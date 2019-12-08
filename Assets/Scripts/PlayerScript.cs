@@ -74,6 +74,9 @@ public class PlayerScript : MonoBehaviour
     public RawImage largeArrow;
     public RawImage smallArrowPlus;
     public RawImage largeArrowPlus;
+
+    public GameObject playersScreen;
+
     //Bens Code change end
 
     public InputDevice inputDevice;
@@ -302,6 +305,7 @@ public class PlayerScript : MonoBehaviour
     {
         OnPlayerCollision.Invoke(this.gameObject);
         PlayerOnPlayerCollision?.Invoke();
+        playersScreen.GetComponent<ScreenAnim>().Scared();
   
     }
 

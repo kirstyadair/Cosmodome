@@ -25,23 +25,36 @@ public class ScreenAnim : MonoBehaviour
         animator.SetBool("IsShowboating",false);
     }
 
-    void ShowingOff()
+    public void ShowingOff()
     {
-        animator.SetBool("IsShowboating", true);
+        StartCoroutine(PlayAnimation("IsShowboating", 2));
+
     }
 
-    void Scared()
+    public void Scared()
     {
-        animator.SetBool("IsScared", true);
+        StartCoroutine(PlayAnimation("IsScared",1.5f));
+        
     }
     
 
-    void Eliminated()
+    public void Eliminated()
     {
         animator.SetBool("IsEliminated", true);
     }
 
+    IEnumerator PlayAnimation(string animatorBoolName,float timeToWait)
+    {
+        animator.SetBool(animatorBoolName, true);
+        yield return new WaitForSeconds(timeToWait);
+        animator.SetBool(animatorBoolName, false);
+    }
 
+    void Update()
+    {
+        
+
+    }
 
 }
 
