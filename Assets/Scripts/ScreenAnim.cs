@@ -5,81 +5,43 @@ using UnityEngine;
 
 public class ScreenAnim : MonoBehaviour
 {
-    public VideoPlayer activePlayer, otherPlayer;
-    public VideoClip[] clips;
-    VideoClip nextClip;
-    public GameObject player;
+    public GameObject screen;
+    Animator animator;
 
   
-    public enum Animation
-    {
-        IDLE,
-        ELIMINATED,
-        SHOWBOAT,
-        SCARED
-    }
+   
 
     private void Start()
     {
-        PrepareChange(Animation.IDLE);
-        SwitchVideoPlayerTo(activePlayer);
+        animator = screen.GetComponent<Animator>();
         
         
     }
 
     void Idle()
     {
-        PrepareChange(Animation.IDLE);
-        SwitchVideoPlayerTo(activePlayer);
+        animator.SetBool("IsScared", false);
+        animator.SetBool("IsEliminated",false);
+        animator.SetBool("IsShowboating",false);
     }
 
     void ShowingOff()
     {
+        animator.SetBool("IsShowboating", true);
     }
 
     void Scared()
     {
+        animator.SetBool("IsScared", true);
     }
     
 
     void Eliminated()
     {
-        PrepareChange(Animation.ELIMINATED);
-        SwitchVideoPlayerTo(activePlayer);
+        animator.SetBool("IsEliminated", true);
     }
 
 
-    void PrepareChange(Animation clipToPlay)
-    {
-        nextClip = clips[(int)clipToPlay];
-        otherPlayer.clip = nextClip;
-        otherPlayer.Play();
 
-    }
-
-    void SwitchVideoPlayerTo(VideoPlayer thisCam)
-    {
-        activePlayer = otherPlayer;
-        otherPlayer = thisCam;
-        activePlayer.targetCameraAlpha = 1;
-        otherPlayer.targetCameraAlpha = 0f;
-    }
-
-    void Update()
-    {
-
-
-        if (player.activeInHierarchy == false)
-        {
-            Eliminated();
-        }
-        else
-        {
-            Idle();
-        }
-        
-
-
-        
-    }
 }
+
