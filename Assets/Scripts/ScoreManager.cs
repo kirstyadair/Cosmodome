@@ -31,7 +31,11 @@ public class ScoreManager : MonoBehaviour
 
     public int numberOfPlayers;
     public float timeLeftInRound = 90;
+    float maxTime;
     public Text timeText;
+    public Image timeBarLeft;
+    public Image timeBarRight;
+
 
     [Header("Approval Rates")]
     public int bulletDamageRate;
@@ -50,10 +54,15 @@ public class ScoreManager : MonoBehaviour
 
     public void Update()
     {
+
         timeLeftInRound -= Time.deltaTime;
         timeText.text = Mathf.RoundToInt(timeLeftInRound).ToString();
 
-        if (timeLeftInRound < 10) timeText.color = Color.red;
+        timeBarLeft.fillAmount = timeLeftInRound / maxTime;
+        timeBarRight.fillAmount = timeLeftInRound / maxTime;
+
+
+        if (timeLeftInRound < 10) timeText.color = Color.clear;
         else timeText.color = Color.white;
 
         if (InputManager.ActiveDevice.Action1.WasPressed)
@@ -99,6 +108,7 @@ public class ScoreManager : MonoBehaviour
             StartCoroutine(Explode(currentLowest));
 
             timeLeftInRound = 90.0f;
+            maxTime = timeLeftInRound;
         }
         else
         {
@@ -136,6 +146,7 @@ public class ScoreManager : MonoBehaviour
 
     private void Awake()
     {
+        maxTime = timeLeftInRound;
         if (_instance == null)
         {
             _instance = this;
