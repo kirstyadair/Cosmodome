@@ -6,7 +6,10 @@ using UnityEngine.UI;
 public class ApprovalPlayer : MonoBehaviour
 {
     public Image[] approvalArrows;
-    
+    public GameObject player;
+    public int approvalValue;
+    int currentAppoval;
+
 
     enum ArrowType
     {
@@ -20,6 +23,9 @@ public class ApprovalPlayer : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        approvalValue = player.GetComponent<PlayerScript>().approval.percentage;
+        currentAppoval = approvalValue;
+
         Color tempColor = approvalArrows[(int)ArrowType.UP_LARGE].color;
         tempColor.a = 0f;
 
@@ -67,10 +73,37 @@ public class ApprovalPlayer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        approvalValue = player.GetComponent<PlayerScript>().approval.percentage;
+        if (currentAppoval!=approvalValue)
+        {
+            int changeInApproval = approvalValue  - currentAppoval;
+            print(changeInApproval);
+
+            if(changeInApproval == -3 )
+            {
+                StartPlayerApproval(3);
+            }
+            if (changeInApproval == -1|| changeInApproval == -2)
+            {
+                StartPlayerApproval(4);
+            }
+            if(changeInApproval==3)
+            {
+                StartPlayerApproval(1);
+            }
+            if (changeInApproval == 1 || changeInApproval == 2)
+            {
+                StartPlayerApproval(2);
+            }
+
+
+            currentAppoval = approvalValue;
+        }
+
         Vector3 imagePos = Camera.main.WorldToScreenPoint(this.transform.position);
         for(int i=0; i<approvalArrows.Length;i++)
         {
-            approvalArrows[i].transform.position = Vector3.Lerp(approvalArrows[i].transform.position, imagePos + new Vector3(0, 20, 0),Time.deltaTime*20);
+            approvalArrows[i].transform.position = Vector3.Lerp(approvalArrows[i].transform.position, imagePos + new Vector3(0, 10, 0),Time.deltaTime*20);
         }
 
         

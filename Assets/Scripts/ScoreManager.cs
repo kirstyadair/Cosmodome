@@ -221,7 +221,7 @@ public class ScoreManager : MonoBehaviour
         UpdatePercentages();
         //Bens code change start
         StartCoroutine(player.GetComponent<PlayerScript>().ArrowFlash(.5f,1,0));
-        player.GetComponentInChildren<ApprovalPlayer>().StartPlayerApproval(3);
+        
 
         //Bens code change end
         StartCoroutine(player.GetComponent<PlayerScript>().FlashWithDamage());
