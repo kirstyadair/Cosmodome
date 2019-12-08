@@ -6,6 +6,7 @@ using UnityEngine;
 public class ScreenAnim : MonoBehaviour
 {
     public GameObject screen;
+    public GameObject player;
     Animator animator;
 
   
@@ -52,7 +53,10 @@ public class ScreenAnim : MonoBehaviour
 
     void Update()
     {
-        
+        if(player.activeSelf==false)
+        {
+            Eliminated();
+        }
 
     }
 
