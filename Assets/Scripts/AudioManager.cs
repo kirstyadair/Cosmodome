@@ -17,7 +17,7 @@ public class AudioManager : MonoBehaviour
         ScoreManager.OnExplodePlayer += ExplodePlayer;
         ArenaCannonScript.OnTrapActivate += TrapActivated;
         ShipController.OnPlayerReload += Reload;
-        BumperBallPipe.OnBumperBallShoot += BBShoot;
+        BumperBall.OnBumperBallFire += BBShoot;
     }
 
     // Update is called once per frame

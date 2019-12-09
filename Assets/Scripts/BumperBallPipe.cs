@@ -4,12 +4,11 @@ using UnityEngine;
 
 public class BumperBallPipe : MonoBehaviour
 {
-    public delegate void BumperBallShoot();
-    public static event BumperBallShoot OnBumperBallShoot;
     public bool isFiring = false;
     Animator animator;
     public GameObject bumperBallPrefab;
     public Transform bumperBallSpawnPoint;
+    public GameObject firingParticleFX;
 
     // Start is called before the first frame update
     void Start()
@@ -34,7 +33,7 @@ public class BumperBallPipe : MonoBehaviour
 
     void SpawnBumperBall()
     {
-        OnBumperBallShoot?.Invoke();
+        firingParticleFX.SetActive(true);
         isFiring = false;
 
         GameObject bb = Instantiate(bumperBallPrefab);

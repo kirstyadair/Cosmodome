@@ -305,7 +305,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79c8a733c2f660948bda41aafcc0212c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnForce: 25
+  hitWallParticleFX: {fileID: 1040608886635896, guid: a97415c6b57076f41a6621a7b51d63a3,
+    type: 3}
+  spawnForce: 60
+  timeAliveBeforeExploding: 10
+  bouncesBeforeExplode: 30
 --- !u!95 &1277467178305095518
 Animator:
   serializedVersion: 3
