@@ -309,7 +309,8 @@ MonoBehaviour:
     type: 3}
   spawnForce: 60
   timeAliveBeforeExploding: 10
-  bouncesBeforeExplode: 30
+  bouncesBeforeExplode: 15
+  bouncificier: 10
 --- !u!95 &1277467178305095518
 Animator:
   serializedVersion: 3

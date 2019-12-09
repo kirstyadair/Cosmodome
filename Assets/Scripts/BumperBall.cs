@@ -24,11 +24,14 @@ public class BumperBall : MonoBehaviour
     [Header("How many times the ball will bounce off something before exploding")]
     public int bouncesBeforeExplode;
 
+    [Header("How much to fling the ball in an impact so it doesnt get stuck")]
+    public float bouncificier;
+
+
     int bounces = 0;
 
     public void Start()
     {
-       
     }
 
     public void OnCollisionEnter(Collision collision)
@@ -49,6 +52,9 @@ public class BumperBall : MonoBehaviour
 
         GameObject particleFX = Instantiate(hitWallParticleFX);
         particleFX.transform.position = collision.GetContact(0).point;
+
+        // to stop it getting stuck in a rut
+        rb.AddForce(new Vector3(Random.Range(-bouncificier, bouncificier), 0, Random.Range(-bouncificier, bouncificier)), ForceMode.Impulse);
     }
 
     public void Spawn(Vector3 position, Vector3 direction)
