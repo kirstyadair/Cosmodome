@@ -44,6 +44,7 @@ public class ScoreManager : MonoBehaviour
     public int highDamageRate;
     public int highestDamageRate;
     public int arenaCannonRate;
+    public int bumperBallExplosionRate;
 
     public Color[] playerColours;
 
@@ -174,7 +175,9 @@ public class ScoreManager : MonoBehaviour
         PlayerScript.OnPlayerHitByArenaCannon += PlayerHitByArenaCannon;
         WallScript.OnTrapHit += PlayerHitTrap;
         WallScript.OnTrapSabotaged += PlayerAttemptSabotage;
+        BumperBall.OnBumperBallExplodeOnPlayer += BumperBallExplodesOnPlayer;
     }
+
 
     private void OnDisable()
     {
@@ -182,6 +185,14 @@ public class ScoreManager : MonoBehaviour
         PlayerScript.OnPlayerCollision -= PlayerCollision;
         WallScript.OnTrapHit -= PlayerHitTrap;
         WallScript.OnTrapSabotaged -= PlayerAttemptSabotage;
+    }
+
+    void BumperBallExplodesOnPlayer(PlayerScript hitPlayer)
+    {
+        hitPlayer.approval.ChangeApproval(-bumperBallExplosionRate);
+        StartCoroutine(hitPlayer.FlashWithDamage());
+
+        StartCoroutine(hitPlayer.GetComponent<PlayerScript>().ArrowFlash(.5f, 0, 0));
     }
 
     void PlayerShot(GameObject shotPlayer, GameObject shooter)

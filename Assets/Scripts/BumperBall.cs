@@ -7,12 +7,16 @@ public class BumperBall : MonoBehaviour
     Rigidbody rb;
 
     public delegate void BumperBallEvent();
+    public delegate void BumperBallPlayerEvent(PlayerScript player);
     public static BumperBallEvent OnBumperBallHitPlayer;
     public static BumperBallEvent OnBumperBallHitWall;
     public static BumperBallEvent OnBumperBallExplode;
     public static BumperBallEvent OnBumperBallFire;
-
+    public static BumperBallPlayerEvent OnBumperBallExplodeOnPlayer;
     public GameObject hitWallParticleFX;
+    public GameObject explosionFX;
+    public GameObject trail;
+
    
     [Header("The force the bumper ball should be shot out with")]
     public float spawnForce;
@@ -27,12 +31,13 @@ public class BumperBall : MonoBehaviour
     [Header("How much to fling the ball in an impact so it doesnt get stuck")]
     public float bouncificier;
 
+    [Header("Explosion force")]
+    public float explosionForce;
+
+    [Header("Explosion radius")]
+    public float explosionRadius;
 
     int bounces = 0;
-
-    public void Start()
-    {
-    }
 
     public void OnCollisionEnter(Collision collision)
     {
@@ -69,6 +74,21 @@ public class BumperBall : MonoBehaviour
     public void Explode()
     {
         OnBumperBallExplode?.Invoke();
+        GameObject fx = Instantiate(explosionFX);
+        fx.transform.position = this.transform.position;
+
+        trail.transform.SetParent(null);
+        trail.GetComponent<TrailRenderer>().autodestruct = true;
+
+        foreach (PlayerScript player in ScoreManager.Instance.players)
+        {
+            player.GetComponent<Rigidbody>().AddExplosionForce(explosionForce, this.transform.position, explosionRadius);
+            if ((player.transform.position - this.transform.position).magnitude < explosionRadius)
+            {
+                OnBumperBallExplodeOnPlayer?.Invoke(player);
+            }
+        }
+
         Destroy(gameObject);
     }
 

@@ -161,7 +161,7 @@ TrailRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Time: 5
+  m_Time: 0.5
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 1
@@ -307,10 +307,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hitWallParticleFX: {fileID: 1040608886635896, guid: a97415c6b57076f41a6621a7b51d63a3,
     type: 3}
+  explosionFX: {fileID: 6662768249508673228, guid: fb7ef9742832e74478dc6dffd5e5d5b6,
+    type: 3}
+  trail: {fileID: 3733241311203131698}
   spawnForce: 60
-  timeAliveBeforeExploding: 10
-  bouncesBeforeExplode: 15
+  timeAliveBeforeExploding: 5
+  bouncesBeforeExplode: 20
   bouncificier: 10
+  explosionForce: 2000
+  explosionRadius: 500
 --- !u!95 &1277467178305095518
 Animator:
   serializedVersion: 3
