@@ -105,14 +105,15 @@ public class AudioManager : MonoBehaviour
 
     void BBExplode()
     {
-        audioSource.volume = clips[1].volume;
-        audioSource.PlayOneShot(clips[1].clip);
+        audioSource.volume = clips[2].volume;
+        audioSource.PlayOneShot(clips[2].clip);
     }
 
 
     void BBHit()
     {
         audioSource.volume = clips[5].volume;
+        audioSource.pitch = UnityEngine.Random.value * 2;
         audioSource.PlayOneShot(clips[5].clip);
     }
 
