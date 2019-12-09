@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class BumperBallPipe : MonoBehaviour
 {
+    public delegate void BumperBallShoot();
+    public static event BumperBallShoot OnBumperBallShoot;
     public bool isFiring = false;
     Animator animator;
     public GameObject bumperBallPrefab;
@@ -32,6 +34,7 @@ public class BumperBallPipe : MonoBehaviour
 
     void SpawnBumperBall()
     {
+        OnBumperBallShoot?.Invoke();
         isFiring = false;
 
         GameObject bb = Instantiate(bumperBallPrefab);
