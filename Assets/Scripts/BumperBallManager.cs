@@ -8,6 +8,8 @@ public class BumperBallManager : MonoBehaviour
     public string Help = "If you want to change the properties of the bumper ball, such as live time and explosion force, open the bumper ball prefab";
 
     public BumperBallPipe[] bumperBallPipes;
+    public delegate void BumperBallShoot();
+    public static event BumperBallShoot OnBumperBallShoot;
 
     [Header("Should fire a bumper ball every X seconds")]
     public float fireEverySeconds;
@@ -23,6 +25,7 @@ public class BumperBallManager : MonoBehaviour
 
     void Fire()
     {
+        OnBumperBallShoot.Invoke();
         if (Random.Range(0f, 1f) <= chanceOfFiringMultiple) Fire();
 
         List<BumperBallPipe> pipesReadyToFire = new List<BumperBallPipe>();
