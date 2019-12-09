@@ -18,6 +18,9 @@ public class AudioManager : MonoBehaviour
         ArenaCannonScript.OnTrapActivate += TrapActivated;
         ShipController.OnPlayerReload += Reload;
         BumperBall.OnBumperBallFire += BBShoot;
+        BumperBall.OnBumperBallExplode += BBExplode;
+        BumperBall.OnBumperBallHitPlayer += BBHit;
+        BumperBall.OnBumperBallHitWall += BBHitWall;
     }
 
     // Update is called once per frame
@@ -97,6 +100,27 @@ public class AudioManager : MonoBehaviour
     {
         audioSource.volume = clips[1].volume;
         audioSource.PlayOneShot(clips[1].clip);
+    }
+
+
+    void BBExplode()
+    {
+        audioSource.volume = clips[1].volume;
+        audioSource.PlayOneShot(clips[1].clip);
+    }
+
+
+    void BBHit()
+    {
+        audioSource.volume = clips[5].volume;
+        audioSource.PlayOneShot(clips[5].clip);
+    }
+
+
+    void BBHitWall()
+    {
+        audioSource.volume = clips[6].volume;
+        audioSource.PlayOneShot(clips[6].clip);
     }
 }
 
