@@ -20,6 +20,8 @@ public class ArenaSpotlightFollow : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (scoreManager.winningPlayer == null) return;
+
         distance += speed * Time.deltaTime;
         this.transform.up = this.transform.position - scoreManager.winningPlayer.transform.position;
     }

@@ -10,8 +10,6 @@ public class ArenaCannonScript : MonoBehaviour
     TrapActivatorScript activator;
 
     public GameObject turret;
-    Coroutine closeAfterTime;
-    float closeAfterSeconds;
     Animator animator;
     public GameObject spotLight;
 
@@ -27,6 +25,8 @@ public class ArenaCannonScript : MonoBehaviour
     [Header("How long the player needs to hold X button for")]
     public float activationTime;
     float beingActivatedFor = 0;
+
+    public float timeUntilClose;
 
     // Start is called before the first frame update
     void Start()
@@ -71,19 +71,11 @@ public class ArenaCannonScript : MonoBehaviour
 
     public void OnActivationStart(PlayerScript playerScript)
     {
-        if (closeAfterTime != null)
-        {
-            StopCoroutine(closeAfterTime);
-            closeAfterTime = null;
-        }
-
         animator.SetBool("Activate", true);
     }
 
     public void OnActivationEnd(PlayerScript playerScript)
     {
-        closeAfterTime = StartCoroutine(CloseAfterTime(closeAfterSeconds));
-
         animator.SetBool("Activate", false);
     }
 
@@ -94,28 +86,32 @@ public class ArenaCannonScript : MonoBehaviour
         OnTrapActivate.Invoke();
         animator.SetTrigger("Fire");
 
-        if (closeAfterTime != null)
-        {
-            StopCoroutine(closeAfterTime);
-            closeAfterTime = null;
-        }
-       // closeAfterTime = StartCoroutine(CloseAfterTime(0.5f));
 
     }
 
     public void Update()
     {
-        if (isOpen && activator.isBeingActivated)
+        if (isOpen)
         {
-            beingActivatedFor += Time.deltaTime;
-            activationProgressSprite.fillAmount = beingActivatedFor / activationTime;
-
-            if (beingActivatedFor >= activationTime)
+            if (activator.isBeingActivated)
             {
-                activationProgressSprite.fillAmount = 0;
-                beingActivatedFor = 0;
-                activator.isActivatable = false;
-                Activate(activator.currentShipActivating);
+                beingActivatedFor += Time.deltaTime;
+                activationProgressSprite.fillAmount = beingActivatedFor / activationTime;
+
+                if (beingActivatedFor >= activationTime)
+                {
+                    activationProgressSprite.fillAmount = 0;
+                    beingActivatedFor = 0;
+                    activator.isActivatable = false;
+                    Activate(activator.currentShipActivating);
+                }
+            } else
+            {
+                timeUntilClose -= Time.deltaTime;
+                if (timeUntilClose <= 0)
+                {
+                    Close();
+                }
             }
         }
     }
@@ -123,15 +119,12 @@ public class ArenaCannonScript : MonoBehaviour
     {
         Open(direction);
 
-        closeAfterSeconds = time;
-        if (closeAfterTime != null) StopCoroutine(closeAfterTime);
-        closeAfterTime = StartCoroutine(CloseAfterTime(time));
+        timeUntilClose = time;
     }
 
     public void Open(Vector3 direction)
     {
         direction.y = turret.transform.position.y;
-
  
         this.direction = direction;
         turret.transform.rotation = Quaternion.LookRotation(Vector3.up, direction);//Quaternion.LookRotation(direction, Vector3.up);
@@ -159,15 +152,6 @@ public class ArenaCannonScript : MonoBehaviour
         animator.SetBool("Open", false);
         animator.SetBool("Selection", false);
         isOpen = false;
-
-        if (closeAfterTime != null) StopCoroutine(closeAfterTime);
     }
 
-
-    IEnumerator CloseAfterTime(float time)
-    {
-        yield return new WaitForSeconds(time);
-        closeAfterTime = null;
-        Close();
-    }
 }

@@ -77,7 +77,6 @@ public class ApprovalPlayer : MonoBehaviour
         if (currentAppoval!=approvalValue)
         {
             int changeInApproval = approvalValue  - currentAppoval;
-            print(changeInApproval);
 
             if(changeInApproval <= -3 )
             {

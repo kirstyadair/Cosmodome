@@ -310,9 +310,9 @@ MonoBehaviour:
   explosionFX: {fileID: 6662768249508673228, guid: fb7ef9742832e74478dc6dffd5e5d5b6,
     type: 3}
   trail: {fileID: 3733241311203131698}
-  spawnForce: 60
+  spawnForce: 30
   timeAliveBeforeExploding: 5
-  bouncesBeforeExplode: 20
+  bouncesBeforeExplode: 10
   bouncificier: 10
   explosionForce: 2000
   explosionRadius: 500
