@@ -5269,7 +5269,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   players: []
   numberOfPlayers: 0
-  timeLeftInRound: 3
+  timeLeftInRound: 60
   timeText: {fileID: 1470029490}
   timeBarLeft: {fileID: 1454748627}
   timeBarRight: {fileID: 1456140378}
@@ -19851,7 +19851,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 05aaad318f09418429c58257d7a9991b, type: 3}
   AudioArrayPlayerTaunting: []
   AudioArrayPlyerEliminated:
-  - {fileID: 8300000, guid: 94a99b670a23bb14c805fa8c59922afe, type: 3}
+  - {fileID: 8300000, guid: cb4d51fea90b97a49a3e73f6b874be7f, type: 3}
   - {fileID: 8300000, guid: 24b1f9a972c5a6248b04d3f4d7c091a9, type: 3}
   - {fileID: 8300000, guid: 1e8743014d7eec74ea5b0369db601b33, type: 3}
   - {fileID: 8300000, guid: b95adecaeb032104b88772a982768890, type: 3}
@@ -25214,7 +25214,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 43a40615452264e4abdd1623bd3b7ec2, type: 3}
   m_Name: 
@@ -25225,9 +25225,9 @@ MonoBehaviour:
   - {fileID: 384061621}
   - {fileID: 503252604}
   mainCamera: {fileID: 963194227}
-  dampeningTime: 0.2
+  dampeningTime: 0.05
   screenEdgeBuff: 4
-  minZoomDistance: 4
+  minZoomDistance: 10
   distances: []
   currentMaxDistance: 0
 --- !u!1 &970679615
@@ -45882,13 +45882,13 @@ MonoBehaviour:
   - clip: {fileID: 8300000, guid: 8ff6beb85b734c644a9221eb5bc73dea, type: 3}
     volume: 0.2
   - clip: {fileID: 8300000, guid: 66cc8266e45e86149ba3ccb91dad8bdf, type: 3}
-    volume: 0.5
-  - clip: {fileID: 8300000, guid: a11f3751ed1fd0e4e9e2215c257884de, type: 3}
     volume: 1
-  - clip: {fileID: 8300000, guid: 0ee2bee226f3a504da70cddbb74dad99, type: 3}
-    volume: 1
-  - clip: {fileID: 8300000, guid: f4adc7abe17e67c43a753a7a8887bedb, type: 3}
-    volume: 1
+  - clip: {fileID: 8300000, guid: 6a2fc771cb698a248833c4d8566e20ec, type: 3}
+    volume: 0.47
+  - clip: {fileID: 8300000, guid: a14720763617d5347bd46ce97e433856, type: 3}
+    volume: 0.478
+  - clip: {fileID: 8300000, guid: 15ba83635703d114ba571d597e9fcf86, type: 3}
+    volume: 0.482
 --- !u!82 &1406280093
 AudioSource:
   m_ObjectHideFlags: 0

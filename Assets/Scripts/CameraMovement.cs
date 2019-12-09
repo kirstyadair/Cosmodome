@@ -81,15 +81,23 @@ public class CameraMovement : MonoBehaviour
     {
         Vector3 centerPoint = FindCenter(shipPositions);
         FindDistance(shipPositions);
-        Vector3 cameraDestination = centerPoint - cam.transform.forward * currentMaxDistance * minZoomDistance;
-        Vector3 smoothMove = Vector3.Lerp(cam.transform.position,cameraDestination,dampeningTime);
-        cam.transform.position = smoothMove;
-
-
-        if ((cameraDestination-cam.transform.position).magnitude<=0.05f)
+        if(currentMaxDistance>4)
         {
-            cam.transform.position = cameraDestination;
+            Vector3 cameraDestination = centerPoint - cam.transform.forward *4* minZoomDistance;
+            Vector3 smoothMove = Vector3.Lerp(cam.transform.position, cameraDestination, dampeningTime);
+            cam.transform.position = smoothMove;
         }
+        else
+        {
+            Vector3 cameraDestination = centerPoint - cam.transform.forward * currentMaxDistance * minZoomDistance;
+            Vector3 smoothMove = Vector3.Lerp(cam.transform.position, cameraDestination, dampeningTime);
+            cam.transform.position = smoothMove;
+        }
+        
+
+
+       
+        
     }
 
 

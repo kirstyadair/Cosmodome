@@ -62,7 +62,7 @@ public class ScoreManager : MonoBehaviour
         timeBarRight.fillAmount = timeLeftInRound / maxTime;
 
 
-        if (timeLeftInRound < 10) timeText.color = Color.clear;
+        if (timeLeftInRound < 10) timeText.color = Color.red;
         else timeText.color = Color.white;
 
         if (InputManager.ActiveDevice.Action1.WasPressed)
