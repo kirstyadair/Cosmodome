@@ -22,7 +22,7 @@ public class PlayerApproval {
         Debug.Log("changing approval by " + amount);
         value += amount;
         if (value > 100) value = 100;
-        if (value < 0) value = 0;
+        if (value < 1) value = 1;
     }
 }
 
