@@ -204,6 +204,7 @@ public class PlayerScript : MonoBehaviour
     {
         rings.gameObject.SetActive(true);
         rings.SetColor(color);
+        rings.UpdateRings(this.transform.position, controller.turretDirection, (float)controller.ammo / (float)controller.maxAmmo);
     }
 
     public void DisableRing()
