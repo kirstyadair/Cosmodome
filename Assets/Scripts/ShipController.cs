@@ -65,10 +65,20 @@ public class ShipController : MonoBehaviour
     public float firingForcePushback = 1f;
     float fireCooldown;
     float burstCooldown;
-    float amountOfBursts = 0;
-    public float burstCount = 5;
-    public float timeBetweenBursts;
+
+    [Header("Maximum ammo available")]
+    public float maxAmmo;
+
+    [HideInInspector]
+    public float ammo;
+
+    [Header("How long it takes to regenerate bullets")]
+    public float timeBetweenBulletRenewals;
+
+
+    [Header("Firing speed")]
     public float timeBetweenBullets;
+    float timeSinceLastBulletRenewal = 0;
 
     public GameObject[] hitParticleFX;
     public GameObject randomTextFX;
@@ -78,12 +88,13 @@ public class ShipController : MonoBehaviour
     public delegate void PlayerShooting();
     public static event PlayerShooting OnPlayerShooting;
     public delegate void PlayerReload();
-    public static event PlayerReload OnPlayerReload;
+    public static event PlayerReload OnPlayerNoBullets;
 
     public void Start()
     {
         playerScript = GetComponent<PlayerScript>();
         postProcessProfile = Camera.main.GetComponent<PostProcessVolume>().profile;
+        ammo = maxAmmo;
     }
 
     public IEnumerator StopStrafe(float after)
@@ -122,7 +133,14 @@ public class ShipController : MonoBehaviour
     public void Fire()
     {
         
-        if (fireCooldown > 0 || burstCooldown > 0) return;
+        if (fireCooldown > 0) return;
+
+        if (ammo <= 0)
+        {
+            OnPlayerNoBullets.Invoke();
+            return;
+        }
+
         OnPlayerShooting.Invoke();
         
         Vector3 spawnPosition;
@@ -145,13 +163,8 @@ public class ShipController : MonoBehaviour
 
         rb.AddForce(bullet.transform.forward * -firingForcePushback, ForceMode.Impulse);
 
-        amountOfBursts++;
-        if (amountOfBursts >= burstCount)
-        {
-            GetComponent<PlayerScript>().DisableTurretRing();
-            burstCooldown = timeBetweenBursts;
-            amountOfBursts = 0;
-        }
+        ammo--;
+        timeSinceLastBulletRenewal = 0; // don't renew bullets whilst firing
     }
 
     public void HoverAndSelfRight()
@@ -250,13 +263,14 @@ public class ShipController : MonoBehaviour
 
         if (fireCooldown > 0) fireCooldown -= Time.deltaTime;
         if (strafeCooldown > 0) strafeCooldown -= Time.deltaTime;
-        if (burstCooldown > 0)
+
+        if (ammo < maxAmmo)
         {
-            burstCooldown -= Time.deltaTime;
-            if (burstCooldown <= 0) 
+            timeSinceLastBulletRenewal += Time.deltaTime;
+            if (timeSinceLastBulletRenewal >= timeBetweenBulletRenewals)
             {
-                GetComponent<PlayerScript>().EnableTurretRing();
-                OnPlayerReload.Invoke();
+                timeSinceLastBulletRenewal = 0;
+                ammo++;
             }
         }
 

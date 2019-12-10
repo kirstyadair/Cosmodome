@@ -16,7 +16,7 @@ public class AudioManager : MonoBehaviour
         ArenaCannonMissile.OnFireCannon += FireCannon;
         ScoreManager.OnExplodePlayer += ExplodePlayer;
         ArenaCannonScript.OnTrapActivate += TrapActivated;
-        ShipController.OnPlayerReload += Reload;
+        ShipController.OnPlayerNoBullets += Reload;
         BumperBall.OnBumperBallFire += BBShoot;
         BumperBall.OnBumperBallExplode += BBExplode;
         BumperBall.OnBumperBallHitPlayer += BBHit;

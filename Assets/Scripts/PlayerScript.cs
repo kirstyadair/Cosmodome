@@ -63,10 +63,6 @@ public class PlayerScript : MonoBehaviour
     public float hitByBulletCooldown = 0;
     public float timeBetweenHitByBullet = 0.5f;
 
-    public GameObject ring;
-    public GameObject turretRing;
-    public float ringHeight;
-
     ShipController controller;
     public PlayerApproval approval = new PlayerApproval();
     //Bens code change start
@@ -76,6 +72,8 @@ public class PlayerScript : MonoBehaviour
     public RawImage largeArrowPlus;
 
     public GameObject playersScreen;
+
+    public PlayerRing rings;
 
     //Bens Code change end
 
@@ -204,40 +202,21 @@ public class PlayerScript : MonoBehaviour
 
     public void EnableRing(Color color)
     {
-        float alpha = ring.GetComponent<SpriteRenderer>().color.a;
-        color.a = alpha;
-        ring.SetActive(true);
-        ring.GetComponent<SpriteRenderer>().color = color;
-
-        turretRing.GetComponent<SpriteRenderer>().color = color;
-
-        // put ring on the floor
-        Vector3 position = this.transform.position;
-        position.y = ringHeight;
-        ring.transform.position = position;
-        ring.transform.up = Vector3.forward;
-
+        rings.gameObject.SetActive(true);
+        rings.SetColor(color);
     }
 
     public void DisableRing()
     {
-        ring.SetActive(false);
+        rings.gameObject.SetActive(false);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (ring.activeSelf)
+        if (rings.gameObject.activeSelf)
         {
-            // put ring on the floor
-            Vector3 position = this.transform.position;
-            position.y = ringHeight;
-            ring.transform.position = position;
-            //ring.transform.up = Vector3.forward;
-            ring.transform.rotation = Quaternion.LookRotation(Vector3.up, this.transform.forward);
-
-            if (controller.turretDirection.magnitude > 0) turretRing.transform.rotation = Quaternion.LookRotation(Vector3.up, controller.turretDirection);
-            else turretRing.transform.rotation = ring.transform.rotation;
+            rings.UpdateRings(this.transform.position, controller.turretDirection, (float)controller.ammo / (float)controller.maxAmmo);
         }
 
         //Bens code change start
@@ -327,24 +306,6 @@ public class PlayerScript : MonoBehaviour
         StartCoroutine(controller.Careen(controller.disabledTime, controller.careenTime));
 
         Vibrate(5f,1f);
-    }
-
-    public void DisableTurretRing()
-    {
-        Color color = Color.black;
-        float alpha = turretRing.GetComponent<SpriteRenderer>().color.a;
-        color.a = alpha;
-
-        turretRing.GetComponent<SpriteRenderer>().color = color;
-    }
-
-    public void EnableTurretRing()
-    {
-        Color color = playerColor.color;
-        float alpha = turretRing.GetComponent<SpriteRenderer>().color.a;
-        color.a = alpha;
-
-        turretRing.GetComponent<SpriteRenderer>().color = color;
     }
 
 
