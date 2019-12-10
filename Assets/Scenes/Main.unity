@@ -6148,7 +6148,7 @@ MonoBehaviour:
   highDamageRate: 20
   highestDamageRate: 30
   arenaCannonRate: 20
-  bumperBallExplosionRate: 100
+  bumperBallExplosionRate: 30
   playerColours:
   - {r: 1, g: 0.4009434, b: 0.4009434, a: 1}
   - {r: 0, g: 0.6126497, b: 1, a: 1}
@@ -39480,11 +39480,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerCount: 0
   numOfSupporters: []
-  colors:
-  - {fileID: 2100000, guid: e7c2e5ddf65fd2d42b29c0792b818d9a, type: 2}
-  - {fileID: 2100000, guid: 58085b94d2ad619479bcb1d7fda9e5a4, type: 2}
-  - {fileID: 2100000, guid: dfff512f3cb88804cbcec9b493ea2515, type: 2}
-  - {fileID: 2100000, guid: 6cc732126ba3e5648970f8f539950089, type: 2}
   crowdMembers: []
 --- !u!1 &1023095629
 GameObject:
@@ -81621,6 +81616,11 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 2954700033174744435, guid: 4f46c2e901006134f887a343b2416ab3,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 694223724729866907, guid: 4f46c2e901006134f887a343b2416ab3,
         type: 3}
       propertyPath: m_RootOrder
@@ -81630,11 +81630,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_RootOrder
       value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 2954700033174744435, guid: 4f46c2e901006134f887a343b2416ab3,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1164851714291255779, guid: 4f46c2e901006134f887a343b2416ab3,
         type: 3}
@@ -82511,20 +82506,10 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 6
       objectReference: {fileID: 0}
-    - target: {fileID: 750954722460212743, guid: 86b98d7704ebe8140ba22f8d2e1b0c26,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 7
-      objectReference: {fileID: 0}
     - target: {fileID: 3862595035949038142, guid: 86b98d7704ebe8140ba22f8d2e1b0c26,
         type: 3}
       propertyPath: m_RootOrder
       value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 914767047753146030, guid: 86b98d7704ebe8140ba22f8d2e1b0c26,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 5414846851118192031, guid: 86b98d7704ebe8140ba22f8d2e1b0c26,
         type: 3}
@@ -82535,6 +82520,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_RootOrder
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 750954722460212743, guid: 86b98d7704ebe8140ba22f8d2e1b0c26,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 914767047753146030, guid: 86b98d7704ebe8140ba22f8d2e1b0c26,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 86b98d7704ebe8140ba22f8d2e1b0c26, type: 3}
