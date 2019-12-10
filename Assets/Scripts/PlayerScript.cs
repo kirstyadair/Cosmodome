@@ -204,7 +204,7 @@ public class PlayerScript : MonoBehaviour
     {
         rings.gameObject.SetActive(true);
         rings.SetColor(color);
-        rings.UpdateRings(this.transform.position, controller.turretDirection, (float)controller.ammo / (float)controller.maxAmmo);
+        rings.UpdateRings(this.transform.position, controller.turretDirection, (float)controller.ammo / (float)controller.maxAmmo, (float)this.approval.percentage / 100f);
     }
 
     public void DisableRing()
@@ -217,7 +217,7 @@ public class PlayerScript : MonoBehaviour
     {
         if (rings.gameObject.activeSelf)
         {
-            rings.UpdateRings(this.transform.position, controller.turretDirection, (float)controller.ammo / (float)controller.maxAmmo);
+            rings.UpdateRings(this.transform.position, controller.turretDirection, (float)controller.ammo / (float)controller.maxAmmo, (float)this.approval.percentage / 100f);
         }
 
         //Bens code change start

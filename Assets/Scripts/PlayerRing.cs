@@ -23,7 +23,7 @@ public class PlayerRing : MonoBehaviour
         aimingRingFiller.color = color;
     }
 
-    public void UpdateRings(Vector3 position, Vector3 turretDirection, float fillAmount)
+    public void UpdateRings(Vector3 position, Vector3 turretDirection, float ammoFillAmount, float percentageFillAmount)
     {
         position.y = ringsHeight;
         this.transform.position = position;
@@ -32,6 +32,7 @@ public class PlayerRing : MonoBehaviour
         if (turretDirection.magnitude > 0) aimingRingObject.transform.rotation = Quaternion.LookRotation(Vector3.up, turretDirection);
         else aimingRingObject.transform.rotation = this.transform.rotation;
 
-        aimingRingFiller.fillAmount = fillAmount;
+        ring.fillAmount = percentageFillAmount;
+        aimingRingFiller.fillAmount = ammoFillAmount;
     }
 }
