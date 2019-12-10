@@ -11131,6 +11131,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5424562983052151674, guid: 8b82fa27528aa4345beddc705ae7a701,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 3870734409289948727, guid: 8b82fa27528aa4345beddc705ae7a701,
         type: 3}
       propertyPath: turretObjects.Array.size
@@ -11286,16 +11291,17 @@ PrefabInstance:
       propertyPath: approval.value
       value: 40
       objectReference: {fileID: 0}
-    - target: {fileID: 5424562983052151674, guid: 8b82fa27528aa4345beddc705ae7a701,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 3
-      objectReference: {fileID: 0}
     - target: {fileID: 5148636023049010745, guid: 8b82fa27528aa4345beddc705ae7a701,
         type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6553697713690492536, guid: 8b82fa27528aa4345beddc705ae7a701,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: c221929271379b040a6b04325eef4121,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8b82fa27528aa4345beddc705ae7a701, type: 3}
 --- !u!108 &5306014201092752839 stripped

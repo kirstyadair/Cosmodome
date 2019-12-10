@@ -1120,7 +1120,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: ce96df2462519ae4f841d654f487b776, type: 2}
+  - {fileID: 2100000, guid: 121eef6a5cc286b43881945f01a6409e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1590,6 +1590,7 @@ MonoBehaviour:
   - {fileID: 7288121875272890461}
   activationProgressSprite: {fileID: 1024350825}
   activationTime: 2
+  timeUntilClose: 0
 --- !u!114 &2083116182405671320
 MonoBehaviour:
   m_ObjectHideFlags: 0
