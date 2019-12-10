@@ -292,6 +292,7 @@ public class ScoreManager : MonoBehaviour
     IEnumerator Explode(PlayerScript currentLowest)
     {
         GameObject.Instantiate(currentLowest.ps, currentLowest.transform.position, Quaternion.identity);
+        currentLowest.Die();
         yield return new WaitForSeconds(0.1f);
         OnExplodePlayer.Invoke();
         OnPlayerEliminated?.Invoke();

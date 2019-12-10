@@ -85,7 +85,9 @@ public class PlayerScript : MonoBehaviour
     //public bool isActive = true;
 
     public GameObject ps;
-    
+
+    Coroutine vibrationCoroutine;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -105,7 +107,6 @@ public class PlayerScript : MonoBehaviour
 
     public IEnumerator FlashWithDamage()
     {
-        Debug.Log("Flsh");
         void Flash() { foreach (MeshRenderer part in parts) part.material = flashMaterial; }
         void Normal() { foreach (MeshRenderer part in parts) part.material = normalMaterial; }
 
@@ -119,6 +120,11 @@ public class PlayerScript : MonoBehaviour
         }
 
         Normal();
+    }
+
+    public void Die()
+    {
+        if (inputDevice != null) inputDevice.StopVibration();
     }
 
     
@@ -177,9 +183,13 @@ public class PlayerScript : MonoBehaviour
     {
         if (inputDevice == null) return;
 
-        Debug.Log("Vibrating " + strength + " for " + time + "s", gameObject);
+        if (vibrationCoroutine != null)
+        {
+            StopCoroutine(vibrationCoroutine);
+        }
+
         inputDevice.Vibrate(strength);
-        StartCoroutine(StopVibratingAfter(time));
+        vibrationCoroutine = StartCoroutine(StopVibratingAfter(time));
     }
 
     IEnumerator StopVibratingAfter(float time)
@@ -188,6 +198,7 @@ public class PlayerScript : MonoBehaviour
         if (inputDevice == null) yield break;
 
         inputDevice.StopVibration();
+        vibrationCoroutine = null;
     }
 
 
