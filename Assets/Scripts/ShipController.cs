@@ -18,6 +18,7 @@ public class ShipController : MonoBehaviour
     public MeshRenderer boosterLightPlane;
     public float psEmit = 500f;
     public float psEmitIdle = 5f;
+    public float psEmitBoost = 100f;
     public Color boosterColour;
     public float lightIntensity = 50f;
     public float lightIntensityIdle = 10f;
@@ -65,6 +66,10 @@ public class ShipController : MonoBehaviour
     public float firingForcePushback = 1f;
     float fireCooldown;
     float burstCooldown;
+
+    public TrailRenderer trail;
+    public Gradient normalGradient;
+    public Gradient boostGradient;
 
     [Header("Maximum ammo available")]
     public float maxAmmo;
@@ -237,6 +242,16 @@ public class ShipController : MonoBehaviour
         var emissionRight = psRight.emission;
 
         int emissionAmount = (int)Mathf.Max(psEmitIdle, psEmit * (targetDirection.magnitude));
+        if (strafeCooldown > 0)
+        {
+            emissionAmount = (int)psEmitBoost;
+            trail.colorGradient = boostGradient;
+        } else
+        {
+            trail.colorGradient = normalGradient;
+        }
+
+
         Color finalColor = boosterColour * Mathf.LinearToGammaSpace(Mathf.Max(lightIntensityIdle, lightIntensity * emissionAmount));
 
         boosterLightPlane.material.SetColor("_EmissionColor", finalColor);
