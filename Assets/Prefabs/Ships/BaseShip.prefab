@@ -5371,7 +5371,7 @@ MonoBehaviour:
   playerType: 4
   score: {fileID: 0}
   placeInScoresList: 0
-  playerColor: {r: 0, g: 0, b: 0, a: 0}
+  playerColor: {fileID: 0}
   normalMaterial: {fileID: 2100000, guid: a30519c037d0a264eabb0352f7abbc31, type: 2}
   flashMaterial: {fileID: 2100000, guid: d15f77d8631fae54caf2a3b18785b04b, type: 2}
   parts:
@@ -5396,6 +5396,7 @@ MonoBehaviour:
   largeArrow: {fileID: 0}
   smallArrowPlus: {fileID: 0}
   largeArrowPlus: {fileID: 0}
+  playersScreen: {fileID: 0}
   isActivatingTrap: 0
   ps: {fileID: 0}
 --- !u!82 &709680226782177042
@@ -5589,7 +5590,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &5424562983052151674
 Transform:
   m_ObjectHideFlags: 0
@@ -5777,7 +5778,7 @@ Transform:
   m_GameObject: {fileID: 8058320372162135707}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.45361605, y: 0.45361605, z: 0.45361605}
+  m_LocalScale: {x: 0.38528332, y: 0.38528332, z: 0.38528332}
   m_Children: []
   m_Father: {fileID: 5424562983052151674}
   m_RootOrder: 0
