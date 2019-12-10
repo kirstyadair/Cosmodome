@@ -4,10 +4,9 @@ using UnityEngine;
 
 public class CrowdMemberScript : MonoBehaviour
 {
-    //public Material mat;
-    public Material newMat;
+    public Material mat;
     public Material[] bothMats;
-    MeshRenderer mr;
+    public MeshRenderer mr;
     public MeshRenderer gmr1;
     public MeshRenderer gmr2;
     public MeshRenderer gmr3;
@@ -15,16 +14,7 @@ public class CrowdMemberScript : MonoBehaviour
     void Start()
     {
         mr = GetComponent<MeshRenderer>();
-    }
-
-    void Update()
-    {
-        bothMats = mr.sharedMaterials;
-        bothMats[1] = newMat;
-        mr.sharedMaterials = bothMats;
-
-        gmr1.material = newMat;
-        gmr2.material = newMat;
-        gmr3.material = newMat;
+        bothMats = mr.materials;
+        mat = Instantiate<Material>(bothMats[1]);
     }
 }

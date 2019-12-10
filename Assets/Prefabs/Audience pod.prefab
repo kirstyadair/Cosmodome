@@ -448,8 +448,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f73541906784ea5488485c083903005a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  newMat: {fileID: 0}
+  mat: {fileID: 2100000, guid: 492ae1cab4ed75546bd85488d73965d6, type: 2}
   bothMats: []
+  mr: {fileID: 0}
   gmr1: {fileID: 1715485419}
   gmr2: {fileID: 153443776}
   gmr3: {fileID: 651475006}
@@ -465,8 +466,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f73541906784ea5488485c083903005a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  newMat: {fileID: 0}
+  mat: {fileID: 2100000, guid: 492ae1cab4ed75546bd85488d73965d6, type: 2}
   bothMats: []
+  mr: {fileID: 0}
   gmr1: {fileID: 1715485419}
   gmr2: {fileID: 153443776}
   gmr3: {fileID: 651475006}
@@ -716,6 +718,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -5502435615009621979, guid: 9dbabb6792f271c44bb7b568e866494c,
+        type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 492ae1cab4ed75546bd85488d73965d6, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9dbabb6792f271c44bb7b568e866494c, type: 3}
 --- !u!4 &661809477326193428 stripped

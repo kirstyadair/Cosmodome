@@ -299,7 +299,7 @@ public class ScoreManager : MonoBehaviour
 
 
         players.Remove(currentLowest);
-        cm.colors.Remove(currentLowest.playerColor);
+        //cm.colors.Remove(currentLowest.playerColor);
         cm.RecalculateCrowd();
         numberOfPlayers--;
         UpdatePercentages();
