@@ -81391,6 +81391,31 @@ PrefabInstance:
       propertyPath: timeBetweenBursts
       value: 1.5
       objectReference: {fileID: 0}
+    - target: {fileID: 7685790430323404319, guid: 4f46c2e901006134f887a343b2416ab3,
+        type: 3}
+      propertyPath: boostForce
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 7685790430323404319, guid: 4f46c2e901006134f887a343b2416ab3,
+        type: 3}
+      propertyPath: hitByBulletForce
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7685790430323404319, guid: 4f46c2e901006134f887a343b2416ab3,
+        type: 3}
+      propertyPath: timeBetweenBullets
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7685790430323404319, guid: 4f46c2e901006134f887a343b2416ab3,
+        type: 3}
+      propertyPath: maxAmmo
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7685790430323404319, guid: 4f46c2e901006134f887a343b2416ab3,
+        type: 3}
+      propertyPath: timeBetweenBulletRenewals
+      value: 0.75
+      objectReference: {fileID: 0}
     - target: {fileID: 427169733260971600, guid: 4f46c2e901006134f887a343b2416ab3,
         type: 3}
       propertyPath: m_Sprite
@@ -81436,6 +81461,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_RootOrder
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1999732999612898302, guid: 4f46c2e901006134f887a343b2416ab3,
+        type: 3}
+      propertyPath: m_Mass
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1999732999612898302, guid: 4f46c2e901006134f887a343b2416ab3,
+        type: 3}
+      propertyPath: m_Drag
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4f46c2e901006134f887a343b2416ab3, type: 3}
@@ -82231,6 +82266,31 @@ PrefabInstance:
       propertyPath: boostGradient.key0.b
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8517129407404390738, guid: 86b98d7704ebe8140ba22f8d2e1b0c26,
+        type: 3}
+      propertyPath: hitByBulletForce
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8517129407404390738, guid: 86b98d7704ebe8140ba22f8d2e1b0c26,
+        type: 3}
+      propertyPath: timeBetweenBullets
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8517129407404390738, guid: 86b98d7704ebe8140ba22f8d2e1b0c26,
+        type: 3}
+      propertyPath: timeBetweenBulletRenewals
+      value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 8517129407404390738, guid: 86b98d7704ebe8140ba22f8d2e1b0c26,
+        type: 3}
+      propertyPath: maxAmmo
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8517129407404390738, guid: 86b98d7704ebe8140ba22f8d2e1b0c26,
+        type: 3}
+      propertyPath: boostForce
+      value: 35
+      objectReference: {fileID: 0}
     - target: {fileID: 5099617484619250014, guid: 86b98d7704ebe8140ba22f8d2e1b0c26,
         type: 3}
       propertyPath: score
@@ -82330,6 +82390,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_RootOrder
       value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 530297960829242547, guid: 86b98d7704ebe8140ba22f8d2e1b0c26,
+        type: 3}
+      propertyPath: m_Mass
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 86b98d7704ebe8140ba22f8d2e1b0c26, type: 3}
