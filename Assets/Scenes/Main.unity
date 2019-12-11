@@ -6104,7 +6104,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 203265995}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.02, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1008894348}
@@ -6128,7 +6128,7 @@ MonoBehaviour:
   timeText: {fileID: 1470029490}
   timeBarLeft: {fileID: 1454748627}
   timeBarRight: {fileID: 1456140378}
-  bulletDamageRate: 1
+  bulletDamageRate: 2
   lowDamageRate: 5
   medDamageRate: 10
   highDamageRate: 20
@@ -81404,17 +81404,17 @@ PrefabInstance:
     - target: {fileID: 7685790430323404319, guid: 4f46c2e901006134f887a343b2416ab3,
         type: 3}
       propertyPath: timeBetweenBullets
-      value: 0.2
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 7685790430323404319, guid: 4f46c2e901006134f887a343b2416ab3,
         type: 3}
       propertyPath: maxAmmo
-      value: 10
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 7685790430323404319, guid: 4f46c2e901006134f887a343b2416ab3,
         type: 3}
       propertyPath: timeBetweenBulletRenewals
-      value: 0.75
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 427169733260971600, guid: 4f46c2e901006134f887a343b2416ab3,
         type: 3}
