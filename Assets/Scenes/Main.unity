@@ -10868,6 +10868,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   screen: {fileID: 379080964}
+  renderer: {fileID: 6453699870852961314}
+  matOn: {fileID: 2100000, guid: e4de9c36f55749244b76dba3379686c1, type: 2}
+  matOff: {fileID: 2100000, guid: 823c4d478ddba3d449a1afecf65339bb, type: 2}
   player: {fileID: 248708039}
 --- !u!1 &386314527
 GameObject:
@@ -21583,6 +21586,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   screen: {fileID: 702995922}
+  renderer: {fileID: 1041789754}
+  matOn: {fileID: 2100000, guid: 4bc1917bcd871b7488ba5b1d5992da8a, type: 2}
+  matOff: {fileID: 2100000, guid: c623c425fec170b45969c379b391cfd2, type: 2}
   player: {fileID: 721976333}
 --- !u!1 &705507993
 GameObject:
@@ -27726,13 +27732,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: 0.468638, y: -0, z: -0, w: 0.88339037}
+  m_LocalRotation: {x: 0.45793778, y: -0, z: -0, w: 0.88898426}
   m_LocalPosition: {x: 0, y: 39.4, z: -25.74}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 55.892002, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 54.508003, y: 0, z: 0}
 --- !u!114 &963194229
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27831,6 +27837,8 @@ MonoBehaviour:
   dampeningTime: 0.05
   screenEdgeBuff: 4
   minZoomDistance: 10
+  minX: -2
+  maxX: 2
   distances: []
   currentMaxDistance: 0
 --- !u!1 &970679615
@@ -39618,6 +39626,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   screen: {fileID: 1035807231}
+  renderer: {fileID: 9193145942226495087}
+  matOn: {fileID: 2100000, guid: ecd18bc8b35cf8f4292a02d25753acaa, type: 2}
+  matOff: {fileID: 2100000, guid: e3131c32d9319a9489bb483c73062596, type: 2}
   player: {fileID: 1146021090}
 --- !u!1 &1038009105
 GameObject:
@@ -51362,6 +51373,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   screen: {fileID: 1435182392}
+  renderer: {fileID: 1119965621}
+  matOn: {fileID: 2100000, guid: 72941809256006545916828698e2e7ce, type: 2}
+  matOff: {fileID: 2100000, guid: 2d96bef9f88f0674ab195e995aa2cfd8, type: 2}
   player: {fileID: 442030876}
 --- !u!4 &1435836062 stripped
 Transform:

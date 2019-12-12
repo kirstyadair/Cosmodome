@@ -6,6 +6,9 @@ using UnityEngine;
 public class ScreenAnim : MonoBehaviour
 {
     public GameObject screen;
+    public Renderer renderer;
+    public Material matOn;
+    public Material matOff;
     public GameObject player;
     Animator animator;
 
@@ -19,6 +22,7 @@ public class ScreenAnim : MonoBehaviour
         
     }
 
+
     void Idle()
     {
         animator.SetBool("IsScared", false);
@@ -29,15 +33,16 @@ public class ScreenAnim : MonoBehaviour
     public void ShowingOff()
     {
         StartCoroutine(PlayAnimation("IsShowboating", 2));
-
+        Flash();
     }
 
     public void Scared()
     {
         StartCoroutine(PlayAnimation("IsScared",1.5f));
-        
+        Flash();
+
     }
-    
+
 
     public void Eliminated()
     {
@@ -49,6 +54,31 @@ public class ScreenAnim : MonoBehaviour
         animator.SetBool(animatorBoolName, true);
         yield return new WaitForSeconds(timeToWait);
         animator.SetBool(animatorBoolName, false);
+    }
+
+    IEnumerator FlashMats(Material mat1, Material mat2)
+    {
+            renderer.material = mat2;
+            yield return new WaitForSeconds(.25f);
+            renderer.material = mat1;
+            yield return new WaitForSeconds(.25f);
+            renderer.material = mat2;
+            yield return new WaitForSeconds(.25f);
+            renderer.material = mat1;
+            yield return new WaitForSeconds(.25f);
+            renderer.material = mat2;
+            yield return new WaitForSeconds(.25f);
+            renderer.material = mat1;
+
+
+
+    }
+
+    void Flash()
+    {
+        StartCoroutine(FlashMats(matOn, matOff));
+        
+
     }
 
     void Update()

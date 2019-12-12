@@ -12,7 +12,11 @@ public class CameraMovement : MonoBehaviour
     public float dampeningTime;//The time taken for the camera to reajust
     public float screenEdgeBuff;//The space between the edge of the screen and any objects at the top or bottom of the screen
     public float minZoomDistance;
-
+    
+    [Header("Camera's minimum and maximum positions")]
+    public float minX;
+    public float maxX;
+    
 
     public List<float> distances;
     public float currentMaxDistance;
@@ -79,22 +83,29 @@ public class CameraMovement : MonoBehaviour
 
     private void Move(Camera cam)
     {
+
         Vector3 centerPoint = FindCenter(shipPositions);
         FindDistance(shipPositions);
-        if(currentMaxDistance>4)
+        if(currentMaxDistance>6)
         {
-            Vector3 cameraDestination = centerPoint - cam.transform.forward *4* minZoomDistance;
+            Vector3 cameraDestination = centerPoint - cam.transform.forward *6* minZoomDistance;
+            cameraDestination.x = Mathf.Clamp(cameraDestination.x, minX, maxX);
+            
             Vector3 smoothMove = Vector3.Lerp(cam.transform.position, cameraDestination, dampeningTime);
             cam.transform.position = smoothMove;
+            
+
         }
         else
         {
             Vector3 cameraDestination = centerPoint - cam.transform.forward * currentMaxDistance * minZoomDistance;
+            cameraDestination.x = Mathf.Clamp(cameraDestination.x, minX, maxX);
+          
             Vector3 smoothMove = Vector3.Lerp(cam.transform.position, cameraDestination, dampeningTime);
             cam.transform.position = smoothMove;
         }
         
-
+        
 
        
         
@@ -119,7 +130,7 @@ public class CameraMovement : MonoBehaviour
     // Update is called once per frame
     void LateUpdate()
     {
-
+        
         Move(mainCamera);
         
 
