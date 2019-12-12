@@ -16,7 +16,13 @@ public class CameraMovement : MonoBehaviour
     [Header("Camera's minimum and maximum positions")]
     public float minX;
     public float maxX;
-    
+
+    [Header("Center Point")]
+    public float centerX;
+    public float centerY;
+    public float centerZ;
+
+
 
     public List<float> distances;
     public float currentMaxDistance;
@@ -85,11 +91,16 @@ public class CameraMovement : MonoBehaviour
     {
 
         Vector3 centerPoint = FindCenter(shipPositions);
+
+        centerX = centerPoint.x;
+        centerY = centerPoint.y;
+        centerZ = centerPoint.z;
         FindDistance(shipPositions);
         if(currentMaxDistance>6)
         {
+            centerPoint.x = Mathf.Clamp(centerPoint.x, minX, maxX);
             Vector3 cameraDestination = centerPoint - cam.transform.forward *6* minZoomDistance;
-            cameraDestination.x = Mathf.Clamp(cameraDestination.x, minX, maxX);
+            
             
             Vector3 smoothMove = Vector3.Lerp(cam.transform.position, cameraDestination, dampeningTime);
             cam.transform.position = smoothMove;
@@ -99,7 +110,6 @@ public class CameraMovement : MonoBehaviour
         else
         {
             Vector3 cameraDestination = centerPoint - cam.transform.forward * currentMaxDistance * minZoomDistance;
-            cameraDestination.x = Mathf.Clamp(cameraDestination.x, minX, maxX);
           
             Vector3 smoothMove = Vector3.Lerp(cam.transform.position, cameraDestination, dampeningTime);
             cam.transform.position = smoothMove;
@@ -133,6 +143,7 @@ public class CameraMovement : MonoBehaviour
         
         Move(mainCamera);
         
+       
 
     }
 }
