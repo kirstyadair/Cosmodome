@@ -6129,12 +6129,12 @@ MonoBehaviour:
   timeBarLeft: {fileID: 1454748627}
   timeBarRight: {fileID: 1456140378}
   bulletDamageRate: 1
-  lowDamageRate: 2
-  medDamageRate: 3
-  highDamageRate: 4
-  highestDamageRate: 5
+  lowDamageRate: 5
+  medDamageRate: 10
+  highDamageRate: 20
+  highestDamageRate: 30
   arenaCannonRate: 20
-  bumperBallExplosionRate: 30
+  bumperBallExplosionRate: 1
   playerColours:
   - {r: 1, g: 0.4009434, b: 0.4009434, a: 1}
   - {r: 0, g: 0.6126497, b: 1, a: 1}
