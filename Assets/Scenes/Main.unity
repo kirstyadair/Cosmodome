@@ -6124,7 +6124,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   players: []
   numberOfPlayers: 0
-  timeLeftInRound: 90
+  timeLeftInRound: 60
+  roundLength: 60
   timeText: {fileID: 1470029490}
   timeBarLeft: {fileID: 1454748627}
   timeBarRight: {fileID: 1456140378}
@@ -7666,9 +7667,9 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 44c1f7b7130b82941b63a69f50e34266, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 40841b2db49859a499e3c08371744c94, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.2
+  m_Volume: 0.518
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -48262,6 +48263,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 1.87427
       objectReference: {fileID: 0}
+    - target: {fileID: 3073749266077348779, guid: f48795d30dc22f046b8c3bfc4a44d3ba,
+        type: 3}
+      propertyPath: m_Intensity
+      value: 1.1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f48795d30dc22f046b8c3bfc4a44d3ba, type: 3}
 --- !u!4 &1349472086 stripped
@@ -81570,6 +81576,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 31.017002
+      objectReference: {fileID: 0}
+    - target: {fileID: 3073749266077348779, guid: f48795d30dc22f046b8c3bfc4a44d3ba,
+        type: 3}
+      propertyPath: m_Intensity
+      value: 1.1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f48795d30dc22f046b8c3bfc4a44d3ba, type: 3}

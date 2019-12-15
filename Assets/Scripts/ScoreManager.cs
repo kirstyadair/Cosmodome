@@ -31,6 +31,7 @@ public class ScoreManager : MonoBehaviour
 
     public int numberOfPlayers;
     public float timeLeftInRound = 90;
+    public float roundLength;
     float maxTime;
     public Text timeText;
     public Image timeBarLeft;
@@ -108,7 +109,7 @@ public class ScoreManager : MonoBehaviour
             // do something interesting here for player elimination
             StartCoroutine(Explode(currentLowest));
 
-            timeLeftInRound = 90.0f;
+            timeLeftInRound = roundLength;
             maxTime = timeLeftInRound;
         }
         else
