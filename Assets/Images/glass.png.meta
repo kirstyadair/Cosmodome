@@ -1,19 +1,7 @@
 fileFormatVersion: 2
-guid: 6ddb28fb764b7a54580b7127b3e43e1c
+guid: 518d770c221c7d249910809009c195e2
 TextureImporter:
-  internalIDToNameTable:
-  - first:
-      213: 6782813536761691038
-    second: controls_0
-  - first:
-      213: -2115808781755408381
-    second: stick base
-  - first:
-      213: 8636877481111216802
-    second: button
-  - first:
-      213: 8028802744240634739
-    second: bumper
+  internalIDToNameTable: []
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -52,7 +40,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -96,91 +84,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites:
-    - serializedVersion: 2
-      name: controls_0
-      rect:
-        serializedVersion: 2
-        x: 200
-        y: 385
-        width: 110
-        height: 110
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 445f2d415cc53a04fb0034a90ba8851f
-      internalID: 6782813536761691038
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: stick base
-      rect:
-        serializedVersion: 2
-        x: 200
-        y: 260
-        width: 110
-        height: 110
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 2b434a11dc4328a49919478ba847be53
-      internalID: -2115808781755408381
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: button
-      rect:
-        serializedVersion: 2
-        x: 200
-        y: 136
-        width: 110
-        height: 110
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 5bc87abacfb14d74cbe74b9d72a342c9
-      internalID: 8636877481111216802
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: bumper
-      rect:
-        serializedVersion: 2
-        x: 189
-        y: 32
-        width: 134
-        height: 78
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: b5f0a113b9274c74cb763488adcb9a24
-      internalID: 8028802744240634739
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
+    sprites: []
     outline: []
     physicsShape: []
     bones: []
