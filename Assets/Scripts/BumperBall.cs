@@ -8,7 +8,7 @@ public class BumperBall : MonoBehaviour
 
     public delegate void BumperBallEvent();
     public delegate void BumperBallPlayerEvent(PlayerScript player);
-    public static BumperBallEvent OnBumperBallHitPlayer;
+    public static BumperBallPlayerEvent OnBumperBallHitPlayer;
     public static BumperBallEvent OnBumperBallHitWall;
     public static BumperBallEvent OnBumperBallExplode;
     public static BumperBallEvent OnBumperBallFire;
@@ -43,7 +43,7 @@ public class BumperBall : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Ship"))
         {
-            OnBumperBallHitPlayer?.Invoke();
+            OnBumperBallHitPlayer?.Invoke(collision.gameObject.GetComponent<PlayerScript>());
         } else
         {
             OnBumperBallHitWall?.Invoke();

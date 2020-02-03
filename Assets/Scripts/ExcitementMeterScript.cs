@@ -9,10 +9,14 @@ public class ExcitementMeterScript : MonoBehaviour
     // Start is called before the first frame update
     void OnEnable()
     {
-        PlayerScript.OnPlayerCollision += UpdateCombo;
+        PlayerScript.OnPlayerCollision += OnCollision;
+        PlayerScript.OnPlayerShot += OnShot;
+        PlayerScript.OnPlayerHitByArenaCannon += OnACShot;
+        BumperBall.OnBumperBallExplodeOnPlayer += OnBBExplode;
+        BumperBall.OnBumperBallHitPlayer += OnBBHit;
     }
 
-    void UpdateCombo(GameObject playerHit, GameObject playerAttacking)
+    void OnCollision(GameObject playerHit, GameObject playerAttacking)
     {
         if (playerHit == this.gameObject)
         {
@@ -24,4 +28,39 @@ public class ExcitementMeterScript : MonoBehaviour
         }
     }
 
+    void OnShot(GameObject playerHit, GameObject playerShooting)
+    {
+        if (playerHit == this.gameObject)
+        {
+            comboScore = 0;
+        }
+    }
+
+    void OnACShot(GameObject playerHit, GameObject playerShooting)
+    {
+        if (playerHit == this.gameObject)
+        {
+            comboScore = 0;
+        }
+        else if (playerShooting == this.gameObject)
+        {
+            comboScore++;
+        }
+    }
+
+    void OnBBHit(PlayerScript playerHit)
+    {
+        if (playerHit == this.gameObject)
+        {
+            comboScore = 0;
+        }
+    }
+
+    void OnBBExplode(PlayerScript playerHit)
+    {
+        if (playerHit == this.gameObject)
+        {
+            comboScore = 0;
+        }
+    }
 }

@@ -227,7 +227,6 @@ public class ScoreManager : MonoBehaviour
 
     void PlayerCollision(GameObject player, GameObject playerAttacking)
     {
-        Debug.Log(player.name + " hit");
         player.GetComponent<PlayerScript>().approval.ChangeApproval(-lowDamageRate);
         OnUpdateScore?.Invoke();
         UpdatePercentages();

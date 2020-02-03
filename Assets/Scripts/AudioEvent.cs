@@ -137,7 +137,6 @@ public class AudioEvent : MonoBehaviour
         {
             float chance = 0.50f;
             float rand = Random.value;
-            print(rand);
             if (rand <= chance)
             {
                 int randomClip = Random.Range(0, AudioArrayPlayerOnPlayerCollision.Length);
