@@ -110,7 +110,7 @@ public class AudioManager : MonoBehaviour
     }
 
 
-    void BBHit()
+    void BBHit(PlayerScript p)
     {
         audioSource.volume = clips[5].volume;
         audioSource.pitch = UnityEngine.Random.value * 2;

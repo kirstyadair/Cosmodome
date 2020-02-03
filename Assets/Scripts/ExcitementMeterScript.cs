@@ -5,6 +5,7 @@ using UnityEngine;
 public class ExcitementMeterScript : MonoBehaviour
 {
     public int comboScore;
+    public ExcitementManager em;
 
     // Start is called before the first frame update
     void OnEnable()
@@ -14,6 +15,7 @@ public class ExcitementMeterScript : MonoBehaviour
         PlayerScript.OnPlayerHitByArenaCannon += OnACShot;
         BumperBall.OnBumperBallExplodeOnPlayer += OnBBExplode;
         BumperBall.OnBumperBallHitPlayer += OnBBHit;
+        ExcitementManager.OnResetHype += Reset;
     }
 
     void OnCollision(GameObject playerHit, GameObject playerAttacking)
@@ -26,6 +28,8 @@ public class ExcitementMeterScript : MonoBehaviour
         {
             comboScore++;
         }
+
+        em.UpdateHype();
     }
 
     void OnShot(GameObject playerHit, GameObject playerShooting)
@@ -34,6 +38,8 @@ public class ExcitementMeterScript : MonoBehaviour
         {
             comboScore = 0;
         }
+
+        em.UpdateHype();
     }
 
     void OnACShot(GameObject playerHit, GameObject playerShooting)
@@ -46,6 +52,8 @@ public class ExcitementMeterScript : MonoBehaviour
         {
             comboScore++;
         }
+
+        em.UpdateHype();
     }
 
     void OnBBHit(PlayerScript playerHit)
@@ -54,6 +62,8 @@ public class ExcitementMeterScript : MonoBehaviour
         {
             comboScore = 0;
         }
+
+        em.UpdateHype();
     }
 
     void OnBBExplode(PlayerScript playerHit)
@@ -62,5 +72,12 @@ public class ExcitementMeterScript : MonoBehaviour
         {
             comboScore = 0;
         }
+
+        em.UpdateHype();
+    }
+
+    private void Reset()
+    {
+        comboScore = 0;
     }
 }

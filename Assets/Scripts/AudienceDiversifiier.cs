@@ -7,6 +7,8 @@ public class AudienceDiversifiier : MonoBehaviour
     public GameObject[] alienSprites;
     public Animator animator;
     public Sprite[] possibleAlienSprites;
+    ScoreManager sm;
+    public float speed;
 
     public Vector2 animatorSpeedRange;
     public Vector2 alienScaleRange;
@@ -15,6 +17,8 @@ public class AudienceDiversifiier : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        sm = ScoreManager.Instance;
+        ExcitementManager.OnAddHype += RandomizeSpeed;
         Randomize();
         //FaceTowardCamera(); nah
     }
@@ -27,12 +31,17 @@ public class AudienceDiversifiier : MonoBehaviour
         }
     }
 
-    public void Randomize()
+    public void RandomizeSpeed()
     {
-        float speed = Random.Range(animatorSpeedRange.x, animatorSpeedRange.y);
+        speed = Random.Range(animatorSpeedRange.x, animatorSpeedRange.y) * sm.em.speedIncrement;
         if (Random.Range(0f, 1f) > 0.5f) speed *= -1;
 
         animator.SetFloat("Speed", speed);
+    }
+
+    public void Randomize()
+    {
+        RandomizeSpeed();
 
         foreach (GameObject alienSprite in alienSprites)
         {

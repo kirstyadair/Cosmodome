@@ -51,6 +51,7 @@ public class ScoreManager : MonoBehaviour
 
     public PlayerScript winningPlayer;
     public CrowdManager cm;
+    public ExcitementManager em;
 
 
 
