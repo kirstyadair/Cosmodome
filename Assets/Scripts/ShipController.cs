@@ -313,7 +313,7 @@ public class ShipController : MonoBehaviour
         StartCoroutine(collision.gameObject.GetComponent<ShipController>().Careen(disabledTime, careenTime));
         StartCoroutine(CameraFX(collision.impulse.magnitude * chromaticAbberation, collision.impulse.magnitude * chromaticAbberationTime));
 
-        collision.transform.gameObject.GetComponent<PlayerScript>().WasCollidedWith();
+        collision.transform.gameObject.GetComponent<PlayerScript>().WasCollidedWith(this.gameObject);
 
         Vector3 spawnPos = collision.GetContact(0).point;
         foreach (GameObject particleFx in hitParticleFX)

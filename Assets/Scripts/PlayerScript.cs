@@ -31,7 +31,7 @@ public class PlayerScript : MonoBehaviour
     public delegate void PlayerShot(GameObject playerHit, GameObject shooter);
     public static event PlayerShot OnPlayerShot;
     public static event PlayerShot OnPlayerHitByArenaCannon;
-    public delegate void PlayerCollision(GameObject playerHit);
+    public delegate void PlayerCollision(GameObject playerHit, GameObject playerAttacking);
     public static event PlayerCollision OnPlayerCollision;
 
     //AnnouncerAudio Events Could be used for more though :3
@@ -292,9 +292,9 @@ public class PlayerScript : MonoBehaviour
 
     }
 
-    public void WasCollidedWith()
+    public void WasCollidedWith(GameObject attacker)
     {
-        OnPlayerCollision.Invoke(this.gameObject);
+        OnPlayerCollision.Invoke(this.gameObject, attacker);
         PlayerOnPlayerCollision?.Invoke();
         playersScreen.GetComponent<ScreenAnim>().Scared();
   
