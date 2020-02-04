@@ -23,7 +23,7 @@ RenderSettings:
   m_AmbientSkyColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
-  m_AmbientIntensity: 2
+  m_AmbientIntensity: 3.1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
   m_SkyboxMaterial: {fileID: 2100000, guid: 81f714daf7144784b8a2f42f1cd30927, type: 2}
@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.13866371, g: 0.14471367, b: 0.1704871, a: 1}
+  m_IndirectSpecularColor: {r: 0.13866219, g: 0.1447112, b: 0.17048466, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -56,8 +56,8 @@ LightmapSettings:
   m_LightmapEditorSettings:
     serializedVersion: 12
     m_Resolution: 2
-    m_BakeResolution: 40
-    m_AtlasSize: 1024
+    m_BakeResolution: 10
+    m_AtlasSize: 32
     m_AO: 1
     m_AOMaxDistance: 1
     m_CompAOExponent: 1
@@ -72,11 +72,11 @@ LightmapSettings:
     m_FinalGatherRayCount: 256
     m_ReflectionCompression: 2
     m_MixedBakeMode: 2
-    m_BakeBackend: 2
+    m_BakeBackend: 1
     m_PVRSampling: 1
     m_PVRDirectSampleCount: 50
     m_PVRSampleCount: 100
-    m_PVRBounces: 2
+    m_PVRBounces: 1
     m_PVREnvironmentSampleCount: 100
     m_PVREnvironmentReferencePointCount: 2048
     m_PVRFilteringMode: 2
@@ -4702,7 +4702,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!64 &159493784
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -5525,7 +5525,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!64 &174098402
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -8706,7 +8706,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 269206991}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 41.8, y: -1.4, z: 5.4}
+  m_LocalPosition: {x: 46.79, y: -1.4, z: 5.4}
   m_LocalScale: {x: 5.75, y: 1, z: 7}
   m_Children: []
   m_Father: {fileID: 212862964}
@@ -10302,7 +10302,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!64 &336206099
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -25861,7 +25861,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!64 &867243295
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -42413,7 +42413,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!64 &1115994800
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -52943,7 +52943,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!64 &1466567241
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -54097,7 +54097,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!64 &1505974352
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -64974,7 +64974,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!64 &1683591687
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -66253,7 +66253,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!64 &1744036795
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -72615,7 +72615,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!64 &1981757015
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -72786,7 +72786,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!64 &1983804235
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -81428,7 +81428,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!64 &2097530881
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -82868,6 +82868,11 @@ PrefabInstance:
       propertyPath: strafeCooldown
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1523116530431144631, guid: 4f46c2e901006134f887a343b2416ab3,
+        type: 3}
+      propertyPath: em
+      value: 
+      objectReference: {fileID: 136668031}
     - target: {fileID: 427169733260971600, guid: 4f46c2e901006134f887a343b2416ab3,
         type: 3}
       propertyPath: m_Sprite
@@ -82954,11 +82959,6 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 7
       objectReference: {fileID: 0}
-    - target: {fileID: 1523116530431144631, guid: 4f46c2e901006134f887a343b2416ab3,
-        type: 3}
-      propertyPath: em
-      value: 
-      objectReference: {fileID: 136668031}
     - target: {fileID: 4366719984333224979, guid: 4f46c2e901006134f887a343b2416ab3,
         type: 3}
       propertyPath: m_RootOrder
@@ -83329,6 +83329,11 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7363883312719406832, guid: f7bc739321bec2c41b6657675f5c94a2,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f7bc739321bec2c41b6657675f5c94a2, type: 3}
 --- !u!23 &3631107600511527788
@@ -83541,6 +83546,11 @@ PrefabInstance:
       propertyPath: timeBetweenBursts
       value: 1.5
       objectReference: {fileID: 0}
+    - target: {fileID: 8813946516223065591, guid: a6efeaef6a78c124a8b11f849076d2e2,
+        type: 3}
+      propertyPath: em
+      value: 
+      objectReference: {fileID: 136668031}
     - target: {fileID: 6737311160580109427, guid: a6efeaef6a78c124a8b11f849076d2e2,
         type: 3}
       propertyPath: InitialModule.startColor.maxColor.r
@@ -83592,11 +83602,6 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 5
       objectReference: {fileID: 0}
-    - target: {fileID: 8813946516223065591, guid: a6efeaef6a78c124a8b11f849076d2e2,
-        type: 3}
-      propertyPath: em
-      value: 
-      objectReference: {fileID: 136668031}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a6efeaef6a78c124a8b11f849076d2e2, type: 3}
 --- !u!33 &4643209345088576324

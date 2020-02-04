@@ -142,11 +142,11 @@ public class ShipController : MonoBehaviour
 
         if (ammo <= 0)
         {
-            OnPlayerNoBullets.Invoke();
+            OnPlayerNoBullets?.Invoke();
             return;
         }
 
-        OnPlayerShooting.Invoke();
+        OnPlayerShooting?.Invoke();
         
         Vector3 spawnPosition;
         if (firedA)
@@ -358,12 +358,5 @@ public class ShipController : MonoBehaviour
             rb.AddForce(targetDirection * strafeForce, ForceMode.Impulse);
             strafeCooldown = strafeDebounce;
         }
-    }
-
-
-    // Update is called once per frame
-    void Update()
-    {
-
     }
 }
