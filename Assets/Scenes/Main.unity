@@ -82703,6 +82703,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Dave
       objectReference: {fileID: 0}
+    - target: {fileID: 1999732999612897281, guid: 4f46c2e901006134f887a343b2416ab3,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1999732999612897282, guid: 4f46c2e901006134f887a343b2416ab3,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -83866,6 +83871,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Heavyweight
+      objectReference: {fileID: 0}
+    - target: {fileID: 530297960829243212, guid: 86b98d7704ebe8140ba22f8d2e1b0c26,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 530297960829243215, guid: 86b98d7704ebe8140ba22f8d2e1b0c26,
         type: 3}

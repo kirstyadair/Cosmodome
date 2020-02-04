@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.13866371, g: 0.14471367, b: 0.1704871, a: 1}
+  m_IndirectSpecularColor: {r: 0.13866219, g: 0.1447112, b: 0.17048466, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -8303,6 +8303,7 @@ MonoBehaviour:
   - {r: 1, g: 0.9048885, b: 0, a: 1}
   winningPlayer: {fileID: 0}
   cm: {fileID: 1022079619}
+  em: {fileID: 0}
 --- !u!1 &203468522
 GameObject:
   m_ObjectHideFlags: 0
@@ -58745,6 +58746,18 @@ Transform:
   m_Father: {fileID: 827959441}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1324797894 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5396742482786391847, guid: 32b906885ada20146a61e8def0cdd80a,
+    type: 3}
+  m_PrefabInstance: {fileID: 259897431}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02b3ce9cafea44045920814fa4eb68d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1327812161
 GameObject:
   m_ObjectHideFlags: 0
@@ -69176,9 +69189,11 @@ MonoBehaviour:
     and explosion force, open the bumper ball prefab
   bumperBallPipes:
   - {fileID: 3407129031029389893}
-  - {fileID: 0}
+  - {fileID: 1822721521}
   - {fileID: 617280492}
-  - {fileID: 0}
+  - {fileID: 1324797894}
+  - {fileID: 1641728692}
+  - {fileID: 1782212091}
   fireEverySeconds: 20
   chanceOfFiringMultiple: 0.3
   warningTime: 3
@@ -77014,6 +77029,18 @@ Transform:
   m_Father: {fileID: 1585430802}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 321.49, y: -269.89, z: 113.76101}
+--- !u!114 &1641728692 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5396742482786391847, guid: 32b906885ada20146a61e8def0cdd80a,
+    type: 3}
+  m_PrefabInstance: {fileID: 1347857165}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02b3ce9cafea44045920814fa4eb68d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!43 &1641792033
 Mesh:
   m_ObjectHideFlags: 0
@@ -82987,6 +83014,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1782212091 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5396742482786391847, guid: 32b906885ada20146a61e8def0cdd80a,
+    type: 3}
+  m_PrefabInstance: {fileID: 1676002073}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02b3ce9cafea44045920814fa4eb68d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1782608090
 GameObject:
   m_ObjectHideFlags: 0
@@ -84381,6 +84420,18 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1821312376}
   m_Mesh: {fileID: -7513297493162946847, guid: d2e14d5b711ed7140a51b2958eca0b01, type: 3}
+--- !u!114 &1822721521 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5396742482786391847, guid: 32b906885ada20146a61e8def0cdd80a,
+    type: 3}
+  m_PrefabInstance: {fileID: 590111136}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02b3ce9cafea44045920814fa4eb68d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1823712024
 PrefabInstance:
   m_ObjectHideFlags: 0
