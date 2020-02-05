@@ -19,6 +19,7 @@ public class AudienceDiversifiier : MonoBehaviour
     {
         sm = ScoreManager.Instance;
         ExcitementManager.OnAddHype += RandomizeSpeed;
+        ExcitementManager.OnResetHype += RandomizeSpeed;
         Randomize();
         //FaceTowardCamera(); nah
     }
