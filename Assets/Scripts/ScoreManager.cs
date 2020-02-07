@@ -11,6 +11,11 @@ public enum Traps
 }
 
 
+public enum GameState
+{
+    WAITING_FOR_CONTROLLERS, INGAME
+}
+
 public class ScoreManager : MonoBehaviour
 {
     /// <summary>
@@ -25,6 +30,9 @@ public class ScoreManager : MonoBehaviour
     public static event ExplodePlayer OnExplodePlayer;
     public delegate void PlayerEliminated();
     public static event PlayerEliminated OnPlayerEliminated;
+
+    public delegate void StateEvent(GameState newState, GameState oldState);
+    public static event StateEvent OnStateChanged;
 
    // public List<float> playerApprovals = new List<float>();
     public List<PlayerScript> players = new List<PlayerScript>();
@@ -49,14 +57,26 @@ public class ScoreManager : MonoBehaviour
 
     public Color[] playerColours;
 
+    public AudioSource backgroundMusic;
+
     public PlayerScript winningPlayer;
     public CrowdManager cm;
     public ExcitementManager em;
 
+    public GameState gameState = GameState.WAITING_FOR_CONTROLLERS;
+
+    public void ChangeState(GameState newState)
+    {
+        GameState oldState = gameState;
+        gameState = newState;
+
+        OnStateChanged?.Invoke(newState, oldState);
+    }
 
 
     public void Update()
     {
+        if (gameState != GameState.INGAME) return;
 
         timeLeftInRound -= Time.deltaTime;
         timeText.text = Mathf.RoundToInt(timeLeftInRound).ToString();
@@ -149,11 +169,33 @@ public class ScoreManager : MonoBehaviour
 
     private void Awake()
     {
-        maxTime = timeLeftInRound;
         if (_instance == null)
         {
             _instance = this;
         }
+
+        PlayerAssignment.OnPlayersAssigned += OnPlayersReady;
+        InputManager.OnDeviceDetached += OnDeviceDetached;
+        PlayerScript.OnPlayerShot += PlayerShot;
+        PlayerScript.OnPlayerCollision += PlayerCollision;
+        PlayerScript.OnPlayerHitByArenaCannon += PlayerHitByArenaCannon;
+        WallScript.OnTrapHit += PlayerHitTrap;
+        WallScript.OnTrapSabotaged += PlayerAttemptSabotage;
+        BumperBall.OnBumperBallExplodeOnPlayer += BumperBallExplodesOnPlayer;
+        ScoreManager.OnStateChanged += WhenStateHasChanged;
+    }
+
+    public void WhenStateHasChanged(GameState newState, GameState oldState)
+    {
+        if (newState == GameState.INGAME)
+        {
+            backgroundMusic.Play();
+        }
+    }
+
+    public void OnPlayersReady()
+    {
+        maxTime = timeLeftInRound;
         GameObject[] playerGOs = GameObject.FindGameObjectsWithTag("Ship");
         numberOfPlayers = playerGOs.Length;
         for (int i = 0; i < playerGOs.Length; i++)
@@ -161,32 +203,8 @@ public class ScoreManager : MonoBehaviour
             players.Add(playerGOs[i].GetComponent<PlayerScript>());
         }
         UpdatePercentages();
-    }
 
-    private void Start()
-    {
-
-        InputManager.OnDeviceDetached += OnDeviceDetached;
-        
-    }
-
-    private void OnEnable()
-    {
-        PlayerScript.OnPlayerShot += PlayerShot;
-        PlayerScript.OnPlayerCollision += PlayerCollision;
-        PlayerScript.OnPlayerHitByArenaCannon += PlayerHitByArenaCannon;
-        WallScript.OnTrapHit += PlayerHitTrap;
-        WallScript.OnTrapSabotaged += PlayerAttemptSabotage;
-        BumperBall.OnBumperBallExplodeOnPlayer += BumperBallExplodesOnPlayer;
-    }
-
-
-    private void OnDisable()
-    {
-        PlayerScript.OnPlayerShot -= PlayerShot;
-        PlayerScript.OnPlayerCollision -= PlayerCollision;
-        WallScript.OnTrapHit -= PlayerHitTrap;
-        WallScript.OnTrapSabotaged -= PlayerAttemptSabotage;
+        ChangeState(GameState.INGAME);
     }
 
     void BumperBallExplodesOnPlayer(PlayerScript hitPlayer)

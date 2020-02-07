@@ -22,6 +22,7 @@ public class BumperBallManager : MonoBehaviour
     // how much time has passed before we've fired a bumper ball
     float sinceLastFired = 0;
 
+    ScoreManager sm;
 
     void Fire()
     {
@@ -40,8 +41,15 @@ public class BumperBallManager : MonoBehaviour
         chosenPipe.StartFiring(warningTime);
     }
 
+    public void Start()
+    {
+        sm = ScoreManager.Instance;
+    }
+
     void Update()
     {
+        if (sm.gameState != GameState.INGAME) return;
+
         sinceLastFired += Time.deltaTime;
 
         if (sinceLastFired >= fireEverySeconds)

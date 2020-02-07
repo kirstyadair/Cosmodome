@@ -30,14 +30,24 @@ public class ExcitementManager : MonoBehaviour
     void Start()
     {
         audio = gameObject.GetComponent<AudioSource>();
-        PlayerScript.OnPlayerCollision += AddToHype;
-        PlayerScript.OnPlayerHitByArenaCannon += AddToHype;
+
         sm = ScoreManager.Instance;
-        foreach (PlayerScript player in sm.players)
+        ScoreManager.OnStateChanged += OnStateChange;
+    }
+    
+    public void OnStateChange(GameState newState, GameState oldState)
+    {
+        if (newState == GameState.INGAME)
         {
-            players.Add(player.gameObject.GetComponent<ExcitementMeterScript>());
+            PlayerScript.OnPlayerCollision += AddToHype;
+            PlayerScript.OnPlayerHitByArenaCannon += AddToHype;
+
+            foreach (PlayerScript player in sm.players)
+            {
+                players.Add(player.gameObject.GetComponent<ExcitementMeterScript>());
+            }
+            UpdateHype();
         }
-        UpdateHype();
     }
 
     // Update is called once per frame

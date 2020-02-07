@@ -11074,12 +11074,12 @@ PrefabInstance:
     - target: {fileID: 4962561423429576745, guid: 8b82fa27528aa4345beddc705ae7a701,
         type: 3}
       propertyPath: m_Name
-      value: Comedian
+      value: Lightweight
       objectReference: {fileID: 0}
     - target: {fileID: 4962561423429576746, guid: 8b82fa27528aa4345beddc705ae7a701,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3.3676925
+      value: 3.393
       objectReference: {fileID: 0}
     - target: {fileID: 4962561423429576746, guid: 8b82fa27528aa4345beddc705ae7a701,
         type: 3}
@@ -11089,7 +11089,7 @@ PrefabInstance:
     - target: {fileID: 4962561423429576746, guid: 8b82fa27528aa4345beddc705ae7a701,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.310988
+      value: -3.55
       objectReference: {fileID: 0}
     - target: {fileID: 4962561423429576746, guid: 8b82fa27528aa4345beddc705ae7a701,
         type: 3}
@@ -11131,81 +11131,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5424562983052151674, guid: 8b82fa27528aa4345beddc705ae7a701,
+    - target: {fileID: 4962561423429576746, guid: 8b82fa27528aa4345beddc705ae7a701,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.39999998
+      objectReference: {fileID: 0}
+    - target: {fileID: 4962561423429576746, guid: 8b82fa27528aa4345beddc705ae7a701,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.39999998
+      objectReference: {fileID: 0}
+    - target: {fileID: 6146132903977668916, guid: 8b82fa27528aa4345beddc705ae7a701,
         type: 3}
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
-    - target: {fileID: 3870734409289948727, guid: 8b82fa27528aa4345beddc705ae7a701,
+    - target: {fileID: 5148636023049010745, guid: 8b82fa27528aa4345beddc705ae7a701,
         type: 3}
-      propertyPath: turretObjects.Array.size
-      value: 2
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3870734409289948727, guid: 8b82fa27528aa4345beddc705ae7a701,
-        type: 3}
-      propertyPath: psLeft
-      value: 
-      objectReference: {fileID: 6737311160580109427}
-    - target: {fileID: 3870734409289948727, guid: 8b82fa27528aa4345beddc705ae7a701,
-        type: 3}
-      propertyPath: psRight
-      value: 
-      objectReference: {fileID: 4705715830086679228}
-    - target: {fileID: 3870734409289948727, guid: 8b82fa27528aa4345beddc705ae7a701,
-        type: 3}
-      propertyPath: boosterLightPlane
-      value: 
-      objectReference: {fileID: 5174772563080375681}
-    - target: {fileID: 3870734409289948727, guid: 8b82fa27528aa4345beddc705ae7a701,
-        type: 3}
-      propertyPath: leftBooster
-      value: 
-      objectReference: {fileID: 8464069775455960871}
-    - target: {fileID: 3870734409289948727, guid: 8b82fa27528aa4345beddc705ae7a701,
-        type: 3}
-      propertyPath: rightBooster
-      value: 
-      objectReference: {fileID: 7347246091141158701}
-    - target: {fileID: 3870734409289948727, guid: 8b82fa27528aa4345beddc705ae7a701,
-        type: 3}
-      propertyPath: maxBoosterDeviance
-      value: 30
-      objectReference: {fileID: 0}
-    - target: {fileID: 3870734409289948727, guid: 8b82fa27528aa4345beddc705ae7a701,
-        type: 3}
-      propertyPath: boosterRotateAxis.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3870734409289948727, guid: 8b82fa27528aa4345beddc705ae7a701,
-        type: 3}
-      propertyPath: turretRotateAxis.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3870734409289948727, guid: 8b82fa27528aa4345beddc705ae7a701,
-        type: 3}
-      propertyPath: strafeDebounce
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3870734409289948727, guid: 8b82fa27528aa4345beddc705ae7a701,
-        type: 3}
-      propertyPath: turretObjects.Array.data[0]
-      value: 
-      objectReference: {fileID: 8068798446871039348}
-    - target: {fileID: 3870734409289948727, guid: 8b82fa27528aa4345beddc705ae7a701,
-        type: 3}
-      propertyPath: turretObjects.Array.data[1]
-      value: 
-      objectReference: {fileID: 3734435777341429570}
-    - target: {fileID: 3870734409289948727, guid: 8b82fa27528aa4345beddc705ae7a701,
-        type: 3}
-      propertyPath: bulletSpawnA
-      value: 
-      objectReference: {fileID: 8164974104073547280}
-    - target: {fileID: 3870734409289948727, guid: 8b82fa27528aa4345beddc705ae7a701,
-        type: 3}
-      propertyPath: bulletSpawnB
-      value: 
-      objectReference: {fileID: 8343546538457567292}
     - target: {fileID: 378314913138679355, guid: 8b82fa27528aa4345beddc705ae7a701,
         type: 3}
       propertyPath: parts.Array.size
@@ -11214,7 +11159,7 @@ PrefabInstance:
     - target: {fileID: 378314913138679355, guid: 8b82fa27528aa4345beddc705ae7a701,
         type: 3}
       propertyPath: playerNumber
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 378314913138679355, guid: 8b82fa27528aa4345beddc705ae7a701,
         type: 3}
@@ -11291,17 +11236,76 @@ PrefabInstance:
       propertyPath: approval.value
       value: 40
       objectReference: {fileID: 0}
-    - target: {fileID: 5148636023049010745, guid: 8b82fa27528aa4345beddc705ae7a701,
+    - target: {fileID: 3870734409289948727, guid: 8b82fa27528aa4345beddc705ae7a701,
         type: 3}
-      propertyPath: m_IsActive
-      value: 0
+      propertyPath: turretObjects.Array.size
+      value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 6553697713690492536, guid: 8b82fa27528aa4345beddc705ae7a701,
+    - target: {fileID: 3870734409289948727, guid: 8b82fa27528aa4345beddc705ae7a701,
         type: 3}
-      propertyPath: m_Sprite
+      propertyPath: psLeft
       value: 
-      objectReference: {fileID: 21300000, guid: c221929271379b040a6b04325eef4121,
+      objectReference: {fileID: 6737311160580109427}
+    - target: {fileID: 3870734409289948727, guid: 8b82fa27528aa4345beddc705ae7a701,
         type: 3}
+      propertyPath: psRight
+      value: 
+      objectReference: {fileID: 4705715830086679228}
+    - target: {fileID: 3870734409289948727, guid: 8b82fa27528aa4345beddc705ae7a701,
+        type: 3}
+      propertyPath: boosterLightPlane
+      value: 
+      objectReference: {fileID: 5174772563080375681}
+    - target: {fileID: 3870734409289948727, guid: 8b82fa27528aa4345beddc705ae7a701,
+        type: 3}
+      propertyPath: leftBooster
+      value: 
+      objectReference: {fileID: 8464069775455960871}
+    - target: {fileID: 3870734409289948727, guid: 8b82fa27528aa4345beddc705ae7a701,
+        type: 3}
+      propertyPath: rightBooster
+      value: 
+      objectReference: {fileID: 7347246091141158701}
+    - target: {fileID: 3870734409289948727, guid: 8b82fa27528aa4345beddc705ae7a701,
+        type: 3}
+      propertyPath: maxBoosterDeviance
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 3870734409289948727, guid: 8b82fa27528aa4345beddc705ae7a701,
+        type: 3}
+      propertyPath: boosterRotateAxis.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3870734409289948727, guid: 8b82fa27528aa4345beddc705ae7a701,
+        type: 3}
+      propertyPath: turretRotateAxis.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3870734409289948727, guid: 8b82fa27528aa4345beddc705ae7a701,
+        type: 3}
+      propertyPath: strafeDebounce
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3870734409289948727, guid: 8b82fa27528aa4345beddc705ae7a701,
+        type: 3}
+      propertyPath: turretObjects.Array.data[0]
+      value: 
+      objectReference: {fileID: 8068798446871039348}
+    - target: {fileID: 3870734409289948727, guid: 8b82fa27528aa4345beddc705ae7a701,
+        type: 3}
+      propertyPath: turretObjects.Array.data[1]
+      value: 
+      objectReference: {fileID: 3734435777341429570}
+    - target: {fileID: 3870734409289948727, guid: 8b82fa27528aa4345beddc705ae7a701,
+        type: 3}
+      propertyPath: bulletSpawnA
+      value: 
+      objectReference: {fileID: 8164974104073547280}
+    - target: {fileID: 3870734409289948727, guid: 8b82fa27528aa4345beddc705ae7a701,
+        type: 3}
+      propertyPath: bulletSpawnB
+      value: 
+      objectReference: {fileID: 8343546538457567292}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8b82fa27528aa4345beddc705ae7a701, type: 3}
 --- !u!108 &5306014201092752839 stripped

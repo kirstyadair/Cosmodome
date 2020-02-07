@@ -203,7 +203,7 @@ public class PlayerScript : MonoBehaviour
     {
         rings.gameObject.SetActive(true);
         rings.SetColor(color);
-        rings.UpdateRings(this.transform.position, controller.turretDirection, (float)controller.ammo / (float)controller.maxAmmo, (float)this.approval.percentage / 100f);
+        //rings.UpdateRings(this.transform.position, controller.turretDirection, (float)controller.ammo / (float)controller.maxAmmo, (float)this.approval.percentage / 100f);
     }
 
     public void DisableRing()
@@ -295,7 +295,7 @@ public class PlayerScript : MonoBehaviour
     {
         OnPlayerCollision.Invoke(this.gameObject, attacker);
         PlayerOnPlayerCollision?.Invoke();
-        playersScreen.GetComponent<ScreenAnim>().Scared();
+        //playersScreen.GetComponent<ScreenAnim>().Scared();
   
     }
 

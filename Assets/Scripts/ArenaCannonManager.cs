@@ -23,10 +23,12 @@ public class ArenaCannonManager : MonoBehaviour
     public delegate void OpenCannon();
     public static event OpenCannon OnOpenCannon;
 
+    ScoreManager sm;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        sm = ScoreManager.Instance;
     }
 
     // find a random point on the aim track
@@ -57,6 +59,8 @@ public class ArenaCannonManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (sm.gameState != GameState.INGAME) return;
+
         sinceLastOpened += Time.deltaTime;
 
         if (sinceLastOpened >= openEverySeconds)

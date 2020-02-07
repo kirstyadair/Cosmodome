@@ -76,7 +76,7 @@ public class ScreenAnim : MonoBehaviour
 
     void Flash()
     {
-        StartCoroutine(FlashMats(matOn, matOff));
+        //StartCoroutine(FlashMats(matOn, matOff));
         
 
     }

@@ -3,14 +3,22 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 [Serializable]
 public class CharacterSelectionOption
 {
     public string characterName;
-    public GameObject characterPrefab;
+    public PlayerTypes playerType;
     public SelectionBox chosenBy = null;
+}
+
+[Serializable]
+public class AllocatedController
+{
+    public PlayerTypes playerType;
+    public InputDevice controller;
 }
 
 public class ControllerAllocation : MonoBehaviour
@@ -19,7 +27,7 @@ public class ControllerAllocation : MonoBehaviour
 
     public SelectionBox[] selectionBoxes;
     public CharacterSelectionOption[] selectableCharacters;
-
+    public List<AllocatedController> allocatedControllers = new List<AllocatedController>();
     public delegate void ControllerAllocationEvent();
     public event ControllerAllocationEvent OnAnotherBoxChanged;
 
@@ -86,6 +94,7 @@ public class ControllerAllocation : MonoBehaviour
     public void Start()
     {
         CheckIfReadyToGo();
+        DontDestroyOnLoad(this.gameObject);
     }
 
     public void StartCountdown()
@@ -102,5 +111,26 @@ public class ControllerAllocation : MonoBehaviour
         }
 
         statusText.text = "LET'S GO!";
+
+        Ready();
+    }
+
+    public void Ready()
+    {
+        foreach (CharacterSelectionOption option in selectableCharacters)
+        {
+            if (option.chosenBy == null) continue;
+
+            AllocatedController allocatedController = new AllocatedController
+            {
+                playerType = option.playerType,
+                controller = option.chosenBy.controller
+            };
+
+            allocatedControllers.Add(allocatedController);
+        }
+
+        // this GO is passed onto the main scene for allocating characters
+        SceneManager.LoadScene("Main");
     }
 }
