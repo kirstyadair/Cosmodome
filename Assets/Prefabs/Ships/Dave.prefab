@@ -14,8 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 2793820121535573101, guid: 3c6b1cbbd335f03418592cf9e065204a,
     type: 3}
-  bulletSpawnA: {fileID: 6082157056116369602}
-  bulletSpawnB: {fileID: 7770823999615162066}
+  bulletSpawns:
+  - {fileID: 6082157056116369602}
+  - {fileID: 7770823999615162066}
   maxAmmo: 20
   ammo: 0
   bulletRegenTime: 0.5

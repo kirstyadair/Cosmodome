@@ -5,8 +5,7 @@ using UnityEngine;
 public class BasicWeaponScript : MonoBehaviour
 {
     public GameObject bulletPrefab;
-    public GameObject bulletSpawnA;
-    public GameObject bulletSpawnB;
+    public GameObject[] bulletSpawns;
     public float maxAmmo;
     [HideInInspector]
     public float ammo;
@@ -52,21 +51,19 @@ public class BasicWeaponScript : MonoBehaviour
 
         GetComponent<PlayerScript>().Vibrate(1f, 0.1f);
 
-        GameObject bullet1 = Instantiate(bulletPrefab, bulletSpawnA.transform.position, Quaternion.identity);
-        GameObject bullet2 = Instantiate(bulletPrefab, bulletSpawnB.transform.position, Quaternion.identity);
+        foreach (GameObject spawnPoint in bulletSpawns)
+        {
+            GameObject bullet = Instantiate(bulletPrefab, spawnPoint.transform.position, Quaternion.identity);
 
-        bullet1.transform.rotation = Quaternion.Euler(0, shipController.currentTurretAngle, 0);
-        bullet1.GetComponent<BulletDeleter>().shooter = this.gameObject;
+            bullet.transform.rotation = Quaternion.Euler(0, shipController.currentTurretAngle, 0);
+            bullet.GetComponent<BulletDeleter>().shooter = this.gameObject;
 
-        bullet2.transform.rotation = Quaternion.Euler(0, shipController.currentTurretAngle, 0);
-        bullet2.GetComponent<BulletDeleter>().shooter = this.gameObject;
-       
-        rb.AddForce(bullet1.transform.forward * -shipController.firingForcePushback, ForceMode.Impulse);
-        rb.AddForce(bullet2.transform.forward * -shipController.firingForcePushback, ForceMode.Impulse);
+            rb.AddForce(bullet.transform.forward * -shipController.firingForcePushback, ForceMode.Impulse);
 
-        fireCooldown = bulletCooldown;
+            fireCooldown = bulletCooldown;
 
-        ammo--;
-        timeSinceLastBulletRenewal = 0; // don't renew bullets whilst firing
+            ammo--;
+            timeSinceLastBulletRenewal = 0; // don't renew bullets whilst firing
+        }
     }
 }
