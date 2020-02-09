@@ -11408,7 +11408,6 @@ MonoBehaviour:
   timeText: {fileID: 1470029490}
   timeBarLeft: {fileID: 1454748627}
   timeBarRight: {fileID: 1456140378}
-  bulletDamageRate: 2
   lowDamageRate: 10
   medDamageRate: 15
   highDamageRate: 20
@@ -102236,7 +102235,7 @@ PrefabInstance:
     - target: {fileID: 6511922124683423251, guid: 4f46c2e901006134f887a343b2416ab3,
         type: 3}
       propertyPath: playerNumber
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7685790430323404319, guid: 4f46c2e901006134f887a343b2416ab3,
         type: 3}
@@ -102373,6 +102372,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_RootOrder
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8394398623306871920, guid: 4f46c2e901006134f887a343b2416ab3,
+        type: 3}
+      propertyPath: maxAmmo
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 8394398623306871920, guid: 4f46c2e901006134f887a343b2416ab3,
+        type: 3}
+      propertyPath: timeBetweenBulletRenewals
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8394398623306871920, guid: 4f46c2e901006134f887a343b2416ab3,
+        type: 3}
+      propertyPath: timeBetweenBullets
+      value: 0.1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4f46c2e901006134f887a343b2416ab3, type: 3}
@@ -103145,7 +103159,7 @@ PrefabInstance:
     - target: {fileID: 5099617484619250014, guid: 86b98d7704ebe8140ba22f8d2e1b0c26,
         type: 3}
       propertyPath: playerNumber
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 700511866438641146, guid: 86b98d7704ebe8140ba22f8d2e1b0c26,
         type: 3}
