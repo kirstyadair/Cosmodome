@@ -80,10 +80,6 @@ public class ShipController : MonoBehaviour
 
     public delegate void PlayerShooting();
     public static event PlayerShooting OnPlayerShooting;
-    public delegate void DaveShooting();
-    public static event DaveShooting OnDaveShooting;
-    public delegate void HeavyShooting();
-    public static event HeavyShooting OnHeavyweightShooting;
     public delegate void PlayerReload();
     public static event PlayerReload OnPlayerNoBullets;
 
@@ -129,8 +125,7 @@ public class ShipController : MonoBehaviour
     public void Fire()
     {
         OnPlayerShooting?.Invoke();
-        if (GetComponent<DaveWeaponScript>() != null) OnDaveShooting?.Invoke();
-        if (GetComponent<HeavyweightWeaponScript>() != null) OnHeavyweightShooting?.Invoke();
+        if (GetComponent<BasicWeaponScript>() != null) GetComponent<BasicWeaponScript>().Shoot();
     }
 
     public void HoverAndSelfRight()

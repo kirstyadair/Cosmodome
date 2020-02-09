@@ -218,7 +218,7 @@ public class ScoreManager : MonoBehaviour
     void PlayerShot(GameObject shotPlayer, GameObject shooter)
     {
         int bulletDamageRate = 0;
-        if (shooter.GetComponent<DaveWeaponScript>() != null) bulletDamageRate = (int)GetComponent<DaveWeaponScript>().damage;
+        if (shooter.GetComponent<BasicWeaponScript>() != null) bulletDamageRate = shooter.GetComponent<BasicWeaponScript>().damage;
 
         shotPlayer.GetComponent<PlayerScript>().approval.ChangeApproval(-bulletDamageRate);
         shooter.GetComponent<PlayerScript>().approval.ChangeApproval(bulletDamageRate);

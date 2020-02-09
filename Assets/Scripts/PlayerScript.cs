@@ -222,10 +222,10 @@ public class PlayerScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (playerType == PlayerTypes.DAVE)
+        if (GetComponent<BasicWeaponScript>() != null)
         {
-            ammo = GetComponent<DaveWeaponScript>().ammo;
-            maxAmmo = GetComponent<DaveWeaponScript>().maxAmmo;
+            ammo = GetComponent<BasicWeaponScript>().ammo;
+            maxAmmo = GetComponent<BasicWeaponScript>().maxAmmo;
         }
 
         if (rings.gameObject.activeSelf)

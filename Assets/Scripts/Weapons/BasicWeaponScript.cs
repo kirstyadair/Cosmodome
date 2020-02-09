@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DaveWeaponScript : MonoBehaviour
+public class BasicWeaponScript : MonoBehaviour
 {
     public GameObject bulletPrefab;
     public GameObject bulletSpawnA;
@@ -12,17 +12,12 @@ public class DaveWeaponScript : MonoBehaviour
     public float ammo;
     public float bulletRegenTime;
     public float bulletCooldown;
-    public float damage;
+    public int damage;
 
     float timeSinceLastBulletRenewal = 0;
     float fireCooldown;
     Rigidbody rb;
     ShipController shipController;
-
-    void OnEnable()
-    {
-        ShipController.OnDaveShooting += Shoot;
-    }
 
     void Start()
     {
@@ -46,7 +41,7 @@ public class DaveWeaponScript : MonoBehaviour
         if (fireCooldown > 0) fireCooldown -= Time.deltaTime;
     }
 
-    void Shoot()
+    public void Shoot()
     {
         if (fireCooldown > 0) return;
 
