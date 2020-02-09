@@ -58,32 +58,20 @@ public class ShipController : MonoBehaviour
     public float vibrationLengthMultiplier = 1f;
 
     public GameObject[] turretObjects;
-    public GameObject bulletSpawnA;
-    public GameObject bulletSpawnB;
-    public GameObject bulletPrefab;
-    public bool firedA = true;
+    //public GameObject bulletSpawnA;
+    //public GameObject bulletSpawnB;
+    //public GameObject bulletPrefab;
+    //public bool firedA = true;
     public float hitByBulletForce = 1f;
     public float firingForcePushback = 1f;
-    float fireCooldown;
+    //float fireCooldown;
     float burstCooldown;
 
     public TrailRenderer trail;
     public Gradient normalGradient;
     public Gradient boostGradient;
 
-    [Header("Maximum ammo available")]
-    public float maxAmmo;
-
-    [HideInInspector]
-    public float ammo;
-
-    [Header("How long it takes to regenerate bullets")]
-    public float timeBetweenBulletRenewals;
-
-
-    [Header("Firing speed")]
-    public float timeBetweenBullets;
-    float timeSinceLastBulletRenewal = 0;
+    
 
     public GameObject[] hitParticleFX;
     public GameObject randomTextFX;
@@ -92,6 +80,8 @@ public class ShipController : MonoBehaviour
 
     public delegate void PlayerShooting();
     public static event PlayerShooting OnPlayerShooting;
+    public delegate void DaveShooting();
+    public static event DaveShooting OnDaveShooting;
     public delegate void PlayerReload();
     public static event PlayerReload OnPlayerNoBullets;
 
@@ -99,7 +89,6 @@ public class ShipController : MonoBehaviour
     {
         playerScript = GetComponent<PlayerScript>();
         postProcessProfile = Camera.main.GetComponent<PostProcessVolume>().profile;
-        ammo = maxAmmo;
     }
 
     public IEnumerator StopStrafe(float after)
@@ -137,39 +126,8 @@ public class ShipController : MonoBehaviour
 
     public void Fire()
     {
-        
-        if (fireCooldown > 0) return;
-
-        if (ammo <= 0)
-        {
-            OnPlayerNoBullets?.Invoke();
-            return;
-        }
-
         OnPlayerShooting?.Invoke();
-        
-        Vector3 spawnPosition;
-        if (firedA)
-        {
-            firedA = false;
-            spawnPosition = bulletSpawnA.transform.position;
-        } else
-        {
-            firedA = true;
-            spawnPosition = bulletSpawnB.transform.position;
-        }
-
-        GetComponent<PlayerScript>().Vibrate(1f, 0.1f);
-        GameObject bullet = Instantiate(bulletPrefab, spawnPosition, Quaternion.identity);
-        bullet.transform.rotation = Quaternion.Euler(0, currentTurretAngle, 0);
-        bullet.GetComponent<BulletDeleter>().shooter = this.gameObject;
-
-        fireCooldown = timeBetweenBullets;
-
-        rb.AddForce(bullet.transform.forward * -firingForcePushback, ForceMode.Impulse);
-
-        ammo--;
-        timeSinceLastBulletRenewal = 0; // don't renew bullets whilst firing
+        if (GetComponent<DaveWeaponScript>() != null) OnDaveShooting?.Invoke();
     }
 
     public void HoverAndSelfRight()
@@ -276,18 +234,9 @@ public class ShipController : MonoBehaviour
             rightBooster.transform.localRotation = Quaternion.Euler(new Vector3(0, 0, 0));
         }
 
-        if (fireCooldown > 0) fireCooldown -= Time.deltaTime;
         if (strafeCooldown > 0) strafeCooldown -= Time.deltaTime;
 
-        if (ammo < maxAmmo)
-        {
-            timeSinceLastBulletRenewal += Time.deltaTime;
-            if (timeSinceLastBulletRenewal >= timeBetweenBulletRenewals)
-            {
-                timeSinceLastBulletRenewal = 0;
-                ammo++;
-            }
-        }
+        
 
         this.prevVelocity = rb.velocity;
     }

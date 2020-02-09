@@ -62,6 +62,12 @@ public class PlayerScript : MonoBehaviour
     public float hitByBulletCooldown = 0;
     public float timeBetweenHitByBullet = 0.5f;
 
+    // This holds the ammo count in the relevant weapon script
+    // This does not add to or remove from ammo
+    float ammo;
+    // Same goes for this
+    float maxAmmo;
+
     ShipController controller;
     public PlayerApproval approval = new PlayerApproval();
     //Bens code change start
@@ -98,6 +104,8 @@ public class PlayerScript : MonoBehaviour
         smallArrow.color = tempColor;
         smallArrowPlus.color = tempColor;
         largeArrowPlus.color = tempColor;
+
+        
         
         //ScoreManager.OnUpdateScore += UpdateScores;
     }
@@ -214,9 +222,15 @@ public class PlayerScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (playerType == PlayerTypes.DAVE)
+        {
+            ammo = GetComponent<DaveWeaponScript>().ammo;
+            maxAmmo = GetComponent<DaveWeaponScript>().maxAmmo;
+        }
+
         if (rings.gameObject.activeSelf)
         {
-            rings.UpdateRings(this.transform.position, controller.turretDirection, (float)controller.ammo / (float)controller.maxAmmo, (float)this.approval.percentage / 100f);
+            rings.UpdateRings(this.transform.position, controller.turretDirection, ammo / maxAmmo, (float)this.approval.percentage / 100f);
         }
 
         //Bens code change start

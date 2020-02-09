@@ -75,6 +75,8 @@ public class ExcitementManager : MonoBehaviour
 
     void AddToHype(GameObject hitPlayer, GameObject shootingPlayer)
     {
+        if (hypeLevel >= 10) return;
+
         UpdateHype();
         if (shootingPlayer == topPlayer.gameObject)
         {
