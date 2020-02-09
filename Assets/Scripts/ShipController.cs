@@ -82,6 +82,8 @@ public class ShipController : MonoBehaviour
     public static event PlayerShooting OnPlayerShooting;
     public delegate void DaveShooting();
     public static event DaveShooting OnDaveShooting;
+    public delegate void HeavyShooting();
+    public static event HeavyShooting OnHeavyweightShooting;
     public delegate void PlayerReload();
     public static event PlayerReload OnPlayerNoBullets;
 
@@ -128,6 +130,7 @@ public class ShipController : MonoBehaviour
     {
         OnPlayerShooting?.Invoke();
         if (GetComponent<DaveWeaponScript>() != null) OnDaveShooting?.Invoke();
+        if (GetComponent<HeavyweightWeaponScript>() != null) OnHeavyweightShooting?.Invoke();
     }
 
     public void HoverAndSelfRight()
@@ -235,8 +238,6 @@ public class ShipController : MonoBehaviour
         }
 
         if (strafeCooldown > 0) strafeCooldown -= Time.deltaTime;
-
-        
 
         this.prevVelocity = rb.velocity;
     }

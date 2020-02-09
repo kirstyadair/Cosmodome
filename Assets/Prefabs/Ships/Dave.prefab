@@ -16,10 +16,11 @@ MonoBehaviour:
     type: 3}
   bulletSpawnA: {fileID: 6082157056116369602}
   bulletSpawnB: {fileID: 7770823999615162066}
-  maxAmmo: 0
+  maxAmmo: 20
   ammo: 0
-  timeBetweenBulletRenewals: 0
-  timeBetweenBullets: 0
+  bulletRegenTime: 0.5
+  bulletCooldown: 0.1
+  damage: 5
 --- !u!1001 &6854185900975206440
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -216,6 +217,36 @@ PrefabInstance:
         type: 3}
       propertyPath: InitialModule.startColor.maxColor.b
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7967443335743052426, guid: 8b82fa27528aa4345beddc705ae7a701,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.138
+      objectReference: {fileID: 0}
+    - target: {fileID: 7967443335743052426, guid: 8b82fa27528aa4345beddc705ae7a701,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.412
+      objectReference: {fileID: 0}
+    - target: {fileID: 7967443335743052426, guid: 8b82fa27528aa4345beddc705ae7a701,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 4171655433523204190, guid: 8b82fa27528aa4345beddc705ae7a701,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.124
+      objectReference: {fileID: 0}
+    - target: {fileID: 4171655433523204190, guid: 8b82fa27528aa4345beddc705ae7a701,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.405
+      objectReference: {fileID: 0}
+    - target: {fileID: 4171655433523204190, guid: 8b82fa27528aa4345beddc705ae7a701,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.237
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8b82fa27528aa4345beddc705ae7a701, type: 3}

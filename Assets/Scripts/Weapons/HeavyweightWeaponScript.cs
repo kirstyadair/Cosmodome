@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DaveWeaponScript : MonoBehaviour
+public class HeavyweightWeaponScript : MonoBehaviour
 {
     public GameObject bulletPrefab;
     public GameObject bulletSpawnA;
@@ -21,7 +21,7 @@ public class DaveWeaponScript : MonoBehaviour
 
     void OnEnable()
     {
-        ShipController.OnDaveShooting += Shoot;
+        ShipController.OnHeavyweightShooting += Shoot;
     }
 
     void Start()
@@ -65,7 +65,7 @@ public class DaveWeaponScript : MonoBehaviour
 
         bullet2.transform.rotation = Quaternion.Euler(0, shipController.currentTurretAngle, 0);
         bullet2.GetComponent<BulletDeleter>().shooter = this.gameObject;
-       
+
         rb.AddForce(bullet1.transform.forward * -shipController.firingForcePushback, ForceMode.Impulse);
         rb.AddForce(bullet2.transform.forward * -shipController.firingForcePushback, ForceMode.Impulse);
 

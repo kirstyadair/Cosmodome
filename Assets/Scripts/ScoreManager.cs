@@ -47,7 +47,7 @@ public class ScoreManager : MonoBehaviour
 
 
     [Header("Approval Rates")]
-    public int bulletDamageRate;
+    //public int bulletDamageRate;
     public int lowDamageRate;
     public int medDamageRate;
     public int highDamageRate;
@@ -217,12 +217,15 @@ public class ScoreManager : MonoBehaviour
 
     void PlayerShot(GameObject shotPlayer, GameObject shooter)
     {
+        int bulletDamageRate = 0;
+        if (shooter.GetComponent<DaveWeaponScript>() != null) bulletDamageRate = (int)GetComponent<DaveWeaponScript>().damage;
+
         shotPlayer.GetComponent<PlayerScript>().approval.ChangeApproval(-bulletDamageRate);
         shooter.GetComponent<PlayerScript>().approval.ChangeApproval(bulletDamageRate);
-        //Bens code change start
+
         StartCoroutine(shotPlayer.GetComponent<PlayerScript>().ArrowFlash(.5f,0,0));
         StartCoroutine(shooter.GetComponent<PlayerScript>().ArrowFlash(.5f,0,1));
-        //Bens code change end
+
         OnUpdateScore?.Invoke();
         UpdatePercentages();
 
