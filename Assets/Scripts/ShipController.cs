@@ -124,8 +124,11 @@ public class ShipController : MonoBehaviour
 
     public void Fire()
     {
-        OnPlayerShooting?.Invoke();
-        if (GetComponent<BasicWeaponScript>() != null) GetComponent<BasicWeaponScript>().Shoot();
+        if (GetComponent<BasicWeaponScript>() != null)
+        {
+            OnPlayerShooting?.Invoke();
+            GetComponent<BasicWeaponScript>().Shoot();
+        }
     }
 
     public void HoverAndSelfRight()
