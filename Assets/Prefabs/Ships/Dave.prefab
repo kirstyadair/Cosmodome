@@ -7,14 +7,38 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1999732999612897281}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cb01f9520316cca4ab7ebfebd30355a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chargeCount: 0
+  chargePs: {fileID: 0}
+  charge2Ps: {fileID: 0}
+  shootPs: {fileID: 0}
   chargeNeeded: 5
   decreaseMultiplier: 2
+--- !u!114 &7216284590185220454
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1999732999612897281}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ebde2eb0547836499ce52354d0ac210, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletPrefab: {fileID: 2793820121535573101, guid: 3c6b1cbbd335f03418592cf9e065204a,
+    type: 3}
+  bulletSpawns:
+  - {fileID: 6082157056116369602}
+  - {fileID: 7770823999615162066}
+  maxAmmo: 20
+  ammo: 0
+  bulletRegenTime: 0.5
+  bulletCooldown: 0.2
+  damage: 5
 --- !u!1001 &6854185900975206440
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -253,6 +277,18 @@ GameObject:
 --- !u!1 &1133156713013991240 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5811681764054296416, guid: 8b82fa27528aa4345beddc705ae7a701,
+    type: 3}
+  m_PrefabInstance: {fileID: 6854185900975206440}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &6082157056116369602 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 826089874228353258, guid: 8b82fa27528aa4345beddc705ae7a701,
+    type: 3}
+  m_PrefabInstance: {fileID: 6854185900975206440}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &7770823999615162066 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3803701663177008890, guid: 8b82fa27528aa4345beddc705ae7a701,
     type: 3}
   m_PrefabInstance: {fileID: 6854185900975206440}
   m_PrefabAsset: {fileID: 0}

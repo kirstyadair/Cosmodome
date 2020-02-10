@@ -6,12 +6,15 @@ using InControl;
 public class ChargeWeaponScript : MonoBehaviour
 {
     InputDevice controller;
-    PlayerScript ps;
+    PlayerScript playerScript;
     
     float chargeCount;
     bool decreasing = false;
     bool charged = false;
 
+    public ParticleSystem chargePs;
+    public ParticleSystem charge2Ps;
+    public ParticleSystem shootPs;
     [Header("Weapon charge time before firing")]
     public float chargeNeeded;
     [Header("How fast charge decreases")]
@@ -23,18 +26,21 @@ public class ChargeWeaponScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        ps = GetComponent<PlayerScript>();
+        playerScript = GetComponent<PlayerScript>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (ps.inputDevice != null)
+        if (playerScript.inputDevice != null)
         {
-            controller = ps.inputDevice;
+            controller = playerScript.inputDevice;
 
             if (controller.RightBumper.IsPressed && chargeCount < chargeNeeded)
             {
+                if (!chargePs.gameObject.activeInHierarchy) chargePs.gameObject.SetActive(true);
+                if (!charge2Ps.gameObject.activeInHierarchy) charge2Ps.gameObject.SetActive(true);
+
                 decreasing = false;
                 chargeCount += Time.deltaTime;
 
@@ -46,6 +52,8 @@ public class ChargeWeaponScript : MonoBehaviour
 
             if (controller.RightBumper.WasReleased)
             {
+                chargePs.gameObject.SetActive(false);
+                charge2Ps.gameObject.SetActive(false);
                 decreasing = true;
 
                 if (charged == true)
@@ -68,6 +76,6 @@ public class ChargeWeaponScript : MonoBehaviour
 
     void Fire()
     {
-
+        shootPs.gameObject.SetActive(true);
     }
 }
