@@ -16,6 +16,8 @@ public class ChargeWeaponScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (GetComponent<PlayerScript>().inputDevice == null) Debug.Log("F");
+        
         if (controller.RightBumper.IsPressed)
         {
             Debug.Log("down");
@@ -25,5 +27,6 @@ public class ChargeWeaponScript : MonoBehaviour
         {
             Debug.Log("up");
         }
+        
     }
 }

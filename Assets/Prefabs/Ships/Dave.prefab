@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &8394398623306871920
+--- !u!114 &5895672929095094600
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -9,19 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1999732999612897281}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9ebde2eb0547836499ce52354d0ac210, type: 3}
+  m_Script: {fileID: 11500000, guid: cb01f9520316cca4ab7ebfebd30355a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 2793820121535573101, guid: 3c6b1cbbd335f03418592cf9e065204a,
-    type: 3}
-  bulletSpawns:
-  - {fileID: 6082157056116369602}
-  - {fileID: 7770823999615162066}
-  maxAmmo: 20
-  ammo: 0
-  bulletRegenTime: 0.5
-  bulletCooldown: 0.1
-  damage: 5
 --- !u!1001 &6854185900975206440
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -29,6 +19,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4962561423429576745, guid: 8b82fa27528aa4345beddc705ae7a701,
+        type: 3}
+      propertyPath: m_Name
+      value: Dave
+      objectReference: {fileID: 0}
     - target: {fileID: 4962561423429576746, guid: 8b82fa27528aa4345beddc705ae7a701,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -84,15 +79,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8776976689747606191, guid: 8b82fa27528aa4345beddc705ae7a701,
+    - target: {fileID: 709680226782177042, guid: 8b82fa27528aa4345beddc705ae7a701,
         type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4962561423429576745, guid: 8b82fa27528aa4345beddc705ae7a701,
-        type: 3}
-      propertyPath: m_Name
-      value: Dave
+      propertyPath: m_Pitch
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 378314913138679355, guid: 8b82fa27528aa4345beddc705ae7a701,
         type: 3}
@@ -184,11 +174,6 @@ PrefabInstance:
       propertyPath: boostGradient.key0.b
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 709680226782177042, guid: 8b82fa27528aa4345beddc705ae7a701,
-        type: 3}
-      propertyPath: m_Pitch
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 5959366982683992000, guid: 8b82fa27528aa4345beddc705ae7a701,
         type: 3}
       propertyPath: InitialModule.startColor.maxColor.r
@@ -200,21 +185,6 @@ PrefabInstance:
       value: 0.13088842
       objectReference: {fileID: 0}
     - target: {fileID: 5959366982683992000, guid: 8b82fa27528aa4345beddc705ae7a701,
-        type: 3}
-      propertyPath: InitialModule.startColor.maxColor.b
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4286277334290332748, guid: 8b82fa27528aa4345beddc705ae7a701,
-        type: 3}
-      propertyPath: InitialModule.startColor.maxColor.r
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4286277334290332748, guid: 8b82fa27528aa4345beddc705ae7a701,
-        type: 3}
-      propertyPath: InitialModule.startColor.maxColor.g
-      value: 0.13088842
-      objectReference: {fileID: 0}
-    - target: {fileID: 4286277334290332748, guid: 8b82fa27528aa4345beddc705ae7a701,
         type: 3}
       propertyPath: InitialModule.startColor.maxColor.b
       value: 0
@@ -234,6 +204,21 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: -0.25
       objectReference: {fileID: 0}
+    - target: {fileID: 4286277334290332748, guid: 8b82fa27528aa4345beddc705ae7a701,
+        type: 3}
+      propertyPath: InitialModule.startColor.maxColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4286277334290332748, guid: 8b82fa27528aa4345beddc705ae7a701,
+        type: 3}
+      propertyPath: InitialModule.startColor.maxColor.g
+      value: 0.13088842
+      objectReference: {fileID: 0}
+    - target: {fileID: 4286277334290332748, guid: 8b82fa27528aa4345beddc705ae7a701,
+        type: 3}
+      propertyPath: InitialModule.startColor.maxColor.b
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4171655433523204190, guid: 8b82fa27528aa4345beddc705ae7a701,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -249,6 +234,11 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: -0.237
       objectReference: {fileID: 0}
+    - target: {fileID: 8776976689747606191, guid: 8b82fa27528aa4345beddc705ae7a701,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8b82fa27528aa4345beddc705ae7a701, type: 3}
 --- !u!1 &1999732999612897281 stripped
@@ -260,18 +250,6 @@ GameObject:
 --- !u!1 &1133156713013991240 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5811681764054296416, guid: 8b82fa27528aa4345beddc705ae7a701,
-    type: 3}
-  m_PrefabInstance: {fileID: 6854185900975206440}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &6082157056116369602 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 826089874228353258, guid: 8b82fa27528aa4345beddc705ae7a701,
-    type: 3}
-  m_PrefabInstance: {fileID: 6854185900975206440}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &7770823999615162066 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3803701663177008890, guid: 8b82fa27528aa4345beddc705ae7a701,
     type: 3}
   m_PrefabInstance: {fileID: 6854185900975206440}
   m_PrefabAsset: {fileID: 0}
