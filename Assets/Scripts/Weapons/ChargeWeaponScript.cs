@@ -12,6 +12,8 @@ public class ChargeWeaponScript : MonoBehaviour
     bool decreasing = false;
     bool charged = false;
 
+    public GameObject spawnPoint;
+    public GameObject bulletPrefab;
     public ParticleSystem chargePs;
     public ParticleSystem charge2Ps;
     public ParticleSystem shootPs;
@@ -77,5 +79,6 @@ public class ChargeWeaponScript : MonoBehaviour
     void Fire()
     {
         shootPs.gameObject.SetActive(true);
+        GameObject bullet = Instantiate(bulletPrefab, spawnPoint.transform.position, Quaternion.identity);
     }
 }
