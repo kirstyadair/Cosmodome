@@ -115940,6 +115940,16 @@ PrefabInstance:
       propertyPath: charge2Ps
       value: 
       objectReference: {fileID: 745293358}
+    - target: {fileID: 5895672929095094600, guid: 4f46c2e901006134f887a343b2416ab3,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7216284590185220454, guid: 4f46c2e901006134f887a343b2416ab3,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4f46c2e901006134f887a343b2416ab3, type: 3}
 --- !u!33 &2942484104834291601
