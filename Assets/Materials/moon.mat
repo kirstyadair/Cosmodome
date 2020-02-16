@@ -21,7 +21,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: moon
-  m_Shader: {fileID: -6465566751694194690, guid: 942aa05e2f066fa4e92781b657ccaed7,
+  m_Shader: {fileID: -6465566751694194690, guid: 8e61d492014bbf042ae9f892beceaf7b,
     type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
@@ -102,6 +102,7 @@ Material:
     - Vector1_AC8525CF: 0.5
     - Vector1_C818A5FC: 1.24
     - Vector1_EB25DCA7: 0
+    - Vector1_F9F2686: 1
     - _AlphaClip: 0
     - _Blend: 0
     - _BumpScale: 1
@@ -129,6 +130,7 @@ Material:
     - _ZWrite: 1
     m_Colors:
     - Color_48F5D2C2: {r: 1, g: 1, b: 1, a: 0}
+    - Color_929401B: {r: 0, g: 0, b: 0, a: 0}
     - Color_DC878EA: {r: 1, g: 1, b: 1, a: 0}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
