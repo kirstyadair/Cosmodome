@@ -11,10 +11,7 @@ public class ExcitementManager : MonoBehaviour
     AudioSource audio;
     public AudioClip cheer1;
     public AudioClip cheer2;
-    public ParticleSystem ps1;
-    public ParticleSystem ps2;
-    public ParticleSystem ps3;
-    public ParticleSystem ps4;
+    public ParticleSystem[] particleBursts;
     ExcitementMeterScript topPlayer;
     public static event ResetHype OnResetHype;
     public delegate void ResetHype();
@@ -87,10 +84,10 @@ public class ExcitementManager : MonoBehaviour
             audio.pitch = ((float)hypeLevel / 10) + 0.5f;
             audio.PlayOneShot(cheer1);
             audio.PlayOneShot(cheer2);
-            ps1.Play();
-            ps2.Play();
-            ps3.Play();
-            ps4.Play();
+            foreach (ParticleSystem particle in particleBursts)
+            {
+                particle.Play();
+            }
         }
     }
 }

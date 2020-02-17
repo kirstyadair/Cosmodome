@@ -205,6 +205,7 @@ public class ScoreManager : MonoBehaviour
         UpdatePercentages();
 
         ChangeState(GameState.INGAME);
+        cm.SetUpCrowd();
     }
 
     void BumperBallExplodesOnPlayer(PlayerScript hitPlayer)
