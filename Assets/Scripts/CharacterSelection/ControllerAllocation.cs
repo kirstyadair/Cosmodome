@@ -2,6 +2,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -23,16 +24,23 @@ public class AllocatedController
 
 public class ControllerAllocation : MonoBehaviour
 {
-    public Text statusText;
+    [SerializeField]
+    StatusBar _statusBar;
 
     [SerializeField]
     PlayerBox[] _playerBoxes;
+
+
+
     public CharacterSelectionOption[] selectableCharacters;
     public List<AllocatedController> allocatedControllers = new List<AllocatedController>();
     public delegate void ControllerAllocationEvent();
     public event ControllerAllocationEvent OnAnotherBoxChanged;
 
     Coroutine countdownCoroutine;
+
+
+    string _statusBarText;
 
     [Header("How many seconds to count down before starting")]
     public int countdownFrom = 3;
@@ -60,6 +68,7 @@ public class ControllerAllocation : MonoBehaviour
 
         if (chosenBox == null) return; // Tried to connect more than 4 controllers
         chosenBox.AssignController(controller);
+        UpdateStatusBar();
 
         /*
         //chosenBox.AllocateController(controller, this);
@@ -69,54 +78,41 @@ public class ControllerAllocation : MonoBehaviour
 
         CheckIfReadyToGo();*/
     }
-    /*
-    public void CheckIfReadyToGo()
+
+
+
+
+    /// <summary>
+    /// Updates the status bar depending on how many controllers have joined
+    /// </summary>
+    public void UpdateStatusBar()
     {
-        OnAnotherBoxChanged?.Invoke(); // let the other boxes know a selection was updated
+        int controllers = this.numControllersAssigned;
 
-        // Interrupted during countdown
-        if (countdownCoroutine != null)
-        {
-            StopCoroutine(countdownCoroutine);
-            countdownCoroutine = null;
-        }
-
-        int isReady = 0;
-        int isAssigned = 0;
-        foreach (SelectionBox box in selectionBoxes)
-        {
-            if (box.isReady) isReady++;
-            if (box.controller != null) isAssigned++;
-        }
-
-        if (isAssigned == 0) statusText.text = "PRESS X TO JOIN";
-        if (isAssigned == 1) statusText.text = "NEED AT LEAST 2 PLAYERS TO START";
-        if (isAssigned >= 2) statusText.text = "WAITING FOR EVERYONE TO READY UP";
-        if (isReady == isAssigned && isReady >= 2) StartCountdown();
+        if (controllers == 0) _statusBar.ChangeText("Press X to join");
+        if (controllers == 1) _statusBar.ChangeText("Need at least 2 players");
+        if (controllers > 1) _statusBar.ChangeTextImportant("Press START once everyone's joined!");
     }
 
     public void Start()
     {
-        CheckIfReadyToGo();
+        UpdateStatusBar();
         DontDestroyOnLoad(this.gameObject);
     }
 
-    public void StartCountdown()
+    /// <summary>
+    /// Number of controllers currently assigned
+    /// </summary>
+    public int numControllersAssigned
     {
-        countdownCoroutine = StartCoroutine(Countdown());
-    }
-
-    IEnumerator Countdown()
-    {
-        for (int count = countdownFrom; count > 0; count--)
+        get
         {
-            statusText.text = "STARTING IN: " + count;
-            yield return new WaitForSeconds(1f);
+            int result = 0;
+
+            foreach (PlayerBox playerBox in _playerBoxes) if (playerBox.controller != null) result++;
+
+            return result;
         }
-
-        statusText.text = "LET'S GO!";
-
-        Ready();
     }
 
     public void Ready()
@@ -136,5 +132,5 @@ public class ControllerAllocation : MonoBehaviour
 
         // this GO is passed onto the main scene for allocating characters
         SceneManager.LoadScene("Main");
-    }*/
+    }
 }
