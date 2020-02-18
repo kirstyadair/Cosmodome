@@ -5,7 +5,7 @@ using UnityEngine;
 public class CrowdManager : MonoBehaviour
 {
     public int playerCount;
-    public int emissionStrength;
+    //public int emissionStrength;
     float[] playerScores;
     public float[] numOfSupporters;
     //public List<Material> colors;
@@ -21,13 +21,14 @@ public class CrowdManager : MonoBehaviour
     }
 
     // Start is called before the first frame update
-    void Start()
+    public void SetUpCrowd()
     {
         sm = ScoreManager.Instance;
         playerCount = sm.players.Count;
         playerScores = new float[playerCount];
         numOfSupporters = new float[playerCount];
         crowdMembers = GameObject.FindGameObjectsWithTag("Crowd");
+        
         for (int i = 0; i < playerCount; i++)
         {
             playerScores[i] = sm.players[i].approval.percentage;
@@ -40,6 +41,7 @@ public class CrowdManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
         for (int i = 0; i < playerCount; i++)
         {
             playerScores[i] = sm.players[i].approval.percentage;
@@ -61,12 +63,12 @@ public class CrowdManager : MonoBehaviour
                     CrowdMemberScript[] cms = crowdMembers[j].GetComponentsInChildren<CrowdMemberScript>();
                     for (int k = 0; k < cms.Length; k++)
                     {
-                        cms[k].mat.SetColor("_EmissionColor", sm.players[i].playerColor.color * emissionStrength);
+                        cms[k].mat.SetColor("_EmissionColor", sm.players[i].playerColor.color);
                         cms[k].bothMats[1] = cms[k].mat;
                         cms[k].mr.materials = cms[k].bothMats;
-                        cms[k].gmr1.material.SetColor("_EmissionColor", sm.players[i].playerColor.color * emissionStrength);
-                        cms[k].gmr2.material.SetColor("_EmissionColor", sm.players[i].playerColor.color * emissionStrength);
-                        cms[k].gmr3.material.SetColor("_EmissionColor", sm.players[i].playerColor.color * emissionStrength);
+                        cms[k].gmr1.material.SetColor("_EmissionColor", sm.players[i].playerColor.color);
+                        cms[k].gmr2.material.SetColor("_EmissionColor", sm.players[i].playerColor.color);
+                        cms[k].gmr3.material.SetColor("_EmissionColor", sm.players[i].playerColor.color);
                     }
                 }
             }
