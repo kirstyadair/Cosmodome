@@ -18,14 +18,24 @@ public class PlayerBox : MonoBehaviour
     /// The current InControl device for this player box
     /// </summary>
     [HideInInspector]
-    public InputDevice controller;
+    public InputDevice controller = null;
+
+    /// <summary>
+    /// The character chosen by this player, or null if hasn't
+    /// </summary>
+    public CharacterSelectionOption chosenCharacter;
+
+    /// <summary>
+    /// If false, this player hasn't picked a character yet
+    /// </summary>
+    public bool hasChosenCharacter = false;
 
     /// <summary>
     /// Which player # this player box represents
     /// </summary>
     [Header("Which player # this player box represents")]
     [SerializeField]
-    int _playerNumber;
+    public int _playerNumber;
 
     /// <summary>
     /// Colour of this player box when activated
@@ -46,8 +56,19 @@ public class PlayerBox : MonoBehaviour
     [SerializeField]
     Text _playerStatusText;
 
+    [SerializeField]
+    GameObject _selectorArrow;
+
     Animator _animator;
 
+    /// <summary>
+    /// Whether the selector arrow is enabled or not. 
+    /// </summary>
+    public bool selectorArrowEnabled
+    {
+        get { return _selectorArrow.activeSelf;  }
+        set { _selectorArrow.SetActive(value);  }
+    }
 
     private void Start()
     {
@@ -72,7 +93,8 @@ public class PlayerBox : MonoBehaviour
     /// </summary>
     public void Selecting()
     {
-
+        _animator.SetTrigger("Selecting");
+        _playerStatusText.text = "CHOOSING...";
     }
 
     /// <summary>
