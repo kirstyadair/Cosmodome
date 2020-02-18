@@ -33,7 +33,7 @@ public class ControllerAllocation : MonoBehaviour
     [SerializeField]
     List<PlayerBox> _playerBoxes;
 
-
+    
     public CharacterSelectionOption[] selectableCharacters;
 
     /// <summary>
@@ -49,7 +49,7 @@ public class ControllerAllocation : MonoBehaviour
     public event ControllerAllocationEvent OnControllersAllocated;
 
     Coroutine countdownCoroutine;
-
+    bool _isFinishedAllocating = false;
 
     string _statusBarText;
     private void Update()
@@ -67,8 +67,11 @@ public class ControllerAllocation : MonoBehaviour
     /// </summary>
     void StartButtonPressed()
     {
+        if (_isFinishedAllocating) return;
+
         if (this.numControllersAssigned > 1)
         {
+            _isFinishedAllocating = true;
             OnControllersAllocated?.Invoke();
             VibrateAll(1, 1f);
         }
