@@ -95,8 +95,6 @@ public class PlayerSelection : MonoBehaviour
 
         PlayerBox selectedBox = choosablePlayerBoxes[lastTickedPlayer];
         _controllerAllocations.Vibrate(selectedBox.controller, 1f, 0.8f);
-
-        yield return new WaitForSeconds(0.5f);
         RandomPlayerHasBeenPicked(selectedBox);
         _statusBar.ChangeText(RandomYourNextLine("Player " + selectedBox._playerNumber));
         yield return new WaitForSeconds(1f);
