@@ -25,7 +25,8 @@ public class ControllerAllocation : MonoBehaviour
 {
     public Text statusText;
 
-    public SelectionBox[] selectionBoxes;
+    [SerializeField]
+    PlayerBox[] _playerBoxes;
     public CharacterSelectionOption[] selectableCharacters;
     public List<AllocatedController> allocatedControllers = new List<AllocatedController>();
     public delegate void ControllerAllocationEvent();
@@ -39,14 +40,15 @@ public class ControllerAllocation : MonoBehaviour
     {
         InputDevice controller = InputManager.ActiveDevice;
 
+
         // Was X pressed?
         if (controller.Action1.WasPressed) AllocateController(controller);
     }
 
     public void AllocateController(InputDevice controller)
     {
-        SelectionBox chosenBox = null;
-        foreach (SelectionBox box in selectionBoxes)
+        PlayerBox chosenBox = null;
+        foreach (PlayerBox box in _playerBoxes)
         {
             if (box.controller == controller) return; // this controller is already allocated, ignore
             if (box.controller == null)
@@ -57,15 +59,17 @@ public class ControllerAllocation : MonoBehaviour
         }
 
         if (chosenBox == null) return; // Tried to connect more than 4 controllers
+        chosenBox.AssignController(controller);
 
-        chosenBox.AllocateController(controller, this);
+        /*
+        //chosenBox.AllocateController(controller, this);
         chosenBox.OnReadyUp += CheckIfReadyToGo;
         chosenBox.OnUnReady += CheckIfReadyToGo;
 
 
-        CheckIfReadyToGo();
+        CheckIfReadyToGo();*/
     }
-
+    /*
     public void CheckIfReadyToGo()
     {
         OnAnotherBoxChanged?.Invoke(); // let the other boxes know a selection was updated
@@ -132,5 +136,5 @@ public class ControllerAllocation : MonoBehaviour
 
         // this GO is passed onto the main scene for allocating characters
         SceneManager.LoadScene("Main");
-    }
+    }*/
 }

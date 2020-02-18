@@ -18,8 +18,6 @@ public class ScreenAnim : MonoBehaviour
     private void Start()
     {
         animator = screen.GetComponent<Animator>();
-        
-        
     }
 
 
