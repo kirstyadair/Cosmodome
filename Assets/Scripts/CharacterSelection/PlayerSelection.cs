@@ -69,7 +69,7 @@ public class PlayerSelection : MonoBehaviour
     /// <returns></returns>
     IEnumerator RandomPlayerPickerFX()
     {
-        float timeBetweenTicks = randomSpinnerStartingTime + UnityEngine.Random.Range(0, 0.5f);
+        float timeBetweenTicks = randomSpinnerStartingTime + UnityEngine.Random.Range(0, 0.1f);
         int currentTickedPlayer = 0;
         int lastTickedPlayer = 0;
 
