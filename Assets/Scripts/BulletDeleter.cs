@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BulletDeleter : MonoBehaviour
 {
-    public float timeToDie = 3f;
+    public float timeToDie;
     public float bulletForce = 1f;
     float timeAlive = 0.0f;
     public GameObject shooter;
@@ -15,15 +15,16 @@ public class BulletDeleter : MonoBehaviour
         timeAlive += Time.deltaTime;
         if (timeAlive >= timeToDie)
         {
-            Destroy(this.gameObject);
+            if (this.gameObject.name != "Laser") Destroy(this.gameObject);
+            else this.gameObject.SetActive(false);
         }
 
-        this.transform.position += this.transform.forward * bulletForce;
+        if (this.gameObject.name != "Laser") this.transform.position += this.transform.forward * bulletForce;
     }
 
     public void OnCollisionEnter(Collision collision)
     {
-        Destroy(this.gameObject);
+        if (this.gameObject.name != "Laser") Destroy(this.gameObject);
     }
 
     public void OnTriggerEnter(Collider other)
@@ -31,7 +32,8 @@ public class BulletDeleter : MonoBehaviour
         if (other.CompareTag("Ship") && other.gameObject != shooter)
         {
             other.GetComponent<ShipController>().HitByBullet(this);
-            Destroy(this.gameObject);
+
+            if (this.gameObject.name != "Laser") Destroy(this.gameObject);
         }
     }
 }
