@@ -12,8 +12,9 @@ public class ChargeWeaponScript : MonoBehaviour
     bool decreasing = false;
     bool charged = false;
 
+    public float laserActiveTime;
     public GameObject spawnPoint;
-    public GameObject bulletPrefab;
+    public GameObject laser;
     public ParticleSystem chargePs;
     public ParticleSystem charge2Ps;
     public ParticleSystem shootPs;
@@ -72,13 +73,21 @@ public class ChargeWeaponScript : MonoBehaviour
         }
         else if (chargeCount <= 0) decreasing = false;
 
-        Debug.Log(chargeCount);
+        //Debug.Log(chargeCount);
     }
 
 
     void Fire()
     {
+        chargeCount = 0;
         shootPs.gameObject.SetActive(true);
-        GameObject bullet = Instantiate(bulletPrefab, spawnPoint.transform.position, Quaternion.identity);
+        laser.SetActive(true);
+        StartCoroutine(DisableLaser());
+    }
+
+    IEnumerator DisableLaser()
+    {
+        yield return new WaitForSeconds(laserActiveTime);
+        laser.SetActive(false);
     }
 }

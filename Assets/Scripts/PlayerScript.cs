@@ -298,6 +298,8 @@ public class PlayerScript : MonoBehaviour
     {
         if (hitByBulletCooldown > 0) return;
 
+        Debug.Log("a");
+
         Vibrate(0.5f, 0.2f);
         hitByBulletCooldown = timeBetweenHitByBullet;
         OnPlayerShot?.Invoke(this.gameObject, bullet.shooter);
