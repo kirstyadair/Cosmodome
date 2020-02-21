@@ -31,6 +31,9 @@ public class PlayerSelection : MonoBehaviour
     [SerializeField]
     CharacterSelectionStats _stats;
 
+    [SerializeField]
+    CharacterModelDisplay _characterModelDisplay;
+
     public CharacterBox[] characterBoxes;
 
     PlayerBox _currentSelectingPlayer;
@@ -185,6 +188,7 @@ public class PlayerSelection : MonoBehaviour
         if (_currentSelectedCharacter < 0) _currentSelectedCharacter = characterBoxes.Length - 1;
 
         Hover(characterBoxes[_currentSelectedCharacter]);
+
     }
 
     void OnPlayerBoxRight()
@@ -193,6 +197,8 @@ public class PlayerSelection : MonoBehaviour
         if (_currentSelectedCharacter > characterBoxes.Length - 1) _currentSelectedCharacter = 0;
 
         Hover(characterBoxes[_currentSelectedCharacter]);
+
+
     }
 
     void OnPlayerBoxSelect()
@@ -206,5 +212,8 @@ public class PlayerSelection : MonoBehaviour
         characterNameText.text = characterBox.option.characterName;
         characterBox.Hover(_currentSelectingPlayer);
         _stats.ChangeStats(characterBox.option);
+
+        // swap out the character model
+        _characterModelDisplay.SwapModel(characterBox.option.characterName);
     }
 }
