@@ -31,7 +31,7 @@ public class PlayerSelection : MonoBehaviour
 
     private void _controllerAllocations_OnControllersAllocated()
     {
-        _animator.Play("Transition to character selection screen after controllers are allocated");
+        _animator.Play("CAToRandomPick");
     }
 
     /// <summary>
@@ -122,11 +122,13 @@ public class PlayerSelection : MonoBehaviour
     }
 
     /// <summary>
-    /// Called when the random player picker has finished
+    /// Called when the random player picker has finished, which then plays the RandomPickToCharacterSelection animation
     /// </summary>
     void RandomPlayerHasBeenPicked(PlayerBox selectedBox)
     {
         selectedBox.Selecting();
+
+        _animator.Play("RandomPickToCharacterSelection");
     }
 
 }
