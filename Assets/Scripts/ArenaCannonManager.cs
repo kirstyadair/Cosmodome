@@ -17,8 +17,8 @@ public class ArenaCannonManager : MonoBehaviour
     public float chanceOfOpeningMultiple;
     float sinceLastOpened = 0;
 
-    [Header("How long a cannon stays open for")]
-    public float stayOpenFor;
+    //[Header("How long a cannon stays open for")]
+    //public float stayOpenFor;
 
     public delegate void OpenCannon();
     public static event OpenCannon OnOpenCannon;
@@ -53,7 +53,8 @@ public class ArenaCannonManager : MonoBehaviour
 
         ArenaCannonScript chosenCannon = closedCannons[Random.Range(0, closedCannons.Count)];
 
-        chosenCannon.OpenFor(stayOpenFor,  PickRandomPoint() - chosenCannon.transform.position);
+        chosenCannon.OpenFor(2,  PickRandomPoint() - chosenCannon.transform.position);
+        chosenCannon.Activate();
     }
 
     // Update is called once per frame
