@@ -7,10 +7,11 @@ public class ChargeWeaponScript : MonoBehaviour
 {
     InputDevice controller;
     PlayerScript playerScript;
-    
-    float chargeCount;
-    bool decreasing = false;
-    bool charged = false;
+    [SerializeField]
+    float chargeAmount;
+
+    [SerializeField]
+    bool isCharged = false;
 
     public GameObject spawnPoint;
     public GameObject laser;
@@ -20,11 +21,33 @@ public class ChargeWeaponScript : MonoBehaviour
     public BulletDeleter deleter;
     [Header("Weapon charge time before firing")]
     public float chargeNeeded;
-    [Header("How fast charge decreases")]
-    public float decreaseMultiplier;
+
+    [Header("How long to hold the laser on for")]
+    public float laserHoldTime;
+
+
+    [Header("How much to multiply the charge level by when not being held")]
+    public float decreaseMuliplier = 0.85f;
 
     public delegate void ChargeWeaponFire();
     public static event ChargeWeaponFire OnChargeWeaponFire;
+
+    /// <summary>
+    /// If the laser is currently firing
+    /// </summary>
+    public bool isFiring = false;
+    public bool isCharging = false;
+
+    /// <summary>
+    ///  0 not charged,  1 fully charged
+    /// </summary>
+    public float chargePercentage
+    {
+        get
+        {
+            return chargeAmount / chargeNeeded;
+        }
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -32,56 +55,89 @@ public class ChargeWeaponScript : MonoBehaviour
         playerScript = GetComponent<PlayerScript>();
     }
 
+    public void StartCharging()
+    {
+        isCharging = true;
+        charge2Ps.gameObject.SetActive(true);
+    }
+
+    public void StopCharging()
+    {
+        isCharging = false;
+        isCharged = false;
+        charge2Ps.gameObject.SetActive(false);
+    }
+
     // Update is called once per frame
     void Update()
     {
-        if (playerScript.inputDevice != null)
+        if (playerScript.inputDevice == null) return;
+
+        controller = playerScript.inputDevice;
+
+        // If the button is held
+        if (controller.RightBumper.IsPressed)
         {
-            controller = playerScript.inputDevice;
-
-            if (controller.RightBumper.IsPressed && chargeCount < chargeNeeded)
+            // Only charge when we  are not firing
+            if (!isFiring)
             {
-                //if (!chargePs.gameObject.activeInHierarchy) chargePs.gameObject.SetActive(true);
-                if (!charge2Ps.gameObject.activeInHierarchy) charge2Ps.gameObject.SetActive(true);
+                if (!isCharging) StartCharging();
 
-                decreasing = false;
-                chargeCount += Time.deltaTime;
+                chargeAmount += Time.deltaTime;
 
-                if (chargeCount >= chargeNeeded)
+                // Fully charged?
+                if (chargeAmount >= chargeNeeded)
                 {
-                    charged = true;
+                    isCharged = true;
+                    chargeAmount = chargeNeeded;
                 }
             }
-
-            if (controller.RightBumper.WasReleased)
+        } else
+        {
+            // If  fully charge and button released,  fire!
+            if (isCharged && !isFiring)
             {
-                //chargePs.gameObject.SetActive(false);
-                charge2Ps.gameObject.SetActive(false);
-                decreasing = true;
+                Fire();
+            }
 
-                if (charged == true)
-                {
-                    OnChargeWeaponFire?.Invoke();
-                    Fire();
-                }
+            if (isCharging) StopCharging();
+
+            // Otherwise start reducing charge level
+            if (chargeAmount > 0.1)
+            {
+                chargeAmount *= decreaseMuliplier;
+            }  else
+            {
+                chargeAmount = 0;
             }
         }
-
-        if (decreasing && chargeCount > 0)
-        {
-            chargeCount -= Time.deltaTime * decreaseMultiplier;
-        }
-        else if (chargeCount <= 0) decreasing = false;
-
-        //Debug.Log(chargeCount);
     }
 
 
+    IEnumerator StopFiringAfter(float time)
+    {
+        yield return new WaitForSeconds(time);
+
+        StopFiring();
+    }
+
+    public void StopFiring()
+    {
+        isFiring = false;
+        shootPs.gameObject.SetActive(false);
+        laser.GetComponent<Animator>().SetBool("LaserOn", false);
+        deleter.enabled = false;
+        Debug.Log("stopped firing"); 
+    }
+
     void Fire()
     {
-        chargeCount = 0;
+        isFiring = true;
+        OnChargeWeaponFire?.Invoke();
         shootPs.gameObject.SetActive(true);
         laser.GetComponent<Animator>().SetBool("LaserOn", true);
         deleter.enabled = true;
+
+        StartCoroutine(StopFiringAfter(laserHoldTime));
     }
 }
