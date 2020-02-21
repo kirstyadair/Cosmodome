@@ -14,7 +14,7 @@ public class ChargeWeaponScript : MonoBehaviour
 
     public GameObject spawnPoint;
     public GameObject laser;
-    public ParticleSystem chargePs;
+    //public ParticleSystem chargePs;
     public ParticleSystem charge2Ps;
     public ParticleSystem shootPs;
     public BulletDeleter deleter;
@@ -41,7 +41,7 @@ public class ChargeWeaponScript : MonoBehaviour
 
             if (controller.RightBumper.IsPressed && chargeCount < chargeNeeded)
             {
-                if (!chargePs.gameObject.activeInHierarchy) chargePs.gameObject.SetActive(true);
+                //if (!chargePs.gameObject.activeInHierarchy) chargePs.gameObject.SetActive(true);
                 if (!charge2Ps.gameObject.activeInHierarchy) charge2Ps.gameObject.SetActive(true);
 
                 decreasing = false;
@@ -55,7 +55,7 @@ public class ChargeWeaponScript : MonoBehaviour
 
             if (controller.RightBumper.WasReleased)
             {
-                chargePs.gameObject.SetActive(false);
+                //chargePs.gameObject.SetActive(false);
                 charge2Ps.gameObject.SetActive(false);
                 decreasing = true;
 
