@@ -37,7 +37,6 @@ public class ExcitementManager : MonoBehaviour
         if (newState == GameState.INGAME)
         {
             PlayerScript.OnPlayerCollision += AddToHype;
-            PlayerScript.OnPlayerHitByArenaCannon += AddToHype;
 
             foreach (PlayerScript player in sm.players)
             {

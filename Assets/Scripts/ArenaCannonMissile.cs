@@ -37,7 +37,7 @@ public class ArenaCannonMissile : MonoBehaviour
         target.GetComponent<Rigidbody>().AddForce(fireDirection * smashForce, ForceMode.Impulse);
         GameObject explosion = Instantiate(spawnExplosionGO);
         explosion.transform.position = this.transform.position;
-        target.WasHitWithArenaCannon(firer);
+        target.WasHitWithArenaCannon();
         Restore();
     }
 
