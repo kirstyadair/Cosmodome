@@ -12,7 +12,14 @@ public class CharacterSelectionOption
 {
     public string characterName;
     public PlayerTypes playerType;
+
+    [HideInInspector]
     public string chosenBy = null;
+
+    public int speedStat;
+    public int sizeStat;
+    public string weaponStat;
+    public string infoStat;
 }
 
 [Serializable]
@@ -172,6 +179,18 @@ public class ControllerAllocation : MonoBehaviour
 
         controller.Vibrate(strength);
         StartCoroutine(StopVibratingAfter(controller, time));
+    }
+
+    /// <summary>
+    /// Returns the <see cref="CharacterSelectionOption"/> connected to the given <see cref="PlayerTypes"/>
+    /// </summary>
+    /// <param name="type">The PlayerType to get the <see cref="CharacterSelectionOption"/> for</param>
+    /// <returns></returns>
+    public CharacterSelectionOption GetOptionFromPlayerTypes(PlayerTypes type)
+    {
+        foreach (CharacterSelectionOption option in selectableCharacters) if (option.playerType == type) return option;
+        
+        return null;
     }
 
     /// <summary>

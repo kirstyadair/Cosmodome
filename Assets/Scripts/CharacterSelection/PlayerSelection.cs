@@ -21,12 +21,20 @@ public class PlayerSelection : MonoBehaviour
     [SerializeField]
     StatusBar _statusBar;
 
+    CharacterBox[] characterBoxes;
+
     // Start is called before the first frame update
     void Start()
     {
         _controllerAllocations = GetComponent<ControllerAllocation>();
 
         _controllerAllocations.OnControllersAllocated += _controllerAllocations_OnControllersAllocated;
+
+        // Assign the CharacterOption relating to each PlayerType (so we can just define the player in one place)
+        foreach (CharacterBox characterBox in characterBoxes)
+        {
+            characterBox.SetCharacterOption(_controllerAllocations.GetOptionFromPlayerTypes(characterBox.type));
+        }
     }
 
     private void _controllerAllocations_OnControllersAllocated()

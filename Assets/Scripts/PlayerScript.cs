@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 public enum PlayerTypes
 {
-    COMEDIAN, DAREDEVIL, LIGHTWEIGHT, HEAVYWEIGHT, DAVE, NULL
+    HAMMER, EL_MOSCO, BIG_SCHLUG, DAVE, NULL
 }
 
 [Serializable]

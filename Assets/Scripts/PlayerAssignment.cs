@@ -37,7 +37,7 @@ public class PlayerAssignment : MonoBehaviour
     public void EnableTestingPlayers()
     {
         EnablePlayer(PlayerTypes.DAVE);
-        EnablePlayer(PlayerTypes.HEAVYWEIGHT);
+        EnablePlayer(PlayerTypes.BIG_SCHLUG);
 
     }
 
