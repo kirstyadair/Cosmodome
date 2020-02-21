@@ -98,6 +98,7 @@ public class PlayerSelection : MonoBehaviour
         RandomPlayerHasBeenPicked(selectedBox);
         _statusBar.ChangeText(RandomYourNextLine("Player " + selectedBox._playerNumber));
         yield return new WaitForSeconds(1f);
+        //_animator.Play("RandomPickToCharacterSelection");
         selectedBox.selectorArrowEnabled = false;
     }
 
@@ -128,7 +129,7 @@ public class PlayerSelection : MonoBehaviour
     {
         selectedBox.Selecting();
 
-        _animator.Play("RandomPickToCharacterSelection");
+       
     }
 
 }
