@@ -13,7 +13,7 @@ public class ArenaCannonScript : MonoBehaviour
     Animator animator;
     public GameObject spotLight;
 
-    public float rotationAmount = 50f;
+    public float rotationAmount = 60f;
     Vector3 direction;
     public ArenaCannonMissile[] missiles;
 

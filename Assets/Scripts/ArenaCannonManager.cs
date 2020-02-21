@@ -53,7 +53,7 @@ public class ArenaCannonManager : MonoBehaviour
 
         ArenaCannonScript chosenCannon = closedCannons[Random.Range(0, closedCannons.Count)];
 
-        chosenCannon.OpenFor(1,  PickRandomPoint() - chosenCannon.transform.position);
+        chosenCannon.OpenFor(2,  PickRandomPoint() - chosenCannon.transform.position);
         chosenCannon.Activate();
     }
 
