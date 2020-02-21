@@ -28,8 +28,9 @@ public class PlayerApproval {
 public class PlayerScript : MonoBehaviour
 {
     public delegate void PlayerShot(GameObject playerHit, GameObject shooter);
+    public delegate void PlayerACShot(GameObject playerHit);
     public static event PlayerShot OnPlayerShot;
-    public static event PlayerShot OnPlayerHitByArenaCannon;
+    public static event PlayerACShot OnPlayerHitByArenaCannon;
     public delegate void PlayerCollision(GameObject playerHit, GameObject playerAttacking);
     public static event PlayerCollision OnPlayerCollision;
 
@@ -315,9 +316,9 @@ public class PlayerScript : MonoBehaviour
   
     }
 
-    public void WasHitWithArenaCannon(PlayerScript shooter)
+    public void WasHitWithArenaCannon()
     {
-        OnPlayerHitByArenaCannon?.Invoke(this.gameObject, shooter.gameObject);
+        OnPlayerHitByArenaCannon?.Invoke(this.gameObject);
         PlayerShotHit?.Invoke();
         StartCoroutine(controller.Careen(controller.disabledTime, controller.careenTime));
 

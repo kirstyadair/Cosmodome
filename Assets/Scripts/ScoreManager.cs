@@ -233,13 +233,11 @@ public class ScoreManager : MonoBehaviour
         StartCoroutine(shotPlayer.GetComponent<PlayerScript>().FlashWithDamage());
     }
 
-    void PlayerHitByArenaCannon(GameObject shotPlayer, GameObject shooter)
+    void PlayerHitByArenaCannon(GameObject shotPlayer )
     {
         shotPlayer.GetComponent<PlayerScript>().approval.ChangeApproval(-arenaCannonRate);
-        shooter.GetComponent<PlayerScript>().approval.ChangeApproval(arenaCannonRate);
         //Bens code change start
         StartCoroutine(shotPlayer.GetComponent<PlayerScript>().ArrowFlash(1f, 0, 0));
-        StartCoroutine(shooter.GetComponent<PlayerScript>().ArrowFlash(1f, 0, 1));
         //Bens code change end
         OnUpdateScore?.Invoke();
         UpdatePercentages();

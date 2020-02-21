@@ -80,20 +80,18 @@ public class ArenaCannonScript : MonoBehaviour
     }
 
 
-    public void Activate(PlayerScript player)
+    public void Activate()
     {
-        if (!isOpen) return;
+        //if (!isOpen) return;
         OnTrapActivate.Invoke();
         animator.SetTrigger("Fire");
-
-
     }
 
     public void Update()
     {
         if (isOpen)
         {
-            if (activator.isBeingActivated)
+            /*if (activator.isBeingActivated)
             {
                 beingActivatedFor += Time.deltaTime;
                 activationProgressSprite.fillAmount = beingActivatedFor / activationTime;
@@ -106,13 +104,13 @@ public class ArenaCannonScript : MonoBehaviour
                     Activate(activator.currentShipActivating);
                 }
             } else
-            {
-                timeUntilClose -= Time.deltaTime;
-                if (timeUntilClose <= 0)
-                {
-                    Close();
-                }
-            }
+            {*/
+                //timeUntilClose -= Time.deltaTime;
+                //if (timeUntilClose <= 0)
+                //{
+                    //Close();
+               // }
+            //}
         }
     }
     public void OpenFor(float time, Vector3 direction)
