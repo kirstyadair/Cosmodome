@@ -13,10 +13,11 @@ public class ChargeWeaponScript : MonoBehaviour
     bool charged = false;
 
     public GameObject spawnPoint;
-    public GameObject bulletPrefab;
+    public GameObject laser;
     public ParticleSystem chargePs;
     public ParticleSystem charge2Ps;
     public ParticleSystem shootPs;
+    public BulletDeleter deleter;
     [Header("Weapon charge time before firing")]
     public float chargeNeeded;
     [Header("How fast charge decreases")]
@@ -72,13 +73,15 @@ public class ChargeWeaponScript : MonoBehaviour
         }
         else if (chargeCount <= 0) decreasing = false;
 
-        Debug.Log(chargeCount);
+        //Debug.Log(chargeCount);
     }
 
 
     void Fire()
     {
+        chargeCount = 0;
         shootPs.gameObject.SetActive(true);
-        GameObject bullet = Instantiate(bulletPrefab, spawnPoint.transform.position, Quaternion.identity);
+        laser.GetComponent<Animator>().SetBool("LaserOn", true);
+        deleter.enabled = true;
     }
 }
