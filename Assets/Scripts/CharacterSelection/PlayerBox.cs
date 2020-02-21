@@ -14,6 +14,11 @@ using UnityEngine.UI;
 /// </summary>
 public class PlayerBox : MonoBehaviour
 {
+    public delegate void PlayerBoxEvent();
+    public event PlayerBoxEvent OnSelectLeft;
+    public event PlayerBoxEvent OnSelectRight;
+    public event PlayerBoxEvent OnSelect;
+
     /// <summary>
     /// The current InControl device for this player box
     /// </summary>
@@ -42,7 +47,7 @@ public class PlayerBox : MonoBehaviour
     /// </summary>
     [Header("Colour of this player box when activated")]
     [SerializeField]
-    Color _playerColour;
+    public Color playerColour;
 
     [SerializeField]
     Image _assignedBg;
@@ -61,6 +66,8 @@ public class PlayerBox : MonoBehaviour
 
     Animator _animator;
 
+    bool _isSelecting = false;
+
     /// <summary>
     /// Whether the selector arrow is enabled or not. 
     /// </summary>
@@ -75,6 +82,16 @@ public class PlayerBox : MonoBehaviour
         this._animator = GetComponent<Animator>();
     }
 
+    void Update()
+    {
+        if (_isSelecting)
+        {
+            if (controller.DPadLeft.WasPressed || controller.LeftStickLeft.WasPressed) OnSelectLeft?.Invoke();
+            if (controller.DPadRight.WasPressed || controller.LeftStickRight.WasPressed) OnSelectRight?.Invoke();
+            if (controller.Action1.WasPressed) OnSelect?.Invoke();
+        }
+    }
+
     /// <summary>
     /// when <see cref="ControllerAllocation"/> assigns a controller to PlayerBox when the user presses X
     /// </summary>
@@ -82,8 +99,8 @@ public class PlayerBox : MonoBehaviour
     {
         _animator.SetTrigger("AssignController");
         _playerNameText.text = "PLAYER " + _playerNumber;
-        _assignedBg.color = _playerColour;
-        _assignedBgFloater.color = _playerColour;
+        _assignedBg.color = playerColour;
+        _assignedBgFloater.color = playerColour;
         _playerStatusText.text = "JOINED!";
         this.controller = controller;
     }
@@ -95,6 +112,7 @@ public class PlayerBox : MonoBehaviour
     {
         _animator.SetTrigger("Selecting");
         _playerStatusText.text = "CHOOSING...";
+        _isSelecting = true;
     }
 
     /// <summary>

@@ -2,10 +2,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerSelection : MonoBehaviour
 {
     ControllerAllocation _controllerAllocations;
+
+    [SerializeField]
+    Text characterNameText;
 
     [SerializeField]
     [Header("The time between 'ticks' that the random spinner starts at, this is reduced steadily")]
@@ -21,7 +25,13 @@ public class PlayerSelection : MonoBehaviour
     [SerializeField]
     StatusBar _statusBar;
 
-    CharacterBox[] characterBoxes;
+    [SerializeField]
+    CharacterSelectionStats _stats;
+
+    public CharacterBox[] characterBoxes;
+
+    PlayerBox _currentSelectingPlayer;
+    int _currentSelectedCharacter = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -77,11 +87,12 @@ public class PlayerSelection : MonoBehaviour
     /// <returns></returns>
     IEnumerator RandomPlayerPickerFX()
     {
-        float timeBetweenTicks = randomSpinnerStartingTime + UnityEngine.Random.Range(0, 0.1f);
-        int currentTickedPlayer = 0;
+        List<PlayerBox> choosablePlayerBoxes = _controllerAllocations.GetChoosablePlayerBoxes();
+        float timeBetweenTicks = randomSpinnerStartingTime;
+        int currentTickedPlayer = UnityEngine.Random.Range(0, choosablePlayerBoxes.Count);
         int lastTickedPlayer = 0;
 
-        List<PlayerBox> choosablePlayerBoxes = _controllerAllocations.GetChoosablePlayerBoxes();
+       
         while (timeBetweenTicks < 0.5f)
         {
             PlayerBox prevBox = choosablePlayerBoxes[lastTickedPlayer];
@@ -103,7 +114,7 @@ public class PlayerSelection : MonoBehaviour
 
         PlayerBox selectedBox = choosablePlayerBoxes[lastTickedPlayer];
         _controllerAllocations.Vibrate(selectedBox.controller, 1f, 0.8f);
-        RandomPlayerHasBeenPicked(selectedBox);
+        PlayerReadyForSelectingCharacter(selectedBox);
         _statusBar.ChangeText(RandomYourNextLine("Player " + selectedBox._playerNumber));
         yield return new WaitForSeconds(1f);
         //_animator.Play("RandomPickToCharacterSelection");
@@ -133,11 +144,53 @@ public class PlayerSelection : MonoBehaviour
     /// <summary>
     /// Called when the random player picker has finished, which then plays the RandomPickToCharacterSelection animation
     /// </summary>
-    void RandomPlayerHasBeenPicked(PlayerBox selectedBox)
+    void PlayerReadyForSelectingCharacter(PlayerBox selectedBox)
     {
+        if (_currentSelectingPlayer != null)
+        {
+            _currentSelectingPlayer.OnSelectLeft -= OnPlayerBoxLeft;
+            _currentSelectingPlayer.OnSelectRight -= OnPlayerBoxRight;
+            _currentSelectingPlayer.OnSelect -= OnPlayerBoxSelect;
+        }
+
         selectedBox.Selecting();
 
-       
+        _currentSelectingPlayer = selectedBox;
+
+        _currentSelectingPlayer.OnSelectLeft += OnPlayerBoxLeft;
+        _currentSelectingPlayer.OnSelectRight += OnPlayerBoxRight;
+        _currentSelectingPlayer.OnSelect += OnPlayerBoxSelect;
+
+        _currentSelectedCharacter = 0; // TODO: snap to a free character
+        Hover(characterBoxes[0]);
     }
 
+    void OnPlayerBoxLeft()
+    {
+        _currentSelectedCharacter--;
+        if (_currentSelectedCharacter < 0) _currentSelectedCharacter = characterBoxes.Length - 1;
+
+        Hover(characterBoxes[_currentSelectedCharacter]);
+    }
+
+    void OnPlayerBoxRight()
+    {
+        _currentSelectedCharacter++;
+        if (_currentSelectedCharacter > characterBoxes.Length - 1) _currentSelectedCharacter = 0;
+
+        Hover(characterBoxes[_currentSelectedCharacter]);
+    }
+
+    void OnPlayerBoxSelect()
+    {
+
+    }
+
+    void Hover(CharacterBox characterBox)
+    {
+        foreach (CharacterBox otherBox in characterBoxes) if (otherBox != characterBox) otherBox.Unhover(); // Unhover the other boxes
+        characterNameText.text = characterBox.option.characterName;
+        characterBox.Hover(_currentSelectingPlayer);
+        _stats.ChangeStats(characterBox.option);
+    }
 }

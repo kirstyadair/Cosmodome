@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CharacterBox : MonoBehaviour
 {
@@ -9,8 +10,13 @@ public class CharacterBox : MonoBehaviour
     /// </summary>
     public PlayerTypes type;
 
+    [SerializeField]
+    Image _selectorImage;
 
-    CharacterSelectionOption _option;
+   public CharacterSelectionOption option;
+    Animator _animator;
+
+    public bool isHovered = false;
 
     /// <summary>
     /// Set the <see cref="CharacterSelectionOption"/> connected to the <see cref="PlayerTypes"/>
@@ -18,6 +24,24 @@ public class CharacterBox : MonoBehaviour
     /// <param name="option"><see cref="CharacterSelectionOption"/> to set</param>
     public void SetCharacterOption(CharacterSelectionOption option)
     {
-        _option = option;
+        this.option = option;
+    }
+
+    void Start()
+    {
+        _animator = GetComponent<Animator>();
+    }
+
+    public void Hover(PlayerBox hoveredPlayer)
+    {
+        _selectorImage.color = hoveredPlayer.playerColour;
+        _animator.SetBool("isHovered", true);
+        isHovered = true;
+    }
+
+    public void Unhover()
+    {
+        isHovered = false;
+        _animator.SetBool("isHovered", false);
     }
 }

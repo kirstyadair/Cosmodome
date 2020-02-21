@@ -97,7 +97,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -260,6 +260,26 @@ PrefabInstance:
     - target: {fileID: 899833744789992544, guid: 640c6a5dc65d745499ce1fb675f6512c,
         type: 3}
       propertyPath: _playerColour.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 899833744789992544, guid: 640c6a5dc65d745499ce1fb675f6512c,
+        type: 3}
+      propertyPath: playerColour.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 899833744789992544, guid: 640c6a5dc65d745499ce1fb675f6512c,
+        type: 3}
+      propertyPath: playerColour.g
+      value: 0.44906098
+      objectReference: {fileID: 0}
+    - target: {fileID: 899833744789992544, guid: 640c6a5dc65d745499ce1fb675f6512c,
+        type: 3}
+      propertyPath: playerColour.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 899833744789992544, guid: 640c6a5dc65d745499ce1fb675f6512c,
+        type: 3}
+      propertyPath: playerColour.a
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -466,7 +486,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 84.999985, y: -165}
+  m_AnchoredPosition: {x: 84.99997, y: -165}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &277964617
@@ -654,12 +674,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "There\u2019s not much to say. He\u2019s a born loser. He apparently hails
-    from earth, but that disintegrated without trace to something called Global Warming
-    back in 2027, but everyone else was too busy enjoying the Cosmodome to even notice.
-    Dave likes to talk about how he feels cheated as he has won the Cosmodome at least
-    14 times but has always been disqualified thus forfeiting his victory. For a guy
-    that\u2019s won nothing he sure does have a big mouth. "
+  m_Text: 'If you''re seeing this text then something is fucked lol
+
+'
 --- !u!222 &463678427
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -798,6 +815,18 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 537232582}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &537232584 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2071406484147133539, guid: 66afacd5eb2d4d243b2e0bfb0e1b773e,
+    type: 3}
+  m_PrefabInstance: {fileID: 537232582}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b68ea9fd59ff9c419e1c39285d94d07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &586952061
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -918,7 +947,7 @@ PrefabInstance:
     - target: {fileID: 2071406484147133539, guid: 66afacd5eb2d4d243b2e0bfb0e1b773e,
         type: 3}
       propertyPath: type
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 66afacd5eb2d4d243b2e0bfb0e1b773e, type: 3}
@@ -928,6 +957,18 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 586952061}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &586952063 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2071406484147133539, guid: 66afacd5eb2d4d243b2e0bfb0e1b773e,
+    type: 3}
+  m_PrefabInstance: {fileID: 586952061}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b68ea9fd59ff9c419e1c39285d94d07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &619449557
 GameObject:
   m_ObjectHideFlags: 0
@@ -1172,7 +1213,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &740159592
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1193,7 +1234,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -616, y: -164}
+  m_AnchoredPosition: {x: -616, y: -171}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &803576660 stripped
@@ -1202,6 +1243,18 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 4633654640175407815}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &806344575 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7440556636373889327, guid: 826d1e73f245a0b45b561244a6862a4c,
+    type: 3}
+  m_PrefabInstance: {fileID: 4633654640175407815}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d92098300b40f949a4ae4927ab047a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &868680943
 GameObject:
   m_ObjectHideFlags: 0
@@ -1489,10 +1542,16 @@ MonoBehaviour:
   - characterName: El Mosco
     playerType: 1
     chosenBy: 
-    speedStat: 0
-    sizeStat: 0
-    weaponStat: 
-    infoStat: LASERS
+    speedStat: 3
+    sizeStat: 1
+    weaponStat: LASERS
+    infoStat: "The rumours are that this insect like creature has a long line of ancestors,
+      dating back to planet earth, which fell victim to being filled with pathetic
+      lifeforms. El Mosco is one of the most talented fighters within the walls of
+      the great arena and one of the most feared. He is a 29-time Cosmodome champion.
+      His great, great, great Grandfather\u2019s sister\u2019s boyfriend\u2019s son
+      was a champion in a similar type of event back on Earth. It\u2019s clear El
+      Mosco has been brewed into a winning family. "
   - characterName: Hammer-Head Henry
     playerType: 0
     chosenBy: 
@@ -1545,10 +1604,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf7188a333e19974a8753a48177a92a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  characterNameText: {fileID: 1818851992}
   randomSpinnerStartingTime: 0
   randomSpinnerTickTimeIncrease: 0.1
   _animator: {fileID: 1294449539}
   _statusBar: {fileID: 915804529}
+  _stats: {fileID: 1318029090}
+  characterBoxes:
+  - {fileID: 4185810321156627383}
+  - {fileID: 586952063}
+  - {fileID: 537232584}
+  - {fileID: 2131818831}
+--- !u!114 &958687065 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7440556636373889327, guid: 826d1e73f245a0b45b561244a6862a4c,
+    type: 3}
+  m_PrefabInstance: {fileID: 713776525}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d92098300b40f949a4ae4927ab047a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &964378575
 GameObject:
   m_ObjectHideFlags: 0
@@ -1946,6 +2024,26 @@ PrefabInstance:
       propertyPath: _playerColour.a
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 899833744789992544, guid: 640c6a5dc65d745499ce1fb675f6512c,
+        type: 3}
+      propertyPath: playerColour.r
+      value: 0.033018887
+      objectReference: {fileID: 0}
+    - target: {fileID: 899833744789992544, guid: 640c6a5dc65d745499ce1fb675f6512c,
+        type: 3}
+      propertyPath: playerColour.g
+      value: 0.790184
+      objectReference: {fileID: 0}
+    - target: {fileID: 899833744789992544, guid: 640c6a5dc65d745499ce1fb675f6512c,
+        type: 3}
+      propertyPath: playerColour.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 899833744789992544, guid: 640c6a5dc65d745499ce1fb675f6512c,
+        type: 3}
+      propertyPath: playerColour.a
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2448473707211225574, guid: 640c6a5dc65d745499ce1fb675f6512c,
         type: 3}
       propertyPath: m_IsActive
@@ -2193,10 +2291,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db03667c2ed196646acc4c1fb29e77d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _bioText: {fileID: 0}
-  _weaponText: {fileID: 0}
-  _speedDotter: {fileID: 0}
-  _sizeDotter: {fileID: 0}
+  _bioText: {fileID: 463678426}
+  _weaponText: {fileID: 209164013}
+  _speedDotter: {fileID: 806344575}
+  _sizeDotter: {fileID: 958687065}
 --- !u!1 &1389071236
 GameObject:
   m_ObjectHideFlags: 0
@@ -2308,7 +2406,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 84.999985, y: -55}
+  m_AnchoredPosition: {x: 84.99997, y: -55}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1397799639
@@ -2634,6 +2732,26 @@ PrefabInstance:
     - target: {fileID: 899833744789992544, guid: 640c6a5dc65d745499ce1fb675f6512c,
         type: 3}
       propertyPath: _playerColour.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 899833744789992544, guid: 640c6a5dc65d745499ce1fb675f6512c,
+        type: 3}
+      propertyPath: playerColour.r
+      value: 0.86935663
+      objectReference: {fileID: 0}
+    - target: {fileID: 899833744789992544, guid: 640c6a5dc65d745499ce1fb675f6512c,
+        type: 3}
+      propertyPath: playerColour.g
+      value: 0.33490568
+      objectReference: {fileID: 0}
+    - target: {fileID: 899833744789992544, guid: 640c6a5dc65d745499ce1fb675f6512c,
+        type: 3}
+      propertyPath: playerColour.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 899833744789992544, guid: 640c6a5dc65d745499ce1fb675f6512c,
+        type: 3}
+      propertyPath: playerColour.a
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -2977,7 +3095,7 @@ RectTransform:
   m_GameObject: {fileID: 2059409080}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.60864, y: 0.60864, z: 0.60864}
+  m_LocalScale: {x: 0.546297, y: 0.546297, z: 0.546297}
   m_Children:
   - {fileID: 8792332179433141509}
   - {fileID: 1218652973}
@@ -2988,7 +3106,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 0, y: 143}
+  m_AnchoredPosition: {x: 0, y: 144.49}
   m_SizeDelta: {x: -100, y: 222.3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2059409082
@@ -3227,7 +3345,7 @@ PrefabInstance:
     - target: {fileID: 2071406484147133539, guid: 66afacd5eb2d4d243b2e0bfb0e1b773e,
         type: 3}
       propertyPath: type
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 66afacd5eb2d4d243b2e0bfb0e1b773e, type: 3}
@@ -3237,6 +3355,18 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 2131818829}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2131818831 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2071406484147133539, guid: 66afacd5eb2d4d243b2e0bfb0e1b773e,
+    type: 3}
+  m_PrefabInstance: {fileID: 2131818829}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b68ea9fd59ff9c419e1c39285d94d07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &4185810321156627379
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3357,7 +3487,7 @@ PrefabInstance:
     - target: {fileID: 2071406484147133539, guid: 66afacd5eb2d4d243b2e0bfb0e1b773e,
         type: 3}
       propertyPath: type
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 66afacd5eb2d4d243b2e0bfb0e1b773e, type: 3}
@@ -3367,31 +3497,18 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 4185810321156627379}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &4185810321156627381 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1002031937431704262, guid: 66afacd5eb2d4d243b2e0bfb0e1b773e,
+--- !u!114 &4185810321156627383 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2071406484147133539, guid: 66afacd5eb2d4d243b2e0bfb0e1b773e,
     type: 3}
   m_PrefabInstance: {fileID: 4185810321156627379}
   m_PrefabAsset: {fileID: 0}
---- !u!95 &4185810321156627382
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4185810321156627381}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 0befe7f3621812846907ab04da605f72, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b68ea9fd59ff9c419e1c39285d94d07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &4633654640175407815
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3656,6 +3773,26 @@ PrefabInstance:
     - target: {fileID: 899833744789992544, guid: 640c6a5dc65d745499ce1fb675f6512c,
         type: 3}
       propertyPath: _playerNumber
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 899833744789992544, guid: 640c6a5dc65d745499ce1fb675f6512c,
+        type: 3}
+      propertyPath: playerColour.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 899833744789992544, guid: 640c6a5dc65d745499ce1fb675f6512c,
+        type: 3}
+      propertyPath: playerColour.g
+      value: 0.1462264
+      objectReference: {fileID: 0}
+    - target: {fileID: 899833744789992544, guid: 640c6a5dc65d745499ce1fb675f6512c,
+        type: 3}
+      propertyPath: playerColour.b
+      value: 0.1462264
+      objectReference: {fileID: 0}
+    - target: {fileID: 899833744789992544, guid: 640c6a5dc65d745499ce1fb675f6512c,
+        type: 3}
+      propertyPath: playerColour.a
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1839449307501831550, guid: 640c6a5dc65d745499ce1fb675f6512c,
