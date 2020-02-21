@@ -27,7 +27,7 @@ public class CharacterBox : MonoBehaviour
         this.option = option;
     }
 
-    void Start()
+    void Awake()
     {
         _animator = GetComponent<Animator>();
     }

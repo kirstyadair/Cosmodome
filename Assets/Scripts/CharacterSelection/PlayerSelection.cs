@@ -26,6 +26,9 @@ public class PlayerSelection : MonoBehaviour
     StatusBar _statusBar;
 
     [SerializeField]
+    GameObject _characterBoxes;
+
+    [SerializeField]
     CharacterSelectionStats _stats;
 
     public CharacterBox[] characterBoxes;
@@ -69,7 +72,7 @@ public class PlayerSelection : MonoBehaviour
     public void Animator_FinishedCharacterControllerTransition()
     {
         PickRandomPlayerToChoose();
-        _statusBar.ChangeTextImportant("Picking first player randomly...");
+        _statusBar.ChangeTextImportant("Picking next player...");
     }
     
     /// <summary>
@@ -88,36 +91,47 @@ public class PlayerSelection : MonoBehaviour
     IEnumerator RandomPlayerPickerFX()
     {
         List<PlayerBox> choosablePlayerBoxes = _controllerAllocations.GetChoosablePlayerBoxes();
+
         float timeBetweenTicks = randomSpinnerStartingTime;
         int currentTickedPlayer = UnityEngine.Random.Range(0, choosablePlayerBoxes.Count);
         int lastTickedPlayer = 0;
 
-       
-        while (timeBetweenTicks < 0.5f)
+        // if we have more than one, pick a random player. otherwise just pick the only one there
+        if (choosablePlayerBoxes.Count > 1)
         {
-            PlayerBox prevBox = choosablePlayerBoxes[lastTickedPlayer];
-            prevBox.selectorArrowEnabled = false; // disable selector arrow on last box
+            while (timeBetweenTicks < 0.5f)
+            {
+                PlayerBox prevBox = choosablePlayerBoxes[lastTickedPlayer];
+                prevBox.selectorArrowEnabled = false; // disable selector arrow on last box
 
-            lastTickedPlayer = currentTickedPlayer;
+                lastTickedPlayer = currentTickedPlayer;
 
-            PlayerBox playerBox = choosablePlayerBoxes[currentTickedPlayer];
-            playerBox.selectorArrowEnabled = true;
+                PlayerBox playerBox = choosablePlayerBoxes[currentTickedPlayer];
+                playerBox.selectorArrowEnabled = true;
 
-            currentTickedPlayer++;
-            if (currentTickedPlayer >= choosablePlayerBoxes.Count) currentTickedPlayer = 0;
+                currentTickedPlayer++;
+                if (currentTickedPlayer >= choosablePlayerBoxes.Count) currentTickedPlayer = 0;
 
-            // increase time between ticks to slow it down
-            timeBetweenTicks += randomSpinnerTickTimeIncrease;
+                // increase time between ticks to slow it down
+                timeBetweenTicks += randomSpinnerTickTimeIncrease;
 
-            yield return new WaitForSeconds(timeBetweenTicks);
+                yield return new WaitForSeconds(timeBetweenTicks);
+            }
+        } else
+        {
+            yield return new WaitForSeconds(1f);
         }
 
         PlayerBox selectedBox = choosablePlayerBoxes[lastTickedPlayer];
         _controllerAllocations.Vibrate(selectedBox.controller, 1f, 0.8f);
-        PlayerReadyForSelectingCharacter(selectedBox);
+
+        selectedBox.Selecting();
+
         _statusBar.ChangeText(RandomYourNextLine("Player " + selectedBox._playerNumber));
         yield return new WaitForSeconds(1f);
-        //_animator.Play("RandomPickToCharacterSelection");
+
+        PlayerReadyForSelectingCharacter(selectedBox);
+        _animator.Play("RandomPickToCharacterSelection");
         selectedBox.selectorArrowEnabled = false;
     }
 
@@ -146,14 +160,14 @@ public class PlayerSelection : MonoBehaviour
     /// </summary>
     void PlayerReadyForSelectingCharacter(PlayerBox selectedBox)
     {
+        _characterBoxes.SetActive(true);
+
         if (_currentSelectingPlayer != null)
         {
             _currentSelectingPlayer.OnSelectLeft -= OnPlayerBoxLeft;
             _currentSelectingPlayer.OnSelectRight -= OnPlayerBoxRight;
             _currentSelectingPlayer.OnSelect -= OnPlayerBoxSelect;
         }
-
-        selectedBox.Selecting();
 
         _currentSelectingPlayer = selectedBox;
 
