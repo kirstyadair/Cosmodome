@@ -19,6 +19,8 @@ public class ChargeWeaponScript : MonoBehaviour
     public ParticleSystem charge2Ps;
     public ParticleSystem shootPs;
     public BulletDeleter deleter;
+    public PlayerRing playerRings;
+
     [Header("Weapon charge time before firing")]
     public float chargeNeeded;
 
@@ -53,12 +55,14 @@ public class ChargeWeaponScript : MonoBehaviour
     void Start()
     {
         playerScript = GetComponent<PlayerScript>();
+        playerRings.IsChargingWeapon();
     }
 
     public void StartCharging()
     {
         isCharging = true;
         charge2Ps.gameObject.SetActive(true);
+        playerRings.StartCharging();
     }
 
     public void StopCharging()
@@ -66,6 +70,7 @@ public class ChargeWeaponScript : MonoBehaviour
         isCharging = false;
         isCharged = false;
         charge2Ps.gameObject.SetActive(false);
+        playerRings.StopCharging();
     }
 
     // Update is called once per frame
@@ -76,22 +81,21 @@ public class ChargeWeaponScript : MonoBehaviour
         controller = playerScript.inputDevice;
 
         // If the button is held
-        if (controller.RightBumper.IsPressed)
+        if (controller.RightBumper.IsPressed && !isFiring)
         {
             // Only charge when we  are not firing
-            if (!isFiring)
+            if (!isCharging) StartCharging();
+
+            chargeAmount += Time.deltaTime;
+
+            // Fully charged?
+            if (chargeAmount >= chargeNeeded)
             {
-                if (!isCharging) StartCharging();
-
-                chargeAmount += Time.deltaTime;
-
-                // Fully charged?
-                if (chargeAmount >= chargeNeeded)
-                {
-                    isCharged = true;
-                    chargeAmount = chargeNeeded;
-                }
+                isCharged = true;
+                playerRings.FullyCharged();
+                chargeAmount = chargeNeeded;
             }
+           
         } else
         {
             // If  fully charge and button released,  fire!
@@ -111,6 +115,8 @@ public class ChargeWeaponScript : MonoBehaviour
                 chargeAmount = 0;
             }
         }
+
+        playerRings.UpdateCharge(chargePercentage);
     }
 
 
@@ -133,6 +139,7 @@ public class ChargeWeaponScript : MonoBehaviour
     void Fire()
     {
         isFiring = true;
+        isCharged = false;
         OnChargeWeaponFire?.Invoke();
         shootPs.gameObject.SetActive(true);
         laser.GetComponent<Animator>().SetBool("LaserOn", true);
