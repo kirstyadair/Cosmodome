@@ -12,12 +12,18 @@ public class BulletDeleter : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        timeAlive += Time.deltaTime;
         if (timeAlive >= timeToDie)
         {
             if (this.gameObject.name != "Laser") Destroy(this.gameObject);
-            else this.gameObject.SetActive(false);
+            else if (this.gameObject.GetComponent<Animator>() != null)
+            {
+                
+                this.gameObject.GetComponent<Animator>().SetBool("LaserOn", false);
+                timeAlive = 0;
+                this.enabled = false;
+            } 
         }
+        else timeAlive += Time.deltaTime;
 
         if (this.gameObject.name != "Laser") this.transform.position += this.transform.forward * bulletForce;
     }
@@ -31,7 +37,12 @@ public class BulletDeleter : MonoBehaviour
     {
         if (other.CompareTag("Ship") && other.gameObject != shooter)
         {
-            other.GetComponent<ShipController>().HitByBullet(this);
+            if (this.gameObject.name != "Laser") other.GetComponent<ShipController>().HitByBullet(this);
+            else if (this.gameObject.GetComponent<Animator>().GetBool("LaserOn"))
+            {
+                other.GetComponent<ShipController>().HitByBullet(this);
+                Debug.Log("hit");
+            }
 
             if (this.gameObject.name != "Laser") Destroy(this.gameObject);
         }

@@ -57,15 +57,11 @@ public class ExcitementMeterScript : MonoBehaviour
         em.UpdateHype();
     }
 
-    void OnACShot(GameObject playerHit, GameObject playerShooting)
+    void OnACShot(GameObject playerHit)
     {
         if (playerHit == this.gameObject)
         {
             comboScore = 0;
-        }
-        else if (playerShooting == this.gameObject)
-        {
-            comboScore++;
         }
 
         em.UpdateHype();

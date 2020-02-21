@@ -12,12 +12,12 @@ public class ChargeWeaponScript : MonoBehaviour
     bool decreasing = false;
     bool charged = false;
 
-    public float laserActiveTime;
     public GameObject spawnPoint;
     public GameObject laser;
-    public ParticleSystem chargePs;
+    //public ParticleSystem chargePs;
     public ParticleSystem charge2Ps;
     public ParticleSystem shootPs;
+    public BulletDeleter deleter;
     [Header("Weapon charge time before firing")]
     public float chargeNeeded;
     [Header("How fast charge decreases")]
@@ -41,7 +41,7 @@ public class ChargeWeaponScript : MonoBehaviour
 
             if (controller.RightBumper.IsPressed && chargeCount < chargeNeeded)
             {
-                if (!chargePs.gameObject.activeInHierarchy) chargePs.gameObject.SetActive(true);
+                //if (!chargePs.gameObject.activeInHierarchy) chargePs.gameObject.SetActive(true);
                 if (!charge2Ps.gameObject.activeInHierarchy) charge2Ps.gameObject.SetActive(true);
 
                 decreasing = false;
@@ -55,7 +55,7 @@ public class ChargeWeaponScript : MonoBehaviour
 
             if (controller.RightBumper.WasReleased)
             {
-                chargePs.gameObject.SetActive(false);
+                //chargePs.gameObject.SetActive(false);
                 charge2Ps.gameObject.SetActive(false);
                 decreasing = true;
 
@@ -81,13 +81,7 @@ public class ChargeWeaponScript : MonoBehaviour
     {
         chargeCount = 0;
         shootPs.gameObject.SetActive(true);
-        laser.SetActive(true);
-        StartCoroutine(DisableLaser());
-    }
-
-    IEnumerator DisableLaser()
-    {
-        yield return new WaitForSeconds(laserActiveTime);
-        laser.SetActive(false);
+        laser.GetComponent<Animator>().SetBool("LaserOn", true);
+        deleter.enabled = true;
     }
 }
