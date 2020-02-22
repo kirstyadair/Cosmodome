@@ -32,14 +32,33 @@ public class CameraMovement : MonoBehaviour
     //public Vector3 centerPoint;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        
+        ScoreManager.OnStateChanged += OnStateChange;
+        ScoreManager.OnPlayerEliminated += OnPlayerEliminated;
+        mainCamera = GetComponentInChildren<Camera>();
     }
 
-    private void Awake()
+    void OnStateChange(GameState newState, GameState oldState)
     {
-        mainCamera = GetComponentInChildren<Camera>();
+        if (newState == GameState.INGAME) PickSourceShip();
+    }
+
+    void OnPlayerEliminated()
+    {
+        PickSourceShip();
+    }
+
+    void PickSourceShip()
+    {
+        foreach (GameObject go in shipObjects)
+        {
+            if (go.activeSelf)
+            {
+                sourceShip = go.transform;
+                return;
+            }
+        }
     }
 
     private Vector3 FindCenter(List<Transform>targets)

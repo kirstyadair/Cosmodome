@@ -89,7 +89,7 @@ public class PlayerSelection : MonoBehaviour
 
     public void Ready()
     {
-        _statusBar.ChangeTextImportant("WELCOME TO THE COSMODOME");
+    
         _animator.Play("Ready to play");
 
 
@@ -111,12 +111,14 @@ public class PlayerSelection : MonoBehaviour
 
         if (choosablePlayerBoxes.Count == 0)
         {
+            _statusBar.ChangeTextImportant("WELCOME TO THE COSMODOME");
+            yield return new WaitForSeconds(1f);
             // all player boxes have chosen
             Ready();
             yield break;
         }
 
-  
+        _statusBar.ChangeTextImportant("Picking next player...");
 
         float timeBetweenTicks = randomSpinnerStartingTime;
         int currentTickedPlayer = UnityEngine.Random.Range(0, choosablePlayerBoxes.Count);
@@ -125,7 +127,6 @@ public class PlayerSelection : MonoBehaviour
         // if we have more than one, pick a random player. otherwise just pick the only one there
         if (choosablePlayerBoxes.Count > 1)
         {
-            _statusBar.ChangeTextImportant("Picking next player...");
 
             while (timeBetweenTicks < 0.5f)
             {
