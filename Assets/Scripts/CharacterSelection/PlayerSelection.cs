@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class PlayerSelection : MonoBehaviour
@@ -65,7 +66,7 @@ public class PlayerSelection : MonoBehaviour
     {
         _controllerAllocations.UpdatePlayerBoxRow();
 
-        _statusBar.ChangeText("Let's go!");
+        _statusBar.ChangeText("Choose your fighters");
     }
 
 
@@ -75,7 +76,7 @@ public class PlayerSelection : MonoBehaviour
     public void Animator_FinishedCharacterControllerTransition()
     {
         PickRandomPlayerToChoose();
-        _statusBar.ChangeTextImportant("Picking next player...");
+        _characterModelDisplay.SwapModel("");
     }
     
     /// <summary>
@@ -83,17 +84,39 @@ public class PlayerSelection : MonoBehaviour
     /// </summary>
     public void PickRandomPlayerToChoose()
     {
-        StartCoroutine(RandomPlayerPickerFX());
+        StartCoroutine(PickNextPlayer());
     }
 
+    public void Ready()
+    {
+        _statusBar.ChangeTextImportant("WELCOME TO THE COSMODOME");
+        _animator.Play("Ready to play");
+
+
+        _controllerAllocations.Ready();
+    }
+
+    public void Animator_NextScene()
+    {
+        SceneManager.LoadScene("Main");
+    }
 
     /// <summary>
     /// Coroutine that players the random player picker animation and settles on an answer
     /// </summary>
     /// <returns></returns>
-    IEnumerator RandomPlayerPickerFX()
+    IEnumerator PickNextPlayer()
     {
         List<PlayerBox> choosablePlayerBoxes = _controllerAllocations.GetChoosablePlayerBoxes();
+
+        if (choosablePlayerBoxes.Count == 0)
+        {
+            // all player boxes have chosen
+            Ready();
+            yield break;
+        }
+
+  
 
         float timeBetweenTicks = randomSpinnerStartingTime;
         int currentTickedPlayer = UnityEngine.Random.Range(0, choosablePlayerBoxes.Count);
@@ -102,6 +125,8 @@ public class PlayerSelection : MonoBehaviour
         // if we have more than one, pick a random player. otherwise just pick the only one there
         if (choosablePlayerBoxes.Count > 1)
         {
+            _statusBar.ChangeTextImportant("Picking next player...");
+
             while (timeBetweenTicks < 0.5f)
             {
                 PlayerBox prevBox = choosablePlayerBoxes[lastTickedPlayer];
@@ -187,6 +212,8 @@ public class PlayerSelection : MonoBehaviour
         _currentSelectedCharacter--;
         if (_currentSelectedCharacter < 0) _currentSelectedCharacter = characterBoxes.Length - 1;
 
+        _controllerAllocations.Vibrate(_currentSelectingPlayer.controller, 1, 0.1f);
+
         Hover(characterBoxes[_currentSelectedCharacter]);
 
     }
@@ -196,14 +223,32 @@ public class PlayerSelection : MonoBehaviour
         _currentSelectedCharacter++;
         if (_currentSelectedCharacter > characterBoxes.Length - 1) _currentSelectedCharacter = 0;
 
+        _controllerAllocations.Vibrate(_currentSelectingPlayer.controller, 1, 0.1f);
+
         Hover(characterBoxes[_currentSelectedCharacter]);
-
-
     }
 
     void OnPlayerBoxSelect()
     {
+        CharacterBox character = characterBoxes[_currentSelectedCharacter];
 
+        if (character.selectedBy != null)
+        {
+            character.Unavailable();
+            return;
+        }
+
+        _controllerAllocations.Vibrate(_currentSelectingPlayer.controller, 1, 0.5f);
+
+        character.Selected(_currentSelectingPlayer);
+
+        _currentSelectingPlayer.Selected(character.option);
+
+        _animator.Play("Character selection to random screen");
+
+        _currentSelectingPlayer.OnSelectLeft -= OnPlayerBoxLeft;
+        _currentSelectingPlayer.OnSelectRight -= OnPlayerBoxRight;
+        _currentSelectingPlayer.OnSelect -= OnPlayerBoxSelect;
     }
 
     void Hover(CharacterBox characterBox)

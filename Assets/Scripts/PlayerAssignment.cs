@@ -17,7 +17,7 @@ public class PlayerAssignment : MonoBehaviour
         sm = ScoreManager.Instance;
 
         // Look for the ControllerAllocation gameobject passed in from the character selection screen
-        GameObject controllerAllocationGO = GameObject.Find("ControllerAllocation");
+        GameObject controllerAllocationGO = GameObject.Find("Character Selection Logic");
 
 
         // If it doesn't exist in the scene then we're probably testing, so just enable in Dave and Heavyweight and start the game
@@ -26,12 +26,18 @@ public class PlayerAssignment : MonoBehaviour
             EnableTestingPlayers();
         } else
         {
+            DisableAllPlayers();
             EnableControlledPlayers(controllerAllocationGO.GetComponent<ControllerAllocation>());
         }
 
 
         // start the game
         OnPlayersAssigned?.Invoke();
+    }
+
+    public void DisableAllPlayers()
+    {
+        foreach (GameObject player in playerGameObjects) player.SetActive(false);
     }
 
     public void EnableTestingPlayers()
@@ -47,7 +53,7 @@ public class PlayerAssignment : MonoBehaviour
         {
             PlayerScript plr = EnablePlayer(allocated.playerType);
             plr.inputDevice = allocated.controller;
-            plr.EnableRing(plr.playerColor.color);
+            plr.EnableRing(allocated.color);
         }
     }
 

@@ -70,7 +70,7 @@ public class PlayerRing : MonoBehaviour
         _isChargingWeapon = true;
     }
 
-    void Start()
+    void Awake()
     {
         _animator = GetComponent<Animator>();
     }

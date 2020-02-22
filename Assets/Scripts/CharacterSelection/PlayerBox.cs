@@ -116,6 +116,16 @@ public class PlayerBox : MonoBehaviour
     }
 
     /// <summary>
+    /// Called when this player has selected a character
+    /// </summary>
+    public void Selected(CharacterSelectionOption option)
+    {
+        _playerStatusText.text = "READY!";
+        hasChosenCharacter = true;
+        chosenCharacter = option;
+    }
+
+    /// <summary>
     /// when this player has chosen their character and is ready
     /// </summary>
     public void Ready()

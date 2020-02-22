@@ -13,10 +13,19 @@ public class CharacterBox : MonoBehaviour
     [SerializeField]
     Image _selectorImage;
 
-   public CharacterSelectionOption option;
+    public CharacterSelectionOption option;
     Animator _animator;
 
+    public PlayerBox selectedBy = null;
+
+    public bool isSelected = false;
     public bool isHovered = false;
+
+    [SerializeField]
+    Image _playerIndicatorBg;
+
+    [SerializeField]
+    Text _playerIndicatorText;
 
     /// <summary>
     /// Set the <see cref="CharacterSelectionOption"/> connected to the <see cref="PlayerTypes"/>
@@ -43,5 +52,20 @@ public class CharacterBox : MonoBehaviour
     {
         isHovered = false;
         _animator.SetBool("isHovered", false);
+    }
+
+    public void Selected(PlayerBox selected)
+    {
+        selectedBy = selected;
+        isSelected = true;
+        _animator.SetTrigger("Selected");
+
+        _playerIndicatorBg.color = selected.playerColour;
+        _playerIndicatorText.text = "P" + selected._playerNumber;
+    }
+
+    public void Unavailable()
+    {
+        _animator.SetTrigger("Unavailable");
     }
 }

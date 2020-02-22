@@ -27,6 +27,7 @@ public class AllocatedController
 {
     public PlayerTypes playerType;
     public InputDevice controller;
+    public Color color;
 }
 
 public class ControllerAllocation : MonoBehaviour
@@ -213,22 +214,17 @@ public class ControllerAllocation : MonoBehaviour
 
     public void Ready()
     {
-        /*
-        foreach (CharacterSelectionOption option in selectableCharacters)
+        
+        foreach (PlayerBox playerBox in _playerBoxes)
         {
-            if (option.chosenBy == null) continue;
-
             AllocatedController allocatedController = new AllocatedController
             {
-                playerType = option.playerType,
-                controller = option.chosenBy.controller
+                playerType = playerBox.chosenCharacter.playerType,
+                controller = playerBox.controller,
+                color = playerBox.playerColour
             };
 
             allocatedControllers.Add(allocatedController);
         }
-
-        // this GO is passed onto the main scene for allocating characters
-        SceneManager.LoadScene("Main");
-        */
     }
 }

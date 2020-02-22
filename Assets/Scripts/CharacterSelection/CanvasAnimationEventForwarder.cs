@@ -18,4 +18,9 @@ public class CanvasAnimationEventForwarder : MonoBehaviour
     {
         playerSelection.Animator_FinishedCharacterControllerTransition();
     }
+
+    public void Animator_NextScene()
+    {
+        playerSelection.Animator_NextScene();
+    }
 }

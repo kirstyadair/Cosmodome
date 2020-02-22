@@ -26,7 +26,6 @@ public class CharacterModelDisplay : MonoBehaviour
 
     public void AnimatorSwapModel()
     {
-        Debug.Log("swapping model to " + _modelName);
         foreach (Transform transform in modelContainer)
         {
             if (transform.gameObject.name == _modelName) transform.gameObject.SetActive(true);
