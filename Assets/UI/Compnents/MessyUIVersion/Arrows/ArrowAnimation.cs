@@ -46,7 +46,7 @@ public class ArrowAnimation : MonoBehaviour
             if(animators[i].GetBool("isFull")==true)
             {
                 animators[i].SetBool("isJumping", true);
-                yield return new WaitForSeconds(.2f);
+                yield return new WaitForSeconds(.1f);
                 animators[i].SetBool("isJumping", false);
             }
             
