@@ -157,6 +157,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ps: {fileID: 2887851164101499027}
+  rockHitPs: {fileID: 1040608886635896, guid: a97415c6b57076f41a6621a7b51d63a3, type: 3}
 --- !u!114 &8114425596002120641
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -170,6 +171,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ps: {fileID: 0}
+  rockHitPs: {fileID: 1040608886635896, guid: a97415c6b57076f41a6621a7b51d63a3, type: 3}
 --- !u!65 &2340926732220985603
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -196,6 +198,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ps: {fileID: 0}
+  rockHitPs: {fileID: 1040608886635896, guid: a97415c6b57076f41a6621a7b51d63a3, type: 3}
 --- !u!1 &1524323608232292756
 GameObject:
   m_ObjectHideFlags: 0
@@ -245,6 +248,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ps: {fileID: 0}
+  rockHitPs: {fileID: 1040608886635896, guid: a97415c6b57076f41a6621a7b51d63a3, type: 3}
 --- !u!1 &1833609790283484783
 GameObject:
   m_ObjectHideFlags: 0
@@ -379,6 +383,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ps: {fileID: 0}
+  rockHitPs: {fileID: 1040608886635896, guid: a97415c6b57076f41a6621a7b51d63a3, type: 3}
 --- !u!1 &3256101073342195770
 GameObject:
   m_ObjectHideFlags: 0
@@ -428,6 +433,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ps: {fileID: 0}
+  rockHitPs: {fileID: 1040608886635896, guid: a97415c6b57076f41a6621a7b51d63a3, type: 3}
 --- !u!114 &8057504199768632765
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -441,6 +447,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ps: {fileID: 0}
+  rockHitPs: {fileID: 1040608886635896, guid: a97415c6b57076f41a6621a7b51d63a3, type: 3}
 --- !u!1 &4294485107363067631
 GameObject:
   m_ObjectHideFlags: 0
@@ -644,6 +651,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ps: {fileID: 2887851164101499027}
+  rockHitPs: {fileID: 1040608886635896, guid: a97415c6b57076f41a6621a7b51d63a3, type: 3}
 --- !u!114 &6790511470842536568
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -657,6 +665,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ps: {fileID: 0}
+  rockHitPs: {fileID: 1040608886635896, guid: a97415c6b57076f41a6621a7b51d63a3, type: 3}
 --- !u!65 &1635193392040971249
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -683,6 +692,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ps: {fileID: 2887851164101499027}
+  rockHitPs: {fileID: 1040608886635896, guid: a97415c6b57076f41a6621a7b51d63a3, type: 3}
 --- !u!65 &6613656949365951892
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -742,6 +752,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ps: {fileID: 0}
+  rockHitPs: {fileID: 1040608886635896, guid: a97415c6b57076f41a6621a7b51d63a3, type: 3}
 --- !u!65 &7829824857289509188
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -794,6 +805,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ps: {fileID: 2887851164101499027}
+  rockHitPs: {fileID: 1040608886635896, guid: a97415c6b57076f41a6621a7b51d63a3, type: 3}
 --- !u!114 &5938562086515763463
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -807,6 +819,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ps: {fileID: 0}
+  rockHitPs: {fileID: 1040608886635896, guid: a97415c6b57076f41a6621a7b51d63a3, type: 3}
 --- !u!1 &8249429497381343982
 GameObject:
   m_ObjectHideFlags: 0
@@ -959,6 +972,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ps: {fileID: 0}
+  rockHitPs: {fileID: 1040608886635896, guid: a97415c6b57076f41a6621a7b51d63a3, type: 3}
 --- !u!1 &8708289310853375184
 GameObject:
   m_ObjectHideFlags: 0
@@ -1021,6 +1035,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ps: {fileID: 2887851164101499027}
+  rockHitPs: {fileID: 1040608886635896, guid: a97415c6b57076f41a6621a7b51d63a3, type: 3}
 --- !u!1 &8896512075136231432
 GameObject:
   m_ObjectHideFlags: 0
@@ -1067,6 +1082,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ps: {fileID: 0}
+  rockHitPs: {fileID: 1040608886635896, guid: a97415c6b57076f41a6621a7b51d63a3, type: 3}
 --- !u!65 &6313262648508827442
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1093,6 +1109,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ps: {fileID: 2887851164101499027}
+  rockHitPs: {fileID: 1040608886635896, guid: a97415c6b57076f41a6621a7b51d63a3, type: 3}
 --- !u!114 &2890111370265186467
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1106,6 +1123,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ps: {fileID: 0}
+  rockHitPs: {fileID: 1040608886635896, guid: a97415c6b57076f41a6621a7b51d63a3, type: 3}
 --- !u!1001 &77414692934653783
 PrefabInstance:
   m_ObjectHideFlags: 0

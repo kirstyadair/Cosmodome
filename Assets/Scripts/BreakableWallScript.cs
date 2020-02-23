@@ -7,6 +7,7 @@ public class BreakableWallScript : MonoBehaviour
     int numOfHits = 0;
     int maxHits = 3;
     public ParticleSystem ps;
+    public GameObject rockHitPs;
 
     void OnCollisionEnter(Collision other)
     {
@@ -20,6 +21,7 @@ public class BreakableWallScript : MonoBehaviour
             else 
             {
                 numOfHits++;
+                GameObject ps = Instantiate(rockHitPs, this.transform.position, Quaternion.identity);
             }
         }
     }
