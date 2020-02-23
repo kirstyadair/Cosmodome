@@ -4,29 +4,31 @@ using UnityEngine;
 
 public class ArrowAnimation : MonoBehaviour
 {
+    public int currentMultiplier;
+    private int previousMultiplier;
+
+    public GameObject player;
+
     private Animator[] animators;
     private bool isJumping = false;
     private bool isEmpty;
 
     void Start()
     {
+        currentMultiplier = player.GetComponent<ExcitementMeterScript>().comboScore;
+        previousMultiplier = currentMultiplier;
         animators = GetComponentsInChildren<Animator>();
-        StartCoroutine(Bounce());
         
-
-
-
 
     }
 
 
-    IEnumerator FillDelay()
+    IEnumerator FillDelay(int multiplier)
     {
-        for (int i = 0; i < animators.Length; i++)
-        {
-            animators[i].SetBool("isEmpty", false);
-            yield return new WaitForSeconds(.3f);
-        }
+        
+        animators[multiplier-1].SetBool("isEmpty", false);
+        yield return new WaitForSeconds(.3f);
+        
 
         
 
@@ -52,10 +54,26 @@ public class ArrowAnimation : MonoBehaviour
     }
 
 
-    
-    private void LateUpdate()
+
+     void Update()
     {
-        
+        if(currentMultiplier!= previousMultiplier)
+        {
+            if(previousMultiplier>currentMultiplier)
+            {
+                //Remove the combo
+            }
+            if(previousMultiplier<currentMultiplier)
+            {
+                //Add to the combo
+                StartCoroutine(FillDelay(currentMultiplier));
+                animators[currentMultiplier - 1].SetBool("isFull", true);
+
+            }
+
+            currentMultiplier = player.GetComponent<ExcitementMeterScript>().comboScore;
+            previousMultiplier = currentMultiplier;
+        }
     }
 
 }

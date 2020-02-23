@@ -35,6 +35,7 @@ public class ApprovalChangeUI : MonoBehaviour
             if(approval<previousApproval)
             {
                 animator.SetBool("Hit", true);
+                StartCoroutine(WaitFlash());
             }
 
             previousApproval = approval;
@@ -46,5 +47,12 @@ public class ApprovalChangeUI : MonoBehaviour
     }
 
 
+
+
+    IEnumerator WaitFlash()
+    {
+        yield return new WaitForSeconds(1f);
+        animator.SetBool("Hit", false);
+    }
 
 }
