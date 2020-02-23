@@ -6,11 +6,11 @@ using UnityEngine;
 [Serializable]
 public class WallPattern
 {
-    GameObject[] walls;
-    float timeActive;
+    public GameObject[] walls;
+    public float timeActive;
 }
 
 public class BreakableWallSpawner : MonoBehaviour
 {
-    
+    public WallPattern[] wallPatterns;
 }
