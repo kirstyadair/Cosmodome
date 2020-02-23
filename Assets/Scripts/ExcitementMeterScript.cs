@@ -39,10 +39,6 @@ public class ExcitementMeterScript : MonoBehaviour
         {
             comboScore = 0;
         }
-        else if (playerAttacking == this.gameObject)
-        {
-            comboScore++;
-        }
 
         em.UpdateHype();
     }

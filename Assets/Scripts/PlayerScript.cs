@@ -235,7 +235,7 @@ public class PlayerScript : MonoBehaviour
         }
 
         //Bens code change start
-        score.text =approval.percentage + "%";
+        score.text = approval.percentage + "%";
         //Bens code change end
         if (hitByBulletCooldown > 0) hitByBulletCooldown -= Time.deltaTime;
 

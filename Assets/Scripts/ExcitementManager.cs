@@ -51,7 +51,6 @@ public class ExcitementManager : MonoBehaviour
     {
         orderedPlayers = players.OrderByDescending(x => x.comboScore).ToList();
         topPlayer = orderedPlayers[0];
-
         if (topPlayer.comboScore <= 0) hypeLevel = 0;
     }
 
@@ -71,9 +70,16 @@ public class ExcitementManager : MonoBehaviour
 
     void AddToHype(GameObject hitPlayer, GameObject shootingPlayer)
     {
+        // Don't let hype get over 10
         if (hypeLevel >= 10) return;
 
+        // Add to the combo of the attacking player
+        shootingPlayer.GetComponent<ExcitementMeterScript>().comboScore++;
+
+        // Update the list of top players
         UpdateHype();
+
+        // Add hype
         if (shootingPlayer == topPlayer.gameObject)
         {
             hypeLevel++;
