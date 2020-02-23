@@ -18,18 +18,20 @@ public class BreakableWallSpawner : MonoBehaviour
     public float timeBetweenSpawns;
     public float timeUntilDestroyed;
     WallPattern currentWall;
-    float timeUntilNextSpawn;
+    float timeUntilNextSpawn = 0;
+    bool wallNull = true;
 
     void ChooseRandomPattern()
     {
         // Choose a random wall in the array of possible patterns
         int randomInt = UnityEngine.Random.Range(0, wallPatterns.Length);
         currentWall = wallPatterns[randomInt];
+        wallNull = false;
         // Activate all walls in this pattern
         for (int i = 0; i < currentWall.walls.Length; i++)
         {
             currentWall.walls[i].SetActive(true);
-            currentWall.particleSystems[i].Play();
+            if (i < currentWall.particleSystems.Length) currentWall.particleSystems[i].Play();
         }
     }
 
@@ -39,19 +41,19 @@ public class BreakableWallSpawner : MonoBehaviour
         for (int i = 0; i < currentWall.walls.Length; i++)
         {
             currentWall.walls[i].SetActive(false);
-            currentWall.particleSystems[i].Play();
+            if (i < currentWall.particleSystems.Length) currentWall.particleSystems[i].Play();
         }
         // Reset the time active
         currentWall.timeActive = 0;
-        // Set current wall to null
-        currentWall = null;
-
+        // Set currnt wall to null
+        wallNull = true;
+        
         timeUntilNextSpawn = 0;
     }
 
     void Update()
     {
-        if (currentWall != null) 
+        if (!wallNull) 
         {
             currentWall.timeActive += Time.deltaTime;
             if (currentWall.timeActive >= timeUntilDestroyed) DeactivateWall(currentWall);
