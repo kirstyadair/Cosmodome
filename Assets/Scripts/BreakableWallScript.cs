@@ -21,8 +21,18 @@ public class BreakableWallScript : MonoBehaviour
             else 
             {
                 numOfHits++;
-                GameObject ps = Instantiate(rockHitPs, this.transform.position, Quaternion.identity);
+                GameObject ps = Instantiate(rockHitPs, other.transform.position, Quaternion.identity);
             }
+        }
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Bumperball"))
+        {
+            Debug.Log("AAAA");
+            this.gameObject.SetActive(false);
+            ps.Play();
         }
     }
 }
