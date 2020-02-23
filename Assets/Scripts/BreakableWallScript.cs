@@ -30,7 +30,6 @@ public class BreakableWallScript : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Bumperball"))
         {
-            Debug.Log("AAAA");
             this.gameObject.SetActive(false);
             ps.Play();
         }
