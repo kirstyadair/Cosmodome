@@ -8,15 +8,23 @@ public class BreakableWallScript : MonoBehaviour
     int maxHits = 3;
     public ParticleSystem ps;
     public GameObject rockHitPs;
+    Rigidbody[] children;
+    bool isExploding;
+
+    void Start()
+    {
+
+    }
 
     void OnCollisionEnter(Collision other)
     {
         if (other.gameObject.CompareTag("Ship"))
         {
-            if (numOfHits >= maxHits)
+            if (numOfHits >= maxHits && !isExploding)
             {
-                this.gameObject.SetActive(false);
-                ps.Play();
+                isExploding = true;
+                ExplodeChildren(other);
+                //ps.Play();
             } 
             else 
             {
@@ -32,6 +40,19 @@ public class BreakableWallScript : MonoBehaviour
         {
             this.gameObject.SetActive(false);
             ps.Play();
+        }
+    }
+
+    void ExplodeChildren(Collision ship)
+    {
+        this.GetComponent<BoxCollider>().enabled = false;
+        children = GetComponentsInChildren<Rigidbody>();
+
+        foreach (Rigidbody child in children)
+        {
+            child.isKinematic = false;
+            child.useGravity = true;
+            child.AddExplosionForce(5, ship.transform.position, 1, 0.5f, ForceMode.Impulse);
         }
     }
 }
