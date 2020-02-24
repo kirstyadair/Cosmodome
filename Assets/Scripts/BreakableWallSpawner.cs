@@ -40,7 +40,9 @@ public class BreakableWallSpawner : MonoBehaviour
         // Deactivate all walls in the pattern
         for (int i = 0; i < currentWall.walls.Length; i++)
         {
-            currentWall.walls[i].SetActive(false);
+            if (currentWall.walls[i].GetComponent<BreakableWallScript>() != null) currentWall.walls[i].GetComponent<BreakableWallScript>().Reset();
+            else currentWall.walls[i].SetActive(false);
+            
             if (i < currentWall.particleSystems.Length) currentWall.particleSystems[i].Play();
         }
         // Reset the time active

@@ -9,11 +9,15 @@ public class BreakableWallScript : MonoBehaviour
     public ParticleSystem ps;
     public GameObject rockHitPs;
     Rigidbody[] children;
-    bool isExploding;
+    Vector3[] previousPositions;
+    Quaternion[] previousRotations;
+    bool isExploding = false;
 
     void Start()
     {
-
+        children = GetComponentsInChildren<Rigidbody>();
+        previousPositions = new Vector3[children.Length];
+        previousRotations = new Quaternion[children.Length];
     }
 
     void OnCollisionEnter(Collision other)
@@ -46,13 +50,36 @@ public class BreakableWallScript : MonoBehaviour
     void ExplodeChildren(Collision ship)
     {
         this.GetComponent<BoxCollider>().enabled = false;
-        children = GetComponentsInChildren<Rigidbody>();
 
-        foreach (Rigidbody child in children)
+        for (int i = 0; i < children.Length; i++)
         {
-            child.isKinematic = false;
-            child.useGravity = true;
-            child.AddExplosionForce(5, ship.transform.position, 1, 0.5f, ForceMode.Impulse);
+            children[i].isKinematic = false;
+            children[i].useGravity = true;
+            previousPositions[i] = children[i].transform.position;
+            previousRotations[i] = children[i].transform.rotation;
+            children[i].AddExplosionForce(2, ship.transform.position, 1, 0.5f, ForceMode.Impulse);
         }
+    }
+
+
+    // This needs to be called ONLY on walls that have been destroyed
+    public void Reset()
+    {
+        if (isExploding)
+        {
+            isExploding = false;
+            
+            this.GetComponent<BoxCollider>().enabled = true;
+
+            for (int i = 0; i < children.Length; i++)
+            {
+                children[i].isKinematic = true;
+                children[i].useGravity = false;
+                children[i].transform.position = previousPositions[i];
+                children[i].transform.rotation = previousRotations[i];
+            }
+        }
+
+        this.gameObject.SetActive(false);
     }
 }
