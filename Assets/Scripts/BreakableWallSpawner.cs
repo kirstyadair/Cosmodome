@@ -6,6 +6,7 @@ using UnityEngine;
 [Serializable]
 public class WallPattern
 {
+    public string name;
     public GameObject[] walls;
     public ParticleSystem[] particleSystems;
     [HideInInspector]
