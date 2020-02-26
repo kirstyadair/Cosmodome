@@ -20,7 +20,7 @@ public class ApprovalChangeUI : MonoBehaviour
 
     private void Start()
     {
-
+        
         
         approval = player.GetComponent<PlayerScript>().approval.percentage;
         previousApproval = approval;
@@ -35,6 +35,14 @@ public class ApprovalChangeUI : MonoBehaviour
     }
     public void Update()
     {
+        if (player.activeSelf == false)
+        {
+            gameObject.SetActive(false);
+        }
+        else
+        {
+            gameObject.SetActive(true);
+        }
         approval = player.GetComponent<PlayerScript>().approval.percentage;
         if (approval != previousApproval)
         {
