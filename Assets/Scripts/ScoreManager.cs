@@ -210,7 +210,7 @@ public class ScoreManager : MonoBehaviour
 
     void BumperBallExplodesOnPlayer(PlayerScript hitPlayer)
     {
-        hitPlayer.approval.ChangeApproval(-bumperBallExplosionRate);
+        //hitPlayer.approval.ChangeApproval(-bumperBallExplosionRate);
         StartCoroutine(hitPlayer.FlashWithDamage());
 
         StartCoroutine(hitPlayer.GetComponent<PlayerScript>().ArrowFlash(.5f, 0, 0));
