@@ -225,7 +225,7 @@ MonoBehaviour:
   fireSpeed: 1
   velocity: 0
   lifetime: 5
-  smashForce: 5
+  smashForce: 2
 --- !u!65 &2571043150603895921
 BoxCollider:
   m_ObjectHideFlags: 0
