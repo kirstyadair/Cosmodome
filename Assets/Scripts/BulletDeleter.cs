@@ -36,11 +36,10 @@ public class BulletDeleter : MonoBehaviour
         if (this.gameObject.name != "Laser") this.transform.position += this.transform.forward * bulletForce;
     }
 
-    public void OnCollisionEnter(Collision collision)
+    void OnBulletCollidedWithSomething(GameObject other)
     {
-        GameObject other = collision.gameObject;
-
-        if (collision.gameObject.CompareTag("Ship") && collision.gameObject == shooter) return;
+        if (other.CompareTag("Bullet")) return;
+        if (other.gameObject.CompareTag("Ship") && other.gameObject == shooter) return;
 
         if (_collisionExplosion != null)
         {
@@ -60,9 +59,19 @@ public class BulletDeleter : MonoBehaviour
                 other.GetComponent<ShipController>().PushBack((other.transform.position - this.transform.position) * _pushbackPower);
             }
 
-             Destroy(this.gameObject);
+            if (this.gameObject.name != "Laser") Destroy(this.gameObject);
         }
 
         if (this.gameObject.name != "Laser") Destroy(this.gameObject);
+    }
+
+    public void OnCollisionEnter(Collision collision)
+    {
+        OnBulletCollidedWithSomething(collision.gameObject);
+    }
+
+    public void OnTriggerEnter(Collider other)
+    {
+        OnBulletCollidedWithSomething(other.gameObject);
     }
 }

@@ -43,7 +43,7 @@ public class PlayerAssignment : MonoBehaviour
     public void EnableTestingPlayers()
     {
         EnablePlayer(PlayerTypes.DAVE);
-        EnablePlayer(PlayerTypes.BIG_SCHLUG);
+        EnablePlayer(PlayerTypes.HAMMER);
 
     }
 
