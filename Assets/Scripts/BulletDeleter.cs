@@ -4,6 +4,14 @@ using UnityEngine;
 
 public class BulletDeleter : MonoBehaviour
 {
+    [SerializeField]
+    [Header("The prefab to reparent to the scene (like an explosion PS) on collision")]
+    GameObject _collisionExplosion;
+
+    [SerializeField]
+    [Header("The amount to push back the hit player by")]
+    float _pushbackPower;
+
     public float timeToDie;
     public float bulletForce = 1f;
     float timeAlive = 0.0f;
@@ -30,21 +38,31 @@ public class BulletDeleter : MonoBehaviour
 
     public void OnCollisionEnter(Collision collision)
     {
-        if (this.gameObject.name != "Laser") Destroy(this.gameObject);
-    }
+        GameObject other = collision.gameObject;
 
-    public void OnTriggerEnter(Collider other)
-    {
+        if (collision.gameObject.CompareTag("Ship") && collision.gameObject == shooter) return;
+
+        if (_collisionExplosion != null)
+        {
+            _collisionExplosion.SetActive(true);
+            _collisionExplosion.transform.SetParent(null, true);
+        }
+
         if (other.CompareTag("Ship") && other.gameObject != shooter)
         {
-            if (this.gameObject.name != "Laser") other.GetComponent<ShipController>().HitByBullet(this);
-            else if (this.gameObject.GetComponent<Animator>().GetBool("LaserOn"))
+            if (this.gameObject.name == "Laser")
             {
                 other.GetComponent<ShipController>().HitByBullet(this);
-                Debug.Log("hit");
+            }
+            else
+            {
+                other.GetComponent<ShipController>().HitByBullet(this);
+                other.GetComponent<ShipController>().PushBack((other.transform.position - this.transform.position) * _pushbackPower);
             }
 
-            if (this.gameObject.name != "Laser") Destroy(this.gameObject);
+             Destroy(this.gameObject);
         }
+
+        if (this.gameObject.name != "Laser") Destroy(this.gameObject);
     }
 }

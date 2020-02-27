@@ -223,10 +223,11 @@ public class PlayerScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // TODO: Shouldn't be doing this every frame, big perf hit
         if (GetComponent<BasicWeaponScript>() != null)
         {
-            ammo = GetComponent<BasicWeaponScript>().ammo;
-            maxAmmo = GetComponent<BasicWeaponScript>().maxAmmo;
+            ammo = GetComponent<BasicWeaponScript>().bulletsCurrentlyInClip;
+            maxAmmo = GetComponent<BasicWeaponScript>().clipSize;
         }
 
         if (rings.gameObject.activeSelf)
@@ -298,8 +299,6 @@ public class PlayerScript : MonoBehaviour
     public void WasHitByBullet(BulletDeleter bullet)
     {
         if (hitByBulletCooldown > 0) return;
-
-        Debug.Log("a");
 
         Vibrate(0.5f, 0.2f);
         hitByBulletCooldown = timeBetweenHitByBullet;

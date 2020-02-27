@@ -4,6 +4,10 @@ using UnityEngine;
 using InControl;
 using UnityEngine.Rendering.PostProcessing;
 
+/// <summary>
+/// This whole thing is disgusting
+/// like to think we'll refactor at some point, but all the movement characteristics are set so it's not a priority
+/// </summary>
 public class ShipController : MonoBehaviour
 {
     public Rigidbody rb;
@@ -296,6 +300,16 @@ public class ShipController : MonoBehaviour
         other.angularVelocity = otherAngular;
 
         other.AddForce(forceAfter, ForceMode.Impulse);
+    }
+
+    /// <summary>
+    /// Pushes back the player by this force.
+    /// </summary>
+    /// <param name="force">Force to apply</param>
+    public void PushBack(Vector3 force)
+    {
+        Debug.Log("pushback " + force);
+        rb.AddForce(force, ForceMode.Impulse);
     }
 
     public void Boost()
