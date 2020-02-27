@@ -87,8 +87,14 @@ public class ShipController : MonoBehaviour
     public delegate void PlayerReload();
     public static event PlayerReload OnPlayerNoBullets;
 
+    ChargeWeaponScript _chargingWeaponScript;
+
+
     public void Start()
     {
+        // only if we're a player that uses this
+        _chargingWeaponScript = GetComponent<ChargeWeaponScript>();
+
         playerScript = GetComponent<PlayerScript>();
         postProcessProfile = Camera.main.GetComponent<PostProcessVolume>().profile;
     }
@@ -108,7 +114,15 @@ public class ShipController : MonoBehaviour
         if (turretDirection.magnitude < thresholdBeforeFiringTurret) targetTurretAngle = Mathf.Atan2(transform.forward.x, transform.forward.z) * Mathf.Rad2Deg;
 
 
-        currentTurretAngle = Mathf.LerpAngle(currentTurretAngle, targetTurretAngle, turretLerpSpeed);
+        // show down turret movement when firing
+        if (_chargingWeaponScript != null && _chargingWeaponScript.isFiring)
+        {
+            currentTurretAngle = Mathf.LerpAngle(currentTurretAngle, targetTurretAngle, 0.1f);
+        } else
+        {
+            currentTurretAngle = Mathf.LerpAngle(currentTurretAngle, targetTurretAngle, turretLerpSpeed);
+        }
+
 
         foreach (GameObject turretObject in turretObjects) turretObject.transform.rotation = Quaternion.Euler((turretRotateAxis * currentTurretAngle) + turretRotateOffset);
     }
@@ -314,6 +328,9 @@ public class ShipController : MonoBehaviour
 
     public void Boost()
     {
+        // dont ram when we are using charging weapon 
+        if (_chargingWeaponScript != null && _chargingWeaponScript.isFiring) return;
+
         if (strafeCooldown <= 0)
         {
             //InputManager.ActiveDevice.LeftStickButton.WasPressed

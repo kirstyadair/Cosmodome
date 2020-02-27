@@ -207,6 +207,10 @@ public class PlayerScript : MonoBehaviour
         vibrationCoroutine = null;
     }
 
+    void OnDestroy()
+    {
+        if (inputDevice != null) inputDevice.StopVibration();
+    }
 
     public void EnableRing(Color color)
     {

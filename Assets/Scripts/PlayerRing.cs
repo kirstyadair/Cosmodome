@@ -65,7 +65,7 @@ public class PlayerRing : MonoBehaviour
 
     public void IsChargingWeapon()
     {
-        _animator.SetBool("isChargingWeapon", true);
+        if (_animator != null) _animator.SetBool("isChargingWeapon", true);
         UpdateCharge(0);
         _isChargingWeapon = true;
     }

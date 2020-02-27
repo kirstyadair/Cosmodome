@@ -139,8 +139,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 3.022452, y: 2.2548025, z: 1.46}
-  m_Center: {x: 0.11068567, y: 0.093159445, z: 0.47000614}
+  m_Size: {x: 3.022452, y: 2.2548025, z: 21.73912}
+  m_Center: {x: 0.11068572, y: 0.09315942, z: 0.30916846}
 --- !u!114 &4273117512235946977
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -153,6 +153,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 209d9f161796ff040b129aea8670cd08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _collisionExplosion: {fileID: 0}
+  _pushbackPower: 0
   timeToDie: 5
   bulletForce: 1
   shooter: {fileID: 0}
@@ -359,6 +361,22 @@ PrefabInstance:
       propertyPath: OnlyDeactivate
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 19800004, guid: 1ca16f2a31fb6a548ad8954bed1d321f, type: 3}
+      propertyPath: looping
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 19800004, guid: 1ca16f2a31fb6a548ad8954bed1d321f, type: 3}
+      propertyPath: InitialModule.startRotationX.minMaxState
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 19800004, guid: 1ca16f2a31fb6a548ad8954bed1d321f, type: 3}
+      propertyPath: InitialModule.startRotationY.minMaxState
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 19800006, guid: 1ca16f2a31fb6a548ad8954bed1d321f, type: 3}
+      propertyPath: looping
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 19800000, guid: 1ca16f2a31fb6a548ad8954bed1d321f, type: 3}
       propertyPath: looping
       value: 1
@@ -376,22 +394,6 @@ PrefabInstance:
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 19800000, guid: 1ca16f2a31fb6a548ad8954bed1d321f, type: 3}
-      propertyPath: InitialModule.startRotationY.minMaxState
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 19800006, guid: 1ca16f2a31fb6a548ad8954bed1d321f, type: 3}
-      propertyPath: looping
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 19800004, guid: 1ca16f2a31fb6a548ad8954bed1d321f, type: 3}
-      propertyPath: looping
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 19800004, guid: 1ca16f2a31fb6a548ad8954bed1d321f, type: 3}
-      propertyPath: InitialModule.startRotationX.minMaxState
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 19800004, guid: 1ca16f2a31fb6a548ad8954bed1d321f, type: 3}
       propertyPath: InitialModule.startRotationY.minMaxState
       value: 3
       objectReference: {fileID: 0}
