@@ -30,6 +30,11 @@ public class BasicWeaponScript : MonoBehaviour
     [Header("How long between bullet shots")]
     float _bulletCooldown;
 
+    [SerializeField]
+    [Header("PS to enable when firing")]
+    ParticleSystem _firingPS;
+
+
     /// <summary>
     /// public so <see cref="ScoreManager"/> can access to calculate damage. 
     /// TODO: Should have this stored in a data gameobject so we're not retrieving every shot
@@ -94,6 +99,12 @@ public class BasicWeaponScript : MonoBehaviour
 
             bulletsCurrentlyInClip--;
             _timeSinceLastBulletRenewal = 0; // don't renew bullets whilst firing
+        }
+
+        if (_firingPS != null)
+        {
+            if (_firingPS.gameObject.activeSelf) _firingPS.gameObject.SetActive(false);
+            _firingPS.gameObject.SetActive(true);
         }
     }
 }

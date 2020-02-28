@@ -21,10 +21,7 @@ public class PlayerAssignment : MonoBehaviour
 
 
         // If it doesn't exist in the scene then we're probably testing, so just enable in Dave and Heavyweight and start the game
-        if (controllerAllocationGO == null)
-        {
-            EnableTestingPlayers();
-        } else
+        if (controllerAllocationGO != null)
         {
             DisableAllPlayers();
             EnableControlledPlayers(controllerAllocationGO.GetComponent<ControllerAllocation>());
@@ -40,12 +37,6 @@ public class PlayerAssignment : MonoBehaviour
         foreach (GameObject player in playerGameObjects) player.SetActive(false);
     }
 
-    public void EnableTestingPlayers()
-    {
-        EnablePlayer(PlayerTypes.DAVE);
-        EnablePlayer(PlayerTypes.HAMMER);
-
-    }
 
     public void EnableControlledPlayers(ControllerAllocation controllerAllocation)
     {
