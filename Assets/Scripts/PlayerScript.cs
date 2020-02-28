@@ -71,23 +71,17 @@ public class PlayerScript : MonoBehaviour
 
     ShipController controller;
     public PlayerApproval approval = new PlayerApproval();
-    //Bens code change start
     public RawImage smallArrow;
     public RawImage largeArrow;
     public RawImage smallArrowPlus;
     public RawImage largeArrowPlus;
-
     public GameObject playersScreen;
-
     public PlayerRing rings;
-
-    //Bens Code change end
-
     public InputDevice inputDevice;
 
     public bool isActivatingTrap = false;
     //public bool isActive = true;
-
+    BasicWeaponScript basicWeaponScript;
     public GameObject ps;
 
     Coroutine vibrationCoroutine;
@@ -97,6 +91,7 @@ public class PlayerScript : MonoBehaviour
     {
         sm = ScoreManager.Instance;
         controller = GetComponent<ShipController>();
+        if (GetComponent<BasicWeaponScript>() != null) basicWeaponScript = GetComponent<BasicWeaponScript>();
         approval.ChangeApproval(0);
 
         Color tempColor = largeArrow.color;
@@ -227,11 +222,10 @@ public class PlayerScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // TODO: Shouldn't be doing this every frame, big perf hit
-        if (GetComponent<BasicWeaponScript>() != null)
+        if (basicWeaponScript != null)
         {
-            ammo = GetComponent<BasicWeaponScript>().bulletsCurrentlyInClip;
-            maxAmmo = GetComponent<BasicWeaponScript>().clipSize;
+            ammo = basicWeaponScript.bulletsCurrentlyInClip;
+            maxAmmo = basicWeaponScript.clipSize;
         }
 
         if (rings.gameObject.activeSelf)
