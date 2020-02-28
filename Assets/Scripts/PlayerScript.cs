@@ -27,7 +27,7 @@ public class PlayerApproval {
 
 public class PlayerScript : MonoBehaviour
 {
-    public delegate void PlayerShot(GameObject playerHit, GameObject shooter);
+    public delegate void PlayerShot(PlayerScript playerHit, PlayerScript shooter);
     public delegate void PlayerACShot(GameObject playerHit);
     public static event PlayerShot OnPlayerShot;
     public static event PlayerACShot OnPlayerHitByArenaCannon;
@@ -81,7 +81,8 @@ public class PlayerScript : MonoBehaviour
 
     public bool isActivatingTrap = false;
     //public bool isActive = true;
-    BasicWeaponScript basicWeaponScript;
+    [HideInInspector]
+    public BasicWeaponScript basicWeaponScript;
     public GameObject ps;
 
     Coroutine vibrationCoroutine;
@@ -300,7 +301,7 @@ public class PlayerScript : MonoBehaviour
 
         Vibrate(0.5f, 0.2f);
         hitByBulletCooldown = timeBetweenHitByBullet;
-        OnPlayerShot?.Invoke(this.gameObject, bullet.shooter);
+        OnPlayerShot?.Invoke(this, bullet.shooter.GetComponent<PlayerScript>());
         PlayerShotHit?.Invoke();
 
     }

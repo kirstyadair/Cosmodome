@@ -216,21 +216,21 @@ public class ScoreManager : MonoBehaviour
         StartCoroutine(hitPlayer.GetComponent<PlayerScript>().ArrowFlash(.5f, 0, 0));
     }
 
-    void PlayerShot(GameObject shotPlayer, GameObject shooter)
+    void PlayerShot(PlayerScript shotPlayer, PlayerScript shooter)
     {
         int bulletDamageRate = 0;
-        if (shooter.GetComponent<BasicWeaponScript>() != null) bulletDamageRate = shooter.GetComponent<BasicWeaponScript>().damage;
+        if (shooter.basicWeaponScript != null) bulletDamageRate = shooter.basicWeaponScript.damage;
 
-        shotPlayer.GetComponent<PlayerScript>().approval.ChangeApproval(-bulletDamageRate);
-        shooter.GetComponent<PlayerScript>().approval.ChangeApproval(bulletDamageRate);
+        shotPlayer.approval.ChangeApproval(-bulletDamageRate);
+        shooter.approval.ChangeApproval(bulletDamageRate);
 
-        StartCoroutine(shotPlayer.GetComponent<PlayerScript>().ArrowFlash(.5f,0,0));
-        StartCoroutine(shooter.GetComponent<PlayerScript>().ArrowFlash(.5f,0,1));
+        StartCoroutine(shotPlayer.ArrowFlash(.5f,0,0));
+        StartCoroutine(shooter.ArrowFlash(.5f,0,1));
 
         OnUpdateScore?.Invoke();
         UpdatePercentages();
 
-        StartCoroutine(shotPlayer.GetComponent<PlayerScript>().FlashWithDamage());
+        StartCoroutine(shotPlayer.FlashWithDamage());
     }
 
     void PlayerHitByArenaCannon(GameObject shotPlayer )
