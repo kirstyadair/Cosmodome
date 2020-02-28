@@ -233,55 +233,55 @@ public class ScoreManager : MonoBehaviour
         StartCoroutine(shotPlayer.FlashWithDamage());
     }
 
-    void PlayerHitByArenaCannon(GameObject shotPlayer )
+    void PlayerHitByArenaCannon(PlayerScript shotPlayer)
     {
-        shotPlayer.GetComponent<PlayerScript>().approval.ChangeApproval(-arenaCannonRate);
+        shotPlayer.approval.ChangeApproval(-arenaCannonRate);
         //Bens code change start
-        StartCoroutine(shotPlayer.GetComponent<PlayerScript>().ArrowFlash(1f, 0, 0));
+        StartCoroutine(shotPlayer.ArrowFlash(1f, 0, 0));
         //Bens code change end
         OnUpdateScore?.Invoke();
         UpdatePercentages();
 
-        StartCoroutine(shotPlayer.GetComponent<PlayerScript>().FlashWithDamage());
+        StartCoroutine(shotPlayer.FlashWithDamage());
     }
 
 
-    void PlayerCollision(GameObject player, GameObject playerAttacking)
+    void PlayerCollision(PlayerScript player, PlayerScript playerAttacking)
     {
-        player.GetComponent<PlayerScript>().approval.ChangeApproval(-lowDamageRate);
+        player.approval.ChangeApproval(-lowDamageRate);
         OnUpdateScore?.Invoke();
         UpdatePercentages();
         //Bens code change start
-        StartCoroutine(player.GetComponent<PlayerScript>().ArrowFlash(.5f,1,0));
+        StartCoroutine(player.ArrowFlash(.5f,1,0));
         
 
         //Bens code change end
-        StartCoroutine(player.GetComponent<PlayerScript>().FlashWithDamage());
+        StartCoroutine(player.FlashWithDamage());
     }
 
-    void PlayerHitTrap(GameObject player, Traps trapType)
+    void PlayerHitTrap(PlayerScript player, Traps trapType)
     {
-        player.GetComponent<PlayerScript>().approval.ChangeApproval(-lowDamageRate);
+        player.approval.ChangeApproval(-lowDamageRate);
         OnUpdateScore?.Invoke();
         UpdatePercentages();
 
         if (trapType == Traps.SPIKEWALL)
         {
-            StartCoroutine(player.GetComponent<PlayerScript>().FlashWithDamage());
+            StartCoroutine(player.FlashWithDamage());
         }
     }
 
-    void PlayerAttemptSabotage(GameObject player, Traps trapType, bool successful)
+    void PlayerAttemptSabotage(PlayerScript player, Traps trapType, bool successful)
     {
         if (successful)
         {
-            player.GetComponent<PlayerScript>().approval.ChangeApproval(highestDamageRate);
+            player.approval.ChangeApproval(highestDamageRate);
             OnUpdateScore?.Invoke();
             UpdatePercentages();
         }
         else
         {
-            player.GetComponent<PlayerScript>().approval.ChangeApproval(-highestDamageRate);
+            player.approval.ChangeApproval(-highestDamageRate);
             OnUpdateScore?.Invoke();
             UpdatePercentages();
         }

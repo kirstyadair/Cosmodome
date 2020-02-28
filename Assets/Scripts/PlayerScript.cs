@@ -28,10 +28,10 @@ public class PlayerApproval {
 public class PlayerScript : MonoBehaviour
 {
     public delegate void PlayerShot(PlayerScript playerHit, PlayerScript shooter);
-    public delegate void PlayerACShot(GameObject playerHit);
+    public delegate void PlayerACShot(PlayerScript playerHit);
     public static event PlayerShot OnPlayerShot;
     public static event PlayerACShot OnPlayerHitByArenaCannon;
-    public delegate void PlayerCollision(GameObject playerHit, GameObject playerAttacking);
+    public delegate void PlayerCollision(PlayerScript playerHit, PlayerScript playerAttacking);
     public static event PlayerCollision OnPlayerCollision;
 
     //AnnouncerAudio Events Could be used for more though :3
@@ -308,7 +308,7 @@ public class PlayerScript : MonoBehaviour
 
     public void WasCollidedWith(GameObject attacker)
     {
-        OnPlayerCollision.Invoke(this.gameObject, attacker);
+        OnPlayerCollision.Invoke(this, attacker.GetComponent<PlayerScript>());
         PlayerOnPlayerCollision?.Invoke();
         //playersScreen.GetComponent<ScreenAnim>().Scared();
   
@@ -316,7 +316,7 @@ public class PlayerScript : MonoBehaviour
 
     public void WasHitWithArenaCannon()
     {
-        OnPlayerHitByArenaCannon?.Invoke(this.gameObject);
+        OnPlayerHitByArenaCannon?.Invoke(this);
         PlayerShotHit?.Invoke();
         StartCoroutine(controller.Careen(controller.disabledTime, controller.careenTime));
 

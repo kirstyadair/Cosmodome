@@ -7,11 +7,11 @@ public class WallScript : MonoBehaviour
 {
     bool isTrap = false;
     bool playerTouching = false;
-    GameObject playerTouchingType;
-    GameObject immunePlayer;
-    public delegate void TrapHit(GameObject playerHit, Traps trapType);
+    PlayerScript playerTouchingType;
+    PlayerScript immunePlayer;
+    public delegate void TrapHit(PlayerScript playerHit, Traps trapType);
     public static event TrapHit OnTrapHit;
-    public delegate void TrapSabotaged(GameObject playerImmune, Traps trapType, bool successful);
+    public delegate void TrapSabotaged(PlayerScript playerImmune, Traps trapType, bool successful);
     public static event TrapSabotaged OnTrapSabotaged;
 
     public delegate void AnnouncerEvent();
@@ -53,7 +53,7 @@ public class WallScript : MonoBehaviour
 
         if (playerTouching && isTrap)
         {
-            if (playerTouchingType.GetComponent<PlayerScript>().playerType == immunePlayer.GetComponent<PlayerScript>().playerType)
+            if (playerTouchingType.playerType == immunePlayer.GetComponent<PlayerScript>().playerType)
             {
                 //Debug.Log("This player is immune to the trap");
             }
@@ -78,7 +78,7 @@ public class WallScript : MonoBehaviour
         if (other.tag == "Ship")
         {
             playerTouching = true;
-            playerTouchingType = other.gameObject;
+            playerTouchingType = other.GetComponent<PlayerScript>();
         }
     }
 

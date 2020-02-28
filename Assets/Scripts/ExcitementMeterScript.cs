@@ -35,9 +35,9 @@ public class ExcitementMeterScript : MonoBehaviour
         }
     }
 
-    void OnCollision(GameObject playerHit, GameObject playerAttacking)
+    void OnCollision(PlayerScript playerHit, PlayerScript playerAttacking)
     {
-        if (playerHit == this.gameObject)
+        if (playerHit == this.gameObject.GetComponent<PlayerScript>())
         {
             comboScore = 0;
         }
@@ -55,9 +55,9 @@ public class ExcitementMeterScript : MonoBehaviour
         em.UpdateHype();
     }
 
-    void OnACShot(GameObject playerHit)
+    void OnACShot(PlayerScript playerHit)
     {
-        if (playerHit == this.gameObject)
+        if (playerHit == this.gameObject.GetComponent<PlayerScript>())
         {
             comboScore = 0;
         }
