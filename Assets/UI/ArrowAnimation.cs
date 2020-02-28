@@ -42,7 +42,7 @@ public class ArrowAnimation : MonoBehaviour
 
     IEnumerator EmptyDelay(int multiplier)
     {
-        animators[multiplier-1].SetBool("isFull", false);
+        if (multiplier - 1 >= 0) animators[multiplier-1].SetBool("isFull", false);
         yield return new WaitForSeconds(.2f);
         animators[multiplier-1].SetBool("isEmpty", true);
         
@@ -95,7 +95,7 @@ public class ArrowAnimation : MonoBehaviour
                 {
                     if (animators[i].GetBool("isFull") == true)
                     {
-                        StartCoroutine(EmptyDelay(i));
+                        //StartCoroutine(EmptyDelay(i));
                     }
                 }
                     

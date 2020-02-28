@@ -5,7 +5,7 @@ using UnityEngine;
 public class BreakableWallScript : MonoBehaviour
 {
     int numOfHits = 0;
-    int maxHits = 3;
+    int maxHits = 2;
     public ParticleSystem ps;
     public GameObject rockHitPs;
     Rigidbody[] children;
@@ -49,6 +49,7 @@ public class BreakableWallScript : MonoBehaviour
 
     void ExplodeChildren(Collision ship)
     {
+        Debug.Log("explosion");
         this.GetComponent<BoxCollider>().enabled = false;
 
         for (int i = 0; i < children.Length; i++)
