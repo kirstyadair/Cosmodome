@@ -7,6 +7,7 @@ public class ExcitementMeterScript : MonoBehaviour
     public int comboScore;
     public ExcitementManager em;
     ScoreManager sm;
+    PlayerScript ps;
 
     // Start is called before the first frame update
     void OnEnable()
@@ -18,6 +19,7 @@ public class ExcitementMeterScript : MonoBehaviour
     {
         sm = ScoreManager.Instance;
         ScoreManager.OnStateChanged += OnStateChanged;
+        ps = GetComponent<PlayerScript>();
     }
 
     public void OnStateChanged(GameState newState, GameState oldState)
@@ -43,9 +45,9 @@ public class ExcitementMeterScript : MonoBehaviour
         em.UpdateHype();
     }
 
-    void OnShot(GameObject playerHit, GameObject playerShooting)
+    void OnShot(PlayerScript playerHit, PlayerScript playerShooting)
     {
-        if (playerHit == this.gameObject)
+        if (playerHit == ps)
         {
             comboScore = 0;
         }
