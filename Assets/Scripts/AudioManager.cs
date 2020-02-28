@@ -29,7 +29,7 @@ public class AudioManager : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
     }
 
-    void PlayerCollision(GameObject playerHit, GameObject playerAttacking)
+    void PlayerCollision(PlayerScript playerHit, PlayerScript playerAttacking)
     {
         audioSource.volume = clips[5].volume;
         audioSource.pitch = 0.5f + UnityEngine.Random.value;
