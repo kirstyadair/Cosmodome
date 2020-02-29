@@ -261,14 +261,6 @@ public class PlayerScript : MonoBehaviour
             controller.targetDirection = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
             controller.targetDirection.Normalize();
             isActivatingTrap = Input.GetKey(KeyCode.X);
-        } else
-        {
-            // just go to center
-            isActivatingTrap = false;
-            
-            controller.targetDirection = GameObject.Find("Center").transform.position - this.transform.position;
-            if (controller.targetDirection.magnitude < 1f) controller.targetDirection = Vector3.zero;
-            else controller.targetDirection.Normalize();
         }
     }
 
