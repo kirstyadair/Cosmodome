@@ -6,7 +6,7 @@ public class CameraMovement : MonoBehaviour
 {
     public List<GameObject> shipObjects;
     public Transform sourceShip;
-    public List<Transform> shipPositions;
+    
     public Camera mainCamera;
 
     public float dampeningTime;//The time taken for the camera to reajust
@@ -37,40 +37,42 @@ public class CameraMovement : MonoBehaviour
         ScoreManager.OnStateChanged += OnStateChange;
         ScoreManager.OnPlayerEliminated += OnPlayerEliminated;
         mainCamera = GetComponentInChildren<Camera>();
+        
+        
     }
 
     void OnStateChange(GameState newState, GameState oldState)
     {
-        if (newState == GameState.INGAME) PickSourceShip();
+        if (newState == GameState.INGAME) UpdatePlayerList();
     }
 
     void OnPlayerEliminated()
     {
-        PickSourceShip();
+        UpdatePlayerList();
     }
 
-    void PickSourceShip()
+    void UpdatePlayerList()
     {
-        foreach (GameObject go in shipObjects)
+        foreach(var player in shipObjects.ToArray())
         {
-            if (go.activeSelf)
+            if(!player.activeSelf)
             {
-                sourceShip = go.transform;
-                return;
+                shipObjects.Remove(player);
             }
+            
         }
     }
 
-    private Vector3 FindCenter(List<Transform>targets)
+    private Vector3 FindCenter(List<GameObject>targets)
     {
         Vector3 center;
-        Vector3 minPoint = targets[0].position;
-        Vector3 maxPoint = targets[0].position;
+        Vector3 minPoint = targets[0].transform.position;
+        Vector3 maxPoint = targets[0].transform.position;
 
         for(int i = 1; i<targets.Count; i++)
         {
             
-            Vector3 pos = targets[i].position;
+            Vector3 pos = targets[i].transform.position;
 
             if (pos.x < minPoint.x)
                 minPoint.x = pos.x;
@@ -89,16 +91,22 @@ public class CameraMovement : MonoBehaviour
        
         center = minPoint + .5f * (maxPoint - minPoint);
 
+        //center.y = transform.position.y;
+        //center.z = transform.position.z;
+
         return center;
 
     }
 
-    void FindDistance(List<Transform>targets)
+    void FindDistance(List<GameObject>targets)
     {
+        
+
         distances.Clear();
-        foreach(Transform transform in targets)
+
+        foreach (GameObject ship in shipObjects)
         {
-            float dist = Vector3.Distance(sourceShip.position, transform.position);
+            float dist = Vector3.Distance(sourceShip.position, transform.transform.position);
             distances.Add(dist);
         }
 
@@ -109,12 +117,12 @@ public class CameraMovement : MonoBehaviour
     private void Move(Camera cam)
     {
 
-        Vector3 centerPoint = FindCenter(shipPositions);
+        Vector3 centerPoint = FindCenter(shipObjects);
 
         centerX = centerPoint.x;
         centerY = centerPoint.y;
         centerZ = centerPoint.z;
-        FindDistance(shipPositions);
+        FindDistance(shipObjects);
         if(currentMaxDistance>6)
         {
             centerPoint.x = Mathf.Clamp(centerPoint.x, minX, maxX);
@@ -150,7 +158,7 @@ public class CameraMovement : MonoBehaviour
     
     public void SetStartPositionAndSize()
     {
-        FindCenter(shipPositions);
+        FindCenter(shipObjects);
 
 
         
