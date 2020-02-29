@@ -662,7 +662,7 @@ GameObject:
   - component: {fileID: 9025218992996844769}
   m_Layer: 0
   m_Name: Height1
-  m_TagString: Crowd
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1115,7 +1115,7 @@ GameObject:
   - component: {fileID: 810200156584836731}
   m_Layer: 0
   m_Name: Height3 (1)
-  m_TagString: Crowd
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1418,7 +1418,7 @@ GameObject:
   - component: {fileID: 8704798528570941226}
   m_Layer: 0
   m_Name: Height2
-  m_TagString: Crowd
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2429,7 +2429,7 @@ GameObject:
   - component: {fileID: 5116343159862712526}
   m_Layer: 0
   m_Name: Height3
-  m_TagString: Crowd
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2731,7 +2731,7 @@ PrefabInstance:
     - target: {fileID: -927199367670048503, guid: 01cbdf36e2c87b640b8b46c6a0525ee5,
         type: 3}
       propertyPath: m_TagString
-      value: Crowd
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 01cbdf36e2c87b640b8b46c6a0525ee5,
         type: 3}

@@ -112,6 +112,20 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &2901519495382815041
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2154486946256025909}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f73541906784ea5488485c083903005a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  glowstickMat: {fileID: 2100000, guid: 492ae1cab4ed75546bd85488d73965d6, type: 2}
+  glowstickMR: {fileID: 1414881435290288122}
 --- !u!1 &3007803275280723591
 GameObject:
   m_ObjectHideFlags: 0
@@ -154,6 +168,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Alien3
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 168d1290f6100a448a11607f1a333a2c,
+        type: 3}
+      propertyPath: m_TagString
+      value: Crowd
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 168d1290f6100a448a11607f1a333a2c,
         type: 3}

@@ -5,14 +5,13 @@ using UnityEngine;
 public class AudienceDiversifiier : MonoBehaviour
 {
     GameObject[] alienPositions;
-    List<Animator> aliens = new List<Animator>();
+    public List<Animator> aliens = new List<Animator>();
     public GameObject[] possiblePrefabs;
     ScoreManager sm;
     public float speed;
 
     public Vector2 animatorSpeedRange;
     public Vector2 alienScaleRange;
-    public Vector2 alienAnimateRange;
 
     // Start is called before the first frame update
     void Start()
@@ -22,7 +21,6 @@ public class AudienceDiversifiier : MonoBehaviour
         ExcitementManager.OnAddHype += RandomizeSpeed;
         ExcitementManager.OnResetHype += RandomizeSpeed;
         Randomize();
-        //FaceTowardCamera(); nah
     }
 
     public void FaceTowardCamera()
@@ -37,7 +35,8 @@ public class AudienceDiversifiier : MonoBehaviour
     {
         foreach (Animator alien in aliens)
         {
-
+            speed = Random.Range(animatorSpeedRange.x, animatorSpeedRange.y) * sm.em.hypeLevel;
+            if (sm.em.hypeLevel == 0) speed = 0.5f;
             alien.SetFloat("Speed", speed);
         }
 
@@ -50,7 +49,9 @@ public class AudienceDiversifiier : MonoBehaviour
         {
             int randomNumber = Random.Range(0, 5);
             GameObject alien = Instantiate(possiblePrefabs[randomNumber], position.transform.position, position.transform.rotation, this.gameObject.transform);
-            aliens.Add(alien.GetComponent<Animator>());
+            aliens.Add(alien.GetComponentInChildren<Animator>());
         }
+
+        RandomizeSpeed();
     }
 }
