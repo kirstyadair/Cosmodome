@@ -10,10 +10,15 @@ public enum Traps
     SPIKEWALL, NULL
 }
 
-
+/// <summary>
+/// WAITING_FOR_CONTROLLERS when we are still waiting for the player prefabs to spawn
+/// INGAME we are currently playing
+/// ROUND_START_CUTSCENE is the cutscene that shows all the players
+/// ROUND_END_CUTSCENE is where the random animations play of the audience and such after a player is eliminated
+/// </summary>
 public enum GameState
 {
-    WAITING_FOR_CONTROLLERS, INGAME
+    WAITING_FOR_CONTROLLERS, INGAME, ROUND_START_CUTSCENE, ROUND_END_CUTSCENE
 }
 
 public class ScoreManager : MonoBehaviour
@@ -58,10 +63,11 @@ public class ScoreManager : MonoBehaviour
     public Color[] playerColours;
 
     public AudioSource backgroundMusic;
-
+    public CutscenesManager cutscenesManager;
     public PlayerScript winningPlayer;
     public CrowdManager cm;
     public ExcitementManager em;
+
 
     public GameState gameState = GameState.WAITING_FOR_CONTROLLERS;
 
@@ -147,10 +153,13 @@ public class ScoreManager : MonoBehaviour
 
     public void OnDeviceDetached(InputDevice device)
     {
+        // commented this out to see if the controller will reattach automatically
+
+        /*
         foreach (PlayerScript player in players)
         {
             if (player.inputDevice == device) player.inputDevice = null;
-        }
+        }*/
     }
 
     public static ScoreManager Instance
@@ -203,9 +212,26 @@ public class ScoreManager : MonoBehaviour
             players.Add(playerGOs[i].GetComponent<PlayerScript>());
         }
         UpdatePercentages();
+        cm.SetUpCrowd();
+
+        StartCoroutine(PlayStartofRoundCutscene());
+    }
+
+    /// <summary>
+    /// Start the start of round cutscene sequence
+    /// </summary>
+    /// <returns></returns>
+    public IEnumerator PlayStartofRoundCutscene()
+    {
+        ChangeState(GameState.ROUND_START_CUTSCENE);
+
+        timeText.text = "START YOUR ENGINES";
+
+        yield return cutscenesManager.StartRoundCutscene();
+
+ 
 
         ChangeState(GameState.INGAME);
-        cm.SetUpCrowd();
     }
 
     void BumperBallExplodesOnPlayer(PlayerScript hitPlayer)

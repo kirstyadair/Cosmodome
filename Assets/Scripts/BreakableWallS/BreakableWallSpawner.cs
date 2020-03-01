@@ -21,6 +21,12 @@ public class BreakableWallSpawner : MonoBehaviour
     WallPattern currentWall;
     float timeUntilNextSpawn = 0;
     bool wallNull = true;
+    ScoreManager scoreManager;
+
+    void Start()
+    {
+        scoreManager = ScoreManager.Instance;
+    }
 
     void ChooseRandomPattern()
     {
@@ -56,6 +62,9 @@ public class BreakableWallSpawner : MonoBehaviour
 
     void Update()
     {
+        if (scoreManager.gameState != GameState.INGAME) return;
+
+
         if (!wallNull) 
         {
             currentWall.timeActive += Time.deltaTime;

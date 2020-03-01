@@ -44,6 +44,8 @@ public class PlayerAssignment : MonoBehaviour
         {
             PlayerScript plr = EnablePlayer(allocated.playerType);
             plr.inputDevice = allocated.controller;
+            plr.playerNumber = allocated.playerNumber;
+            plr.playerColor.color = allocated.color;
             plr.EnableRing(allocated.color);
         }
     }

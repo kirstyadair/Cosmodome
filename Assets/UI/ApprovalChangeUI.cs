@@ -13,15 +13,24 @@ public class ApprovalChangeUI : MonoBehaviour
     public GameObject player;
     private Animator animator;
 
+    ScoreManager sm;
   
     
     public float approval;
     private float previousApproval;
 
+    public void OnStateChange (GameState newState, GameState oldState)
+    {
+        // Only show the UI as visible when gamestate is INGAME
+        if (newState == GameState.INGAME) animator.SetBool("Visible", true);
+        else animator.SetBool("Visible", false);
+    }
+
     private void Start()
     {
-        
-        
+
+        sm = ScoreManager.Instance;
+        ScoreManager.OnStateChanged += OnStateChange;
         approval = player.GetComponent<PlayerScript>().approval.percentage;
         previousApproval = approval;
 
@@ -33,6 +42,8 @@ public class ApprovalChangeUI : MonoBehaviour
         backingBarL.fillAmount = barLeft.fillAmount;
         backingBarR.fillAmount = barRight.fillAmount;
     }
+
+
     public void Update()
     {
         if (player.activeSelf == false)

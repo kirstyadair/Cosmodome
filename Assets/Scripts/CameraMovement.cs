@@ -1,9 +1,14 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class CameraMovement : MonoBehaviour
 {
+    Vector3 startPosition;
+    Quaternion startRotation;
+    float startFov;
+
     public List<GameObject> shipObjects;
     public GameObject sourceShip;
 
@@ -24,6 +29,7 @@ public class CameraMovement : MonoBehaviour
 
 
 
+    ScoreManager sm;
     public List<float> distances;
     public float currentMaxDistance;
 
@@ -31,9 +37,18 @@ public class CameraMovement : MonoBehaviour
     private Vector3 moveVelocity; //Speed for the smoothing of the camera movement
     //public Vector3 centerPoint;
 
+    void Start()
+    {
+        startPosition = this.transform.position;
+        startRotation = this.transform.rotation;
+        startFov = mainCamera.fieldOfView;
+    }
+
     // Start is called before the first frame update
     void Awake()
     {
+        sm = ScoreManager.Instance;
+
         ScoreManager.OnStateChanged += OnStateChange;
         ScoreManager.OnPlayerEliminated += OnPlayerEliminated;
         mainCamera = GetComponentInChildren<Camera>();
@@ -47,7 +62,11 @@ public class CameraMovement : MonoBehaviour
 
     void OnStateChange(GameState newState, GameState oldState)
     {
-        if (newState == GameState.INGAME) UpdatePlayerList();
+        if (newState == GameState.INGAME)
+        {
+            ResetCamera();
+            UpdatePlayerList();
+        }
     }
 
     void OnPlayerEliminated()
@@ -73,6 +92,13 @@ public class CameraMovement : MonoBehaviour
         {
             sourceShip = shipObjects[0];
         }
+    }
+
+    public void ResetCamera()
+    {
+        this.transform.position = startPosition;
+        this.transform.rotation = startRotation;
+        mainCamera.fieldOfView = startFov;
     }
 
     private Vector3 FindCenter(List<GameObject> targets)
@@ -180,6 +206,8 @@ public class CameraMovement : MonoBehaviour
     // Update is called once per frame
     void LateUpdate()
     {
+        // disable camera control when we are not in game
+        if (sm.gameState != GameState.INGAME) return;
 
         Move(mainCamera);
 
