@@ -33,8 +33,9 @@ public class BreakableWallScript : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Ship"))
         {
-            if (numOfHits == 1)
+            if (numOfHits == 0)
             {
+                GameObject ps = Instantiate(rockHitPs, other.transform.position, Quaternion.identity);
                 if (this.gameObject.tag == "SideWall")
                 {
                     TurnChildrenRed();
