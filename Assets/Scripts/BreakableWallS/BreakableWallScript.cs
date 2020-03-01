@@ -29,6 +29,7 @@ public class BreakableWallScript : MonoBehaviour
         collider = GetComponent<BoxCollider>();
     }
 
+
     void OnCollisionEnter(Collision other)
     {
         if (other.gameObject.CompareTag("Ship"))
@@ -38,6 +39,7 @@ public class BreakableWallScript : MonoBehaviour
             if (numOfHits == 1)
             {
                 GameObject ps = Instantiate(rockHitPs, other.transform.position, Quaternion.identity);
+                collider.isTrigger = true; // so the ship can pass straight through
                 if (this.gameObject.tag == "SideWall")
                 {
                     TurnChildrenRed();
@@ -45,19 +47,9 @@ public class BreakableWallScript : MonoBehaviour
                 else
                 {
                     tilePrefabScript.MakeAllRed();
+
                 }
                 
-            }
-            if (numOfHits >= maxHits && !isExploding)
-            {
-                isExploding = true;
-                // Pass the ship to tile prefab script which then calls ExplodeChildren() on all active walls
-                if (this.gameObject.tag == "SideWall") ExplodeChildren(other);
-                else tilePrefabScript.DisableAll(other);
-            } 
-            else 
-            {
-                GameObject ps = Instantiate(rockHitPs, other.transform.position, Quaternion.identity);
             }
         }
     }
@@ -68,11 +60,25 @@ public class BreakableWallScript : MonoBehaviour
         {
             this.gameObject.SetActive(false);
             ps.Play();
+        } else if (other.gameObject.CompareTag("Ship"))
+        {
+            numOfHits++;
+            if (numOfHits >= maxHits && !isExploding)
+            {
+                isExploding = true;
+                // Pass the ship to tile prefab script which then calls ExplodeChildren() on all active walls
+                if (this.gameObject.tag == "SideWall") ExplodeChildren(other.gameObject);
+                else tilePrefabScript.DisableAll(other.gameObject);
+            }
+            else
+            {
+                GameObject ps = Instantiate(rockHitPs, other.transform.position, Quaternion.identity);
+            }
         }
     }
 
     // This is called in TilePrefabScript
-    public void ExplodeChildren(Collision ship)
+    public void ExplodeChildren(GameObject ship)
     {
         collider.enabled = false;
 
@@ -94,7 +100,7 @@ public class BreakableWallScript : MonoBehaviour
         if (isExploding)
         {
             isExploding = false;
-            
+            collider.isTrigger = false;
             collider.enabled = true;
 
             for (int i = 0; i < children.Length; i++)

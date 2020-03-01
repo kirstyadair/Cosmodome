@@ -14,7 +14,7 @@ public class TilePrefabScript : MonoBehaviour
         
     }
 
-    public void DisableAll(Collision ship)
+    public void DisableAll(GameObject ship)
     {
         foreach (BreakableWallScript breakableWall in connectedWalls)
         {
