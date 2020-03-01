@@ -8,6 +8,8 @@ public class BreakableWallScript : MonoBehaviour
     int maxHits = 2;
     public ParticleSystem ps;
     public GameObject rockHitPs;
+    public Material redMat;
+    MeshRenderer[] meshRenderers;
     Rigidbody[] children;
     Vector3[] previousPositions;
     Quaternion[] previousRotations;
@@ -18,12 +20,20 @@ public class BreakableWallScript : MonoBehaviour
         children = GetComponentsInChildren<Rigidbody>();
         previousPositions = new Vector3[children.Length];
         previousRotations = new Quaternion[children.Length];
+        meshRenderers = GetComponentsInChildren<MeshRenderer>();
     }
 
     void OnCollisionEnter(Collision other)
     {
         if (other.gameObject.CompareTag("Ship"))
         {
+            if (numOfHits == 1)
+            {
+                foreach (MeshRenderer mr in meshRenderers)
+                {
+                    mr.material = redMat;
+                }
+            }
             if (numOfHits >= maxHits && !isExploding)
             {
                 isExploding = true;
@@ -49,7 +59,6 @@ public class BreakableWallScript : MonoBehaviour
 
     void ExplodeChildren(Collision ship)
     {
-        Debug.Log("explosion");
         this.GetComponent<BoxCollider>().enabled = false;
 
         for (int i = 0; i < children.Length; i++)

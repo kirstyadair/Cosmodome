@@ -67,5 +67,20 @@ public class BreakableWallSpawner : MonoBehaviour
             if (timeUntilNextSpawn >= timeBetweenSpawns) ChooseRandomPattern();
         }
 
+        if (Input.GetKeyDown(KeyCode.Alpha1)) ForcePattern(1);
+        if (Input.GetKeyDown(KeyCode.Alpha2)) ForcePattern(2);
+
+    }
+
+    void ForcePattern(int patternNumber)
+    {
+        currentWall = wallPatterns[patternNumber - 1];
+        wallNull = false;
+        // Activate all walls in this pattern
+        for (int i = 0; i < currentWall.walls.Length; i++)
+        {
+            currentWall.walls[i].SetActive(true);
+            if (i < currentWall.particleSystems.Length) currentWall.particleSystems[i].Play();
+        }
     }
 }
