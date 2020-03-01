@@ -33,7 +33,9 @@ public class BreakableWallScript : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Ship"))
         {
-            if (numOfHits == 0)
+            numOfHits++;
+
+            if (numOfHits == 1)
             {
                 GameObject ps = Instantiate(rockHitPs, other.transform.position, Quaternion.identity);
                 if (this.gameObject.tag == "SideWall")
@@ -55,7 +57,6 @@ public class BreakableWallScript : MonoBehaviour
             } 
             else 
             {
-                numOfHits++;
                 GameObject ps = Instantiate(rockHitPs, other.transform.position, Quaternion.identity);
             }
         }
