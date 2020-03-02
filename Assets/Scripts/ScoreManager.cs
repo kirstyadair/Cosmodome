@@ -275,7 +275,7 @@ public class ScoreManager : MonoBehaviour
 
         ChangeState(GameState.COUNTDOWN);
 
-        timeText.text = "ROUND " + round + 1;
+        timeText.text = "ROUND " + (round + 1).ToString();
 
         yield return cutscenesManager.StartCountdown();
 
