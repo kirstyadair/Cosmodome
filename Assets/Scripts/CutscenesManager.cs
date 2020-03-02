@@ -6,6 +6,10 @@ using UnityEngine.UI;
 
 public class CutscenesManager : MonoBehaviour
 {
+    public delegate void CutsceneEvent();
+    public static event CutsceneEvent OnPlayCountdown;
+    public static event CutsceneEvent OnPlayCharacterIntro;
+
 
     public GameObject recordingSquare;
     public Animator cameraAnimator;
@@ -22,9 +26,19 @@ public class CutscenesManager : MonoBehaviour
     [Header("Disable to not play intro cutscenes")]
     public bool shouldShowIntroCutscenes;
 
+    public IEnumerator PlayCountdownAfterSeeconds(float time)
+    {
+        if (time < 0) time = 0;
+        yield return new WaitForSeconds(time);
+
+        OnPlayCountdown?.Invoke();
+    }
+
     public IEnumerator StartRoundCutscene()
     {
         if (!shouldShowIntroCutscenes) yield return null;
+
+        OnPlayCharacterIntro?.Invoke();
 
         recordingSquare.SetActive(true);
         List<GameObject> playerShips = new List<GameObject>(GameObject.FindGameObjectsWithTag("Ship"));
@@ -33,6 +47,11 @@ public class CutscenesManager : MonoBehaviour
 
         playerNameIntroText.gameObject.SetActive(true);
         cameraAnimator.enabled = true;
+
+        float secondsInScene = playerShips.Count * 1.5f;
+
+        // make sure we start playing the countdown sound 3 seconds before we start the countdown
+        StartCoroutine(PlayCountdownAfterSeeconds(secondsInScene - 3f));
 
         foreach (GameObject plrShip in playerShips)
         {
