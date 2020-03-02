@@ -37,7 +37,7 @@ public class CutscenesManager : MonoBehaviour
 
     public IEnumerator StartRoundCutscene()
     {
-        if (!shouldShowIntroCutscenes) yield return null;
+        if (!shouldShowIntroCutscenes) yield break;
 
         OnPlayCharacterIntro?.Invoke();
 

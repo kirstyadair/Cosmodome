@@ -97,6 +97,7 @@ public class ScoreManager : MonoBehaviour
 
         if (InputManager.ActiveDevice.Action1.WasPressed)
         {
+            
             PlayerScript firstPlayerWithoutAController = null;
 
             int lowestPlayerNumber = 100;
@@ -156,11 +157,15 @@ public class ScoreManager : MonoBehaviour
     {
         // commented this out to see if the controller will reattach automatically
 
-        /*
+        
         foreach (PlayerScript player in players)
         {
-            if (player.inputDevice == device) player.inputDevice = null;
-        }*/
+            if (player.inputDevice == device)
+            {
+                player.inputDevice = null;
+                player.DisableRing();
+            }
+        }
     }
 
     public static ScoreManager Instance
