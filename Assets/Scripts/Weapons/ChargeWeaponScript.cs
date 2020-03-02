@@ -27,6 +27,8 @@ public class ChargeWeaponScript : MonoBehaviour
     [Header("How long to hold the laser on for")]
     public float laserHoldTime;
 
+    [Header("Damage that this will cause the attacked player")]
+    public int damage;
 
     [Header("How much to multiply the charge level by when not being held")]
     public float decreaseMuliplier = 0.85f;

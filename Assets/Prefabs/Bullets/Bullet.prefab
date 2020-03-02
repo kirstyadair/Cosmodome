@@ -59,7 +59,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _collisionExplosion: {fileID: 0}
-  _pushbackPower: 0
+  _pushbackPower: 0.5
   timeToDie: 3
   bulletForce: 1
   shooter: {fileID: 0}

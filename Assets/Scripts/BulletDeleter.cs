@@ -52,6 +52,7 @@ public class BulletDeleter : MonoBehaviour
             if (this.gameObject.name == "Laser")
             {
                 other.GetComponent<ShipController>().HitByBullet(this);
+                other.GetComponent<ShipController>().PushBack((other.transform.position - this.transform.position) * _pushbackPower);
             }
             else
             {

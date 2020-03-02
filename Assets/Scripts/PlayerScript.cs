@@ -83,6 +83,10 @@ public class PlayerScript : MonoBehaviour
     //public bool isActive = true;
     [HideInInspector]
     public BasicWeaponScript basicWeaponScript;
+
+    [HideInInspector]
+    public ChargeWeaponScript chargeWeaponScript;
+
     public GameObject ps;
 
     Coroutine vibrationCoroutine;
@@ -92,7 +96,10 @@ public class PlayerScript : MonoBehaviour
     {
         sm = ScoreManager.Instance;
         controller = GetComponent<ShipController>();
+
         if (GetComponent<BasicWeaponScript>() != null) basicWeaponScript = GetComponent<BasicWeaponScript>();
+        chargeWeaponScript = GetComponent<ChargeWeaponScript>();
+
         approval.ChangeApproval(0);
 
         Color tempColor = largeArrow.color;
