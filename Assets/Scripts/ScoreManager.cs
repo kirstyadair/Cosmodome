@@ -44,7 +44,7 @@ public class ScoreManager : MonoBehaviour
     public List<PlayerScript> players = new List<PlayerScript>();
 
     public int numberOfPlayers;
-    public float timeLeftInRound = 90;
+    public float timeLeftInRound = 60;
     public float roundLength;
     float maxTime;
     public Text timeText;
