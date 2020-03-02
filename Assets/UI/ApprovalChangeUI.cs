@@ -22,8 +22,8 @@ public class ApprovalChangeUI : MonoBehaviour
     public void OnStateChange (GameState newState, GameState oldState)
     {
         // Only show the UI as visible when gamestate is INGAME
-        if (newState == GameState.INGAME) animator.SetBool("Visible", true);
-        else animator.SetBool("Visible", false);
+        if (newState == GameState.COUNTDOWN) animator.SetBool("Visible", true);
+        else if (newState != GameState.INGAME) animator.SetBool("Visible", false);
     }
 
     private void Start()

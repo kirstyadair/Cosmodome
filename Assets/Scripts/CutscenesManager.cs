@@ -11,8 +11,13 @@ public class CutscenesManager : MonoBehaviour
     public Animator cameraAnimator;
     public CameraMovement cameraMovement;
 
+    public Animator countdownAnimator;
+
     public Text playerNameIntroText;
     public Text characterNameIntroText;
+
+    [Header("How long to count down for before starting game")]
+    public int countdownFrom = 3;
 
     [Header("Disable to not play intro cutscenes")]
     public bool shouldShowIntroCutscenes;
@@ -72,5 +77,18 @@ public class CutscenesManager : MonoBehaviour
         recordingSquare.SetActive(false);
         // done all the cutscenes
         yield return null;
+    }
+
+    public IEnumerator StartCountdown()
+    {
+        countdownAnimator.gameObject.SetActive(true);
+        for (int i = countdownFrom; i > 0; i--)
+        {
+            countdownAnimator.gameObject.GetComponent<Text>().text = i.ToString();
+            countdownAnimator.Play("Countdown", -1, 0);
+            yield return new WaitForSeconds(1f);
+        }
+
+        countdownAnimator.gameObject.SetActive(false);
     }
 }

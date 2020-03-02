@@ -15,10 +15,11 @@ public enum Traps
 /// INGAME we are currently playing
 /// ROUND_START_CUTSCENE is the cutscene that shows all the players
 /// ROUND_END_CUTSCENE is where the random animations play of the audience and such after a player is eliminated
+/// COUNTDOWN is the countdown just before start of game
 /// </summary>
 public enum GameState
 {
-    WAITING_FOR_CONTROLLERS, INGAME, ROUND_START_CUTSCENE, ROUND_END_CUTSCENE
+    WAITING_FOR_CONTROLLERS, INGAME, ROUND_START_CUTSCENE, ROUND_END_CUTSCENE, COUNTDOWN
 }
 
 public class ScoreManager : MonoBehaviour
@@ -229,7 +230,9 @@ public class ScoreManager : MonoBehaviour
 
         yield return cutscenesManager.StartRoundCutscene();
 
- 
+        ChangeState(GameState.COUNTDOWN);
+
+        yield return cutscenesManager.StartCountdown();
 
         ChangeState(GameState.INGAME);
     }

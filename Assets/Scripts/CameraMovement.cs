@@ -62,7 +62,7 @@ public class CameraMovement : MonoBehaviour
 
     void OnStateChange(GameState newState, GameState oldState)
     {
-        if (newState == GameState.INGAME)
+        if (newState == GameState.INGAME || newState == GameState.COUNTDOWN)
         {
             ResetCamera();
             UpdatePlayerList();
@@ -207,7 +207,7 @@ public class CameraMovement : MonoBehaviour
     void LateUpdate()
     {
         // disable camera control when we are not in game
-        if (sm.gameState != GameState.INGAME) return;
+        if (sm.gameState != GameState.INGAME && sm.gameState != GameState.COUNTDOWN) return;
 
         Move(mainCamera);
 
