@@ -154,7 +154,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _collisionExplosion: {fileID: 0}
-  _pushbackPower: 1
+  _pushbackPower: 5
   timeToDie: 5
   bulletForce: 1
   shooter: {fileID: 0}
