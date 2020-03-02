@@ -18,10 +18,8 @@ public class TilePrefabScript : MonoBehaviour
     {
         foreach (BreakableWallScript breakableWall in connectedWalls)
         {
-            Debug.Log("B");
             if (breakableWall.gameObject.activeInHierarchy)
             {
-                Debug.Log("C");
                 breakableWall.ExplodeChildren(ship);
             }
         }

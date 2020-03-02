@@ -57,6 +57,10 @@ public class ControllerAllocation : MonoBehaviour
     /// </summary>
     public event ControllerAllocationEvent OnControllersAllocated;
 
+    [SerializeField]
+    [Header("Tick and you can keep pressing X with 1 controller to join")]
+    bool shouldAllowOneController;
+
     Coroutine countdownCoroutine;
     bool _isFinishedAllocating = false;
 
@@ -95,7 +99,7 @@ public class ControllerAllocation : MonoBehaviour
         PlayerBox chosenBox = null;
         foreach (PlayerBox box in _playerBoxes)
         {
-            if (box.controller == controller) return; // this controller is already allocated, ignore
+            if (box.controller == controller && !shouldAllowOneController) return; // this controller is already allocated, ignore
             if (box.controller == null)
             {
                 chosenBox = box; // This is a box with no controller assigned, so assign it
