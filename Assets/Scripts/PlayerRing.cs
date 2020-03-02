@@ -50,6 +50,8 @@ public class PlayerRing : MonoBehaviour
 
     public void UpdateCharge(float chargeAmount)
     {
+        if (_animator == null) return;
+
         if (_isFullyCharged) return;
         if (_isCharging || chargeAmount == 0)
         {

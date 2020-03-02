@@ -212,7 +212,7 @@ public class CameraMovement : MonoBehaviour
     void LateUpdate()
     {
         // disable camera control when we are not in game
-        if (sm.gameState != GameState.INGAME && sm.gameState != GameState.COUNTDOWN) return;
+        if (!sm.isCameraEnabled) return;
 
         Move(mainCamera);
 

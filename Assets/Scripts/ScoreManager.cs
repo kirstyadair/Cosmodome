@@ -69,6 +69,10 @@ public class ScoreManager : MonoBehaviour
     public CrowdManager cm;
     public ExcitementManager em;
 
+    public bool isCameraEnabled = false;
+
+    int _currentRound = 1;
+    int _maxRounds;
 
     public GameState gameState = GameState.WAITING_FOR_CONTROLLERS;
 
@@ -128,18 +132,7 @@ public class ScoreManager : MonoBehaviour
 
         if (timeLeftInRound <= 0)
         {
-            PlayerScript currentLowest = players[0];
-
-            for (int i = 1; i < players.Count; i++)
-            {
-                if (players[i].approval.percentage < currentLowest.approval.percentage) currentLowest = players[i];
-            }
-
-            // do something interesting here for player elimination
-            StartCoroutine(Explode(currentLowest));
-
-            timeLeftInRound = roundLength;
-            maxTime = timeLeftInRound;
+            EndOfRound();
         }
         else
         {
@@ -152,6 +145,7 @@ public class ScoreManager : MonoBehaviour
             winningPlayer = currentHighest;
         }
     }
+
 
     public void OnDeviceDetached(InputDevice device)
     {
@@ -205,6 +199,7 @@ public class ScoreManager : MonoBehaviour
         if (newState == GameState.INGAME)
         {
             backgroundMusic.Play();
+            isCameraEnabled = true;
         }
     }
 
@@ -213,10 +208,13 @@ public class ScoreManager : MonoBehaviour
         maxTime = timeLeftInRound;
         GameObject[] playerGOs = GameObject.FindGameObjectsWithTag("Ship");
         numberOfPlayers = playerGOs.Length;
+       
         for (int i = 0; i < playerGOs.Length; i++)
         {
             players.Add(playerGOs[i].GetComponent<PlayerScript>());
         }
+
+        _maxRounds = players.Count - 1;
         UpdatePercentages();
         cm.SetUpCrowd();
 
@@ -229,6 +227,8 @@ public class ScoreManager : MonoBehaviour
     /// <returns></returns>
     public IEnumerator PlayStartofRoundCutscene()
     {
+        isCameraEnabled = false;
+
         ChangeState(GameState.ROUND_START_CUTSCENE);
 
         timeText.text = "START YOUR ENGINES";
@@ -236,8 +236,50 @@ public class ScoreManager : MonoBehaviour
         yield return cutscenesManager.StartRoundCutscene();
 
         ChangeState(GameState.COUNTDOWN);
+        isCameraEnabled = true;
 
         yield return cutscenesManager.StartCountdown();
+
+        ChangeState(GameState.INGAME);
+    }
+
+    void EndOfRound()
+    {
+        PlayerScript currentLowest = players[0];
+
+        for (int i = 1; i < players.Count; i++)
+        {
+            if (players[i].approval.percentage < currentLowest.approval.percentage) currentLowest = players[i];
+        }
+
+        timeLeftInRound = roundLength;
+        maxTime = timeLeftInRound;
+
+        StartCoroutine(Explode(currentLowest, 2f));
+        StartCoroutine(BetweenRoundsCutscene(_currentRound, _maxRounds, currentLowest));
+
+        _currentRound++;
+
+    }
+
+
+    public IEnumerator BetweenRoundsCutscene(int round, int maxRounds, PlayerScript eliminatedPlayer)
+    {
+
+        ChangeState(GameState.ROUND_END_CUTSCENE);
+
+        timeText.color = Color.white;
+        timeText.text = "ROUND OVER";
+
+        yield return cutscenesManager.InbetweenRoundCutscene(round, maxRounds, eliminatedPlayer);
+
+        ChangeState(GameState.COUNTDOWN);
+
+        timeText.text = "ROUND " + round + 1;
+
+        yield return cutscenesManager.StartCountdown();
+
+   
 
         ChangeState(GameState.INGAME);
     }
@@ -345,8 +387,10 @@ public class ScoreManager : MonoBehaviour
         }
     }
 
-    IEnumerator Explode(PlayerScript currentLowest)
+    IEnumerator Explode(PlayerScript currentLowest, float time)
     {
+        yield return new WaitForSeconds(time);
+
         GameObject.Instantiate(currentLowest.ps, currentLowest.transform.position, Quaternion.identity);
         currentLowest.Die();
         yield return new WaitForSeconds(0.1f);

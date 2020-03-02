@@ -12,9 +12,11 @@ public class CutscenesManager : MonoBehaviour
     public static event CutsceneEvent OnRoundStart;
 
 
+    public BetweenRoundText betweenRoundText;
     public GameObject recordingSquare;
     public Animator cameraAnimator;
     public CameraMovement cameraMovement;
+    public DeathSpotlight deathSpotlight;
 
     public Animator countdownAnimator;
 
@@ -33,6 +35,12 @@ public class CutscenesManager : MonoBehaviour
         yield return new WaitForSeconds(time);
 
         OnPlayCountdown?.Invoke();
+    }
+
+    public IEnumerator InbetweenRoundCutscene(int round, int maxRounds, PlayerScript eliminatedPlayer)
+    {
+        StartCoroutine(DeathHighlightPlayer(eliminatedPlayer.gameObject, 2f));
+        yield return betweenRoundText.ShowBetweenRoundText(eliminatedPlayer.playerNumber, eliminatedPlayer.playerColor.color, round, maxRounds);
     }
 
     public IEnumerator StartRoundCutscene()
@@ -112,4 +120,13 @@ public class CutscenesManager : MonoBehaviour
         OnRoundStart?.Invoke();
         countdownAnimator.gameObject.SetActive(false);
     }
+
+    public IEnumerator DeathHighlightPlayer(GameObject player, float time)
+    {
+        deathSpotlight.ShowSpotlight(player);
+        yield return new WaitForSeconds(time);
+        deathSpotlight.HideSpotlight();
+
+    }
+
 }
