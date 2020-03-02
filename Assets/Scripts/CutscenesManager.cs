@@ -9,6 +9,7 @@ public class CutscenesManager : MonoBehaviour
     public delegate void CutsceneEvent();
     public static event CutsceneEvent OnPlayCountdown;
     public static event CutsceneEvent OnPlayCharacterIntro;
+    public static event CutsceneEvent OnRoundStart;
 
 
     public GameObject recordingSquare;
@@ -108,6 +109,7 @@ public class CutscenesManager : MonoBehaviour
             yield return new WaitForSeconds(1f);
         }
 
+        OnRoundStart?.Invoke();
         countdownAnimator.gameObject.SetActive(false);
     }
 }

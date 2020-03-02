@@ -315,8 +315,8 @@ MonoBehaviour:
   timeAliveBeforeExploding: 5
   bouncesBeforeExplode: 10
   bouncificier: 10
-  explosionForce: 2000
-  explosionRadius: 500
+  explosionForce: 1000
+  explosionRadius: 100
 --- !u!95 &1277467178305095518
 Animator:
   serializedVersion: 3
@@ -420,7 +420,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: a30519c037d0a264eabb0352f7abbc31, type: 2}
+      objectReference: {fileID: 2100000, guid: eea4f7b9f6bc77045a8a6a3f8fa1c606, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 25e0153303827d049b3b3f20003f68ad, type: 3}
 --- !u!4 &8553910192063020987 stripped

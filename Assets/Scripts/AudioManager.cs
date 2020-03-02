@@ -13,6 +13,10 @@ public class AudioManager : MonoBehaviour
     [Header("Countdown sound")]
     public AudioClips countdownSound;
 
+
+    [Header("Round start sound")]
+    public AudioClips roundStartSound;
+
     // Start is called before the first frame update
     void OnEnable()
     {
@@ -30,6 +34,7 @@ public class AudioManager : MonoBehaviour
 
         CutscenesManager.OnPlayCountdown += Countdown;
         CutscenesManager.OnPlayCharacterIntro += CharacterIntro;
+        CutscenesManager.OnRoundStart += RoundStart;
     }
 
     // Update is called once per frame
@@ -146,6 +151,12 @@ public class AudioManager : MonoBehaviour
         audioSource.volume = countdownSound.volume;
         audioSource.PlayOneShot(countdownSound.clip);
     }
+
+    void RoundStart()
+    {
+        audioSource.volume = roundStartSound.volume;
+        audioSource.PlayOneShot(roundStartSound.clip);
+    }
 }
 
 [Serializable]
@@ -153,5 +164,4 @@ public class AudioClips
 {
     public AudioClip clip;
     [Range(0,1)]public float volume;
-
 }
