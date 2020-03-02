@@ -30,11 +30,12 @@ public class ApprovalChangeUI : MonoBehaviour
     private void Start()
     {
 
+
         sm = ScoreManager.Instance;
         ScoreManager.OnStateChanged += OnStateChange;
         approval = player.GetComponent<PlayerScript>().approval.percentage;
         previousApproval = approval;
-        approvalText.text = previousApproval.ToString() + "%";
+        approvalText.text = previousApproval.ToString() + "%"; 
         animator = GetComponent<Animator>();
 
         barLeft.fillAmount = previousApproval / 100;
@@ -44,6 +45,11 @@ public class ApprovalChangeUI : MonoBehaviour
         backingBarR.fillAmount = barRight.fillAmount;
     }
 
+
+    private void OnGUI()
+    {
+        
+    }
 
     public void Update()
     {
