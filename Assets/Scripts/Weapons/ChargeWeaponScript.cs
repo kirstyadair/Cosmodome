@@ -133,7 +133,6 @@ public class ChargeWeaponScript : MonoBehaviour
         shootPs.gameObject.SetActive(false);
         laser.GetComponent<Animator>().SetBool("LaserOn", false);
         deleter.enabled = false;
-        Debug.Log("stopped firing"); 
     }
 
     void Fire()
