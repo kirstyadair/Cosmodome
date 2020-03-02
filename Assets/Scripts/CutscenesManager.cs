@@ -39,6 +39,8 @@ public class CutscenesManager : MonoBehaviour
 
     public IEnumerator InbetweenRoundCutscene(int round, int maxRounds, PlayerScript eliminatedPlayer)
     {
+        if (!shouldShowIntroCutscenes) yield break;
+
         StartCoroutine(DeathHighlightPlayer(eliminatedPlayer.gameObject, 2f));
         yield return betweenRoundText.ShowBetweenRoundText(eliminatedPlayer.playerNumber, eliminatedPlayer.playerColor.color, round, maxRounds);
     }
