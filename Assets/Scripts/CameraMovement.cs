@@ -21,14 +21,14 @@ public class CameraMovement : MonoBehaviour
     [Header("Camera's minimum and maximum positions")]
     public float minX;
     public float maxX;
-    public float zOffset;
+    
 
     [Header("Center Point")]
     public float centerX;
     public float centerY;
     public float centerZ;
 
-
+    public GameObject center;
 
     ScoreManager sm;
     public List<float> distances;
@@ -166,7 +166,7 @@ public class CameraMovement : MonoBehaviour
         if (currentMaxDistance < 15 )
         {
             centerPoint.x = Mathf.Clamp(centerPoint.x, minX, maxX);
-            centerPoint.z = centerPoint.z + zOffset;
+            centerPoint.z = Mathf.Clamp(centerPoint.z, -16f, 40f);
 
             Vector3 cameraDestination = centerPoint - cam.transform.forward * 15 * minZoomDistance;
 
@@ -179,15 +179,15 @@ public class CameraMovement : MonoBehaviour
         else
         {
             centerPoint.x = Mathf.Clamp(centerPoint.x, minX, maxX);
-            centerPoint.z = centerPoint.z + zOffset;
+            centerPoint.z = Mathf.Clamp(centerPoint.z, -16f, 40f);
             Vector3 cameraDestination = centerPoint - cam.transform.forward * currentMaxDistance * minZoomDistance;
 
             Vector3 smoothMove = Vector3.Lerp(cam.transform.position, cameraDestination, dampeningTime);
             cam.transform.position = smoothMove;
         }
 
-        
 
+        center.transform.position = centerPoint;
 
 
     }
