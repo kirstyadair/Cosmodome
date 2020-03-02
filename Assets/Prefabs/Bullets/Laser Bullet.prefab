@@ -72,6 +72,11 @@ PrefabInstance:
       propertyPath: _pushbackPower
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4175211848509517035, guid: 3c6b1cbbd335f03418592cf9e065204a,
+        type: 3}
+      propertyPath: bulletForce
+      value: 1.5
+      objectReference: {fileID: 0}
     - target: {fileID: 2793820122913470761, guid: 3c6b1cbbd335f03418592cf9e065204a,
         type: 3}
       propertyPath: m_LocalScale.z
