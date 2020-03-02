@@ -886,8 +886,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -98, y: 35}
-  m_SizeDelta: {x: 160, y: 45.200012}
+  m_AnchoredPosition: {x: -92, y: 53}
+  m_SizeDelta: {x: 160, y: 84.97}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &443592442
 MonoBehaviour:
@@ -920,7 +920,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: <color="red">top secret</color> hyperluminal build 27/02/2020
+  m_Text: INTERNAL BUILD 02/03/2020
 --- !u!222 &443592443
 CanvasRenderer:
   m_ObjectHideFlags: 0
