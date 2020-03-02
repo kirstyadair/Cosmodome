@@ -9,6 +9,7 @@ public class ApprovalChangeUI : MonoBehaviour
     public Image barRight;
     public Image backingBarL;
     public Image backingBarR;
+    public Text approvalText;
 
     public GameObject player;
     private Animator animator;
@@ -33,7 +34,7 @@ public class ApprovalChangeUI : MonoBehaviour
         ScoreManager.OnStateChanged += OnStateChange;
         approval = player.GetComponent<PlayerScript>().approval.percentage;
         previousApproval = approval;
-
+        approvalText.text = previousApproval.ToString() + "%";
         animator = GetComponent<Animator>();
 
         barLeft.fillAmount = previousApproval / 100;
@@ -64,6 +65,7 @@ public class ApprovalChangeUI : MonoBehaviour
             }
 
             previousApproval = approval;
+            approvalText.text = previousApproval.ToString() + "%";
 
             barLeft.fillAmount = previousApproval / 100;
             barRight.fillAmount = previousApproval / 100;
