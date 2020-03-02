@@ -12,6 +12,8 @@ TagManager:
   - Crowd
   - ArenaCannon
   - Bumperball
+  - CrowdMember
+  - SideWall
   layers:
   - Default
   - TransparentFX
@@ -21,8 +23,8 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
+  - WallLayer
+  - Ship
   - 
   - 
   - 

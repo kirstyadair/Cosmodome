@@ -1,21 +1,27 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class CameraMovement : MonoBehaviour
 {
+    Vector3 startPosition;
+    Quaternion startRotation;
+    float startFov;
+
     public List<GameObject> shipObjects;
-    public Transform sourceShip;
-    public List<Transform> shipPositions;
+    public GameObject sourceShip;
+
     public Camera mainCamera;
 
     public float dampeningTime;//The time taken for the camera to reajust
     public float screenEdgeBuff;//The space between the edge of the screen and any objects at the top or bottom of the screen
     public float minZoomDistance;
-    
+
     [Header("Camera's minimum and maximum positions")]
     public float minX;
     public float maxX;
+    public float zOffset;
 
     [Header("Center Point")]
     public float centerX;
@@ -24,53 +30,88 @@ public class CameraMovement : MonoBehaviour
 
 
 
+    ScoreManager sm;
     public List<float> distances;
     public float currentMaxDistance;
-    
+
     private float zoomSpeed; //Speed for the smoothing of the orphographic
     private Vector3 moveVelocity; //Speed for the smoothing of the camera movement
     //public Vector3 centerPoint;
 
+    void Start()
+    {
+        startPosition = this.transform.position;
+        startRotation = this.transform.rotation;
+        startFov = mainCamera.fieldOfView;
+    }
+
     // Start is called before the first frame update
     void Awake()
     {
+        sm = ScoreManager.Instance;
+
         ScoreManager.OnStateChanged += OnStateChange;
         ScoreManager.OnPlayerEliminated += OnPlayerEliminated;
         mainCamera = GetComponentInChildren<Camera>();
+
+        UpdatePlayerList();
+
+
+
+
     }
 
     void OnStateChange(GameState newState, GameState oldState)
     {
-        if (newState == GameState.INGAME) PickSourceShip();
+        if (newState == GameState.INGAME || newState == GameState.COUNTDOWN)
+        {
+            ResetCamera();
+            UpdatePlayerList();
+        }
     }
 
     void OnPlayerEliminated()
     {
-        PickSourceShip();
+        UpdatePlayerList();
     }
 
-    void PickSourceShip()
+    void UpdatePlayerList()
     {
-        foreach (GameObject go in shipObjects)
+        foreach (var player in shipObjects.ToArray())
         {
-            if (go.activeSelf)
+            if (!player.activeSelf)
             {
-                sourceShip = go.transform;
-                return;
+                shipObjects.Remove(player);
             }
+
+        }
+        if (sourceShip == null)
+        {
+            sourceShip = shipObjects[0];
+        }
+        if (!sourceShip.activeSelf)
+        {
+            sourceShip = shipObjects[0];
         }
     }
 
-    private Vector3 FindCenter(List<Transform>targets)
+    public void ResetCamera()
+    {
+        this.transform.position = startPosition;
+        this.transform.rotation = startRotation;
+        mainCamera.fieldOfView = startFov;
+    }
+
+    private Vector3 FindCenter(List<GameObject> targets)
     {
         Vector3 center;
-        Vector3 minPoint = targets[0].position;
-        Vector3 maxPoint = targets[0].position;
+        Vector3 minPoint = targets[0].transform.position;
+        Vector3 maxPoint = targets[0].transform.position;
 
-        for(int i = 1; i<targets.Count; i++)
+        for (int i = 1; i < targets.Count; i++)
         {
-            
-            Vector3 pos = targets[i].position;
+
+            Vector3 pos = targets[i].transform.position;
 
             if (pos.x < minPoint.x)
                 minPoint.x = pos.x;
@@ -86,19 +127,25 @@ public class CameraMovement : MonoBehaviour
                 maxPoint.z = pos.z;
         }
 
-       
+
         center = minPoint + .5f * (maxPoint - minPoint);
+
+        //center.y = transform.position.y;
+        //center.z = transform.position.z;
 
         return center;
 
     }
 
-    void FindDistance(List<Transform>targets)
+    void FindDistance(List<GameObject> targets)
     {
+
+
         distances.Clear();
-        foreach(Transform transform in targets)
+
+        foreach (GameObject ship in shipObjects)
         {
-            float dist = Vector3.Distance(sourceShip.position, transform.position);
+            float dist = Vector3.Distance(sourceShip.transform.position, ship.transform.position);
             distances.Add(dist);
         }
 
@@ -109,60 +156,67 @@ public class CameraMovement : MonoBehaviour
     private void Move(Camera cam)
     {
 
-        Vector3 centerPoint = FindCenter(shipPositions);
+        Vector3 centerPoint = FindCenter(shipObjects);
 
         centerX = centerPoint.x;
         centerY = centerPoint.y;
         centerZ = centerPoint.z;
-        FindDistance(shipPositions);
-        if(currentMaxDistance>6)
+        FindDistance(shipObjects);
+        
+        if (currentMaxDistance < 15 )
         {
             centerPoint.x = Mathf.Clamp(centerPoint.x, minX, maxX);
-            Vector3 cameraDestination = centerPoint - cam.transform.forward *6* minZoomDistance;
-            
-            
+            centerPoint.z = centerPoint.z + zOffset;
+
+            Vector3 cameraDestination = centerPoint - cam.transform.forward * 15 * minZoomDistance;
+
+
             Vector3 smoothMove = Vector3.Lerp(cam.transform.position, cameraDestination, dampeningTime);
             cam.transform.position = smoothMove;
-            
+
 
         }
         else
         {
+            centerPoint.x = Mathf.Clamp(centerPoint.x, minX, maxX);
+            centerPoint.z = centerPoint.z + zOffset;
             Vector3 cameraDestination = centerPoint - cam.transform.forward * currentMaxDistance * minZoomDistance;
-          
+
             Vector3 smoothMove = Vector3.Lerp(cam.transform.position, cameraDestination, dampeningTime);
             cam.transform.position = smoothMove;
         }
-        
+
         
 
-       
-        
+
+
     }
 
 
     private void Zoom()
     {
-        
+
     }
 
 
-    
+
     public void SetStartPositionAndSize()
     {
-        FindCenter(shipPositions);
+        FindCenter(shipObjects);
 
 
-        
+
 
     }
     // Update is called once per frame
     void LateUpdate()
     {
-        
+        // disable camera control when we are not in game
+        if (sm.gameState != GameState.INGAME && sm.gameState != GameState.COUNTDOWN) return;
+
         Move(mainCamera);
-        
-       
+
+
 
     }
 }

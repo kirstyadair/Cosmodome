@@ -235,40 +235,38 @@ public class PlayerScript : MonoBehaviour
         }
 
         //Bens code change start
-        score.text = approval.percentage + "%";
+        //score.text = approval.percentage + "%";
         //Bens code change end
         if (hitByBulletCooldown > 0) hitByBulletCooldown -= Time.deltaTime;
 
-        if (inputDevice != null)
+
+        // controls for the ship
+        if (sm.gameState == GameState.INGAME)
         {
-            controller.turretDirection = new Vector3(inputDevice.RightStick.Value.x, 0, inputDevice.RightStick.Value.y);
-
-            if (inputDevice.RightBumper.IsPressed) controller.Fire();
-
-            isActivatingTrap = inputDevice.Action1.IsPressed;
-            controller.targetDirection = new Vector3(inputDevice.LeftStick.Value.x, 0, inputDevice.LeftStick.Value.y);
-            controller.targetDirection.Normalize();
-            controller.targetDirection *= inputDevice.LeftStick.Value.magnitude;
-
-            if (inputDevice.LeftBumper.WasPressed)
+            if (inputDevice != null)
             {
-                controller.Boost();
-            }
+                controller.turretDirection = new Vector3(inputDevice.RightStick.Value.x, 0, inputDevice.RightStick.Value.y);
 
-        } else if (playerNumber == 1)
-        {
-            // if player 1, default to keyboard controls
-            controller.targetDirection = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
-            controller.targetDirection.Normalize();
-            isActivatingTrap = Input.GetKey(KeyCode.X);
-        } else
-        {
-            // just go to center
-            isActivatingTrap = false;
-            
-            controller.targetDirection = GameObject.Find("Center").transform.position - this.transform.position;
-            if (controller.targetDirection.magnitude < 1f) controller.targetDirection = Vector3.zero;
-            else controller.targetDirection.Normalize();
+                if (inputDevice.RightBumper.IsPressed) controller.Fire();
+
+                isActivatingTrap = inputDevice.Action1.IsPressed;
+                controller.targetDirection = new Vector3(inputDevice.LeftStick.Value.x, 0, inputDevice.LeftStick.Value.y);
+                controller.targetDirection.Normalize();
+                controller.targetDirection *= inputDevice.LeftStick.Value.magnitude;
+
+                if (inputDevice.LeftBumper.WasPressed)
+                {
+                    controller.Boost();
+                }
+
+            }
+            else if (playerNumber == 1)
+            {
+                // if player 1, default to keyboard controls
+                controller.targetDirection = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+                controller.targetDirection.Normalize();
+                isActivatingTrap = Input.GetKey(KeyCode.X);
+            }
         }
     }
 

@@ -13,6 +13,7 @@ public class CrowdManager : MonoBehaviour
     
     ScoreManager sm;
     public GameObject[] crowdMembers;
+    public List<CrowdMemberScript> crowdMemberScripts = new List<CrowdMemberScript>();
 
 
     void OnEnable()
@@ -28,6 +29,10 @@ public class CrowdManager : MonoBehaviour
         playerScores = new float[playerCount];
         numOfSupporters = new float[playerCount];
         crowdMembers = GameObject.FindGameObjectsWithTag("Crowd");
+        foreach (GameObject crowdMember in crowdMembers)
+        {
+            crowdMemberScripts.Add(crowdMember.GetComponent<CrowdMemberScript>());
+        }
         
         for (int i = 0; i < playerCount; i++)
         {
@@ -56,20 +61,16 @@ public class CrowdManager : MonoBehaviour
 
         for (int i = 0; i < playerCount; i++)
         {
-            for (int j = 0; j < crowdMembers.Length; j++)
+            for (int j = 0; j < crowdMemberScripts.Count; j++)
             {
+                if (crowdMemberScripts[j] == null)
+                {
+                    Debug.Log(j);
+                    Debug.Log(crowdMemberScripts.Count);   
+                }
                 if(j >= minVal && j < (minVal + numOfSupporters[i]))
                 {
-                    CrowdMemberScript[] cms = crowdMembers[j].GetComponentsInChildren<CrowdMemberScript>();
-                    for (int k = 0; k < cms.Length; k++)
-                    {
-                        cms[k].mat.SetColor("_EmissionColor", sm.players[i].playerColor.color);
-                        cms[k].bothMats[1] = cms[k].mat;
-                        cms[k].mr.materials = cms[k].bothMats;
-                        cms[k].gmr1.material.SetColor("_EmissionColor", sm.players[i].playerColor.color);
-                        cms[k].gmr2.material.SetColor("_EmissionColor", sm.players[i].playerColor.color);
-                        cms[k].gmr3.material.SetColor("_EmissionColor", sm.players[i].playerColor.color);
-                    }
+                    crowdMemberScripts[j].glowstickMR.material.SetColor("_EmissionColor", sm.players[i].playerColor.color);
                 }
             }
             minVal += numOfSupporters[i];

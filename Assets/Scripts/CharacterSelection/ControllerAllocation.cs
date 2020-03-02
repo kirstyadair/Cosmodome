@@ -27,6 +27,7 @@ public class AllocatedController
 {
     public PlayerTypes playerType;
     public InputDevice controller;
+    public int playerNumber;
     public Color color;
 }
 
@@ -221,7 +222,8 @@ public class ControllerAllocation : MonoBehaviour
             {
                 playerType = playerBox.chosenCharacter.playerType,
                 controller = playerBox.controller,
-                color = playerBox.playerColour
+                color = playerBox.playerColour,
+                playerNumber = playerBox._playerNumber
             };
 
             allocatedControllers.Add(allocatedController);

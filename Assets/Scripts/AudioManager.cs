@@ -7,6 +7,16 @@ public class AudioManager : MonoBehaviour
     AudioSource audioSource;
     public AudioClips[] clips = new AudioClips[13];
 
+    [Header("Sounds to randomly play on character intro")]
+    public AudioClips[] introSounds;
+
+    [Header("Countdown sound")]
+    public AudioClips countdownSound;
+
+
+    [Header("Round start sound")]
+    public AudioClips roundStartSound;
+
     // Start is called before the first frame update
     void OnEnable()
     {
@@ -21,6 +31,10 @@ public class AudioManager : MonoBehaviour
         BumperBall.OnBumperBallExplode += BBExplode;
         BumperBall.OnBumperBallHitPlayer += BBHit;
         BumperBall.OnBumperBallHitWall += BBHitWall;
+
+        CutscenesManager.OnPlayCountdown += Countdown;
+        CutscenesManager.OnPlayCharacterIntro += CharacterIntro;
+        CutscenesManager.OnRoundStart += RoundStart;
     }
 
     // Update is called once per frame
@@ -123,6 +137,26 @@ public class AudioManager : MonoBehaviour
         audioSource.volume = clips[6].volume;
         audioSource.PlayOneShot(clips[6].clip);
     }
+
+    void CharacterIntro()
+    {
+        // pick a random character intro sound
+        AudioClips chosenIntroSound = introSounds[UnityEngine.Random.Range(0, introSounds.Length)];
+        audioSource.volume = chosenIntroSound.volume;
+        audioSource.PlayOneShot(chosenIntroSound.clip);
+    }
+
+    void Countdown()
+    {
+        audioSource.volume = countdownSound.volume;
+        audioSource.PlayOneShot(countdownSound.clip);
+    }
+
+    void RoundStart()
+    {
+        audioSource.volume = roundStartSound.volume;
+        audioSource.PlayOneShot(roundStartSound.clip);
+    }
 }
 
 [Serializable]
@@ -130,5 +164,4 @@ public class AudioClips
 {
     public AudioClip clip;
     [Range(0,1)]public float volume;
-
 }
