@@ -322,7 +322,6 @@ public class ShipController : MonoBehaviour
     /// <param name="force">Force to apply</param>
     public void PushBack(Vector3 force)
     {
-        Debug.Log("pushback " + force);
         rb.AddForce(force, ForceMode.Impulse);
     }
 
