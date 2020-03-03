@@ -260,7 +260,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &6470923684211645982
 Transform:
   m_ObjectHideFlags: 0
@@ -4167,7 +4167,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &3367585637705645147
 Transform:
   m_ObjectHideFlags: 0
@@ -6389,7 +6389,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &102464260582724107
 Transform:
   m_ObjectHideFlags: 0
@@ -7760,6 +7760,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cell_Wall_edge_spike
       objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: e4339e6efe7f4d24eb28e20be84038ca,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: e4339e6efe7f4d24eb28e20be84038ca,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -7909,6 +7914,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Cell_Wall_side_spike (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: cecd52cf74ed9a44abbae880f021506a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: cecd52cf74ed9a44abbae880f021506a,
         type: 3}
@@ -9285,6 +9295,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cell_Wall_corner_spike
       objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 773a7de6b416ddf42973c6a77623394f,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 773a7de6b416ddf42973c6a77623394f,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -9339,6 +9354,66 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -730926943810434960, guid: 773a7de6b416ddf42973c6a77623394f,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1.07
+      objectReference: {fileID: 0}
+    - target: {fileID: -1363535845275815898, guid: 773a7de6b416ddf42973c6a77623394f,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -1363535845275815898, guid: 773a7de6b416ddf42973c6a77623394f,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1.07
+      objectReference: {fileID: 0}
+    - target: {fileID: 5307745880856284588, guid: 773a7de6b416ddf42973c6a77623394f,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5307745880856284588, guid: 773a7de6b416ddf42973c6a77623394f,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1.07
+      objectReference: {fileID: 0}
+    - target: {fileID: -4608556790347681854, guid: 773a7de6b416ddf42973c6a77623394f,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -4608556790347681854, guid: 773a7de6b416ddf42973c6a77623394f,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1.07
+      objectReference: {fileID: 0}
+    - target: {fileID: 2248190963273755338, guid: 773a7de6b416ddf42973c6a77623394f,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2248190963273755338, guid: 773a7de6b416ddf42973c6a77623394f,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1.07
+      objectReference: {fileID: 0}
+    - target: {fileID: -8005484494587122710, guid: 773a7de6b416ddf42973c6a77623394f,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8005484494587122710, guid: 773a7de6b416ddf42973c6a77623394f,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1.07
+      objectReference: {fileID: 0}
+    - target: {fileID: 3180332076287212682, guid: 773a7de6b416ddf42973c6a77623394f,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 773a7de6b416ddf42973c6a77623394f, type: 3}
@@ -10435,6 +10510,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cell_Wall_side_spike (5)
       objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: cecd52cf74ed9a44abbae880f021506a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: cecd52cf74ed9a44abbae880f021506a,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -10584,6 +10664,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Cell_Wall_edge_spike (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: e4339e6efe7f4d24eb28e20be84038ca,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: e4339e6efe7f4d24eb28e20be84038ca,
         type: 3}
@@ -10940,6 +11025,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Cell_Wall_edge_spike (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: e4339e6efe7f4d24eb28e20be84038ca,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: e4339e6efe7f4d24eb28e20be84038ca,
         type: 3}
@@ -11307,6 +11397,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Cell_Wall_edge_spike (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: e4339e6efe7f4d24eb28e20be84038ca,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: e4339e6efe7f4d24eb28e20be84038ca,
         type: 3}
@@ -11933,6 +12028,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cell_Wall_corner_spike (2)
       objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 773a7de6b416ddf42973c6a77623394f,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 773a7de6b416ddf42973c6a77623394f,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -12007,6 +12107,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Cell_Wall_edge_spike (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: e4339e6efe7f4d24eb28e20be84038ca,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: e4339e6efe7f4d24eb28e20be84038ca,
         type: 3}
@@ -12237,6 +12342,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Cell_Wall_corner_spike (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 773a7de6b416ddf42973c6a77623394f,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 773a7de6b416ddf42973c6a77623394f,
         type: 3}
@@ -13609,6 +13719,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cell_Wall_side_spike (4)
       objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: cecd52cf74ed9a44abbae880f021506a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: cecd52cf74ed9a44abbae880f021506a,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -13683,6 +13798,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Cell_Wall_side_spike (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: cecd52cf74ed9a44abbae880f021506a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: cecd52cf74ed9a44abbae880f021506a,
         type: 3}
@@ -14000,6 +14120,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cell_Wall_side_spike (2)
       objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: cecd52cf74ed9a44abbae880f021506a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: cecd52cf74ed9a44abbae880f021506a,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -14240,6 +14365,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Cell_Wall_corner_spike (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 773a7de6b416ddf42973c6a77623394f,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 773a7de6b416ddf42973c6a77623394f,
         type: 3}
@@ -14521,6 +14651,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Cell_Wall_side_spike
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: cecd52cf74ed9a44abbae880f021506a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: cecd52cf74ed9a44abbae880f021506a,
         type: 3}
@@ -15114,6 +15249,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cell_Wall_corner_spike (1)
       objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 773a7de6b416ddf42973c6a77623394f,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 773a7de6b416ddf42973c6a77623394f,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -15579,6 +15719,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Cell_Wall_corner_spike (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 773a7de6b416ddf42973c6a77623394f,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 773a7de6b416ddf42973c6a77623394f,
         type: 3}
@@ -16257,6 +16402,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Cell_Wall_edge_spike (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: e4339e6efe7f4d24eb28e20be84038ca,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: e4339e6efe7f4d24eb28e20be84038ca,
         type: 3}
