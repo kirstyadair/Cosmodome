@@ -13,14 +13,20 @@ public class SpikeTrapScript : MonoBehaviour
     Material redMat;
     [SerializeField]
     Material standardMat;
+    [SerializeField]
+    GameObject warningPopup;
+    Animator warningPopupAnim;
 
     void Start()
     {
+        warningPopupAnim = warningPopup.GetComponent<Animator>();
+        // Get the spikes for this wall
         GameObject[] allSpikes = GameObject.FindGameObjectsWithTag("Spike");
         foreach (GameObject spike in allSpikes)
         {
             if (spike.transform.parent.transform.parent.name == this.gameObject.name)
             {
+                // Add the spike object and its mesh renderer to lists
                 spikes.Add(spike);
                 spikeMRs.Add(spike.GetComponent<SkinnedMeshRenderer>());
                 spike.SetActive(false);
@@ -30,12 +36,9 @@ public class SpikeTrapScript : MonoBehaviour
 
     public void SpawnInWall()
     {
-        for (int i = 0; i < spikes.Count; i++)
-        {
-            spikes[i].SetActive(true);
-            spikeMRs[i].material = redMat;
-            GameObject ps = Instantiate(particleEffect, spikes[i].transform.position, spikes[i].transform.rotation);
-        }
+        // Play the warning first
+        StartCoroutine(WarnWallSpawn());
+        
     }
 
     public void DisableTrap()
@@ -45,6 +48,24 @@ public class SpikeTrapScript : MonoBehaviour
             GameObject ps = Instantiate(particleEffect, spikes[i].transform.position, spikes[i].transform.rotation);
             spikeMRs[i].material = standardMat;
             spikes[i].SetActive(false);
+        }
+    }
+
+    IEnumerator WarnWallSpawn()
+    {
+        warningPopup.SetActive(true);
+        yield return new WaitForSeconds(1);
+        warningPopupAnim.SetFloat("Speed", -1);
+        yield return new WaitForSeconds(1);
+        warningPopup.SetActive(false);
+        warningPopupAnim.SetFloat("Speed", 1);
+
+        // Spawn in each spike and play a particle effect
+        for (int i = 0; i < spikes.Count; i++)
+        {
+            spikes[i].SetActive(true);
+            spikeMRs[i].material = redMat;
+            GameObject ps = Instantiate(particleEffect, spikes[i].transform.position, spikes[i].transform.rotation);
         }
     }
 }
