@@ -387,6 +387,17 @@ public class ScoreManager : MonoBehaviour
         }
     }
 
+    public void EnableCameraFollow()
+    {
+        
+    }
+
+
+    public void DisableCameraFollow()
+    {
+
+    }
+
     IEnumerator Explode(PlayerScript currentLowest, float time)
     {
         yield return new WaitForSeconds(time);

@@ -25,7 +25,16 @@ public class BreakableWallSpawner : MonoBehaviour
 
     void Start()
     {
+        ScoreManager.OnStateChanged += OnStateChange;
         scoreManager = ScoreManager.Instance;
+    }
+
+    void OnStateChange(GameState newState, GameState oldState)
+    {
+        if (newState == GameState.ROUND_START_CUTSCENE)
+        {
+            if (currentWall != null) DeactivateWall(currentWall);
+        }
     }
 
     void ChooseRandomPattern()
@@ -42,6 +51,7 @@ public class BreakableWallSpawner : MonoBehaviour
         }
     }
 
+   
     void DeactivateWall(WallPattern currentWall)
     {
         // Deactivate all walls in the pattern

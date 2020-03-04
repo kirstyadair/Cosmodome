@@ -11,7 +11,10 @@ public class CutscenesManager : MonoBehaviour
     public static event CutsceneEvent OnPlayCharacterIntro;
     public static event CutsceneEvent OnRoundStart;
 
+    [Header("Amount of 'Cutscene n' animations available")]
+    public int amountOfCutsceneAnimations;
 
+    [Space(10)]
     public BetweenRoundText betweenRoundText;
     public GameObject recordingSquare;
     public Animator cameraAnimator;
@@ -29,6 +32,10 @@ public class CutscenesManager : MonoBehaviour
     [Header("Disable to not play intro cutscenes")]
     public bool shouldShowIntroCutscenes;
 
+    bool _isPlayingInBetweenRoundCutscenes = false;
+
+    ScoreManager sm;
+
     public IEnumerator PlayCountdownAfterSeeconds(float time)
     {
         if (time < 0) time = 0;
@@ -37,12 +44,65 @@ public class CutscenesManager : MonoBehaviour
         OnPlayCountdown?.Invoke();
     }
 
+    void Start()
+    {
+        sm = ScoreManager.Instance;
+    }
+
     public IEnumerator InbetweenRoundCutscene(int round, int maxRounds, PlayerScript eliminatedPlayer)
     {
         if (!shouldShowIntroCutscenes) yield break;
 
         StartCoroutine(DeathHighlightPlayer(eliminatedPlayer.gameObject, 2f));
+        StartCoroutine(StartPlayingInbetweenRoundCutscenes(3f));
+
+        // show the text that comes up with info between rounds
         yield return betweenRoundText.ShowBetweenRoundText(eliminatedPlayer.playerNumber, eliminatedPlayer.playerColor.color, round, maxRounds);
+
+        // once text animation is done, stop playing the inbetween round cutscenes
+
+        yield return new WaitForSeconds(0.5f);
+
+        StopPlayingInbetweenRoundCutscenes();
+    }
+
+    IEnumerator StartPlayingInbetweenRoundCutscenes(float after)
+    {
+        yield return new WaitForSeconds(after);
+        recordingSquare.SetActive(true);
+        cameraAnimator.enabled = true;
+        _isPlayingInBetweenRoundCutscenes = true;
+        sm.isCameraEnabled = false;
+
+        int currentClip = UnityEngine.Random.Range(1, amountOfCutsceneAnimations + 1);
+        cameraAnimator.Play("Cutscene " + currentClip);
+
+        while (_isPlayingInBetweenRoundCutscenes)
+        {
+            // TODO: Possible that the last animation loops so we never enter this?
+            // animation is done
+            if (cameraAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime > 1 && !cameraAnimator.IsInTransition(0))
+            {
+                int nextClip = UnityEngine.Random.Range(1, amountOfCutsceneAnimations + 1);
+
+                // make sure nextClip is never the same as the currentClip
+                while (nextClip == currentClip) nextClip = UnityEngine.Random.Range(1, amountOfCutsceneAnimations + 1);
+
+                cameraAnimator.Play("Cutscene " + nextClip);
+            }
+
+            yield return null;
+        }
+
+        sm.isCameraEnabled = true;
+        cameraAnimator.enabled = false;
+        recordingSquare.SetActive(false);
+        cameraMovement.ResetCamera();
+    }
+
+    void  StopPlayingInbetweenRoundCutscenes()
+    {
+        _isPlayingInBetweenRoundCutscenes = false;
     }
 
     public IEnumerator StartRoundCutscene()
