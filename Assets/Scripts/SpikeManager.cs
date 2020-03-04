@@ -13,6 +13,8 @@ public class SpikeManager : MonoBehaviour
     bool trapsActive = false;
     [Header("How many traps (max) spawn at once?")]
     public float numberOfTraps;
+    [Header("How long is the ship stuck for?")]
+    public float timeStuck;
 
     List<SpikeTrapScript> spikeWalls = new List<SpikeTrapScript>();
     List<SpikeTrapScript> activeTraps = new List<SpikeTrapScript>();

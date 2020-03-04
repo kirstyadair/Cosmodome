@@ -16,9 +16,11 @@ public class SpikeTrapScript : MonoBehaviour
     [SerializeField]
     GameObject warningPopup;
     Animator warningPopupAnim;
+    SpikeManager spikeManager;
 
     void Start()
     {
+        spikeManager = GameObject.Find("SpikeManager").GetComponent<SpikeManager>();
         warningPopupAnim = warningPopup.GetComponent<Animator>();
         // Get the spikes for this wall
         GameObject[] allSpikes = GameObject.FindGameObjectsWithTag("Spike");
@@ -38,7 +40,6 @@ public class SpikeTrapScript : MonoBehaviour
     {
         // Play the warning first
         StartCoroutine(WarnWallSpawn());
-        
     }
 
     public void DisableTrap()
@@ -66,6 +67,24 @@ public class SpikeTrapScript : MonoBehaviour
             spikes[i].SetActive(true);
             spikeMRs[i].material = redMat;
             GameObject ps = Instantiate(particleEffect, spikes[i].transform.position, spikes[i].transform.rotation);
+        }
+    }
+
+    IEnumerator FreezeShip(Collider ship)
+    {
+        Rigidbody shipRB = ship.gameObject.GetComponent<Rigidbody>();
+        shipRB.constraints = RigidbodyConstraints.FreezePosition;
+
+        yield return new WaitForSeconds(spikeManager.timeStuck);
+
+        shipRB.constraints = RigidbodyConstraints.None;
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Ship"))
+        { 
+            StartCoroutine(FreezeShip(other));
         }
     }
 }
