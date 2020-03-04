@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class ApprovalChangeUI : MonoBehaviour
 {
-    public LayoutElement percentageBar;
 
     public Image backingBarL;
     public Image backingBarR;
@@ -35,7 +34,6 @@ public class ApprovalChangeUI : MonoBehaviour
         ScoreManager.OnStateChanged += OnStateChange;
         approval = player.GetComponent<PlayerScript>().approval.percentage;
         previousApproval = approval;
-        percentageBar.flexibleWidth = approval / 100;
         approvalText.text = previousApproval.ToString() + "%"; 
         animator = GetComponent<Animator>();
 
@@ -66,13 +64,13 @@ public class ApprovalChangeUI : MonoBehaviour
                 animator.SetBool("Hit", true);
                 StartCoroutine(WaitFlash());
             }
-            percentageBar.flexibleWidth = approval / 100;
             previousApproval = approval;
             approvalText.text = previousApproval.ToString() + "%";
 
             
         }
-        
+        gameObject.GetComponentInChildren<PercentageBar>().UpdatePercentages();
+
     }
 
 
