@@ -17,6 +17,10 @@ public class SpikeTrapScript : MonoBehaviour
     GameObject warningPopup;
     Animator warningPopupAnim;
     SpikeManager spikeManager;
+    bool isActive = false;
+
+    public delegate void PlayerSpikeHit(PlayerScript hitPlayer);
+    public static event PlayerSpikeHit OnPlayerSpikeHit;
 
     void Start()
     {
@@ -44,6 +48,7 @@ public class SpikeTrapScript : MonoBehaviour
 
     public void DisableTrap()
     {
+        isActive = false;
         for (int i = 0; i < spikes.Count; i++)
         {
             GameObject ps = Instantiate(particleEffect, spikes[i].transform.position, spikes[i].transform.rotation);
@@ -61,6 +66,7 @@ public class SpikeTrapScript : MonoBehaviour
         warningPopup.SetActive(false);
         warningPopupAnim.SetFloat("Speed", 1);
 
+        isActive = true;
         // Spawn in each spike and play a particle effect
         for (int i = 0; i < spikes.Count; i++)
         {
@@ -82,9 +88,10 @@ public class SpikeTrapScript : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Ship"))
+        if (other.CompareTag("Ship") && isActive)
         { 
             StartCoroutine(FreezeShip(other));
+            OnPlayerSpikeHit?.Invoke(other.gameObject.GetComponent<PlayerScript>());
         }
     }
 }

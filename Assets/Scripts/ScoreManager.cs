@@ -60,6 +60,7 @@ public class ScoreManager : MonoBehaviour
     public int highestDamageRate;
     public int arenaCannonRate;
     public int bumperBallExplosionRate;
+    public int spikeHitDamageRate;
 
     public Color[] playerColours;
 
@@ -190,6 +191,7 @@ public class ScoreManager : MonoBehaviour
         PlayerScript.OnPlayerHitByArenaCannon += PlayerHitByArenaCannon;
         WallScript.OnTrapHit += PlayerHitTrap;
         WallScript.OnTrapSabotaged += PlayerAttemptSabotage;
+        SpikeTrapScript.OnPlayerSpikeHit += PlayerHitSpike;
         BumperBall.OnBumperBallExplodeOnPlayer += BumperBallExplodesOnPlayer;
         ScoreManager.OnStateChanged += WhenStateHasChanged;
     }
@@ -396,6 +398,13 @@ public class ScoreManager : MonoBehaviour
     public void DisableCameraFollow()
     {
 
+    }
+
+    void PlayerHitSpike(PlayerScript ship)
+    {
+        ship.approval.ChangeApproval(-spikeHitDamageRate);
+        OnUpdateScore?.Invoke();
+        UpdatePercentages();
     }
 
     IEnumerator Explode(PlayerScript currentLowest, float time)
