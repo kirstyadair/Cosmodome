@@ -52,12 +52,14 @@ public class BasicWeaponScript : MonoBehaviour
     float _fireCooldown;
     Rigidbody _rb;
     ShipController _shipController;
+    PlayerScript playerScript;
 
     void Start()
     {
         bulletsCurrentlyInClip = clipSize;
         _rb = GetComponent<Rigidbody>();
         _shipController = GetComponent<ShipController>();
+        playerScript = GetComponent<PlayerScript>();
     }
 
     void FixedUpdate()
@@ -84,7 +86,7 @@ public class BasicWeaponScript : MonoBehaviour
             return;
         }
 
-        GetComponent<PlayerScript>().Vibrate(1f, 0.1f);
+        playerScript.Vibrate(1f, 0.1f);
 
         foreach (GameObject spawnPoint in _bulletSpawns)
         {

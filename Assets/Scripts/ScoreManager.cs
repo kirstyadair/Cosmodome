@@ -291,7 +291,7 @@ public class ScoreManager : MonoBehaviour
         //hitPlayer.approval.ChangeApproval(-bumperBallExplosionRate);
         StartCoroutine(hitPlayer.FlashWithDamage());
 
-        StartCoroutine(hitPlayer.GetComponent<PlayerScript>().ArrowFlash(.5f, 0, 0));
+        StartCoroutine(hitPlayer.ArrowFlash(.5f, 0, 0));
     }
 
     void PlayerShot(PlayerScript shotPlayer, PlayerScript shooter)
