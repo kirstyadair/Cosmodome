@@ -34,10 +34,6 @@ public class ArrowAnimation : MonoBehaviour
 
         animators[multiplier - 1].SetBool("isEmpty", false);
         yield return new WaitForSeconds(.3f);
-
-
-
-
     }
 
     IEnumerator EmptyDelay(int multiplier)
@@ -45,8 +41,6 @@ public class ArrowAnimation : MonoBehaviour
         animators[multiplier].SetBool("isFull", false);
         animators[multiplier].SetBool("isEmpty", true);
         yield return new WaitForSeconds(.2f);
-        
-        
     }
 
 
@@ -60,10 +54,6 @@ public class ArrowAnimation : MonoBehaviour
                 yield return new WaitForSeconds(.1f);
                 animators[i].SetBool("isJumping", false);
             }
-            
-
-
-
         }
 
     }

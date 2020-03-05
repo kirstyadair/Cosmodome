@@ -15,12 +15,20 @@ public class CameraMovement : MonoBehaviour
     public Camera mainCamera;
 
     public float dampeningTime;//The time taken for the camera to reajust
-    public float screenEdgeBuff;//The space between the edge of the screen and any objects at the top or bottom of the screen
-    public float minZoomDistance;
+    public float dampeningTimeOut;
+    public float zoomFactor;
+
+    float lastZoomAmount;
+
+    public float minZoom;
+    public float maxZoom;
 
     [Header("Camera's minimum and maximum positions")]
     public float minX;
     public float maxX;
+
+    public float minCenterZ;
+    public float maxCenterZ;
     
 
     [Header("Center Point")]
@@ -33,6 +41,7 @@ public class CameraMovement : MonoBehaviour
     ScoreManager sm;
     public List<float> distances;
     public float currentMaxDistance;
+    Vector3 centerPoint;
 
     private float zoomSpeed; //Speed for the smoothing of the orphographic
     private Vector3 moveVelocity; //Speed for the smoothing of the camera movement
@@ -133,6 +142,8 @@ public class CameraMovement : MonoBehaviour
         //center.y = transform.position.y;
         //center.z = transform.position.z;
 
+        center.z = Mathf.Clamp(center.z, minCenterZ, maxCenterZ);
+
         return center;
 
     }
@@ -145,7 +156,7 @@ public class CameraMovement : MonoBehaviour
 
         foreach (GameObject ship in shipObjects)
         {
-            float dist = Vector3.Distance(sourceShip.transform.position, ship.transform.position);
+            float dist = Vector3.Distance(centerPoint, ship.transform.position);
             distances.Add(dist);
         }
 
@@ -156,38 +167,33 @@ public class CameraMovement : MonoBehaviour
     private void Move(Camera cam)
     {
 
-        Vector3 centerPoint = FindCenter(shipObjects);
+        centerPoint = FindCenter(shipObjects);
 
         centerX = centerPoint.x;
         centerY = centerPoint.y;
         centerZ = centerPoint.z;
         FindDistance(shipObjects);
-        
-        if (currentMaxDistance < 15 )
-        {
-            centerPoint.x = Mathf.Clamp(centerPoint.x, minX, maxX);
-            centerPoint.z = Mathf.Clamp(centerPoint.z, -16f, 40f);
 
-            Vector3 cameraDestination = centerPoint - cam.transform.forward * 15 * minZoomDistance;
+        // centerPoint.x = Mathf.Clamp(centerPoint.x, minX, maxX);
+        // centerPoint.z = Mathf.Clamp(centerPoint.z, -16f, 40f);
 
+        float zoomAmount = Mathf.Clamp(currentMaxDistance * zoomFactor, minZoom, maxZoom);
 
-            Vector3 smoothMove = Vector3.Lerp(cam.transform.position, cameraDestination, dampeningTime);
-            cam.transform.position = smoothMove;
+        Vector3 cameraDestination = centerPoint - cam.transform.forward * zoomAmount;
 
 
-        }
-        else
-        {
-            centerPoint.x = Mathf.Clamp(centerPoint.x, minX, maxX);
-            centerPoint.z = Mathf.Clamp(centerPoint.z, -16f, 40f);
-            Vector3 cameraDestination = centerPoint - cam.transform.forward * currentMaxDistance * minZoomDistance;
 
-            Vector3 smoothMove = Vector3.Lerp(cam.transform.position, cameraDestination, dampeningTime);
-            cam.transform.position = smoothMove;
-        }
+        //cam.transform.position = cameraDestination;
+      
 
 
-        center.transform.position = centerPoint;
+        Vector3 smoothMove = Vector3.Lerp(cam.transform.position, cameraDestination, dampeningTime);
+
+
+        cam.transform.position = smoothMove;
+
+
+       center.transform.position = centerPoint;
 
 
     }
