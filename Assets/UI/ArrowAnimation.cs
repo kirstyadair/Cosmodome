@@ -38,8 +38,7 @@ public class ArrowAnimation : MonoBehaviour
 
     IEnumerator EmptyDelay(int multiplier)
     {
-        animators[multiplier].SetBool("isFull", false);
-        animators[multiplier].SetBool("isEmpty", true);
+        
         yield return new WaitForSeconds(.2f);
     }
 
@@ -80,14 +79,7 @@ public class ArrowAnimation : MonoBehaviour
             currentMultiplierTextDropShadow.text = currentMultiplier.ToString();
 
 
-            if (previousMultiplier > currentMultiplier)
-            {
-                for(int i = animators.Length-1; i>0;i--)
-                {
-                    StartCoroutine(EmptyDelay(i));
-                }
-                    
-            }
+            
             if (previousMultiplier < currentMultiplier)
             {
                 //Add to the combo
@@ -98,8 +90,22 @@ public class ArrowAnimation : MonoBehaviour
            
             previousMultiplier = currentMultiplier;
         }
+
+        if(currentMultiplier==0)
+        {
+            for (int i=0;i<animators.Length;i++)
+            {
+                animators[i].SetBool("isEmpty", true);
+                animators[i].SetBool("isFull", false);
+                animators[i].SetBool("pulse", false);
+            }
+           
+        }
+
+
         if (currentMultiplier != 0)
         {
+            
             animators[currentMultiplier - 1].SetBool("pulse", true);
 
             if(currentMultiplier>1)
@@ -108,14 +114,11 @@ public class ArrowAnimation : MonoBehaviour
             }
             
         }
-
-
-
         currentMultiplier = player.GetComponent<ExcitementMeterScript>().comboScore;
-           
-      
 
         
+
+
     }
 
 }

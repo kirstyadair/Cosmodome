@@ -5,7 +5,19 @@ using UnityEngine;
 public class SongPicker : MonoBehaviour
 {
     public List<AudioClip> songs;
-    
+
+    public void OnStateChange(GameState newState, GameState oldState)
+    {
+        if (newState == GameState.COUNTDOWN)
+        {
+
+        }
+        if (newState == GameState.INGAME)
+        {
+            print("yes");
+        }
+    }
+
 
     // Start is called before the first frame update
     void Start()
