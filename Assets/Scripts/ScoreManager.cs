@@ -64,7 +64,7 @@ public class ScoreManager : MonoBehaviour
 
     public Color[] playerColours;
 
-    public AudioSource backgroundMusic;
+   
     public CutscenesManager cutscenesManager;
     public PlayerScript winningPlayer;
     public CrowdManager cm;
@@ -200,7 +200,6 @@ public class ScoreManager : MonoBehaviour
     {
         if (newState == GameState.INGAME)
         {
-            backgroundMusic.Play();
             isCameraEnabled = true;
         }
     }
