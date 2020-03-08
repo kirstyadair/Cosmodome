@@ -6,22 +6,21 @@ public class TilePrefabScript : MonoBehaviour
 {
     [SerializeField]
     BreakableWallScript[] connectedWalls;
+    [SerializeField]
+    BreakableConnectorScript[] connectorScripts;
     BreakableWallScript[] breakableWalls;
     MeshRenderer[] meshRenderers;
-
-    void Start()
-    {
-        
-    }
 
     public void DisableAll(GameObject ship)
     {
         foreach (BreakableWallScript breakableWall in connectedWalls)
         {
-            if (breakableWall.gameObject.activeInHierarchy)
-            {
-                breakableWall.ExplodeChildren(ship);
-            }
+            if (breakableWall.gameObject.activeInHierarchy) breakableWall.ExplodeChildren(ship);
+        }
+
+        foreach (BreakableConnectorScript breakableConnector in connectorScripts)
+        {
+            if (breakableConnector.gameObject.activeInHierarchy) breakableConnector.Disappear();
         }
     }
 
@@ -30,6 +29,11 @@ public class TilePrefabScript : MonoBehaviour
         foreach (BreakableWallScript wall in connectedWalls)
         {
             if (wall.gameObject.activeInHierarchy) wall.TurnChildrenRed();
+        }
+
+        foreach (BreakableConnectorScript breakableConnector in connectorScripts)
+        {
+            //if (breakableConnector.gameObject.activeInHierarchy) breakableConnector.TurnRed();
         }
     }
 }

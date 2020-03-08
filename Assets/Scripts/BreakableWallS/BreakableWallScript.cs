@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BreakableWallScript : MonoBehaviour
 {
-    int numOfHits = 0;
+    public int numOfHits = 0;
     int maxHits = 2;
     public ParticleSystem ps;
     public GameObject rockHitPs;
@@ -18,7 +18,7 @@ public class BreakableWallScript : MonoBehaviour
     Vector3[] previousPositions;
     Quaternion[] previousRotations;
     BoxCollider collider;
-    bool isExploding = false;
+    public bool isExploding = false;
 
     void Start()
     {
@@ -47,9 +47,7 @@ public class BreakableWallScript : MonoBehaviour
                 else
                 {
                     tilePrefabScript.MakeAllRed();
-
                 }
-                
             }
         }
     }
@@ -102,7 +100,7 @@ public class BreakableWallScript : MonoBehaviour
             isExploding = false;
             collider.isTrigger = false;
             collider.enabled = true;
-
+            
             for (int i = 0; i < children.Length; i++)
             {
                 children[i].isKinematic = true;
@@ -112,6 +110,7 @@ public class BreakableWallScript : MonoBehaviour
             }
         }
 
+        numOfHits = 0;
         this.gameObject.SetActive(false);
     }
 
