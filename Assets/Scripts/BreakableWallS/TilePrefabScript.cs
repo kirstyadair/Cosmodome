@@ -20,7 +20,7 @@ public class TilePrefabScript : MonoBehaviour
 
         foreach (BreakableConnectorScript breakableConnector in connectorScripts)
         {
-            if (breakableConnector.gameObject.activeInHierarchy) breakableConnector.Disappear();
+            breakableConnector.Disappear();
         }
     }
 

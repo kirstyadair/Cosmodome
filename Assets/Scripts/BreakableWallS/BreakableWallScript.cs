@@ -29,6 +29,18 @@ public class BreakableWallScript : MonoBehaviour
         collider = GetComponent<BoxCollider>();
     }
 
+    /*public void EnableWall()
+    {
+        if (children == null) return;
+        for (int i = 0; i < children.Length; i++)
+        {
+            children[i].isKinematic = true;
+            children[i].useGravity = false;
+            children[i].transform.position = previousPositions[i];
+            children[i].transform.rotation = previousRotations[i];
+        }
+    }*/
+
 
     void OnCollisionEnter(Collision other)
     {
@@ -40,14 +52,8 @@ public class BreakableWallScript : MonoBehaviour
             {
                 GameObject ps = Instantiate(rockHitPs, other.transform.position, Quaternion.identity);
                 collider.isTrigger = true; // so the ship can pass straight through
-                if (this.gameObject.tag == "SideWall")
-                {
-                    TurnChildrenRed();
-                }
-                else
-                {
-                    tilePrefabScript.MakeAllRed();
-                }
+                
+                tilePrefabScript.MakeAllRed();
             }
         }
     }
@@ -65,8 +71,8 @@ public class BreakableWallScript : MonoBehaviour
             {
                 isExploding = true;
                 // Pass the ship to tile prefab script which then calls ExplodeChildren() on all active walls
-                if (this.gameObject.tag == "SideWall") ExplodeChildren(other.gameObject);
-                else tilePrefabScript.DisableAll(other.gameObject);
+                //if (this.gameObject.tag == "SideWall") ExplodeChildren(other.gameObject);
+                tilePrefabScript.DisableAll(other.gameObject);
             }
             else
             {
@@ -78,6 +84,7 @@ public class BreakableWallScript : MonoBehaviour
     // This is called in TilePrefabScript
     public void ExplodeChildren(GameObject ship)
     {
+        isExploding = true;
         collider.enabled = false;
 
         for (int i = 0; i < children.Length; i++)
@@ -107,6 +114,7 @@ public class BreakableWallScript : MonoBehaviour
                 children[i].useGravity = false;
                 children[i].transform.position = previousPositions[i];
                 children[i].transform.rotation = previousRotations[i];
+                meshRenderers[i].material = standardMat;
             }
         }
 

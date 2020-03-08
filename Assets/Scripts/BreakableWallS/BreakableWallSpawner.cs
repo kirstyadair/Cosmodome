@@ -33,7 +33,7 @@ public class BreakableWallSpawner : MonoBehaviour
     {
         if (newState == GameState.ROUND_START_CUTSCENE)
         {
-            if (currentWall != null) DeactivateWall(currentWall);
+            if (!wallNull) DeactivateWall(currentWall);
         }
     }
 

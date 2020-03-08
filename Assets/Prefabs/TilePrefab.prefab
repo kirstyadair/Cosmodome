@@ -1,18 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!65 &5883414988438095560
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 60863825188097468}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.80628884, y: 3.9653556, z: 0.83345306}
-  m_Center: {x: -0.020431817, y: 1.9726778, z: -0.011485636}
 --- !u!54 &5237733754258360780
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -29,6 +16,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!65 &5883414988438095560
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 60863825188097468}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.80628884, y: 3.9653556, z: 0.83345306}
+  m_Center: {x: -0.020431817, y: 1.9726778, z: -0.011485636}
 --- !u!114 &4305608626029719928
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -42,7 +42,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   redMaterial: {fileID: 2100000, guid: 492ae1cab4ed75546bd85488d73965d6, type: 2}
-  tilePrefabScript: {fileID: 5006138961879408010}
 --- !u!54 &1633443637605187964
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -311,19 +310,6 @@ Transform:
   m_Father: {fileID: 2953786220202300305}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &650663649178042478
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 433383786023562563}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.57836246, y: 3.44, z: 0.57835746}
-  m_Center: {x: -0.0001424402, y: 1.58, z: -3.908834}
 --- !u!54 &1265310996249597349
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -340,6 +326,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!65 &650663649178042478
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 433383786023562563}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.57836246, y: 3.44, z: 0.57835746}
+  m_Center: {x: -0.0001424402, y: 1.58, z: -3.908834}
 --- !u!114 &3158820140257889557
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -353,7 +352,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   redMaterial: {fileID: 2100000, guid: 492ae1cab4ed75546bd85488d73965d6, type: 2}
-  tilePrefabScript: {fileID: 5006138961879408010}
 --- !u!54 &1457309038619881079
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -626,11 +624,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cacc88c7a56cd0c40af52bfe6cc54dba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  numOfHits: 0
   ps: {fileID: 2887851164101499027}
   rockHitPs: {fileID: 1040608886635896, guid: a97415c6b57076f41a6621a7b51d63a3, type: 3}
   tilePrefabScript: {fileID: 5006138961879408010}
   redMat: {fileID: 2100000, guid: 492ae1cab4ed75546bd85488d73965d6, type: 2}
   standardMat: {fileID: 2100000, guid: cf2e8a888f7d29141bcecf29780e26b8, type: 2}
+  isExploding: 0
 --- !u!65 &4061989474776122667
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -656,11 +656,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cacc88c7a56cd0c40af52bfe6cc54dba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  numOfHits: 0
   ps: {fileID: 2887851164101499027}
   rockHitPs: {fileID: 1040608886635896, guid: a97415c6b57076f41a6621a7b51d63a3, type: 3}
   tilePrefabScript: {fileID: 5006138961879408010}
   redMat: {fileID: 2100000, guid: 492ae1cab4ed75546bd85488d73965d6, type: 2}
   standardMat: {fileID: 2100000, guid: cf2e8a888f7d29141bcecf29780e26b8, type: 2}
+  isExploding: 0
 --- !u!65 &9088296877389447862
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -686,11 +688,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cacc88c7a56cd0c40af52bfe6cc54dba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  numOfHits: 0
   ps: {fileID: 2887851164101499027}
   rockHitPs: {fileID: 1040608886635896, guid: a97415c6b57076f41a6621a7b51d63a3, type: 3}
   tilePrefabScript: {fileID: 5006138961879408010}
   redMat: {fileID: 2100000, guid: 492ae1cab4ed75546bd85488d73965d6, type: 2}
   standardMat: {fileID: 2100000, guid: cf2e8a888f7d29141bcecf29780e26b8, type: 2}
+  isExploding: 0
 --- !u!1 &719985002964924774
 GameObject:
   m_ObjectHideFlags: 0
@@ -891,11 +895,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cacc88c7a56cd0c40af52bfe6cc54dba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  numOfHits: 0
   ps: {fileID: 2887851164101499027}
   rockHitPs: {fileID: 1040608886635896, guid: a97415c6b57076f41a6621a7b51d63a3, type: 3}
   tilePrefabScript: {fileID: 5006138961879408010}
   redMat: {fileID: 2100000, guid: 492ae1cab4ed75546bd85488d73965d6, type: 2}
   standardMat: {fileID: 2100000, guid: cf2e8a888f7d29141bcecf29780e26b8, type: 2}
+  isExploding: 0
 --- !u!65 &5418456341310825778
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -921,11 +927,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cacc88c7a56cd0c40af52bfe6cc54dba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  numOfHits: 0
   ps: {fileID: 2887851164101499027}
   rockHitPs: {fileID: 1040608886635896, guid: a97415c6b57076f41a6621a7b51d63a3, type: 3}
   tilePrefabScript: {fileID: 5006138961879408010}
   redMat: {fileID: 2100000, guid: 492ae1cab4ed75546bd85488d73965d6, type: 2}
   standardMat: {fileID: 2100000, guid: cf2e8a888f7d29141bcecf29780e26b8, type: 2}
+  isExploding: 0
 --- !u!54 &2012453238135033862
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1000,19 +1008,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.07297516, y: 0.23886271, z: 1.2467446}
   m_Center: {x: -0.0000035297126, y: 0.23692977, z: -1.3221962}
---- !u!65 &2340926732220985603
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1156671079828567018}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.57836246, y: 3.44, z: 0.57835746}
-  m_Center: {x: -0.0001424402, y: 1.58, z: -3.908834}
 --- !u!54 &8939702154199029590
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1029,6 +1024,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!65 &2340926732220985603
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1156671079828567018}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.57836246, y: 3.44, z: 0.57835746}
+  m_Center: {x: -0.0001424402, y: 1.58, z: -3.908834}
 --- !u!114 &651672394826460428
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1042,7 +1050,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   redMaterial: {fileID: 2100000, guid: 492ae1cab4ed75546bd85488d73965d6, type: 2}
-  tilePrefabScript: {fileID: 5006138961879408010}
 --- !u!54 &3459979806452480735
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1429,19 +1436,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.07297477, y: 0.089574516, z: 1.2281773}
   m_Center: {x: -0.0000037197024, y: 0.5895171, z: -2.8425965}
---- !u!65 &3315990683876696733
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1523035649588950551}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 5.3, z: 1}
-  m_Center: {x: 2.3817968, y: 0.85162777, z: -3.908824}
 --- !u!54 &8280212366438483324
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1458,6 +1452,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!65 &3315990683876696733
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1523035649588950551}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 5.3, z: 1}
+  m_Center: {x: 2.3817968, y: 0.85162777, z: -3.908824}
 --- !u!114 &5900696951302817680
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1471,7 +1478,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   redMaterial: {fileID: 2100000, guid: 492ae1cab4ed75546bd85488d73965d6, type: 2}
-  tilePrefabScript: {fileID: 5006138961879408010}
 --- !u!1 &1524323608232292756
 GameObject:
   m_ObjectHideFlags: 0
@@ -1971,11 +1977,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cacc88c7a56cd0c40af52bfe6cc54dba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  numOfHits: 0
   ps: {fileID: 2887851164101499027}
   rockHitPs: {fileID: 1040608886635896, guid: a97415c6b57076f41a6621a7b51d63a3, type: 3}
   tilePrefabScript: {fileID: 5006138961879408010}
   redMat: {fileID: 2100000, guid: 492ae1cab4ed75546bd85488d73965d6, type: 2}
   standardMat: {fileID: 2100000, guid: cf2e8a888f7d29141bcecf29780e26b8, type: 2}
+  isExploding: 0
 --- !u!65 &5693769926471841648
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2001,11 +2009,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cacc88c7a56cd0c40af52bfe6cc54dba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  numOfHits: 0
   ps: {fileID: 2887851164101499027}
   rockHitPs: {fileID: 1040608886635896, guid: a97415c6b57076f41a6621a7b51d63a3, type: 3}
   tilePrefabScript: {fileID: 5006138961879408010}
   redMat: {fileID: 2100000, guid: 492ae1cab4ed75546bd85488d73965d6, type: 2}
   standardMat: {fileID: 2100000, guid: cf2e8a888f7d29141bcecf29780e26b8, type: 2}
+  isExploding: 0
 --- !u!65 &6486344692321345484
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2095,19 +2105,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.07297516, y: 0.23886271, z: 1.2161174}
   m_Center: {x: -0.0000035297126, y: 0.23692977, z: -2.857561}
---- !u!65 &6499010459152655109
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2347257002216249416}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 5.3, z: 1}
-  m_Center: {x: 2.3817968, y: 0.85162777, z: -3.908824}
 --- !u!54 &4761518688347822623
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2124,6 +2121,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!65 &6499010459152655109
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2347257002216249416}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 5.3, z: 1}
+  m_Center: {x: 2.3817968, y: 0.85162777, z: -3.908824}
 --- !u!114 &6836862207750765503
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2137,7 +2147,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   redMaterial: {fileID: 2100000, guid: 492ae1cab4ed75546bd85488d73965d6, type: 2}
-  tilePrefabScript: {fileID: 5006138961879408010}
 --- !u!54 &7764729567803303317
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2340,11 +2349,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cacc88c7a56cd0c40af52bfe6cc54dba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  numOfHits: 0
   ps: {fileID: 2887851164101499027}
   rockHitPs: {fileID: 1040608886635896, guid: a97415c6b57076f41a6621a7b51d63a3, type: 3}
   tilePrefabScript: {fileID: 5006138961879408010}
   redMat: {fileID: 2100000, guid: 492ae1cab4ed75546bd85488d73965d6, type: 2}
   standardMat: {fileID: 2100000, guid: cf2e8a888f7d29141bcecf29780e26b8, type: 2}
+  isExploding: 0
 --- !u!54 &6668422805857405186
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2732,19 +2743,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!65 &5047607655718038081
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3062448682379414906}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.57836246, y: 3.44, z: 0.57835746}
-  m_Center: {x: -0.0001424402, y: 1.58, z: -3.908834}
 --- !u!54 &6637062611401867569
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2761,6 +2759,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!65 &5047607655718038081
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3062448682379414906}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.57836246, y: 3.44, z: 0.57835746}
+  m_Center: {x: -0.0001424402, y: 1.58, z: -3.908834}
 --- !u!114 &5398153388472933284
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2774,7 +2785,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   redMaterial: {fileID: 2100000, guid: 492ae1cab4ed75546bd85488d73965d6, type: 2}
-  tilePrefabScript: {fileID: 5006138961879408010}
 --- !u!65 &1294757343809763513
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2800,11 +2810,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cacc88c7a56cd0c40af52bfe6cc54dba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  numOfHits: 0
   ps: {fileID: 2887851164101499027}
   rockHitPs: {fileID: 1040608886635896, guid: a97415c6b57076f41a6621a7b51d63a3, type: 3}
   tilePrefabScript: {fileID: 5006138961879408010}
   redMat: {fileID: 2100000, guid: 492ae1cab4ed75546bd85488d73965d6, type: 2}
   standardMat: {fileID: 2100000, guid: cf2e8a888f7d29141bcecf29780e26b8, type: 2}
+  isExploding: 0
 --- !u!54 &8455909428368700396
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2859,11 +2871,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cacc88c7a56cd0c40af52bfe6cc54dba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  numOfHits: 0
   ps: {fileID: 2887851164101499027}
   rockHitPs: {fileID: 1040608886635896, guid: a97415c6b57076f41a6621a7b51d63a3, type: 3}
   tilePrefabScript: {fileID: 5006138961879408010}
   redMat: {fileID: 2100000, guid: 492ae1cab4ed75546bd85488d73965d6, type: 2}
   standardMat: {fileID: 2100000, guid: cf2e8a888f7d29141bcecf29780e26b8, type: 2}
+  isExploding: 0
 --- !u!54 &3081598935028460681
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3186,11 +3200,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cacc88c7a56cd0c40af52bfe6cc54dba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  numOfHits: 0
   ps: {fileID: 2887851164101499027}
   rockHitPs: {fileID: 1040608886635896, guid: a97415c6b57076f41a6621a7b51d63a3, type: 3}
   tilePrefabScript: {fileID: 5006138961879408010}
   redMat: {fileID: 2100000, guid: 492ae1cab4ed75546bd85488d73965d6, type: 2}
   standardMat: {fileID: 2100000, guid: cf2e8a888f7d29141bcecf29780e26b8, type: 2}
+  isExploding: 0
 --- !u!54 &6809496977272214473
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3294,19 +3310,6 @@ MonoBehaviour:
   redMat: {fileID: 0}
   standardMat: {fileID: 2100000, guid: cf2e8a888f7d29141bcecf29780e26b8, type: 2}
   warningPopup: {fileID: 0}
---- !u!65 &5924963450565588302
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3670999086197822159}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 5.3, z: 1}
-  m_Center: {x: 2.3817968, y: 0.85162777, z: -3.908824}
 --- !u!54 &8894639698078360938
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3323,6 +3326,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!65 &5924963450565588302
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3670999086197822159}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 5.3, z: 1}
+  m_Center: {x: 2.3817968, y: 0.85162777, z: -3.908824}
 --- !u!114 &2521761645574551656
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3336,7 +3352,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   redMaterial: {fileID: 2100000, guid: 492ae1cab4ed75546bd85488d73965d6, type: 2}
-  tilePrefabScript: {fileID: 5006138961879408010}
 --- !u!54 &4720687040028660173
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3552,11 +3567,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cacc88c7a56cd0c40af52bfe6cc54dba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  numOfHits: 0
   ps: {fileID: 2887851164101499027}
   rockHitPs: {fileID: 1040608886635896, guid: a97415c6b57076f41a6621a7b51d63a3, type: 3}
   tilePrefabScript: {fileID: 5006138961879408010}
   redMat: {fileID: 2100000, guid: 492ae1cab4ed75546bd85488d73965d6, type: 2}
   standardMat: {fileID: 2100000, guid: cf2e8a888f7d29141bcecf29780e26b8, type: 2}
+  isExploding: 0
 --- !u!54 &1816091696745424458
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -4420,19 +4437,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.07297477, y: 0.089574516, z: 1.1658723}
   m_Center: {x: -0.0000032428652, y: 0.5895171, z: -2.7173438}
---- !u!65 &2771495340357928578
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4940522161294276660}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 5.3, z: 1}
-  m_Center: {x: 2.3817968, y: 0.85162777, z: -3.908824}
 --- !u!54 &8821421744637591334
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -4449,6 +4453,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!65 &2771495340357928578
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4940522161294276660}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 5.3, z: 1}
+  m_Center: {x: 2.3817968, y: 0.85162777, z: -3.908824}
 --- !u!114 &3483517509341739517
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4462,7 +4479,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   redMaterial: {fileID: 2100000, guid: 492ae1cab4ed75546bd85488d73965d6, type: 2}
-  tilePrefabScript: {fileID: 5006138961879408010}
 --- !u!54 &4504313912108817941
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -4873,11 +4889,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cacc88c7a56cd0c40af52bfe6cc54dba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  numOfHits: 0
   ps: {fileID: 2887851164101499027}
   rockHitPs: {fileID: 1040608886635896, guid: a97415c6b57076f41a6621a7b51d63a3, type: 3}
   tilePrefabScript: {fileID: 5006138961879408010}
   redMat: {fileID: 2100000, guid: 492ae1cab4ed75546bd85488d73965d6, type: 2}
   standardMat: {fileID: 2100000, guid: cf2e8a888f7d29141bcecf29780e26b8, type: 2}
+  isExploding: 0
 --- !u!1 &5431579497736294963
 GameObject:
   m_ObjectHideFlags: 0
@@ -4968,11 +4986,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cacc88c7a56cd0c40af52bfe6cc54dba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  numOfHits: 0
   ps: {fileID: 2887851164101499027}
   rockHitPs: {fileID: 1040608886635896, guid: a97415c6b57076f41a6621a7b51d63a3, type: 3}
   tilePrefabScript: {fileID: 5006138961879408010}
   redMat: {fileID: 2100000, guid: 492ae1cab4ed75546bd85488d73965d6, type: 2}
   standardMat: {fileID: 2100000, guid: cf2e8a888f7d29141bcecf29780e26b8, type: 2}
+  isExploding: 0
 --- !u!54 &2373665709847450929
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -5338,19 +5358,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.27980804, y: 0.50968254, z: 0.46173942}
   m_Center: {x: -0.0000030472875, y: 0.24484128, z: -1.9751627}
---- !u!65 &1446888310341985180
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6034274767194693890}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 5.3, z: 1}
-  m_Center: {x: 2.3817968, y: 0.85162777, z: -3.908824}
 --- !u!54 &2561206652196042056
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -5367,6 +5374,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!65 &1446888310341985180
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6034274767194693890}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 5.3, z: 1}
+  m_Center: {x: 2.3817968, y: 0.85162777, z: -3.908824}
 --- !u!114 &7160672796907125731
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5380,7 +5400,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   redMaterial: {fileID: 2100000, guid: 492ae1cab4ed75546bd85488d73965d6, type: 2}
-  tilePrefabScript: {fileID: 5006138961879408010}
 --- !u!54 &100625610020673181
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -5571,19 +5590,6 @@ MonoBehaviour:
   redMat: {fileID: 0}
   standardMat: {fileID: 2100000, guid: cf2e8a888f7d29141bcecf29780e26b8, type: 2}
   warningPopup: {fileID: 0}
---- !u!65 &6613656949365951892
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6459913008467992893}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.57836246, y: 3.44, z: 0.57835746}
-  m_Center: {x: -0.0001424402, y: 1.58, z: -3.908834}
 --- !u!54 &985192290902148620
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -5600,6 +5606,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!65 &6613656949365951892
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6459913008467992893}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.57836246, y: 3.44, z: 0.57835746}
+  m_Center: {x: -0.0001424402, y: 1.58, z: -3.908834}
 --- !u!114 &870360384288769692
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5613,7 +5632,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   redMaterial: {fileID: 2100000, guid: 492ae1cab4ed75546bd85488d73965d6, type: 2}
-  tilePrefabScript: {fileID: 5006138961879408010}
 --- !u!54 &7224288893565020480
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -5668,11 +5686,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cacc88c7a56cd0c40af52bfe6cc54dba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  numOfHits: 0
   ps: {fileID: 2887851164101499027}
   rockHitPs: {fileID: 1040608886635896, guid: a97415c6b57076f41a6621a7b51d63a3, type: 3}
   tilePrefabScript: {fileID: 5006138961879408010}
   redMat: {fileID: 2100000, guid: 492ae1cab4ed75546bd85488d73965d6, type: 2}
   standardMat: {fileID: 2100000, guid: cf2e8a888f7d29141bcecf29780e26b8, type: 2}
+  isExploding: 0
 --- !u!1 &6566033962277456868
 GameObject:
   m_ObjectHideFlags: 0
@@ -5760,24 +5780,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cacc88c7a56cd0c40af52bfe6cc54dba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  numOfHits: 0
   ps: {fileID: 2887851164101499027}
   rockHitPs: {fileID: 1040608886635896, guid: a97415c6b57076f41a6621a7b51d63a3, type: 3}
   tilePrefabScript: {fileID: 5006138961879408010}
   redMat: {fileID: 2100000, guid: 492ae1cab4ed75546bd85488d73965d6, type: 2}
   standardMat: {fileID: 2100000, guid: cf2e8a888f7d29141bcecf29780e26b8, type: 2}
---- !u!65 &6526241184243726681
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6636864157036952745}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 5.3, z: 1}
-  m_Center: {x: 2.3817968, y: 0.85162777, z: -3.908824}
+  isExploding: 0
 --- !u!54 &6643410000620653452
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -5794,6 +5803,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!65 &6526241184243726681
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6636864157036952745}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 5.3, z: 1}
+  m_Center: {x: 2.3817968, y: 0.85162777, z: -3.908824}
 --- !u!114 &6214062199763772669
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5807,7 +5829,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   redMaterial: {fileID: 2100000, guid: 492ae1cab4ed75546bd85488d73965d6, type: 2}
-  tilePrefabScript: {fileID: 5006138961879408010}
 --- !u!54 &6513832062987807326
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -5949,24 +5970,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cacc88c7a56cd0c40af52bfe6cc54dba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  numOfHits: 0
   ps: {fileID: 2887851164101499027}
   rockHitPs: {fileID: 1040608886635896, guid: a97415c6b57076f41a6621a7b51d63a3, type: 3}
   tilePrefabScript: {fileID: 5006138961879408010}
   redMat: {fileID: 2100000, guid: 492ae1cab4ed75546bd85488d73965d6, type: 2}
   standardMat: {fileID: 2100000, guid: cf2e8a888f7d29141bcecf29780e26b8, type: 2}
---- !u!65 &7829824857289509188
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6951275975632238140}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.57836246, y: 3.44, z: 0.57835746}
-  m_Center: {x: -0.0001424402, y: 1.58, z: -3.908834}
+  isExploding: 0
 --- !u!54 &9154704387783264231
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -5983,6 +5993,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!65 &7829824857289509188
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6951275975632238140}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.57836246, y: 3.44, z: 0.57835746}
+  m_Center: {x: -0.0001424402, y: 1.58, z: -3.908834}
 --- !u!114 &4838141863394500937
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5996,7 +6019,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   redMaterial: {fileID: 2100000, guid: 492ae1cab4ed75546bd85488d73965d6, type: 2}
-  tilePrefabScript: {fileID: 5006138961879408010}
 --- !u!54 &6134250543824115502
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -7081,19 +7103,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.2798081, y: 0.62955517, z: 0.43604764}
   m_Center: {x: -0.0000030472881, y: 1.0100391, z: -1.8215692}
---- !u!65 &7652222926231291358
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8453671490588233243}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.57836246, y: 3.44, z: 0.57835746}
-  m_Center: {x: -0.0001424402, y: 1.58, z: -3.908834}
 --- !u!54 &4438725404462619223
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -7110,6 +7119,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!65 &7652222926231291358
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8453671490588233243}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.57836246, y: 3.44, z: 0.57835746}
+  m_Center: {x: -0.0001424402, y: 1.58, z: -3.908834}
 --- !u!114 &4940420968354504256
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7123,7 +7145,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   redMaterial: {fileID: 2100000, guid: 492ae1cab4ed75546bd85488d73965d6, type: 2}
-  tilePrefabScript: {fileID: 5006138961879408010}
 --- !u!54 &7255047765997576020
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -7271,6 +7292,12 @@ MonoBehaviour:
   - {fileID: 5907300074553403748}
   - {fileID: 2575363260508140451}
   - {fileID: 4444597365216788632}
+  - {fileID: 974648276667585895}
+  - {fileID: 11357953309929511}
+  - {fileID: 6960767637241909281}
+  - {fileID: 4083986084990429037}
+  - {fileID: 3978356116226603931}
+  - {fileID: 1205178891601689288}
   connectorScripts:
   - {fileID: 4305608626029719928}
   - {fileID: 870360384288769692}
@@ -7814,11 +7841,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cacc88c7a56cd0c40af52bfe6cc54dba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  numOfHits: 0
   ps: {fileID: 2887851164101499027}
   rockHitPs: {fileID: 1040608886635896, guid: a97415c6b57076f41a6621a7b51d63a3, type: 3}
   tilePrefabScript: {fileID: 5006138961879408010}
   redMat: {fileID: 2100000, guid: 492ae1cab4ed75546bd85488d73965d6, type: 2}
   standardMat: {fileID: 2100000, guid: cf2e8a888f7d29141bcecf29780e26b8, type: 2}
+  isExploding: 0
 --- !u!1 &9077319146627823911
 GameObject:
   m_ObjectHideFlags: 0
