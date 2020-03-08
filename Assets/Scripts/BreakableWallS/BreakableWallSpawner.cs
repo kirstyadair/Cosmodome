@@ -94,6 +94,7 @@ public class BreakableWallSpawner : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Alpha2)) ForcePattern(2);
         if (Input.GetKeyDown(KeyCode.Alpha3)) ForcePattern(3);
         if (Input.GetKeyDown(KeyCode.Alpha4)) ForcePattern(4);
+        if (Input.GetKeyDown(KeyCode.Alpha5)) ForcePattern(5);
 
     }
 
