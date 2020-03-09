@@ -62,9 +62,10 @@ public class BreakableWallScript : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Bumperball"))
         {
-            this.gameObject.SetActive(false);
+            tilePrefabScript.DisableAll(other.gameObject);
             ps.Play();
-        } else if (other.gameObject.CompareTag("Ship"))
+        } 
+        else if (other.gameObject.CompareTag("Ship"))
         {
             numOfHits++;
             if (numOfHits >= maxHits && !isExploding)
