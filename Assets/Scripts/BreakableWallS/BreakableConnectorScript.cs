@@ -12,6 +12,11 @@ public class BreakableConnectorScript : MonoBehaviour
     Material standard;
     [SerializeField]
     Material redMaterial;
+    [SerializeField]
+    TilePrefabScript tilePrefabScript;
+    int numOfHits = 0;
+    [SerializeField]
+    int maxNumOfHits;
 
     void Start()
     {
@@ -44,5 +49,16 @@ public class BreakableConnectorScript : MonoBehaviour
     public void TurnRed()
     {
         meshRenderer.material = redMaterial;
+    }
+
+    void OnCollisionEnter(Collision other)
+    {
+        if (other.gameObject.CompareTag("Ship"))
+        {
+            numOfHits++;
+
+            if (numOfHits == 1) tilePrefabScript.MakeAllRed();
+            if (numOfHits >= maxNumOfHits) tilePrefabScript.DisableAll(other.gameObject);
+        }
     }
 }

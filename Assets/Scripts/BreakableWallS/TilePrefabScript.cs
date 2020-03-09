@@ -33,7 +33,7 @@ public class TilePrefabScript : MonoBehaviour
 
         foreach (BreakableConnectorScript breakableConnector in connectorScripts)
         {
-            //if (breakableConnector.gameObject.activeInHierarchy) breakableConnector.TurnRed();
+            if (breakableConnector.gameObject.activeInHierarchy) breakableConnector.TurnRed();
         }
     }
 }
