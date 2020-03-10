@@ -94,7 +94,7 @@ public class CutscenesManager : MonoBehaviour
 
         pedastals.Setup();
 
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1f);
 
         pedastals.Show();
     }
