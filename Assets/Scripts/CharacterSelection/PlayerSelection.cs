@@ -107,6 +107,7 @@ public class PlayerSelection : MonoBehaviour
     /// <returns></returns>
     IEnumerator PickNextPlayer()
     {
+
         List<PlayerBox> choosablePlayerBoxes = _controllerAllocations.GetChoosablePlayerBoxes();
 
         if (choosablePlayerBoxes.Count == 0)
@@ -117,8 +118,6 @@ public class PlayerSelection : MonoBehaviour
             Ready();
             yield break;
         }
-
-        _statusBar.ChangeTextImportant("Picking next player...");
 
         float timeBetweenTicks = randomSpinnerStartingTime;
         int currentTickedPlayer = UnityEngine.Random.Range(0, choosablePlayerBoxes.Count);
@@ -144,11 +143,11 @@ public class PlayerSelection : MonoBehaviour
                 // increase time between ticks to slow it down
                 timeBetweenTicks += randomSpinnerTickTimeIncrease;
 
-                yield return new WaitForSeconds(timeBetweenTicks);
+                //yield return new WaitForSeconds(timeBetweenTicks);
             }
         } else
         {
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(0.2f);
         }
 
         PlayerBox selectedBox = choosablePlayerBoxes[lastTickedPlayer];
@@ -157,10 +156,12 @@ public class PlayerSelection : MonoBehaviour
         selectedBox.Selecting();
 
         _statusBar.ChangeText(RandomYourNextLine("Player " + selectedBox._playerNumber));
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.5f);
 
         PlayerReadyForSelectingCharacter(selectedBox);
         _animator.Play("RandomPickToCharacterSelection");
+
+        _statusBar.ChangeText("NEXT");
         selectedBox.selectorArrowEnabled = false;
     }
 
@@ -205,7 +206,15 @@ public class PlayerSelection : MonoBehaviour
         _currentSelectingPlayer.OnSelect += OnPlayerBoxSelect;
 
         _currentSelectedCharacter = 0; // TODO: snap to a free character
-        Hover(characterBoxes[0]);
+
+        int boxToHoverOn = 0;
+
+        // Select the first available box
+
+        for (boxToHoverOn = 0; boxToHoverOn < characterBoxes.Length - 1; boxToHoverOn++) if (characterBoxes[boxToHoverOn].selectedBy == null) break;
+        _currentSelectedCharacter = boxToHoverOn;
+
+        Hover(characterBoxes[boxToHoverOn]);
     }
 
     void OnPlayerBoxLeft()
@@ -216,7 +225,6 @@ public class PlayerSelection : MonoBehaviour
         _controllerAllocations.Vibrate(_currentSelectingPlayer.controller, 1, 0.1f);
 
         Hover(characterBoxes[_currentSelectedCharacter]);
-
     }
 
     void OnPlayerBoxRight()
