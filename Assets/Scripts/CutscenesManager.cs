@@ -66,6 +66,28 @@ public class CutscenesManager : MonoBehaviour
         StopPlayingInbetweenRoundCutscenes();
     }
 
+    public IEnumerator EndOfGameCutscene(PlayerScript eliminatedPlayer)
+    {
+        if (!shouldShowIntroCutscenes) yield break;
+
+        StartCoroutine(DeathHighlightPlayer(eliminatedPlayer.gameObject, 2f));
+        StartCoroutine(StartPlayingInbetweenRoundCutscenes(3f));
+
+        // show the text that comes up with info between rounds
+        yield return betweenRoundText.ShowGameOverText(eliminatedPlayer.playerNumber, eliminatedPlayer.playerColor.color);
+
+        // once text animation is done, stop playing the inbetween round cutscenes
+
+        yield return new WaitForSeconds(0.5f);
+
+        yield return StartShowingPedastals();
+    }
+
+    IEnumerator StartShowingPedastals()
+    {
+        yield return null;
+    }
+
     IEnumerator StartPlayingInbetweenRoundCutscenes(float after)
     {
         yield return new WaitForSeconds(after);

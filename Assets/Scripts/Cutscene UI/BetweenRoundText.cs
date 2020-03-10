@@ -40,6 +40,19 @@ public class BetweenRoundText : MonoBehaviour
         yield return new WaitUntil(() => animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 1 && !animator.IsInTransition(0));
     }
 
+    public IEnumerator ShowGameOverText(int playerNumber, Color playerColor)
+    {
+        animator.Play("Game over text", -1, 0);
+        playerNameText.text = "PLAYER " + playerNumber;
+        playerNameText.color = playerColor;
+
+        yield return new WaitForSeconds(1f);
+
+        // wait until the animation is complete
+        yield return new WaitUntil(() => animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 1 && !animator.IsInTransition(0));
+    }
+
+
     public void OnChangeRoundNumber()
     {
         currentRoundText.text = (_currentRound + 1).ToString();

@@ -16,10 +16,11 @@ public enum Traps
 /// ROUND_START_CUTSCENE is the cutscene that shows all the players
 /// ROUND_END_CUTSCENE is where the random animations play of the audience and such after a player is eliminated
 /// COUNTDOWN is the countdown just before start of game
+/// END_OF_GAME is when all rounds have finished
 /// </summary>
 public enum GameState
 {
-    WAITING_FOR_CONTROLLERS, INGAME, ROUND_START_CUTSCENE, ROUND_END_CUTSCENE, COUNTDOWN
+    WAITING_FOR_CONTROLLERS, INGAME, ROUND_START_CUTSCENE, ROUND_END_CUTSCENE, COUNTDOWN, END_OF_GAME
 }
 
 public class ScoreManager : MonoBehaviour
@@ -133,7 +134,13 @@ public class ScoreManager : MonoBehaviour
 
         if (timeLeftInRound <= 0)
         {
-            EndOfRound();
+            if (_currentRound < _maxRounds)
+            {
+                EndOfRound();
+            }
+            {
+                EndOfGame();
+            }
         }
         else
         {
@@ -244,6 +251,22 @@ public class ScoreManager : MonoBehaviour
         ChangeState(GameState.INGAME);
     }
 
+    void EndOfGame()
+    {
+        PlayerScript currentLowest = players[0];
+
+        for (int i = 1; i < players.Count; i++)
+        {
+            if (players[i].approval.percentage < currentLowest.approval.percentage) currentLowest = players[i];
+        }
+
+        timeLeftInRound = roundLength;
+        maxTime = timeLeftInRound;
+
+        StartCoroutine(Explode(currentLowest, 2f));
+        StartCoroutine(EndOfGameCutscene(currentLowest));
+    }
+
     void EndOfRound()
     {
         PlayerScript currentLowest = players[0];
@@ -261,6 +284,16 @@ public class ScoreManager : MonoBehaviour
 
         _currentRound++;
 
+    }
+
+    public IEnumerator EndOfGameCutscene(PlayerScript eliminatedPlayer)
+    {
+        ChangeState(GameState.END_OF_GAME);
+
+        timeText.color = Color.white;
+        timeText.text = "GAME OVER";
+
+        yield return cutscenesManager.EndOfGameCutscene(eliminatedPlayer);
     }
 
 
