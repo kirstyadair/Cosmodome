@@ -126,6 +126,17 @@ public class PlayerBox : MonoBehaviour
     }
 
     /// <summary>
+    /// Change the player to the specified color
+    /// </summary>
+    /// <param name="color"></param>
+    public void SetColor(Color color)
+    {
+        this.playerColour = color;
+        _assignedBg.color = playerColour;
+        _assignedBgFloater.color = playerColour;
+    }
+
+    /// <summary>
     /// when this player has chosen their character and is ready
     /// </summary>
     public void Ready()

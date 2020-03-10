@@ -12,6 +12,7 @@ public class CharacterSelectionOption
 {
     public string characterName;
     public PlayerTypes playerType;
+    public Color characterColor;
 
     [HideInInspector]
     public string chosenBy = null;

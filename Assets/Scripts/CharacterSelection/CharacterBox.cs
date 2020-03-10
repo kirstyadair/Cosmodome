@@ -43,7 +43,7 @@ public class CharacterBox : MonoBehaviour
 
     public void Hover(PlayerBox hoveredPlayer)
     {
-        _selectorImage.color = hoveredPlayer.playerColour;
+        //_selectorImage.color = hoveredPlayer.playerColour;
         _animator.SetBool("isHovered", true);
         isHovered = true;
     }
@@ -59,6 +59,7 @@ public class CharacterBox : MonoBehaviour
         selectedBy = selected;
         isSelected = true;
         _animator.SetTrigger("Selected");
+        selected.SetColor(option.characterColor);
 
         _playerIndicatorBg.color = selected.playerColour;
         _playerIndicatorText.text = "P" + selected._playerNumber;
