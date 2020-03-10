@@ -25,6 +25,7 @@ public class CutscenesManager : MonoBehaviour
 
     public Text playerNameIntroText;
     public Text characterNameIntroText;
+    public Pedastals pedastals;
 
     [Header("How long to count down for before starting game")]
     public int countdownFrom = 3;
@@ -68,7 +69,7 @@ public class CutscenesManager : MonoBehaviour
 
     public IEnumerator EndOfGameCutscene(PlayerScript eliminatedPlayer)
     {
-        if (!shouldShowIntroCutscenes) yield break;
+        //if (!shouldShowIntroCutscenes) yield break;
 
         StartCoroutine(DeathHighlightPlayer(eliminatedPlayer.gameObject, 2f));
         //StartCoroutine(StartPlayingInbetweenRoundCutscenes(3f));
@@ -89,8 +90,13 @@ public class CutscenesManager : MonoBehaviour
         recordingSquare.SetActive(true);
         cameraAnimator.enabled = true;
         cameraAnimator.Play("End of game cutscene", -1, 0);
+        pedastals.gameObject.SetActive(true);
+
+        pedastals.Setup();
 
         yield return new WaitForSeconds(2f);
+
+        pedastals.Show();
     }
 
     IEnumerator StartPlayingInbetweenRoundCutscenes(float after)

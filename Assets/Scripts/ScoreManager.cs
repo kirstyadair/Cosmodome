@@ -11,6 +11,17 @@ public enum Traps
 }
 
 /// <summary>
+/// Represents data of a player when it comes to approval etc after the game has finished
+/// </summary>
+public class PlayerData
+{
+    public string playerName;
+    public Color playerColor;
+    public int placed;
+    public int approvalPercentage;
+}
+
+/// <summary>
 /// WAITING_FOR_CONTROLLERS when we are still waiting for the player prefabs to spawn
 /// INGAME we are currently playing
 /// ROUND_START_CUTSCENE is the cutscene that shows all the players
@@ -44,6 +55,8 @@ public class ScoreManager : MonoBehaviour
    // public List<float> playerApprovals = new List<float>();
     public List<PlayerScript> players = new List<PlayerScript>();
 
+    List<PlayerScript> allPlayers;
+
     public int numberOfPlayers;
     public float timeLeftInRound = 60;
     public float roundLength;
@@ -64,7 +77,7 @@ public class ScoreManager : MonoBehaviour
     public int spikeHitDamageRate;
 
     public Color[] playerColours;
-
+   
    
     public CutscenesManager cutscenesManager;
     public PlayerScript winningPlayer;
@@ -155,6 +168,24 @@ public class ScoreManager : MonoBehaviour
         }
     }
 
+    public List<PlayerData> GetFinalPlayerData()
+    {
+        List<PlayerData> results = new List<PlayerData>();
+
+        foreach (PlayerScript player in allPlayers)
+        {
+            PlayerData data = new PlayerData();
+
+            data.playerName = "PLAYER " + player.playerNumber;
+            data.playerColor = player.playerColor.color;
+            data.placed = 1;
+            data.approvalPercentage = 50;
+
+            results.Add(data);
+        }
+
+        return results;
+    }
 
     public void OnDeviceDetached(InputDevice device)
     {
@@ -222,6 +253,9 @@ public class ScoreManager : MonoBehaviour
         {
             players.Add(playerGOs[i].GetComponent<PlayerScript>());
         }
+
+        // for use later when scoring
+        allPlayers = new List<PlayerScript>(players);
 
         _maxRounds = players.Count - 1;
         UpdatePercentages();
