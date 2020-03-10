@@ -16,7 +16,7 @@ public class BasicWeaponScript : MonoBehaviour
     [Header("List of places for the bullets to spawn from (like turrets)")]
     GameObject[] _bulletSpawns;
 
-
+    bool canPlaySound = true;
 
 
     [HideInInspector]
@@ -54,6 +54,9 @@ public class BasicWeaponScript : MonoBehaviour
     ShipController _shipController;
     PlayerScript playerScript;
 
+    public delegate void PlayerShooting(ShipController ship);
+    public static event PlayerShooting OnPlayerShooting;
+
     void Start()
     {
         bulletsCurrentlyInClip = clipSize;
@@ -79,12 +82,9 @@ public class BasicWeaponScript : MonoBehaviour
 
     public void Shoot()
     {
-        if (_fireCooldown > 0) return;
+        if (_fireCooldown > 0 || bulletsCurrentlyInClip <= 0) return;
 
-        if (bulletsCurrentlyInClip <= 0)
-        {
-            return;
-        }
+        if (canPlaySound) StartCoroutine(PlaySound());
 
         playerScript.Vibrate(1f, 0.1f);
 
@@ -108,5 +108,13 @@ public class BasicWeaponScript : MonoBehaviour
             if (_firingPS.gameObject.activeSelf) _firingPS.gameObject.SetActive(false);
             _firingPS.gameObject.SetActive(true);
         }
+    }
+
+    IEnumerator PlaySound()
+    {
+        canPlaySound = false;
+        OnPlayerShooting?.Invoke(_shipController);
+        yield return new WaitForSeconds(0.3f);
+        canPlaySound = true;
     }
 }

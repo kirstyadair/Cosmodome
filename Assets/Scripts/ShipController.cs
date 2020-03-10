@@ -85,8 +85,7 @@ public class ShipController : MonoBehaviour
     PostProcessProfile postProcessProfile;
     PlayerScript playerScript;
 
-    public delegate void PlayerShooting(ShipController ship);
-    public static event PlayerShooting OnPlayerShooting;
+    
     public delegate void PlayerReload();
     public static event PlayerReload OnPlayerNoBullets;
 
@@ -147,7 +146,7 @@ public class ShipController : MonoBehaviour
     {
         if (GetComponent<BasicWeaponScript>() != null)
         {
-            OnPlayerShooting?.Invoke(this);
+            
             GetComponent<BasicWeaponScript>().Shoot();
         }
     }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -24,7 +25,7 @@ public class AudioManager : MonoBehaviour
     void OnEnable()
     {
         PlayerScript.OnPlayerCollision += PlayerCollision;
-        ShipController.OnPlayerShooting += PlayerShooting;
+        BasicWeaponScript.OnPlayerShooting += PlayerShooting;
         ArenaCannonManager.OnOpenCannon += OpenCannon;
         ArenaCannonMissile.OnFireCannon += FireCannon;
         ScoreManager.OnExplodePlayer += ExplodePlayer;
@@ -60,7 +61,7 @@ public class AudioManager : MonoBehaviour
         int shipSound = ship.shootingClipNumber - 1;
 
         audioSource.volume = shootingSounds[shipSound].volume;
-        audioSource.pitch = UnityEngine.Random.value * 2;
+        //audioSource.pitch = UnityEngine.Random.value * 2;
         audioSource.PlayOneShot(shootingSounds[shipSound].clip);
     }
 
