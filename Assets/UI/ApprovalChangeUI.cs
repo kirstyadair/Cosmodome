@@ -28,16 +28,12 @@ public class ApprovalChangeUI : MonoBehaviour
 
     private void Start()
     {
-
-        
         sm = ScoreManager.Instance;
         ScoreManager.OnStateChanged += OnStateChange;
         approval = player.GetComponent<PlayerScript>().approval.percentage;
         previousApproval = approval;
         approvalText.text = previousApproval.ToString() + "%"; 
         animator = GetComponent<Animator>();
-
-        
     }
 
 

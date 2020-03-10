@@ -71,7 +71,7 @@ public class CutscenesManager : MonoBehaviour
         if (!shouldShowIntroCutscenes) yield break;
 
         StartCoroutine(DeathHighlightPlayer(eliminatedPlayer.gameObject, 2f));
-        StartCoroutine(StartPlayingInbetweenRoundCutscenes(3f));
+        //StartCoroutine(StartPlayingInbetweenRoundCutscenes(3f));
 
         // show the text that comes up with info between rounds
         yield return betweenRoundText.ShowGameOverText(eliminatedPlayer.playerNumber, eliminatedPlayer.playerColor.color);
@@ -85,7 +85,11 @@ public class CutscenesManager : MonoBehaviour
 
     IEnumerator StartShowingPedastals()
     {
-        yield return null;
+        sm.isCameraEnabled = false;
+        recordingSquare.SetActive(true);
+        cameraAnimator.enabled = true;
+
+        yield return new WaitForSeconds(2f);
     }
 
     IEnumerator StartPlayingInbetweenRoundCutscenes(float after)
