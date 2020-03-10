@@ -27,6 +27,9 @@ public class PlayerApproval {
 
 public class PlayerScript : MonoBehaviour
 {
+    Vector3 startPosition;
+    Quaternion startRotation;
+
     public delegate void PlayerShot(PlayerScript playerHit, PlayerScript shooter);
     public delegate void PlayerACShot(PlayerScript playerHit);
     public static event PlayerShot OnPlayerShot;
@@ -109,9 +112,17 @@ public class PlayerScript : MonoBehaviour
         smallArrowPlus.color = tempColor;
         largeArrowPlus.color = tempColor;
 
-        
-        
+        this.startPosition = this.transform.position;
+        this.startRotation = this.transform.rotation;
+
+
+        ScoreManager.OnStateChanged += OnStateChange;
         //ScoreManager.OnUpdateScore += UpdateScores;
+    }
+
+    public void OnStateChange(GameState newState, GameState oldState)
+    {
+        if (newState == GameState.COUNTDOWN) Reset();
     }
 
     public IEnumerator FlashWithDamage()
@@ -136,7 +147,16 @@ public class PlayerScript : MonoBehaviour
         if (inputDevice != null) inputDevice.StopVibration();
     }
 
-    
+    /// <summary>
+    /// Resets this ship to the starting position and rotation
+    /// </summary>
+    public void Reset()
+    {
+        this.transform.position = startPosition;
+        this.transform.rotation = startRotation;
+    }
+
+
     //Bens code change start
     public IEnumerator ArrowFlash(float timeMultiplier, int arrowType,int plusOrMinus)
     {
@@ -274,6 +294,9 @@ public class PlayerScript : MonoBehaviour
                 controller.targetDirection.Normalize();
                 isActivatingTrap = Input.GetKey(KeyCode.X);
             }
+        } else
+        {
+            controller.targetDirection = new Vector3(0, 0, 0);
         }
     }
 
