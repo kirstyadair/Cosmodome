@@ -10,6 +10,8 @@ using UnityEngine.Rendering.PostProcessing;
 /// </summary>
 public class ShipController : MonoBehaviour
 {
+    // Imagine using [SerializeField] even once
+    // What an idea
     public Rigidbody rb;
     public bool aiControl = false;
     public float boostForce;
@@ -75,14 +77,15 @@ public class ShipController : MonoBehaviour
     public Gradient normalGradient;
     public Gradient boostGradient;
 
-    
+    [Header("Don't touch this variable")]
+    public int shootingClipNumber;
 
     public GameObject[] hitParticleFX;
     public GameObject randomTextFX;
     PostProcessProfile postProcessProfile;
     PlayerScript playerScript;
 
-    public delegate void PlayerShooting();
+    public delegate void PlayerShooting(ShipController ship);
     public static event PlayerShooting OnPlayerShooting;
     public delegate void PlayerReload();
     public static event PlayerReload OnPlayerNoBullets;
@@ -144,7 +147,7 @@ public class ShipController : MonoBehaviour
     {
         if (GetComponent<BasicWeaponScript>() != null)
         {
-            OnPlayerShooting?.Invoke();
+            OnPlayerShooting?.Invoke(this);
             GetComponent<BasicWeaponScript>().Shoot();
         }
     }

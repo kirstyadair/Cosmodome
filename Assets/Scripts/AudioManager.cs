@@ -10,12 +10,15 @@ public class AudioManager : MonoBehaviour
     [Header("Sounds to randomly play on character intro")]
     public AudioClips[] introSounds;
 
+    [Header("Character shooting sounds")]
+    public AudioClips[] shootingSounds;
+
     [Header("Countdown sound")]
     public AudioClips countdownSound;
 
-
     [Header("Round start sound")]
     public AudioClips roundStartSound;
+
 
     // Start is called before the first frame update
     void OnEnable()
@@ -52,12 +55,13 @@ public class AudioManager : MonoBehaviour
     }
 
 
-    void PlayerShooting()
+    void PlayerShooting(ShipController ship)
     {
-        audioSource.volume = clips[13].volume;
+        int shipSound = ship.shootingClipNumber - 1;
+
+        audioSource.volume = shootingSounds[shipSound].volume;
         audioSource.pitch = UnityEngine.Random.value * 2;
-        if (UnityEngine.Random.value > 0.5f) audioSource.PlayOneShot(clips[13].clip);
-        else audioSource.PlayOneShot(clips[14].clip);
+        audioSource.PlayOneShot(shootingSounds[shipSound].clip);
     }
 
     void PlayerScream()
