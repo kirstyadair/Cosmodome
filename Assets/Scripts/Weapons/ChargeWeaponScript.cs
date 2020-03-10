@@ -11,7 +11,7 @@ public class ChargeWeaponScript : MonoBehaviour
     float chargeAmount;
 
     [SerializeField]
-    bool isCharged = false;
+    bool isCharged = true;
 
     public GameObject spawnPoint;
     public GameObject laser;
@@ -83,7 +83,7 @@ public class ChargeWeaponScript : MonoBehaviour
         controller = playerScript.inputDevice;
 
         // If the button is held
-        if (controller.RightBumper.IsPressed && !isFiring)
+        if (!isFiring)
         {
             // Only charge when we  are not firing
             if (!isCharging) StartCharging();
@@ -98,7 +98,9 @@ public class ChargeWeaponScript : MonoBehaviour
                 chargeAmount = chargeNeeded;
             }
            
-        } else
+        }
+
+        if (controller.RightBumper.IsPressed)
         {
             // If  fully charge and button released,  fire!
             if (isCharged && !isFiring)
