@@ -16,9 +16,6 @@ public class BasicWeaponScript : MonoBehaviour
     [Header("List of places for the bullets to spawn from (like turrets)")]
     GameObject[] _bulletSpawns;
 
-
-
-
     [HideInInspector]
     public float bulletsCurrentlyInClip;
 
@@ -54,6 +51,9 @@ public class BasicWeaponScript : MonoBehaviour
     ShipController _shipController;
     PlayerScript playerScript;
 
+    public delegate void PlayerShooting(ShipController ship);
+    public static event PlayerShooting OnPlayerShooting;
+
     void Start()
     {
         bulletsCurrentlyInClip = clipSize;
@@ -79,12 +79,9 @@ public class BasicWeaponScript : MonoBehaviour
 
     public void Shoot()
     {
-        if (_fireCooldown > 0) return;
+        if (_fireCooldown > 0 || bulletsCurrentlyInClip <= 0) return;
 
-        if (bulletsCurrentlyInClip <= 0)
-        {
-            return;
-        }
+        OnPlayerShooting?.Invoke(_shipController);
 
         playerScript.Vibrate(1f, 0.1f);
 
