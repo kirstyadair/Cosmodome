@@ -88,6 +88,7 @@ public class CutscenesManager : MonoBehaviour
         sm.isCameraEnabled = false;
         recordingSquare.SetActive(true);
         cameraAnimator.enabled = true;
+        cameraAnimator.Play("End of game cutscene", -1, 0);
 
         yield return new WaitForSeconds(2f);
     }

@@ -138,6 +138,7 @@ public class ScoreManager : MonoBehaviour
             {
                 EndOfRound();
             }
+            else 
             {
                 EndOfGame();
             }
