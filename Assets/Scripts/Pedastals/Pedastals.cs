@@ -35,7 +35,7 @@ public class Pedastals : MonoBehaviour
             PedastalScript pedaScript = pedastal.GetComponent<PedastalScript>();
 
             PlayerData data = playerData[i];
-            pedaScript.Setup(data.playerName, data.playerColor, data.placed, data.approvalPercentage);
+            pedaScript.Setup(data.playerName, data.playerColor, data.placed, data.approvalPercentage, data.characterName);
 
             _pedastals.Add(pedaScript);
         }

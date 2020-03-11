@@ -21,6 +21,7 @@ public class PlayerData
     public Color playerColor;
     public int placed;
     public int approvalPercentage;
+    public string characterName;
 }
 
 /// <summary>
@@ -179,6 +180,7 @@ public class ScoreManager : MonoBehaviour
             PlayerData data = player.playerData;
 
             data.playerName = "PLAYER " + player.playerNumber;
+            data.characterName = player.gameObject.name;
 
             results.Add(data);
         }

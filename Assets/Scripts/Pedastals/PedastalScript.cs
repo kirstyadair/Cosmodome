@@ -22,6 +22,9 @@ public class PedastalScript : MonoBehaviour
     [SerializeField]
     Light _spotlight2;
 
+    [SerializeField]
+    Transform _characterModelsContainer;
+
     int _placed;
 
     // Start is called before the first frame update
@@ -37,7 +40,7 @@ public class PedastalScript : MonoBehaviour
     /// <param name="playerColour">Player colour for lights</param>
     /// <param name="placed">Where they placed, 1 for 1st, 2 for 2nd etc</param>
     /// <param name="approvalPercentage">Approval percentage at time of death or game over</param>
-    public void Setup(string playerName, Color playerColour, int placed, int approvalPercentage)
+    public void Setup(string playerName, Color playerColour, int placed, int approvalPercentage, string characterName)
     {
         _placed = placed;
         _spotlight1.color = playerColour;
@@ -54,7 +57,15 @@ public class PedastalScript : MonoBehaviour
 
         _placedText.text = place;
 
+        EnableCharacterModel(characterName);
+
         _approvalPercentageText.text = approvalPercentage + "%";
+    }
+
+    void EnableCharacterModel(string characterName) {
+        foreach (Transform transform in _characterModelsContainer) {
+            if (transform.gameObject.name == characterName) transform.gameObject.SetActive(true);
+        }
     }
 
     /// <summary>
