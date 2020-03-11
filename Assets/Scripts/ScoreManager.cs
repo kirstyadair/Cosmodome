@@ -14,6 +14,7 @@ public enum Traps
 /// <summary>
 /// Represents data of a player when it comes to approval etc after the game has finished
 /// </summary>
+[Serializable]
 public class PlayerData
 {
     public string playerName;
@@ -175,12 +176,9 @@ public class ScoreManager : MonoBehaviour
 
         foreach (PlayerScript player in allPlayers)
         {
-            PlayerData data = new PlayerData();
+            PlayerData data = player.playerData;
 
             data.playerName = "PLAYER " + player.playerNumber;
-            data.playerColor = player.playerColor.color;
-            data.placed = 1;
-            data.approvalPercentage = 50;
 
             results.Add(data);
         }
@@ -456,6 +454,8 @@ public class ScoreManager : MonoBehaviour
             {
                 player.approval.percentage = 0;
             }
+
+            player.playerData.approvalPercentage = player.approval.percentage;
         }
     }
 
@@ -483,6 +483,8 @@ public class ScoreManager : MonoBehaviour
 
         GameObject.Instantiate(currentLowest.ps, currentLowest.transform.position, Quaternion.identity);
         currentLowest.Die();
+        currentLowest.playerData.placed = players.Count;
+        
         yield return new WaitForSeconds(0.1f);
         OnExplodePlayer.Invoke();
         OnPlayerEliminated?.Invoke();

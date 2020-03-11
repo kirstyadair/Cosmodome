@@ -25,6 +25,7 @@ public class PlayerApproval {
     }
 }
 
+
 public class PlayerScript : MonoBehaviour
 {
     Vector3 startPosition;
@@ -82,6 +83,8 @@ public class PlayerScript : MonoBehaviour
     public PlayerRing rings;
     public InputDevice inputDevice;
 
+    public PlayerData playerData = new PlayerData();
+
     public bool isActivatingTrap = false;
     //public bool isActive = true;
     [HideInInspector]
@@ -97,6 +100,7 @@ public class PlayerScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        playerData.placed = 1;
         sm = ScoreManager.Instance;
         controller = GetComponent<ShipController>();
 
