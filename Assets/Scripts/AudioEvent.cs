@@ -21,21 +21,19 @@ public class AudioEvent : MonoBehaviour
 
     void OnEnable()
     {
-        PlayerScript.PlayerShotHit += AudioPlayerShot;
-        WallScript.PlayerTrapTrigger += AudioPlayerTrapTrigger;
-        WallScript.PlayerTrapSetup += AudioPlayerTrapSetup;
-        PlayerScript.PlayerOnPlayerCollision += AudioPlayerOnPlayerCollision;
-        PlayerScript.PlayerTaunting += AudioPlayerTaunting;
+        PlayerScript.OnPlayerShot += AudioPlayerShot;
+        WallScript.OnTrapHit += AudioPlayerTrapTrigger;
+        WallScript.OnTrapSabotaged += AudioPlayerTrapSetup;
+        PlayerScript.OnPlayerCollision += AudioPlayerOnPlayerCollision;
         ScoreManager.OnPlayerEliminated += AudioPlayerEliminated;
     }
 
      void OnDisable()
     {
-        PlayerScript.PlayerShotHit -= AudioPlayerShot;
-        WallScript.PlayerTrapTrigger -= AudioPlayerTrapTrigger;
-        WallScript.PlayerTrapSetup -= AudioPlayerTrapSetup;
-        PlayerScript.PlayerOnPlayerCollision -= AudioPlayerOnPlayerCollision;
-        PlayerScript.PlayerTaunting -= AudioPlayerTaunting;
+        PlayerScript.OnPlayerShot -= AudioPlayerShot;
+        WallScript.OnTrapHit -= AudioPlayerTrapTrigger;
+        WallScript.OnTrapSabotaged -= AudioPlayerTrapSetup;
+        PlayerScript.OnPlayerCollision -= AudioPlayerOnPlayerCollision;
         ScoreManager.OnPlayerEliminated -= AudioPlayerEliminated;
     }
 
@@ -82,7 +80,7 @@ public class AudioEvent : MonoBehaviour
         }
     }
 
-    void AudioPlayerShot()
+    void AudioPlayerShot(PlayerScript playerHit, PlayerScript shooter)
     {
         if (!isPlaying)
         {
@@ -98,7 +96,7 @@ public class AudioEvent : MonoBehaviour
         }  
     }
 
-    void AudioPlayerTrapTrigger()
+    void AudioPlayerTrapTrigger(PlayerScript playerHit, Traps trapType)
     {
         if (!isPlaying)
         {
@@ -115,7 +113,7 @@ public class AudioEvent : MonoBehaviour
 
     }
 
-    void AudioPlayerTrapSetup()
+    void AudioPlayerTrapSetup(PlayerScript playerImmune, Traps trapType, bool successful)
     {
         if (!isPlaying)
         {
@@ -131,7 +129,7 @@ public class AudioEvent : MonoBehaviour
         }
     }
 
-    void AudioPlayerOnPlayerCollision()
+    void AudioPlayerOnPlayerCollision(PlayerScript playerHit, PlayerScript playerAttacking)
     {
         if (!isPlaying)
         {

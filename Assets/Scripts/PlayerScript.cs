@@ -39,17 +39,7 @@ public class PlayerScript : MonoBehaviour
     public static event PlayerCollision OnPlayerCollision;
 
     //AnnouncerAudio Events Could be used for more though :3
-    public delegate void AnnouncerEvent();
-    public static event AnnouncerEvent PlayerShotHit;
-    
-    
-    public static event AnnouncerEvent PlayerOnPlayerCollision;
-    public static event AnnouncerEvent PlayerTaunting;
-    //The maybe do pile if there is time
-    public static event AnnouncerEvent ComedianInactive;
-    public static event AnnouncerEvent DaredevilNearPlayerMiss;
-    public static event AnnouncerEvent DaredevilNearTrapMiss;
-    public static event AnnouncerEvent LightweightEngineDisable;
+   
 
     public int playerNumber;
     public PlayerTypes playerType;
@@ -269,14 +259,14 @@ public class PlayerScript : MonoBehaviour
         Vibrate(0.5f, 0.2f);
         hitByBulletCooldown = timeBetweenHitByBullet;
         OnPlayerShot?.Invoke(this, bullet.shooter.GetComponent<PlayerScript>());
-        PlayerShotHit?.Invoke();
+        
 
     }
 
     public void WasCollidedWith(GameObject attacker)
     {
         OnPlayerCollision.Invoke(this, attacker.GetComponent<PlayerScript>());
-        PlayerOnPlayerCollision?.Invoke();
+        
         //playersScreen.GetComponent<ScreenAnim>().Scared();
   
     }
@@ -284,7 +274,6 @@ public class PlayerScript : MonoBehaviour
     public void WasHitWithArenaCannon()
     {
         OnPlayerHitByArenaCannon?.Invoke(this);
-        PlayerShotHit?.Invoke();
         StartCoroutine(controller.Careen(controller.disabledTime, controller.careenTime));
 
         Vibrate(5f,1f);

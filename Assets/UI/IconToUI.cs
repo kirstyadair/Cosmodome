@@ -25,7 +25,7 @@ public class IconToUI : MonoBehaviour
     void CreateIcon(PlayerScript playerHit, PlayerScript playerAttacking)
     {
         Image newIcon;
-        if(playerAttacking!=null)
+        if(playerAttacking)
         {
             newIcon = Instantiate(iconMaster);
             Vector3 newIconPos = GetPosition(newIcon, playerAttacking.gameObject);
