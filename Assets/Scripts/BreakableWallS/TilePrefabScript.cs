@@ -20,7 +20,7 @@ public class TilePrefabScript : MonoBehaviour
 
         foreach (BreakableConnectorScript breakableConnector in connectorScripts)
         {
-            breakableConnector.Disappear();
+            if (breakableConnector.CompareTag("Connector")) breakableConnector.Disappear();
         }
     }
 
@@ -33,7 +33,7 @@ public class TilePrefabScript : MonoBehaviour
 
         foreach (BreakableConnectorScript breakableConnector in connectorScripts)
         {
-            if (breakableConnector.gameObject.activeInHierarchy) breakableConnector.TurnRed();
+            if (breakableConnector.gameObject.activeInHierarchy && breakableConnector.CompareTag("Connector")) breakableConnector.TurnRed();
         }
     }
 }
