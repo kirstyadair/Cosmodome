@@ -27,6 +27,7 @@ public class ExcitementManager : MonoBehaviour
     void Start()
     {
         audio = gameObject.GetComponent<AudioSource>();
+        PlayerScript.OnPlayerCollision += AddToHype;
 
         sm = ScoreManager.Instance;
         ScoreManager.OnStateChanged += OnStateChange;
@@ -36,7 +37,6 @@ public class ExcitementManager : MonoBehaviour
     {
         if (newState == GameState.INGAME)
         {
-            PlayerScript.OnPlayerCollision += AddToHype;
 
             foreach (PlayerScript player in sm.players)
             {
