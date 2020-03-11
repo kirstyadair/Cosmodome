@@ -190,9 +190,7 @@ public class PlayerScript : MonoBehaviour
             rings.UpdateRings(this.transform.position, controller.turretDirection, ammo / maxAmmo, (float)this.approval.percentage / 100f);
         }
 
-        //Bens code change start
-        //score.text = approval.percentage + "%";
-        //Bens code change end
+        
         if (hitByBulletCooldown > 0) hitByBulletCooldown -= Time.deltaTime;
 
 
