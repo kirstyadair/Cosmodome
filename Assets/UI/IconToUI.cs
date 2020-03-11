@@ -25,12 +25,16 @@ public class IconToUI : MonoBehaviour
     void CreateIcon(PlayerScript playerHit, PlayerScript playerAttacking)
     {
         Image newIcon;
-        newIcon = Instantiate(iconMaster);
-        Vector3 newIconPos = GetPosition(newIcon, playerAttacking.gameObject);
-        newIcon.transform.SetParent(GameObject.Find("MainUICanvas").transform, false);
-        newIcon.transform.position = newIconPos + iconOffset;
+        if(playerAttacking!=null)
+        {
+            newIcon = Instantiate(iconMaster);
+            Vector3 newIconPos = GetPosition(newIcon, playerAttacking.gameObject);
+            newIcon.transform.SetParent(GameObject.Find("MainUICanvas").transform, false);
+            newIcon.transform.position = newIconPos + iconOffset;
 
-        StartCoroutine(MoveIcon(newIcon,1f));
+            StartCoroutine(MoveIcon(newIcon, 1f));
+        }
+        
 
     }
 

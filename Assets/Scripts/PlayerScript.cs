@@ -75,11 +75,6 @@ public class PlayerScript : MonoBehaviour
 
     ShipController controller;
     public PlayerApproval approval = new PlayerApproval();
-    public RawImage smallArrow;
-    public RawImage largeArrow;
-    public RawImage smallArrowPlus;
-    public RawImage largeArrowPlus;
-    public GameObject playersScreen;
     public PlayerRing rings;
     public InputDevice inputDevice;
 
@@ -108,14 +103,6 @@ public class PlayerScript : MonoBehaviour
         chargeWeaponScript = GetComponent<ChargeWeaponScript>();
 
         approval.ChangeApproval(0);
-
-        Color tempColor = largeArrow.color;
-        tempColor.a = 0f;
-        largeArrow.color = tempColor;
-        smallArrow.color = tempColor;
-        smallArrowPlus.color = tempColor;
-        largeArrowPlus.color = tempColor;
-
         this.startPosition = this.transform.position;
         this.startRotation = this.transform.rotation;
 
@@ -159,58 +146,6 @@ public class PlayerScript : MonoBehaviour
         this.transform.position = startPosition;
         this.transform.rotation = startRotation;
     }
-
-
-    //Bens code change start
-    public IEnumerator ArrowFlash(float timeMultiplier, int arrowType,int plusOrMinus)
-    {
-        //Small arrow = 0 | Larg arrow = 1
-        //Plus arrow = 1 | Minus arrow = 0
-
-        if(arrowType == 0 && plusOrMinus == 0)
-        {
-            smallArrow.color = new Color(smallArrow.color.r, smallArrow.color.g, smallArrow.color.b, 1);
-
-            while (smallArrow.color.a > 0.0f)
-            {
-                smallArrow.color = new Color(smallArrow.color.r, smallArrow.color.g, smallArrow.color.b, smallArrow.color.a - (Time.deltaTime * timeMultiplier));
-                yield return null;
-            }
-        }
-
-        if(arrowType ==1&&plusOrMinus ==0)
-        {
-            largeArrow.color = new Color(largeArrow.color.r, largeArrow.color.g, largeArrow.color.b, 1);
-
-            while (largeArrow.color.a > 0.0f)
-            {
-                largeArrow.color = new Color(largeArrow.color.r, largeArrow.color.g, largeArrow.color.b, largeArrow.color.a - (Time.deltaTime * timeMultiplier));
-                yield return null;
-            }
-        }
-        if (arrowType == 0 && plusOrMinus == 1)
-        {
-            smallArrowPlus.color = new Color(smallArrowPlus.color.r, smallArrowPlus.color.g, smallArrowPlus.color.b, 1);
-
-            while (smallArrowPlus.color.a > 0.0f)
-            {
-                smallArrowPlus.color = new Color(smallArrowPlus.color.r, smallArrowPlus.color.g, smallArrowPlus.color.b, smallArrowPlus.color.a - (Time.deltaTime * timeMultiplier));
-                yield return null;
-            }
-        }
-        if (arrowType == 1 && plusOrMinus == 1)
-        {
-            largeArrowPlus.color = new Color(largeArrowPlus.color.r, largeArrowPlus.color.g, largeArrowPlus.color.b, 1);
-
-            while (largeArrowPlus.color.a > 0.0f)
-            {
-                largeArrowPlus.color = new Color(largeArrowPlus.color.r, largeArrowPlus.color.g, largeArrowPlus.color.b, largeArrowPlus.color.a - (Time.deltaTime * timeMultiplier));
-                yield return null;
-            }
-        }
-
-    }
-    //Bens code change end
 
     public void Vibrate(float strength, float time)
     {

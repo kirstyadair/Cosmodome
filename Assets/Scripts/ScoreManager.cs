@@ -360,8 +360,6 @@ public class ScoreManager : MonoBehaviour
     {
         //hitPlayer.approval.ChangeApproval(-bumperBallExplosionRate);
         StartCoroutine(hitPlayer.FlashWithDamage());
-
-        StartCoroutine(hitPlayer.ArrowFlash(.5f, 0, 0));
     }
 
     void PlayerShot(PlayerScript shotPlayer, PlayerScript shooter)
@@ -373,9 +371,6 @@ public class ScoreManager : MonoBehaviour
         shotPlayer.approval.ChangeApproval(-bulletDamageRate);
         shooter.approval.ChangeApproval(bulletDamageRate);
 
-        StartCoroutine(shotPlayer.ArrowFlash(.5f,0,0));
-        StartCoroutine(shooter.ArrowFlash(.5f,0,1));
-
         OnUpdateScore?.Invoke();
         UpdatePercentages();
 
@@ -385,9 +380,7 @@ public class ScoreManager : MonoBehaviour
     void PlayerHitByArenaCannon(PlayerScript shotPlayer)
     {
         shotPlayer.approval.ChangeApproval(-arenaCannonRate);
-        //Bens code change start
-        StartCoroutine(shotPlayer.ArrowFlash(1f, 0, 0));
-        //Bens code change end
+
         OnUpdateScore?.Invoke();
         UpdatePercentages();
 
@@ -400,11 +393,6 @@ public class ScoreManager : MonoBehaviour
         player.approval.ChangeApproval(-lowDamageRate);
         OnUpdateScore?.Invoke();
         UpdatePercentages();
-        //Bens code change start
-        StartCoroutine(player.ArrowFlash(.5f,1,0));
-        
-
-        //Bens code change end
         StartCoroutine(player.FlashWithDamage());
     }
 
