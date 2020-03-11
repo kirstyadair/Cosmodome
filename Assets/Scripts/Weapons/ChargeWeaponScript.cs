@@ -7,6 +7,7 @@ public class ChargeWeaponScript : MonoBehaviour
 {
     InputDevice controller;
     PlayerScript playerScript;
+    ShipController shipController;
     [SerializeField]
     float chargeAmount;
 
@@ -33,7 +34,7 @@ public class ChargeWeaponScript : MonoBehaviour
     [Header("How much to multiply the charge level by when not being held")]
     public float decreaseMuliplier = 0.85f;
 
-    public delegate void ChargeWeaponFire();
+    public delegate void ChargeWeaponFire(ShipController ship);
     public static event ChargeWeaponFire OnChargeWeaponFire;
 
     /// <summary>
@@ -58,6 +59,7 @@ public class ChargeWeaponScript : MonoBehaviour
     {
         playerScript = GetComponent<PlayerScript>();
         playerRings.IsChargingWeapon();
+        shipController = GetComponent<ShipController>();
     }
 
     public void StartCharging()
@@ -81,6 +83,11 @@ public class ChargeWeaponScript : MonoBehaviour
         if (playerScript.inputDevice == null) return;
 
         controller = playerScript.inputDevice;
+
+        if (isFiring)
+        {
+            OnChargeWeaponFire?.Invoke(shipController);
+        }
 
         // If the button is held
         if (!isFiring)
@@ -143,7 +150,7 @@ public class ChargeWeaponScript : MonoBehaviour
     {
         isFiring = true;
         isCharged = false;
-        OnChargeWeaponFire?.Invoke();
+        OnChargeWeaponFire?.Invoke(shipController);
         shootPs.gameObject.SetActive(true);
         laser.GetComponent<Animator>().SetBool("LaserOn", true);
         deleter.enabled = true;

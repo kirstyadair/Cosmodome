@@ -26,6 +26,7 @@ public class AudioManager : MonoBehaviour
     {
         PlayerScript.OnPlayerCollision += PlayerCollision;
         BasicWeaponScript.OnPlayerShooting += PlayerShooting;
+        ChargeWeaponScript.OnChargeWeaponFire += PlayerShooting;
         ArenaCannonManager.OnOpenCannon += OpenCannon;
         ArenaCannonMissile.OnFireCannon += FireCannon;
         ScoreManager.OnExplodePlayer += ExplodePlayer;
