@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Wall_Edge_Side
+  m_Name: Wall_rope
   m_Shader: {fileID: -6465566751694194690, guid: 942aa05e2f066fa4e92781b657ccaed7,
     type: 3}
   m_ShaderKeywords: 
@@ -34,15 +34,15 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - Texture2D_1030B1F0:
-        m_Texture: {fileID: 2800000, guid: dd5438b6e274c264e9392de616ab5b95, type: 3}
+        m_Texture: {fileID: 2800000, guid: c2972c0efa5e5054398619c1fb0cb314, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - Texture2D_80ECDE54:
-        m_Texture: {fileID: 2800000, guid: 69d6ccf6c289a854ea119a1b07332dec, type: 3}
+        m_Texture: {fileID: 2800000, guid: 8e6f1f020c7032741aba5f4309905ee1, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - Texture2D_8104687C:
-        m_Texture: {fileID: 2800000, guid: 2ce2d9782ebd5174a9fb47dbc7a79712, type: 3}
+        m_Texture: {fileID: 2800000, guid: 5ff2a21bcf9b8dc41ba5a361fbd5249b, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - Texture2D_8ECCD963:
@@ -50,7 +50,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - Texture2D_D12C8F3A:
-        m_Texture: {fileID: 2800000, guid: f4fa203763f8ece41be3b1ec400c3fc2, type: 3}
+        m_Texture: {fileID: 2800000, guid: 3ec405add9c0c74488ed88aed58928c3, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BaseMap:
@@ -83,7 +83,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - Boolean_A0D0B588: 1
-    - Vector1_A69B848E: 1.53
+    - Vector1_A69B848E: 2.12
     - Vector1_AC8525CF: 0
     - Vector1_F9F2686: 1
     - _AlphaClip: 0
