@@ -9,6 +9,7 @@ public class BreakableConnectorScript : MonoBehaviour
     MeshRenderer meshRenderer;
     Vector3 prevPosition;
     Quaternion prevRotation;
+    [SerializeField]
     Material standard;
     [SerializeField]
     Material redMaterial;
@@ -23,7 +24,6 @@ public class BreakableConnectorScript : MonoBehaviour
         rigidbody = GetComponent<Rigidbody>();
         collider = GetComponent<BoxCollider>();
         meshRenderer = GetComponent<MeshRenderer>();
-        standard = meshRenderer.material;
     }
 
     public void Disappear()
@@ -42,7 +42,7 @@ public class BreakableConnectorScript : MonoBehaviour
         //transform.rotation = prevRotation;
         //rigidbody.isKinematic = true;
         //rigidbody.useGravity = false;
-        //meshRenderer.material = standard;
+        meshRenderer.material = standard;
         gameObject.SetActive(false);
     }
 
