@@ -71,10 +71,19 @@ public class ExcitementManager : MonoBehaviour
     void AddToHype(PlayerScript hitPlayer, PlayerScript shootingPlayer)
     {
         // Don't let hype get over 10
-        if (hypeLevel >= 10) return;
+        if (hypeLevel >= 10) hypeLevel=10;
+        
+        if(shootingPlayer.gameObject.GetComponent<ExcitementMeterScript>().comboScore<10)
+        {
+            // Add to the combo of the attacking player
+            shootingPlayer.gameObject.GetComponent<ExcitementMeterScript>().comboScore++;
 
-        // Add to the combo of the attacking player
-        shootingPlayer.gameObject.GetComponent<ExcitementMeterScript>().comboScore++;
+            if (shootingPlayer.gameObject.GetComponent<ExcitementMeterScript>().comboScore==10)
+            {
+                return;
+            }
+            
+        }
 
         // Update the list of top players
         UpdateHype();
