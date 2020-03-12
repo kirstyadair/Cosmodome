@@ -21,9 +21,25 @@ public class AnnouncerDialouge : MonoBehaviour
     bool isInit = false;
 
 
+
+    public void OnStateChange(GameState newState, GameState oldState)
+    {
+        if (newState == GameState.INGAME)
+        {
+            dialouge.color = new Color32(255, 255, 255, 255);
+        }
+        if(newState==GameState.COUNTDOWN|| newState == GameState.END_OF_GAME|| newState == GameState.ROUND_END_CUTSCENE|| newState == GameState.ROUND_START_CUTSCENE)
+        {
+            dialouge.color = new Color32(0, 0, 0, 0);
+        }
+    }
+
+
     // Start is called before the first frame update
     void Start()
     {
+        ScoreManager.OnStateChanged += OnStateChange;
+
         audioEvent = GameObject.Find("Announcer").GetComponent<AudioEvent>();
         dialougePlayerShot = new string[11];
         dialougePlayerOnPlayerCollision = new string[24];
