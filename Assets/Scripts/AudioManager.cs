@@ -6,7 +6,7 @@ using UnityEngine;
 public class AudioManager : MonoBehaviour
 {
     AudioSource audioSource;
-    public AudioClips[] clips = new AudioClips[13];
+    public AudioClips[] clips;
 
     [Header("Sounds to randomly play on character intro")]
     public AudioClips[] introSounds;
@@ -36,6 +36,8 @@ public class AudioManager : MonoBehaviour
         BumperBall.OnBumperBallExplode += BBExplode;
         BumperBall.OnBumperBallHitPlayer += BBHit;
         BumperBall.OnBumperBallHitWall += BBHitWall;
+        TilePrefabScript.OnWallExplode += WallExplode;
+        TilePrefabScript.OnWallHit += WallHit;
 
         CutscenesManager.OnPlayCountdown += Countdown;
         CutscenesManager.OnPlayCharacterIntro += CharacterIntro;
@@ -142,6 +144,18 @@ public class AudioManager : MonoBehaviour
     {
         audioSource.volume = clips[6].volume;
         audioSource.PlayOneShot(clips[6].clip);
+    }
+
+    void WallHit()
+    {
+        audioSource.volume = clips[20].volume;
+        audioSource.PlayOneShot(clips[20].clip);
+    }
+
+    void WallExplode()
+    {
+        audioSource.volume = clips[19].volume;
+        audioSource.PlayOneShot(clips[19].clip);
     }
 
     void CharacterIntro()

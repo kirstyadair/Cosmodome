@@ -10,9 +10,14 @@ public class TilePrefabScript : MonoBehaviour
     BreakableConnectorScript[] connectorScripts;
     BreakableWallScript[] breakableWalls;
     MeshRenderer[] meshRenderers;
+    public delegate void WallHit();
+    public static event WallHit OnWallHit;
+    public delegate void WallExplode();
+    public static event WallExplode OnWallExplode;
 
     public void DisableAll(GameObject ship)
     {
+        OnWallExplode?.Invoke();
         foreach (BreakableWallScript breakableWall in connectedWalls)
         {
             if (breakableWall.gameObject.activeInHierarchy) breakableWall.ExplodeChildren(ship);
@@ -26,6 +31,7 @@ public class TilePrefabScript : MonoBehaviour
 
     public void MakeAllRed()
     {
+        OnWallHit?.Invoke();
         foreach (BreakableWallScript wall in connectedWalls)
         {
             if (wall.gameObject.activeInHierarchy) wall.TurnChildrenRed();
