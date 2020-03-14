@@ -13,8 +13,6 @@ public class PedastalScript : MonoBehaviour
     [SerializeField]
     Text _placedText;
 
-    [SerializeField]
-    Text _approvalPercentageText;
 
     [SerializeField]
     Light _spotlight1;
@@ -58,8 +56,6 @@ public class PedastalScript : MonoBehaviour
         _placedText.text = place;
 
         EnableCharacterModel(characterName);
-
-        _approvalPercentageText.text = approvalPercentage + "%";
     }
 
     void EnableCharacterModel(string characterName) {
