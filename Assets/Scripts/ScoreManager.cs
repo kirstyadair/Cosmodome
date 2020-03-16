@@ -152,8 +152,7 @@ public class ScoreManager : MonoBehaviour
 
         if (timeLeftInRound <= 0)
         {
-            EndOfGame();
-            /*
+            
             if (_currentRound < _maxRounds)
             {
                 EndOfRound();
@@ -161,7 +160,7 @@ public class ScoreManager : MonoBehaviour
             else 
             {
                 EndOfGame();
-            }*/
+            }
         }
         else
         {

@@ -263,8 +263,10 @@ public class PlayerScript : MonoBehaviour
 
     public void WasCollidedWith(GameObject attacker)
     {
-        OnPlayerCollision.Invoke(this, attacker.GetComponent<PlayerScript>());
-        
+        PlayerScript attackerPlayer = attacker.GetComponent<PlayerScript>();
+        OnPlayerCollision.Invoke(this, attackerPlayer);
+        attackerPlayer.playerData.rams++;
+
         //playersScreen.GetComponent<ScreenAnim>().Scared();
   
     }
