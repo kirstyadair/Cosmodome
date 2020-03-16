@@ -11,15 +11,12 @@ public class Pedastals : MonoBehaviour
 
     public float gapBetweenPedastals;
 
-    ScoreManager _sm;
 
     /// <summary>
     /// Sets up the pedatals, ready to be shown
     /// </summary>
-    public void Setup()
+    public void Setup(List<PlayerData> playerData)
     {
-        _sm = ScoreManager.Instance;
-        List<PlayerData> playerData = _sm.GetFinalPlayerData();
         int amountOfPedastals = playerData.Count;
         // negative offset to center
         float offset = -((gapBetweenPedastals * amountOfPedastals) / 2);
@@ -35,7 +32,7 @@ public class Pedastals : MonoBehaviour
             PedastalScript pedaScript = pedastal.GetComponent<PedastalScript>();
 
             PlayerData data = playerData[i];
-            pedaScript.Setup(data.playerName, data.playerColor, data.placed, data.approvalPercentage, data.characterName);
+            pedaScript.Setup(data.playerNumber, data.playerColor, data.placed, data.approvalPercentage, data.characterName);
 
             _pedastals.Add(pedaScript);
         }

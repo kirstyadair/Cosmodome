@@ -38,13 +38,13 @@ public class PedastalScript : MonoBehaviour
     /// <param name="playerColour">Player colour for lights</param>
     /// <param name="placed">Where they placed, 1 for 1st, 2 for 2nd etc</param>
     /// <param name="approvalPercentage">Approval percentage at time of death or game over</param>
-    public void Setup(string playerName, Color playerColour, int placed, int approvalPercentage, string characterName)
+    public void Setup(int playerNumber, Color playerColour, int placed, int approvalPercentage, string characterName)
     {
         _placed = placed;
         _spotlight1.color = playerColour;
         _spotlight2.color = playerColour;
 
-        _playerNameText.text = playerName;
+        _playerNameText.text = "PLAYER " + playerNumber;
         _playerNameText.color = playerColour;
 
         string place = "";

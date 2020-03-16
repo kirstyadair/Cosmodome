@@ -20,6 +20,7 @@ public class CutscenesManager : MonoBehaviour
     public Animator cameraAnimator;
     public CameraMovement cameraMovement;
     public DeathSpotlight deathSpotlight;
+    public EndScreenStats endScreenStats;
 
     public Animator countdownAnimator;
 
@@ -69,6 +70,7 @@ public class CutscenesManager : MonoBehaviour
 
     public IEnumerator EndOfGameCutscene(PlayerScript eliminatedPlayer)
     {
+        List<PlayerData> playerData = sm.GetFinalPlayerData();
         //if (!shouldShowIntroCutscenes) yield break;
 
         StartCoroutine(DeathHighlightPlayer(eliminatedPlayer.gameObject, 2f));
@@ -81,10 +83,15 @@ public class CutscenesManager : MonoBehaviour
 
         yield return new WaitForSeconds(0.5f);
 
-        yield return StartShowingPedastals();
+        yield return StartShowingPedastals(playerData);
+
+        endScreenStats.gameObject.SetActive(true);
+        endScreenStats.Setup(playerData);
+
+        // now we hand control to endScreenStats to see when start is pressed
     }
 
-    IEnumerator StartShowingPedastals()
+    IEnumerator StartShowingPedastals(List<PlayerData> playerData)
     {
         sm.isCameraEnabled = false;
         recordingSquare.SetActive(true);
@@ -92,11 +99,13 @@ public class CutscenesManager : MonoBehaviour
         cameraAnimator.Play("End of game cutscene", -1, 0);
         pedastals.gameObject.SetActive(true);
 
-        pedastals.Setup();
+        pedastals.Setup(playerData);
 
         yield return new WaitForSeconds(1f);
 
         pedastals.Show();
+
+        yield return new WaitForSeconds(5f);
     }
 
     IEnumerator StartPlayingInbetweenRoundCutscenes(float after)

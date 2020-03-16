@@ -17,11 +17,13 @@ public enum Traps
 [Serializable]
 public class PlayerData
 {
-    public string playerName;
+    public int playerNumber;
     public Color playerColor;
     public int placed;
     public int approvalPercentage;
     public string characterName;
+    public int rams;
+    public int comboHi;
 }
 
 /// <summary>
@@ -150,6 +152,8 @@ public class ScoreManager : MonoBehaviour
 
         if (timeLeftInRound <= 0)
         {
+            EndOfGame();
+            /*
             if (_currentRound < _maxRounds)
             {
                 EndOfRound();
@@ -157,7 +161,7 @@ public class ScoreManager : MonoBehaviour
             else 
             {
                 EndOfGame();
-            }
+            }*/
         }
         else
         {
@@ -179,13 +183,13 @@ public class ScoreManager : MonoBehaviour
         {
             PlayerData data = player.playerData;
 
-            data.playerName = "PLAYER " + player.playerNumber;
+            data.playerNumber = player.playerNumber;
             data.characterName = player.gameObject.name;
 
             results.Add(data);
         }
 
-        results = results.OrderByDescending((a) => a.playerName).ToList();
+        results = results.OrderByDescending((a) => a.playerNumber).ToList();
 
         return results;
     }
