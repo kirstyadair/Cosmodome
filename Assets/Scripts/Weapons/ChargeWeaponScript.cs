@@ -8,11 +8,14 @@ public class ChargeWeaponScript : MonoBehaviour
     InputDevice controller;
     PlayerScript playerScript;
     ShipController shipController;
+    ScoreManager sm;
     [SerializeField]
     float chargeAmount;
 
     [SerializeField]
     bool isCharged = true;
+
+    bool canFire;
 
     public GameObject spawnPoint;
     public GameObject laser;
@@ -60,6 +63,7 @@ public class ChargeWeaponScript : MonoBehaviour
         playerScript = GetComponent<PlayerScript>();
         playerRings.IsChargingWeapon();
         shipController = GetComponent<ShipController>();
+        sm = ScoreManager.Instance;
     }
 
     public void StartCharging()
@@ -87,7 +91,11 @@ public class ChargeWeaponScript : MonoBehaviour
         if (isFiring)
         {
             OnChargeWeaponFire?.Invoke(shipController);
+            chargeAmount -= Time.deltaTime;
         }
+
+        if (chargeAmount >= 1) canFire = true;
+        if (chargeAmount <= 0) StopFiring();
 
         // If the button is held
         if (!isFiring)
@@ -95,7 +103,7 @@ public class ChargeWeaponScript : MonoBehaviour
             // Only charge when we  are not firing
             if (!isCharging) StartCharging();
 
-            chargeAmount += Time.deltaTime;
+            
 
             // Fully charged?
             if (chargeAmount >= chargeNeeded)
@@ -107,7 +115,7 @@ public class ChargeWeaponScript : MonoBehaviour
            
         }
 
-        if (controller.RightBumper.IsPressed)
+        if (controller.RightBumper.IsPressed && sm.gameState == GameState.INGAME && canFire)
         {
             // If  fully charge and button released,  fire!
             if (isCharged && !isFiring)
@@ -116,15 +124,12 @@ public class ChargeWeaponScript : MonoBehaviour
             }
 
             if (isCharging) StopCharging();
-
-            // Otherwise start reducing charge level
-            if (chargeAmount > 0.1)
-            {
-                chargeAmount *= decreaseMuliplier;
-            }  else
-            {
-                chargeAmount = 0;
-            }
+        }
+        else
+        {
+            StopFiring();
+            chargeAmount += Time.deltaTime;
+            canFire = false;
         }
 
         playerRings.UpdateCharge(chargePercentage);
@@ -149,12 +154,10 @@ public class ChargeWeaponScript : MonoBehaviour
     void Fire()
     {
         isFiring = true;
-        isCharged = false;
+        //isCharged = false;
         OnChargeWeaponFire?.Invoke(shipController);
         shootPs.gameObject.SetActive(true);
         laser.GetComponent<Animator>().SetBool("LaserOn", true);
         deleter.enabled = true;
-
-        StartCoroutine(StopFiringAfter(laserHoldTime));
     }
 }
