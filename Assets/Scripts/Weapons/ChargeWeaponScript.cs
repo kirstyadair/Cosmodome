@@ -15,6 +15,9 @@ public class ChargeWeaponScript : MonoBehaviour
     [SerializeField]
     bool isCharged = true;
 
+    [SerializeField]
+    [Header("Does the weapon need full charge to fire?")]
+    bool requireFullCharge;
     bool canFire;
 
     public GameObject spawnPoint;
@@ -94,7 +97,7 @@ public class ChargeWeaponScript : MonoBehaviour
             chargeAmount -= Time.deltaTime;
         }
 
-        if (chargeAmount >= 1) canFire = true;
+        if (chargeAmount >= 1 && requireFullCharge) canFire = true;
         if (chargeAmount <= 0) StopFiring();
 
         // If the button is held
@@ -115,21 +118,30 @@ public class ChargeWeaponScript : MonoBehaviour
            
         }
 
-        if (controller.RightBumper.IsPressed && sm.gameState == GameState.INGAME && canFire)
+        if (controller.RightBumper.IsPressed && sm.gameState == GameState.INGAME)
         {
-            // If  fully charge and button released,  fire!
-            if (isCharged && !isFiring)
+            if (!requireFullCharge)
             {
-                Fire();
-            }
+                if (chargeAmount > 0) Fire();
 
-            if (isCharging) StopCharging();
+                if (isCharging) StopCharging();
+            }
+            else if (requireFullCharge && canFire)
+            {
+                // If  fully charge and button released,  fire!
+                if (isCharged && !isFiring)
+                {
+                    Fire();
+                }
+
+                if (isCharging) StopCharging();
+            }
         }
         else
         {
             StopFiring();
             chargeAmount += Time.deltaTime;
-            canFire = false;
+            if (requireFullCharge) canFire = false;
         }
 
         playerRings.UpdateCharge(chargePercentage);
