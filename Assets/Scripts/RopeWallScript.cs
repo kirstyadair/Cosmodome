@@ -10,4 +10,14 @@ public class RopeWallScript : MonoBehaviour
         //GetComponent<Rigidbody>().useGravity = false;   
         //GetComponent<Rigidbody>().isKinematic = true;   
     }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        Debug.Log(collision.gameObject.name);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        Debug.Log(other.gameObject.name);
+    }
 }
