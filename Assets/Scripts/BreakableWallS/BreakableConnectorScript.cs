@@ -42,13 +42,13 @@ public class BreakableConnectorScript : MonoBehaviour
         //transform.rotation = prevRotation;
         //rigidbody.isKinematic = true;
         //rigidbody.useGravity = false;
-        //meshRenderer.material = standard;
+        if (meshRenderer != null) meshRenderer.material = standard;
         gameObject.SetActive(false);
     }
 
     public void TurnRed()
     {
-        meshRenderer.material = redMaterial;
+        if (meshRenderer != null) meshRenderer.material = redMaterial;
     }
 
     void OnCollisionEnter(Collision other)
