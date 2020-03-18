@@ -22,6 +22,16 @@ public class ExcitementMeterScript : MonoBehaviour
         ps = GetComponent<PlayerScript>();
     }
 
+    
+    void OnDisable() {
+        PlayerScript.OnPlayerCollision -= OnCollision;
+        PlayerScript.OnPlayerShot -= OnShot;
+        PlayerScript.OnPlayerHitByArenaCannon -= OnACShot;
+        BumperBall.OnBumperBallExplodeOnPlayer -= OnBBExplode;
+        BumperBall.OnBumperBallHitPlayer -= OnBBHit;
+        ExcitementManager.OnResetHype -= Reset;
+    }
+
     public void OnStateChanged(GameState newState, GameState oldState)
     {
         if (newState == GameState.INGAME)

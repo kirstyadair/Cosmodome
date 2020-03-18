@@ -55,7 +55,11 @@ public class SongPicker : MonoBehaviour
 
     
 
+    void OnDestroy() {
+        ScoreManager.OnStateChanged -= OnStateChange;
+    }
     // Start is called before the first frame update
+    
     void Start()
     {
         ScoreManager.OnStateChanged += OnStateChange;

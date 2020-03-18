@@ -58,6 +58,10 @@ public class PercentageBar : MonoBehaviour
 
     }
 
+    void OnDisable() {
+        ScoreManager.OnStateChanged -= OnStateChange;
+    }
+
     void CheckPlayers()
     {
         for (int i = 0; i < playerArray.Count; i++)

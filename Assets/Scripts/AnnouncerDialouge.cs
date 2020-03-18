@@ -48,6 +48,11 @@ public class AnnouncerDialouge : MonoBehaviour
 
     }
 
+    void OnDisable() {
+        ScoreManager.OnStateChanged -= OnStateChange;
+    }
+    
+
     void InitLines()
     {
         

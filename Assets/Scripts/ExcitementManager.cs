@@ -33,6 +33,12 @@ public class ExcitementManager : MonoBehaviour
         ScoreManager.OnStateChanged += OnStateChange;
     }
     
+    
+    void OnDisable() {
+        ScoreManager.OnStateChanged -= OnStateChange;
+        PlayerScript.OnPlayerCollision -= AddToHype;
+    }
+
     public void OnStateChange(GameState newState, GameState oldState)
     {
         if (newState == GameState.INGAME)

@@ -36,6 +36,9 @@ public class ApprovalChangeUI : MonoBehaviour
         animator = GetComponent<Animator>();
     }
 
+    void OnDestroy() {
+        ScoreManager.OnStateChanged -= OnStateChange;
+    }
 
     private void OnGUI()
     {

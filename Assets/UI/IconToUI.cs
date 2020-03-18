@@ -15,6 +15,10 @@ public class IconToUI : MonoBehaviour
         PlayerScript.OnPlayerCollision += CreateIcon;
     }
 
+    void OnDisable() {
+        PlayerScript.OnPlayerCollision -= CreateIcon;
+    }
+
 
     Vector3 GetPosition(Image icon, GameObject player)
     {

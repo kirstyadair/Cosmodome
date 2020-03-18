@@ -21,6 +21,10 @@ public class CrowdManager : MonoBehaviour
         ScoreManager.OnUpdateScore += UpdateCrowdSupport;
     }
 
+    void OnDisable() {
+        ScoreManager.OnUpdateScore -= UpdateCrowdSupport;
+    }
+
     // Start is called before the first frame update
     public void SetUpCrowd()
     {

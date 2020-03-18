@@ -29,6 +29,10 @@ public class BreakableWallSpawner : MonoBehaviour
         scoreManager = ScoreManager.Instance;
     }
 
+    void OnDestroy() {
+        ScoreManager.OnStateChanged -= OnStateChange;
+    }
+
     void OnStateChange(GameState newState, GameState oldState)
     {
         if (newState == GameState.ROUND_END_CUTSCENE || newState == GameState.END_OF_GAME)

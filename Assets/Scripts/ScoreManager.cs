@@ -24,6 +24,7 @@ public class PlayerData
     public string characterName;
     public int rams;
     public int comboHi;
+    public PlayerTypes playerType;
 }
 
 /// <summary>
@@ -184,6 +185,7 @@ public class ScoreManager : MonoBehaviour
 
             data.playerNumber = player.playerNumber;
             data.characterName = player.gameObject.name;
+            data.playerType = player.playerType;
 
             results.Add(data);
         }
@@ -241,11 +243,13 @@ public class ScoreManager : MonoBehaviour
         ScoreManager.OnStateChanged += WhenStateHasChanged;
     }
 
+
+
     public void WhenStateHasChanged(GameState newState, GameState oldState)
     {
         if (newState == GameState.INGAME)
         {
-            isCameraEnabled = true;
+            isCameraEnabled = true; 
         }
     }
 
@@ -457,6 +461,18 @@ public class ScoreManager : MonoBehaviour
         
     }
 
+    void OnDestroy() {
+        PlayerAssignment.OnPlayersAssigned -= OnPlayersReady;
+        InputManager.OnDeviceDetached -= OnDeviceDetached;
+        PlayerScript.OnPlayerShot -= PlayerShot;
+        PlayerScript.OnPlayerCollision -= PlayerCollision;
+        PlayerScript.OnPlayerHitByArenaCannon -= PlayerHitByArenaCannon;
+        WallScript.OnTrapHit -= PlayerHitTrap;
+        WallScript.OnTrapSabotaged -= PlayerAttemptSabotage;
+        SpikeTrapScript.OnPlayerSpikeHit -= PlayerHitSpike;
+        BumperBall.OnBumperBallExplodeOnPlayer -= BumperBallExplodesOnPlayer;
+        ScoreManager.OnStateChanged -= WhenStateHasChanged;
+    }
 
     public void DisableCameraFollow()
     {

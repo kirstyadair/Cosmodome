@@ -44,6 +44,27 @@ public class AudioManager : MonoBehaviour
         CutscenesManager.OnRoundStart += RoundStart;
     }
 
+    void OnDisable() {
+        PlayerScript.OnPlayerCollision -= PlayerCollision;
+        BasicWeaponScript.OnPlayerShooting -= PlayerShooting;
+        ChargeWeaponScript.OnChargeWeaponFire -= PlayerShooting;
+        ArenaCannonManager.OnOpenCannon -= OpenCannon;
+        ArenaCannonMissile.OnFireCannon -= FireCannon;
+        ScoreManager.OnExplodePlayer -= ExplodePlayer;
+        ArenaCannonScript.OnTrapActivate -= TrapActivated;
+        //ShipController.OnPlayerNoBullets += Reload;
+        BumperBall.OnBumperBallFire -= BBShoot;
+        BumperBall.OnBumperBallExplode -= BBExplode;
+        BumperBall.OnBumperBallHitPlayer -= BBHit;
+        BumperBall.OnBumperBallHitWall -= BBHitWall;
+        TilePrefabScript.OnWallExplode -= WallExplode;
+        TilePrefabScript.OnWallHit -= WallHit;
+
+        CutscenesManager.OnPlayCountdown -= Countdown;
+        CutscenesManager.OnPlayCharacterIntro -= CharacterIntro;
+        CutscenesManager.OnRoundStart -= RoundStart;
+    }
+
     // Update is called once per frame
     void Start()
     {

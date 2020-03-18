@@ -24,6 +24,11 @@ public class AudienceDiversifiier : MonoBehaviour
         Randomize();
     }
 
+    void OnDisable() {
+        ExcitementManager.OnAddHype -= RandomizeSpeed;
+        ExcitementManager.OnResetHype -= RandomizeSpeed;
+    }
+
     public void FaceTowardCamera()
     {
         //foreach (GameObject alienSprite in alienSprites)

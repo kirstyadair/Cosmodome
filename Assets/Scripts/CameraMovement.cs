@@ -70,6 +70,11 @@ public class CameraMovement : MonoBehaviour
 
     }
 
+    void OnDisable() {
+        ScoreManager.OnStateChanged -= OnStateChange;
+        ScoreManager.OnPlayerEliminated -= OnPlayerEliminated;
+    }
+
     void OnStateChange(GameState newState, GameState oldState)
     {
         if (newState == GameState.INGAME || newState == GameState.COUNTDOWN)

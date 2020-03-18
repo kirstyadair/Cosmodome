@@ -162,6 +162,7 @@ public class PlayerScript : MonoBehaviour
     void OnDestroy()
     {
         if (inputDevice != null) inputDevice.StopVibration();
+        ScoreManager.OnStateChanged -= OnStateChange;
     }
 
     public void EnableRing(Color color)
