@@ -35,9 +35,10 @@ public class RopeWallScript : MonoBehaviour
         if (collision.gameObject.CompareTag("Ship"))
         {   
             Rigidbody shipRB = collision.gameObject.GetComponent<Rigidbody>();
+            ShipController sc = collision.gameObject.GetComponent<ShipController>();
             magnitudeOfShip = shipRB.velocity.magnitude;
             directionOfShip = Vector3.Normalize(collision.gameObject.transform.position - transform.position);
-            shipRB.AddForce(directionOfShip * magnitudeOfShip, ForceMode.Impulse);
+            sc.PushBack(directionOfShip * magnitudeOfShip);
         }
     }
 }
