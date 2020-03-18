@@ -14,14 +14,14 @@ public class RopeWallScript : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         rb.useGravity = false;
-        rb.constraints = RigidbodyConstraints.FreezeRotation;
-        targetPoint = Vector3.zero;
+        rb.constraints = RigidbodyConstraints.FreezeRotation | RigidbodyConstraints.FreezePositionY;
+        targetPoint = new Vector3 (0, 0.5f, 0);
     }
 
     void Update()
     {
         // Return to centre point if not already there
-        SeekCentrePoint();
+        if (Vector3.Distance(transform.localPosition, targetPoint) > 0.1f) SeekCentrePoint();
     }
 
     void SeekCentrePoint()
@@ -38,7 +38,7 @@ public class RopeWallScript : MonoBehaviour
             ShipController sc = collision.gameObject.GetComponent<ShipController>();
             magnitudeOfShip = shipRB.velocity.magnitude;
             directionOfShip = Vector3.Normalize(collision.gameObject.transform.position - transform.position);
-            directionOfShip.y = 0;
+            directionOfShip.y = 0.5f;
 
             sc.PushBack(directionOfShip * 50);
         }
