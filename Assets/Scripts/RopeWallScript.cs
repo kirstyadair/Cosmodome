@@ -40,7 +40,7 @@ public class RopeWallScript : MonoBehaviour
             directionOfShip = Vector3.Normalize(collision.gameObject.transform.position - transform.position);
             directionOfShip.y = 0;
 
-            sc.PushBack(directionOfShip * magnitudeOfShip * 2f);
+            sc.PushBack(directionOfShip * 50);
         }
     }
 }
