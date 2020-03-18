@@ -38,7 +38,9 @@ public class RopeWallScript : MonoBehaviour
             ShipController sc = collision.gameObject.GetComponent<ShipController>();
             magnitudeOfShip = shipRB.velocity.magnitude;
             directionOfShip = Vector3.Normalize(collision.gameObject.transform.position - transform.position);
-            sc.PushBack(directionOfShip * magnitudeOfShip);
+            directionOfShip.y = 0;
+
+            sc.PushBack(directionOfShip * magnitudeOfShip * 2f);
         }
     }
 }
