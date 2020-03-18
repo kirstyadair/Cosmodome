@@ -43,7 +43,7 @@ public class CharacterBox : MonoBehaviour
 
     public void Hover(PlayerBox hoveredPlayer)
     {
-        //_selectorImage.color = hoveredPlayer.playerColour;
+        _selectorImage.color = option.characterColor;
         _animator.SetBool("isHovered", true);
         isHovered = true;
     }
