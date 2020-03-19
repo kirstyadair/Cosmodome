@@ -26,7 +26,7 @@ public class RopeWallScript : MonoBehaviour
 
     void SeekCentrePoint()
     {
-        desiredVelocity = Vector3.Normalize(targetPoint - transform.localPosition) * 0.15f;
+        desiredVelocity = Vector3.Normalize(targetPoint - transform.localPosition) * 0.2f;
         transform.localPosition += desiredVelocity;
     }
 
