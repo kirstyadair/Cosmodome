@@ -5,7 +5,7 @@ using UnityEngine;
 public class SpikeTrapScript : MonoBehaviour
 {
     // The spikes on this wall
-    public List<GameObject> spikes = new List<GameObject>();
+    List<GameObject> spikes = new List<GameObject>();
     List<SkinnedMeshRenderer> spikeMRs = new List<SkinnedMeshRenderer>();
     [SerializeField]
     GameObject particleEffect;
@@ -14,6 +14,7 @@ public class SpikeTrapScript : MonoBehaviour
     [SerializeField]
     Material standardMat;
     SpikeManager spikeManager;
+    Animator animator;
     bool isActive = false;
 
     public delegate void PlayerSpikeHit(PlayerScript hitPlayer);
@@ -22,6 +23,8 @@ public class SpikeTrapScript : MonoBehaviour
     void Start()
     {
         spikeManager = GameObject.Find("SpikeManager").GetComponent<SpikeManager>();
+        animator = GetComponent<Animator>();
+        animator.SetFloat("Speed", 0);
         // Get the spikes for this wall
         Spike[] allSpikes = GetComponentsInChildren<Spike>();
         foreach (Spike spike in allSpikes)
@@ -38,6 +41,7 @@ public class SpikeTrapScript : MonoBehaviour
     public void SpawnInWall()
     {
         isActive = true;
+        animator.SetFloat("Speed", 1);
         // Spawn in each spike and play a particle effect
         for (int i = 0; i < spikes.Count; i++)
         {
@@ -50,6 +54,7 @@ public class SpikeTrapScript : MonoBehaviour
     public void DisableTrap()
     {
         isActive = false;
+        animator.SetFloat("Speed", -1);
         for (int i = 0; i < spikes.Count; i++)
         {
             GameObject ps = Instantiate(particleEffect, spikes[i].transform.position, spikes[i].transform.rotation);
