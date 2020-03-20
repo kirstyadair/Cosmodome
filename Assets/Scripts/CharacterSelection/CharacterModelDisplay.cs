@@ -29,7 +29,7 @@ public class CharacterModelDisplay : MonoBehaviour
         foreach (Transform transform in modelContainer)
         {
             if (transform.gameObject.name == _modelName) transform.gameObject.SetActive(true);
-            else transform.gameObject.SetActive(false);
+            else if (transform.gameObject.GetComponent<Light>() == null) transform.gameObject.SetActive(false);
         }
     }
 }
