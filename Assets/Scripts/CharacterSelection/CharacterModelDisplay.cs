@@ -24,6 +24,15 @@ public class CharacterModelDisplay : MonoBehaviour
         _animator.SetTrigger("Swap");
     }
 
+    public void ReadyUp() {
+        foreach (Transform transform in modelContainer)
+        {
+            if (transform.gameObject.name == _modelName) {
+                transform.GetComponentInChildren<Animator>().Play("Ready up");
+            }
+        }
+    }
+
     public void AnimatorSwapModel()
     {
         foreach (Transform transform in modelContainer)

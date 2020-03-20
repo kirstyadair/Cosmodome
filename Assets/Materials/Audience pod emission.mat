@@ -10,7 +10,7 @@ Material:
   m_Name: Audience pod emission
   m_Shader: {fileID: 4800000, guid: 933532a4fcc9baf4fa0491de14d08ed7, type: 3}
   m_ShaderKeywords: _EMISSION
-  m_LightmapFlags: 1
+  m_LightmapFlags: 2
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: 2050
@@ -93,7 +93,7 @@ Material:
     m_Colors:
     - _BaseColor: {r: 0.9, g: 0.064557604, b: 0.1, a: 1}
     - _Color: {r: 0.9, g: 0.064557604, b: 0.1, a: 1}
-    - _EmissionColor: {r: 0.54607844, g: 0.12835725, b: 0.14607844, a: 1}
+    - _EmissionColor: {r: 2.1803923, g: 0.5176471, b: 0.5803922, a: 1}
     - _SpecColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}
 --- !u!114 &7133318815680086563
 MonoBehaviour:

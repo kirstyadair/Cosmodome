@@ -283,6 +283,8 @@ public class PlayerSelection : MonoBehaviour
 
         _currentSelectingPlayer.Selected(character.option);
 
+        _characterModelDisplay.ReadyUp();
+
         _animator.Play("Character selection to random screen");
 
         _currentSelectingPlayer.OnSelectLeft -= OnPlayerBoxLeft;
