@@ -80,6 +80,11 @@ public class BasicWeaponScript : MonoBehaviour
         if (_fireCooldown > 0) _fireCooldown -= Time.deltaTime;
     }
 
+    public bool CanFire() {
+        if (bulletsCurrentlyInClip <= 0 || bulletsCurrentlyInClip < _minimumToFire) return false;
+        else return true;
+    }
+
     /// <summary>
     /// Instruct the ship to shoot, does nothing if there is no ammo.
     /// </summary>

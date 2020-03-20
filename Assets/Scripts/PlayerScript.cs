@@ -192,7 +192,7 @@ public class PlayerScript : MonoBehaviour
 
         if (rings.gameObject.activeSelf)
         {
-            rings.UpdateRings(this.transform.position, controller.turretDirection, ammo / maxAmmo, (float)this.approval.percentage / 100f);
+            rings.UpdateRings(this.transform.position, controller.turretDirection, this.transform.forward, ammo / maxAmmo, (float)this.approval.percentage / 100f, !basicWeaponScript.CanFire());
         }
 
         
