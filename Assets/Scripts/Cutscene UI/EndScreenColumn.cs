@@ -33,18 +33,6 @@ public class EndScreenColumn : MonoBehaviour
     Text comboCount;
 
     [SerializeField]
-    Color firstColour;
-
-    [SerializeField]
-    Color secondColour;
-
-    [SerializeField]
-    Color thirdColour;
-
-    [SerializeField]
-    Color fourthColour;
-
-    [SerializeField]
     Text characterNameField;
 
     Animator _animator;
@@ -67,27 +55,23 @@ public class EndScreenColumn : MonoBehaviour
 
 
         string placedText = "ERR";
-        Color placedTextColour = Color.white;
+        Color placedTextColour = data.playerColor;
 
         switch (data.placed) {
             case 1:
                 placedText = "1st!";
-                placedTextColour = firstColour;
                 break;
 
             case 2:
                 placedText = "2nd.";
-                placedTextColour = secondColour;
                 break;
             
             case 3:
                 placedText = "3rd.";
-                placedTextColour = thirdColour;
                 break;
             
             case 4:
                 placedText = "4th.";
-                placedTextColour = fourthColour;
                 break;
         }
 
