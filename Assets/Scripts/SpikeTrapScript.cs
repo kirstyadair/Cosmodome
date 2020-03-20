@@ -13,10 +13,8 @@ public class SpikeTrapScript : MonoBehaviour
     Material redMat;
     [SerializeField]
     Material standardMat;
-    [SerializeField]
-    GameObject warningPopup;
-    Animator warningPopupAnim;
     SpikeManager spikeManager;
+    Animator animator;
     bool isActive = false;
 
     public delegate void PlayerSpikeHit(PlayerScript hitPlayer);
@@ -25,48 +23,25 @@ public class SpikeTrapScript : MonoBehaviour
     void Start()
     {
         spikeManager = GameObject.Find("SpikeManager").GetComponent<SpikeManager>();
-        warningPopupAnim = warningPopup.GetComponent<Animator>();
+        animator = GetComponent<Animator>();
+        animator.SetFloat("Speed", 0);
         // Get the spikes for this wall
-        GameObject[] allSpikes = GameObject.FindGameObjectsWithTag("Spike");
-        foreach (GameObject spike in allSpikes)
+        Spike[] allSpikes = GetComponentsInChildren<Spike>();
+        foreach (Spike spike in allSpikes)
         {
-            if (spike.transform.parent.transform.parent.name == this.gameObject.name)
+            if (spike.gameObject.activeInHierarchy)
             {
-                // Add the spike object and its mesh renderer to lists
-                spikes.Add(spike);
-                spikeMRs.Add(spike.GetComponent<SkinnedMeshRenderer>());
-                spike.SetActive(false);
+                spikes.Add(spike.gameObject);
+                spikeMRs.Add(spike.skinnedMeshRenderer);
+                spike.gameObject.SetActive(false);
             }
         }
     }
 
     public void SpawnInWall()
     {
-        // Play the warning first
-        StartCoroutine(WarnWallSpawn());
-    }
-
-    public void DisableTrap()
-    {
-        isActive = false;
-        for (int i = 0; i < spikes.Count; i++)
-        {
-            GameObject ps = Instantiate(particleEffect, spikes[i].transform.position, spikes[i].transform.rotation);
-            spikeMRs[i].material = standardMat;
-            spikes[i].SetActive(false);
-        }
-    }
-
-    IEnumerator WarnWallSpawn()
-    {
-        warningPopup.SetActive(true);
-        yield return new WaitForSeconds(1);
-        warningPopupAnim.SetFloat("Speed", -1);
-        yield return new WaitForSeconds(1);
-        warningPopup.SetActive(false);
-        warningPopupAnim.SetFloat("Speed", 1);
-
         isActive = true;
+        animator.SetFloat("Speed", 1);
         // Spawn in each spike and play a particle effect
         for (int i = 0; i < spikes.Count; i++)
         {
@@ -76,12 +51,28 @@ public class SpikeTrapScript : MonoBehaviour
         }
     }
 
+    public void DisableTrap()
+    {
+        isActive = false;
+        animator.SetFloat("Speed", -1);
+        for (int i = 0; i < spikes.Count; i++)
+        {
+            GameObject ps = Instantiate(particleEffect, spikes[i].transform.position, spikes[i].transform.rotation);
+            spikeMRs[i].material = standardMat;
+            spikes[i].SetActive(false);
+        }
+    }
+
     IEnumerator FreezeShip(Collider ship)
     {
         Rigidbody shipRB = ship.gameObject.GetComponent<Rigidbody>();
-        shipRB.constraints = RigidbodyConstraints.FreezePosition;
+        shipRB.constraints = RigidbodyConstraints.FreezeAll;
 
-        yield return new WaitForSeconds(spikeManager.timeStuck);
+        // If the trap is soon going to be deactivated, only trap the ship while the trap is active
+        float time;
+        if ((spikeManager.maxTimeActive - spikeManager.timeActive) > spikeManager.timeStuck) time = spikeManager.timeStuck;
+        else time = spikeManager.maxTimeActive - spikeManager.timeActive;
+        yield return new WaitForSeconds(time);
 
         shipRB.constraints = RigidbodyConstraints.None;
     }
