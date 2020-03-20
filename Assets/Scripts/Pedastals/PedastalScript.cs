@@ -71,4 +71,13 @@ public class PedastalScript : MonoBehaviour
     {
         _animator.Play(_placed.ToString());
     }
+
+    public void Animator_ShowFinished() {
+        foreach (Transform transform in _characterModelsContainer) {
+            if (transform.gameObject.activeSelf) {
+                if (_placed == 1) transform.GetComponentInChildren<Animator>().Play("Victory");
+                else transform.GetComponentInChildren<Animator>().Play("Losing");
+            }
+        }
+    }
 }
