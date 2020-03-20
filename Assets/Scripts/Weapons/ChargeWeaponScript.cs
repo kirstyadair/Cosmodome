@@ -34,6 +34,9 @@ public class ChargeWeaponScript : MonoBehaviour
     [Header("How long to hold the laser on for")]
     public float laserHoldTime;
 
+    [Header("How fast the laser should rotate when firing")]
+    public float laserRotateSpeedWhenFiring;
+
     [Header("Damage that this will cause the attacked player")]
     public int damage;
 
@@ -64,7 +67,6 @@ public class ChargeWeaponScript : MonoBehaviour
     void Start()
     {
         playerScript = GetComponent<PlayerScript>();
-        playerRings.IsChargingWeapon();
         shipController = GetComponent<ShipController>();
         sm = ScoreManager.Instance;
     }
@@ -73,7 +75,6 @@ public class ChargeWeaponScript : MonoBehaviour
     {
         isCharging = true;
         charge2Ps.gameObject.SetActive(true);
-        playerRings.StartCharging();
     }
 
     public void StopCharging()
@@ -81,7 +82,6 @@ public class ChargeWeaponScript : MonoBehaviour
         isCharging = false;
         isCharged = false;
         charge2Ps.gameObject.SetActive(false);
-        playerRings.StopCharging();
     }
 
     // Update is called once per frame
@@ -112,7 +112,6 @@ public class ChargeWeaponScript : MonoBehaviour
             if (chargeAmount >= chargeNeeded)
             {
                 isCharged = true;
-                playerRings.FullyCharged();
                 chargeAmount = chargeNeeded;
             }
            
@@ -143,8 +142,6 @@ public class ChargeWeaponScript : MonoBehaviour
             chargeAmount += Time.deltaTime;
             if (requireFullCharge) canFire = false;
         }
-
-        playerRings.UpdateCharge(chargePercentage);
     }
 
 

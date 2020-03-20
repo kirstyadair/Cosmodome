@@ -57,12 +57,6 @@ public class PlayerScript : MonoBehaviour
     public float hitByBulletCooldown = 0;
     public float timeBetweenHitByBullet = 0.5f;
 
-    // This holds the ammo count in the relevant weapon script
-    // This does not add to or remove from ammo
-    float ammo;
-    // Same goes for this
-    float maxAmmo;
-
     ShipController controller;
     public PlayerApproval approval = new PlayerApproval();
     public PlayerRing rings;
@@ -184,15 +178,16 @@ public class PlayerScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (basicWeaponScript != null)
-        {
-            ammo = basicWeaponScript.bulletsCurrentlyInClip;
-            maxAmmo = basicWeaponScript.clipSize;
-        }
 
         if (rings.gameObject.activeSelf)
         {
-            rings.UpdateRings(this.transform.position, controller.turretDirection, this.transform.forward, ammo / maxAmmo, (float)this.approval.percentage / 100f, !basicWeaponScript.CanFire());
+            if (basicWeaponScript.enabled) {
+                rings.UpdateRings(this.transform.position, controller.turretDirection, this.transform.forward, basicWeaponScript.bulletsCurrentlyInClip / basicWeaponScript.clipSize, (float)this.approval.percentage / 100f, !basicWeaponScript.CanFire());
+            } else {
+                // charge weapon
+                Debug.Log(chargeWeaponScript.chargePercentage);
+                rings.UpdateRings(this.transform.position, controller.turretDirection, this.transform.forward, chargeWeaponScript.chargePercentage, (float)this.approval.percentage / 100f, false);
+            }
         }
 
         

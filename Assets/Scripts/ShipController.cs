@@ -119,7 +119,7 @@ public class ShipController : MonoBehaviour
         // show down turret movement when firing
         if (_chargingWeaponScript != null && _chargingWeaponScript.isFiring)
         {
-            currentTurretAngle = Mathf.LerpAngle(currentTurretAngle, targetTurretAngle, 0.1f);
+            currentTurretAngle = Mathf.LerpAngle(currentTurretAngle, targetTurretAngle, _chargingWeaponScript.laserRotateSpeedWhenFiring);
         } else
         {
             currentTurretAngle = Mathf.LerpAngle(currentTurretAngle, targetTurretAngle, turretLerpSpeed);

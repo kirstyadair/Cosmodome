@@ -12,9 +12,6 @@ public class PlayerRing : MonoBehaviour
     public GameObject aimingRingObject;
     public Image aimingRingFiller;
 
-    bool _isCharging = false;
-    bool _isFullyCharged = false;
-    bool _isChargingWeapon = false;
     Animator _animator;
 
     [Header("How far above the ground the ring floats")]
@@ -28,50 +25,6 @@ public class PlayerRing : MonoBehaviour
         aimingRingFiller.color = color;
     }
 
-
-    public void StartCharging()
-    {
-        _isCharging = true;
-        _animator.SetBool("isCharging", true);
-    }
-
-    public void StopCharging()
-    {
-        _isCharging = false;
-        _isFullyCharged = false;
-        _animator.SetBool("isCharging", false);
-    }
-
-    public void FullyCharged()
-    {
-        _animator.SetBool("isCharged", true);
-        _isFullyCharged = true;
-        
-    }
-
-    public void UpdateCharge(float chargeAmount)
-    {
-        if (_animator == null) return;
-
-        if (_isFullyCharged) return;
-        if (_isCharging || chargeAmount == 0)
-        {
-            _animator.Play("Weapon ring charge up", 0, chargeAmount);
-        }
-        else
-        {
-            _animator.Play("Weapon ring charge down", 0, 1 - chargeAmount);
-        }
-
-        aimingRingFiller.fillAmount = chargeAmount;
-    }
-
-    public void IsChargingWeapon()
-    {
-        if (_animator != null) _animator.SetBool("isChargingWeapon", true);
-        UpdateCharge(0);
-        _isChargingWeapon = true;
-    }
 
     /// <summary>
     /// Sets the alpha of the middle aiming ring
@@ -102,10 +55,8 @@ public class PlayerRing : MonoBehaviour
         this.transform.position = position;
 
 
-
+        aimingRingFiller.fillAmount = ammoFillAmount;
         ring.fillAmount = percentageFillAmount;
-        
-        if (!_isChargingWeapon) aimingRingFiller.fillAmount = ammoFillAmount;
 
         if (isDisabled) {
             SetAlpha(0.5f);
