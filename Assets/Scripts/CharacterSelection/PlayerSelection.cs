@@ -26,6 +26,7 @@ public class PlayerSelection : MonoBehaviour
     [SerializeField]
     StatusBar _statusBar;
 
+
     [SerializeField]
     GameObject _characterBoxes;
 
@@ -37,6 +38,7 @@ public class PlayerSelection : MonoBehaviour
 
     public CharacterBox[] characterBoxes;
 
+    bool _readyToActivateNextScene = false;
     PlayerBox _currentSelectingPlayer;
     int _currentSelectedCharacter = 0;
 
@@ -87,6 +89,15 @@ public class PlayerSelection : MonoBehaviour
         StartCoroutine(PickNextPlayer());
     }
 
+    /// <summary>
+    /// Start acivating new scene
+    /// </summary>
+    public void Animator_FinishedFadingToBlack()
+    {
+       _readyToActivateNextScene = true;
+    }
+
+
     public void Ready()
     {
     
@@ -106,9 +117,18 @@ public class PlayerSelection : MonoBehaviour
     IEnumerator NextScene() {
         AsyncOperation async = SceneManager.LoadSceneAsync("Main");
 
-        while (!async.isDone) {
+        async.allowSceneActivation = false;
+
+        while (async.progress < 0.9f) {
             yield return null;
         }
+
+        _animator.Play("Fade to black");
+
+        // Wait until we've finished fading to black
+        while (!_readyToActivateNextScene) yield return null;
+
+        async.allowSceneActivation = true;
     }
 
     /// <summary>
