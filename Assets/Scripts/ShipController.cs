@@ -141,14 +141,20 @@ public class ShipController : MonoBehaviour
 
         playerScript.WasHitByBullet(bullet);
     }
-
-    public void Fire()
+    
+    /// <summary>
+    /// Instruct the ship to shoot, does nothing if there is no ammo.
+    /// </summary>
+    /// <param name="isNewFiring">true if the player just started holding down the fire button, false if they've been holding it down</param>
+    public bool Fire(bool isNewFiring)
     {
         if (GetComponent<BasicWeaponScript>() != null)
         {
             
-            GetComponent<BasicWeaponScript>().Shoot();
+            return GetComponent<BasicWeaponScript>().Shoot(isNewFiring);
         }
+
+        return false;
     }
 
     public void HoverAndSelfRight()

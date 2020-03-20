@@ -31,6 +31,9 @@ public class BasicWeaponScript : MonoBehaviour
     [Header("PS to enable when firing")]
     ParticleSystem _firingPS;
 
+    [SerializeField]
+    [Header("Minimum ammo in clip to fire")]
+    int _minimumToFire;
 
     /// <summary>
     /// public so <see cref="ScoreManager"/> can access to calculate damage. 
@@ -77,9 +80,18 @@ public class BasicWeaponScript : MonoBehaviour
         if (_fireCooldown > 0) _fireCooldown -= Time.deltaTime;
     }
 
-    public void Shoot()
+    /// <summary>
+    /// Instruct the ship to shoot, does nothing if there is no ammo.
+    /// </summary>
+    /// <param name="isNewFiring">true if the player just started holding down the fire button, false if they've been holding it down</param>
+    public bool Shoot(bool isNewFiring)
     {
-        if (_fireCooldown > 0 || bulletsCurrentlyInClip <= 0) return;
+        if (_fireCooldown > 0) return true;            // we cannot fire, but return true because we will fire once the cooldown has finished
+        if (bulletsCurrentlyInClip <= 0) return false; // we cannot fire as we are out of ammo
+
+        // If the player has just started holding the player button but the bullets haven't recharged to the point of _minimumToFire yet, then we won't fire
+        // this stops the issue where bullets will slowly trickle through if the player holds the fire button
+        if (isNewFiring && bulletsCurrentlyInClip < _minimumToFire) return false;
 
         OnPlayerShooting?.Invoke(_shipController);
 
@@ -105,5 +117,7 @@ public class BasicWeaponScript : MonoBehaviour
             if (_firingPS.gameObject.activeSelf) _firingPS.gameObject.SetActive(false);
             _firingPS.gameObject.SetActive(true);
         }
+
+        return true;
     }
 }

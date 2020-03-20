@@ -71,6 +71,10 @@ public class PlayerScript : MonoBehaviour
     public PlayerData playerData = new PlayerData();
 
     public bool isActivatingTrap = false;
+
+    bool _isFiring = false;
+    bool _isFiringCanceled = false;
+
     //public bool isActive = true;
     [HideInInspector]
     public BasicWeaponScript basicWeaponScript;
@@ -201,8 +205,22 @@ public class PlayerScript : MonoBehaviour
             if (inputDevice != null)
             {
                 controller.turretDirection = new Vector3(inputDevice.RightStick.Value.x, 0, inputDevice.RightStick.Value.y);
+                
 
-                if (inputDevice.RightBumper.IsPressed) controller.Fire();
+                if (inputDevice.RightBumper.WasPressed && _isFiringCanceled) _isFiringCanceled = false; 
+
+                if (inputDevice.RightBumper.IsPressed && !_isFiringCanceled) {
+                    bool firedSuccessfully = controller.Fire(!_isFiring); // If we were not firing in the last frame, then this is a new firing.
+
+                    if (firedSuccessfully) {  // if we cannot fire, cancel firing so player has to hit the button again to try again
+                        _isFiring = true;
+                    } else {
+                        _isFiring = false;
+                        _isFiringCanceled = true;
+                    }
+                } else {
+                    _isFiring = false;
+                }
 
                 isActivatingTrap = inputDevice.Action1.IsPressed;
                 controller.targetDirection = new Vector3(inputDevice.LeftStick.Value.x, 0, inputDevice.LeftStick.Value.y);
