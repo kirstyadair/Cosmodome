@@ -10,6 +10,8 @@ public class SpikeTrapScript : MonoBehaviour
     [SerializeField]
     GameObject particleEffect;
     [SerializeField]
+    GameObject sparksParticle;
+    [SerializeField]
     Material redMat;
     [SerializeField]
     Material standardMat;
@@ -65,6 +67,7 @@ public class SpikeTrapScript : MonoBehaviour
 
     IEnumerator FreezeShip(Collider ship)
     {
+        GameObject newPS = Instantiate(sparksParticle, ship.transform);
         Rigidbody shipRB = ship.gameObject.GetComponent<Rigidbody>();
         shipRB.constraints = RigidbodyConstraints.FreezeAll;
 
@@ -73,7 +76,7 @@ public class SpikeTrapScript : MonoBehaviour
         if ((spikeManager.maxTimeActive - spikeManager.timeActive) > spikeManager.timeStuck) time = spikeManager.timeStuck;
         else time = spikeManager.maxTimeActive - spikeManager.timeActive;
         yield return new WaitForSeconds(time);
-
+        Destroy(newPS);
         shipRB.constraints = RigidbodyConstraints.None;
     }
 

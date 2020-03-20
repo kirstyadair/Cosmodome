@@ -609,6 +609,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   particleEffect: {fileID: 0}
+  sparksParticle: {fileID: 0}
   redMat: {fileID: 0}
   standardMat: {fileID: 2100000, guid: cf2e8a888f7d29141bcecf29780e26b8, type: 2}
 --- !u!1 &559828202265983523
@@ -683,6 +684,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   particleEffect: {fileID: 0}
+  sparksParticle: {fileID: 0}
   redMat: {fileID: 0}
   standardMat: {fileID: 2100000, guid: cf2e8a888f7d29141bcecf29780e26b8, type: 2}
 --- !u!65 &8606658886902245816
@@ -1116,6 +1118,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   particleEffect: {fileID: 0}
+  sparksParticle: {fileID: 0}
   redMat: {fileID: 0}
   standardMat: {fileID: 2100000, guid: cf2e8a888f7d29141bcecf29780e26b8, type: 2}
 --- !u!54 &1576978801274116867
@@ -1313,6 +1316,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   particleEffect: {fileID: 1040608886635896, guid: a97415c6b57076f41a6621a7b51d63a3,
     type: 3}
+  sparksParticle: {fileID: 1995403933065894, guid: 4961a16ba01e09547be3e1c9d16d5ad0,
+    type: 3}
   redMat: {fileID: 2100000, guid: 492ae1cab4ed75546bd85488d73965d6, type: 2}
   standardMat: {fileID: 2100000, guid: cf2e8a888f7d29141bcecf29780e26b8, type: 2}
 --- !u!65 &8463037142672659825
@@ -1341,6 +1346,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   particleEffect: {fileID: 1040608886635896, guid: a97415c6b57076f41a6621a7b51d63a3,
+    type: 3}
+  sparksParticle: {fileID: 1995403933065894, guid: 4961a16ba01e09547be3e1c9d16d5ad0,
     type: 3}
   redMat: {fileID: 2100000, guid: 492ae1cab4ed75546bd85488d73965d6, type: 2}
   standardMat: {fileID: 2100000, guid: cf2e8a888f7d29141bcecf29780e26b8, type: 2}
@@ -1870,6 +1877,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   particleEffect: {fileID: 1040608886635896, guid: a97415c6b57076f41a6621a7b51d63a3,
     type: 3}
+  sparksParticle: {fileID: 1995403933065894, guid: 4961a16ba01e09547be3e1c9d16d5ad0,
+    type: 3}
   redMat: {fileID: 2100000, guid: 492ae1cab4ed75546bd85488d73965d6, type: 2}
   standardMat: {fileID: 2100000, guid: cf2e8a888f7d29141bcecf29780e26b8, type: 2}
 --- !u!114 &6683481742982245151
@@ -2051,6 +2060,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   particleEffect: {fileID: 0}
+  sparksParticle: {fileID: 0}
   redMat: {fileID: 0}
   standardMat: {fileID: 2100000, guid: cf2e8a888f7d29141bcecf29780e26b8, type: 2}
 --- !u!54 &2067916182863111131
@@ -2279,6 +2289,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   particleEffect: {fileID: 1040608886635896, guid: a97415c6b57076f41a6621a7b51d63a3,
     type: 3}
+  sparksParticle: {fileID: 1995403933065894, guid: 4961a16ba01e09547be3e1c9d16d5ad0,
+    type: 3}
   redMat: {fileID: 2100000, guid: 492ae1cab4ed75546bd85488d73965d6, type: 2}
   standardMat: {fileID: 2100000, guid: cf2e8a888f7d29141bcecf29780e26b8, type: 2}
 --- !u!1 &2209391685759098595
@@ -2494,6 +2506,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   particleEffect: {fileID: 0}
+  sparksParticle: {fileID: 0}
   redMat: {fileID: 0}
   standardMat: {fileID: 2100000, guid: cf2e8a888f7d29141bcecf29780e26b8, type: 2}
 --- !u!1 &2592573873899497108
@@ -3740,6 +3753,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   particleEffect: {fileID: 0}
+  sparksParticle: {fileID: 0}
   redMat: {fileID: 0}
   standardMat: {fileID: 2100000, guid: cf2e8a888f7d29141bcecf29780e26b8, type: 2}
 --- !u!54 &8894639698078360938
@@ -3942,6 +3956,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   particleEffect: {fileID: 0}
+  sparksParticle: {fileID: 0}
   redMat: {fileID: 0}
   standardMat: {fileID: 2100000, guid: cf2e8a888f7d29141bcecf29780e26b8, type: 2}
 --- !u!54 &7322199878069211380
@@ -4461,6 +4476,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   particleEffect: {fileID: 0}
+  sparksParticle: {fileID: 0}
   redMat: {fileID: 0}
   standardMat: {fileID: 2100000, guid: cf2e8a888f7d29141bcecf29780e26b8, type: 2}
 --- !u!54 &335824983216244242
@@ -4534,6 +4550,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   particleEffect: {fileID: 0}
+  sparksParticle: {fileID: 0}
   redMat: {fileID: 0}
   standardMat: {fileID: 2100000, guid: cf2e8a888f7d29141bcecf29780e26b8, type: 2}
 --- !u!54 &2688388835990996484
@@ -5655,6 +5672,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   particleEffect: {fileID: 1040608886635896, guid: a97415c6b57076f41a6621a7b51d63a3,
     type: 3}
+  sparksParticle: {fileID: 1995403933065894, guid: 4961a16ba01e09547be3e1c9d16d5ad0,
+    type: 3}
   redMat: {fileID: 2100000, guid: 492ae1cab4ed75546bd85488d73965d6, type: 2}
   standardMat: {fileID: 2100000, guid: cf2e8a888f7d29141bcecf29780e26b8, type: 2}
 --- !u!114 &3657403839361421615
@@ -5966,6 +5985,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   particleEffect: {fileID: 0}
+  sparksParticle: {fileID: 0}
   redMat: {fileID: 0}
   standardMat: {fileID: 2100000, guid: cf2e8a888f7d29141bcecf29780e26b8, type: 2}
 --- !u!1 &5678272820107947262
@@ -6568,6 +6588,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   particleEffect: {fileID: 0}
+  sparksParticle: {fileID: 0}
   redMat: {fileID: 0}
   standardMat: {fileID: 2100000, guid: cf2e8a888f7d29141bcecf29780e26b8, type: 2}
 --- !u!54 &985192290902148620
@@ -7419,6 +7440,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   particleEffect: {fileID: 1040608886635896, guid: a97415c6b57076f41a6621a7b51d63a3,
     type: 3}
+  sparksParticle: {fileID: 1995403933065894, guid: 4961a16ba01e09547be3e1c9d16d5ad0,
+    type: 3}
   redMat: {fileID: 2100000, guid: 492ae1cab4ed75546bd85488d73965d6, type: 2}
   standardMat: {fileID: 2100000, guid: cf2e8a888f7d29141bcecf29780e26b8, type: 2}
 --- !u!114 &123754672297495080
@@ -7434,6 +7457,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   particleEffect: {fileID: 0}
+  sparksParticle: {fileID: 0}
   redMat: {fileID: 0}
   standardMat: {fileID: 2100000, guid: cf2e8a888f7d29141bcecf29780e26b8, type: 2}
 --- !u!54 &2998704617940839774
