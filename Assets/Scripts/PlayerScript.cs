@@ -47,7 +47,10 @@ public class PlayerScript : MonoBehaviour
     public int placeInScoresList;
     ScoreManager sm;
     public Material playerColor;
-    public Material normalMaterial;
+
+    // Used to do the flashing animation
+    Dictionary<MeshRenderer, Material> _listOfOriginalMaterials = new Dictionary<MeshRenderer, Material>();
+
     public Material flashMaterial;
     public MeshRenderer[] parts;
     public int flashTimes;
@@ -94,6 +97,9 @@ public class PlayerScript : MonoBehaviour
         this.startPosition = this.transform.position;
         this.startRotation = this.transform.rotation;
 
+        foreach (MeshRenderer part in parts) {
+            _listOfOriginalMaterials.Add(part, part.material);
+        }
 
         ScoreManager.OnStateChanged += OnStateChange;
         //ScoreManager.OnUpdateScore += UpdateScores;
@@ -106,8 +112,8 @@ public class PlayerScript : MonoBehaviour
 
     public IEnumerator FlashWithDamage()
     {
-        void Flash() { foreach (MeshRenderer part in parts) part.material = flashMaterial; }
-        void Normal() { foreach (MeshRenderer part in parts) part.material = normalMaterial; }
+        void Flash() { foreach (MeshRenderer part in _listOfOriginalMaterials.Keys) part.material = flashMaterial; }
+        void Normal() { foreach (KeyValuePair<MeshRenderer, Material> part in _listOfOriginalMaterials) part.Key.material = part.Value; }
 
         for (int i = 0; i < flashTimes; i++)
         {
@@ -185,7 +191,6 @@ public class PlayerScript : MonoBehaviour
                 rings.UpdateRings(this.transform.position, controller.turretDirection, this.transform.forward, basicWeaponScript.bulletsCurrentlyInClip / basicWeaponScript.clipSize, (float)this.approval.percentage / 100f, !basicWeaponScript.CanFire());
             } else {
                 // charge weapon
-                Debug.Log(chargeWeaponScript.chargePercentage);
                 rings.UpdateRings(this.transform.position, controller.turretDirection, this.transform.forward, chargeWeaponScript.chargePercentage, (float)this.approval.percentage / 100f, false);
             }
         }
