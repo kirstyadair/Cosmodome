@@ -10,27 +10,27 @@ PrefabInstance:
     - target: {fileID: 2421762012532897100, guid: 53b8ae09761e3764394d6aed91cff398,
         type: 3}
       propertyPath: m_Name
-      value: Mosco stand Variant
+      value: Mosco stand
       objectReference: {fileID: 0}
     - target: {fileID: 1711520006679299935, guid: 53b8ae09761e3764394d6aed91cff398,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 5.8439536
+      value: 7.040674
       objectReference: {fileID: 0}
     - target: {fileID: 1711520006679299935, guid: 53b8ae09761e3764394d6aed91cff398,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.26
+      value: -0.8520081
       objectReference: {fileID: 0}
     - target: {fileID: 1711520006679299935, guid: 53b8ae09761e3764394d6aed91cff398,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 15.561845
+      value: 3.4370089
       objectReference: {fileID: 0}
     - target: {fileID: 1711520006679299935, guid: 53b8ae09761e3764394d6aed91cff398,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 1711520006679299935, guid: 53b8ae09761e3764394d6aed91cff398,
         type: 3}
@@ -40,7 +40,7 @@ PrefabInstance:
     - target: {fileID: 1711520006679299935, guid: 53b8ae09761e3764394d6aed91cff398,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 1711520006679299935, guid: 53b8ae09761e3764394d6aed91cff398,
         type: 3}
@@ -74,13 +74,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8578743979593800470, guid: 53b8ae09761e3764394d6aed91cff398,
         type: 3}
-      propertyPath: m_Color.g
-      value: 1
+      propertyPath: m_Color.b
+      value: 0.3160377
       objectReference: {fileID: 0}
     - target: {fileID: 8578743979593800470, guid: 53b8ae09761e3764394d6aed91cff398,
         type: 3}
-      propertyPath: m_Color.b
-      value: 0.3160377
+      propertyPath: m_Intensity
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5430837430560797792, guid: 53b8ae09761e3764394d6aed91cff398,
+        type: 3}
+      propertyPath: m_Shadows.m_Type
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 53b8ae09761e3764394d6aed91cff398, type: 3}
