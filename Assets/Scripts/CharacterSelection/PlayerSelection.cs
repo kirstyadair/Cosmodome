@@ -98,7 +98,17 @@ public class PlayerSelection : MonoBehaviour
 
     public void Animator_NextScene()
     {
-        SceneManager.LoadScene("Main");
+
+
+        StartCoroutine(NextScene());
+    }
+
+    IEnumerator NextScene() {
+        AsyncOperation async = SceneManager.LoadSceneAsync("Main");
+
+        while (!async.isDone) {
+            yield return null;
+        }
     }
 
     /// <summary>
