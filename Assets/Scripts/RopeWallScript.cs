@@ -9,6 +9,10 @@ public class RopeWallScript : MonoBehaviour
     Rigidbody rb;
     float magnitudeOfShip;
     Vector3 directionOfShip;
+    Rigidbody shipRB;
+    bool shipHit = false;
+    // This stores the mass prior to the change being made so it can be reset
+    public float prevShipMass;
 
     void Start()
     {
@@ -21,12 +25,17 @@ public class RopeWallScript : MonoBehaviour
     void Update()
     {
         // Return to centre point if not already there
-        if (Vector3.Distance(transform.localPosition, targetPoint) > 0.1f) SeekCentrePoint();
+        if (Vector3.Distance(transform.localPosition, targetPoint) > 0.2f) SeekCentrePoint();
+        else if (shipHit) PushShip();
     }
 
     void SeekCentrePoint()
     {
-        desiredVelocity = Vector3.Normalize(targetPoint - transform.localPosition) * 0.2f;
+        if (shipHit)
+        {
+            shipRB.mass = 0.5f;
+        }
+        desiredVelocity = Vector3.Normalize(targetPoint - transform.localPosition) * 0.3f;
         transform.localPosition += desiredVelocity;
     }
 
@@ -34,13 +43,22 @@ public class RopeWallScript : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Ship"))
         {   
-            Rigidbody shipRB = collision.gameObject.GetComponent<Rigidbody>();
-            ShipController sc = collision.gameObject.GetComponent<ShipController>();
-            magnitudeOfShip = shipRB.velocity.magnitude;
-            directionOfShip = Vector3.Normalize(collision.gameObject.transform.position - transform.position);
-            directionOfShip.y = 0.5f;
-
-            sc.PushBack(directionOfShip * 70);
+            shipRB = collision.gameObject.GetComponent<Rigidbody>();
+            if (!shipHit) prevShipMass = shipRB.mass;
+            shipHit = true;
+            
         }
+    }
+
+    void PushShip()
+    {
+        shipHit = false;
+        shipRB.mass = prevShipMass;
+        ShipController sc = shipRB.gameObject.GetComponent<ShipController>();
+        magnitudeOfShip = shipRB.velocity.magnitude;
+        directionOfShip = Vector3.Normalize(shipRB.gameObject.transform.position - transform.position);
+        directionOfShip.y = 0.5f;
+
+        sc.PushBack(directionOfShip * 60);
     }
 }
