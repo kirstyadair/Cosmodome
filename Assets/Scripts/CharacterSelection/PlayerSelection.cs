@@ -8,10 +8,7 @@ using UnityEngine.UI;
 public class PlayerSelection : MonoBehaviour
 {
     ControllerAllocation _controllerAllocations;
-
-    [SerializeField]
-    Text characterNameText;
-
+    
     [SerializeField]
     [Header("The time between 'ticks' that the random spinner starts at, this is reduced steadily")]
     float randomSpinnerStartingTime;
@@ -295,7 +292,6 @@ public class PlayerSelection : MonoBehaviour
     void Hover(CharacterBox characterBox)
     {
         foreach (CharacterBox otherBox in characterBoxes) if (otherBox != characterBox) otherBox.Unhover(); // Unhover the other boxes
-        characterNameText.text = characterBox.option.characterName;
         characterBox.Hover(_currentSelectingPlayer);
         _stats.ChangeStats(characterBox.option);
 

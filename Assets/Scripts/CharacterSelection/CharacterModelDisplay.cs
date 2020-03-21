@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -28,7 +29,12 @@ public class CharacterModelDisplay : MonoBehaviour
         foreach (Transform transform in modelContainer)
         {
             if (transform.gameObject.name == _modelName) {
-                transform.GetComponentInChildren<Animator>().Play("Ready up");
+                try {
+                    transform.GetComponentInChildren<Animator>().Play("Ready up");
+                } catch (Exception e) {
+                    Debug.Log("Error playing Readyup animation");
+                }
+
             }
         }
     }

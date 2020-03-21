@@ -17,6 +17,9 @@ public class CharacterSelectionStats : MonoBehaviour
     [SerializeField]
     CharacterSelectionDotter _sizeDotter;
 
+    [SerializeField]
+    Text _characterText;
+
     Animator _animator;
 
     CharacterSelectionOption _option;
@@ -40,6 +43,8 @@ public class CharacterSelectionStats : MonoBehaviour
         _sizeDotter.SetDots(_option.sizeStat);
         _bioText.text = _option.infoStat;
         _weaponText.text = _option.weaponStat;
+        _characterText.text = _option.characterName;
+        _characterText.color = _option.characterColor;
     }
 
     // Start is called before the first frame update
