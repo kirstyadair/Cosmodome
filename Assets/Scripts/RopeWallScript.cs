@@ -62,6 +62,8 @@ public class RopeWallScript : MonoBehaviour
 
             sc.PushBack(ship.directionOfShip * 60);
         }
+
+        ships.Clear();
     }
 }
 
