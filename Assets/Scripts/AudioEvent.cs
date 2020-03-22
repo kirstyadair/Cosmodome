@@ -11,6 +11,14 @@ public class AudioEvent : MonoBehaviour
     public AudioClip[] AudioArrayPlayerTaunting;
     public AudioClip[] AudioArrayPlyerEliminated;
 
+    public AudioClip[] AudioArray_WelcomeToTheCosmodome;
+    public AudioClip[] AudioArray_DaveIntro;
+    public AudioClip[] AudioArray_BigSchlugIntro;
+    public AudioClip[] AudioArray_HHHIntro;
+    public AudioClip[] AudioArray_ElMoscoIntro;
+
+
+
     public AudioSource AudioPlayer;
 
 
@@ -26,6 +34,11 @@ public class AudioEvent : MonoBehaviour
         WallScript.OnTrapSabotaged += AudioPlayerTrapSetup;
         PlayerScript.OnPlayerCollision += AudioPlayerOnPlayerCollision;
         ScoreManager.OnPlayerEliminated += AudioPlayerEliminated;
+
+        CutscenesManager.DaveIntro +=PlayDaveIntro;
+        CutscenesManager.BigSchlugIntro +=PlayBigSchlugIntro;
+        CutscenesManager.HHHIntro +=PlayHHHIntro;
+        //CutscenesManager.ElMoscoIntro +=;
     }
 
      void OnDisable()
@@ -35,6 +48,10 @@ public class AudioEvent : MonoBehaviour
         WallScript.OnTrapSabotaged -= AudioPlayerTrapSetup;
         PlayerScript.OnPlayerCollision -= AudioPlayerOnPlayerCollision;
         ScoreManager.OnPlayerEliminated -= AudioPlayerEliminated;
+
+        CutscenesManager.DaveIntro -= PlayDaveIntro;
+        CutscenesManager.BigSchlugIntro -= PlayBigSchlugIntro;
+        CutscenesManager.HHHIntro -= PlayHHHIntro;
     }
 
     void Start()
@@ -96,6 +113,26 @@ public class AudioEvent : MonoBehaviour
         }  
     }
 
+    void PlayDaveIntro()
+    {
+        int randomClip = Random.Range(0, AudioArray_DaveIntro.Length);
+        AudioPlayerChangeSoundClip(AudioArray_DaveIntro, AudioPlayer, randomClip);
+        subtitle.GetComponent<AnnouncerDialouge>().DisplayDaveIntoSubtile(randomClip);
+    }
+    void PlayBigSchlugIntro()
+    {
+        int randomClip = Random.Range(0, AudioArray_BigSchlugIntro.Length);
+        AudioPlayerChangeSoundClip(AudioArray_BigSchlugIntro, AudioPlayer, randomClip);
+        subtitle.GetComponent<AnnouncerDialouge>().DisplayBigSchlugIntoSubtile(randomClip);
+    }
+    void PlayHHHIntro()
+    {
+        int randomClip = Random.Range(0, AudioArray_HHHIntro.Length);
+        AudioPlayerChangeSoundClip(AudioArray_HHHIntro, AudioPlayer, randomClip);
+        subtitle.GetComponent<AnnouncerDialouge>().DisplayHHHIntoSubtile(randomClip);
+    }
+
+
     void AudioPlayerTrapTrigger(PlayerScript playerHit, Traps trapType)
     {
         if (!isPlaying)
@@ -106,7 +143,7 @@ public class AudioEvent : MonoBehaviour
             {
                 int randomClip = Random.Range(0, AudioArrayPlayerTrapTrigger.Length);
                 AudioPlayerChangeSoundClip(AudioArrayPlayerTrapTrigger, AudioPlayer, randomClip);
-                subtitle.GetComponent<AnnouncerDialouge>().DiaplayPlayerTrapTriggerSubtitle(randomClip);
+                subtitle.GetComponent<AnnouncerDialouge>().DisplayPlayerTrapTriggerSubtitle(randomClip);
             }
             
         }
@@ -123,7 +160,7 @@ public class AudioEvent : MonoBehaviour
             {
                 int randomClip = Random.Range(0, AudioArrayPlayerTrapSetup.Length);
                 AudioPlayerChangeSoundClip(AudioArrayPlayerTrapSetup, AudioPlayer, randomClip);
-                subtitle.GetComponent<AnnouncerDialouge>().DiaplayPlayerTrapSetupSubtitle(randomClip);
+                subtitle.GetComponent<AnnouncerDialouge>().DisplayPlayerTrapSetupSubtitle(randomClip);
             }
             
         }

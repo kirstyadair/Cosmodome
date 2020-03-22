@@ -10,6 +10,14 @@ public class CutscenesManager : MonoBehaviour
     public static event CutsceneEvent OnPlayCountdown;
     public static event CutsceneEvent OnPlayCharacterIntro;
     public static event CutsceneEvent OnRoundStart;
+    public delegate void CutSceneAudio();
+    public static event CutSceneAudio DaveIntro;
+    public static event CutSceneAudio BigSchlugIntro;
+    public static event CutSceneAudio HHHIntro;
+    public static event CutSceneAudio ElMoscoIntro;
+
+
+
 
     [Header("Amount of 'Cutscene n' animations available")]
     public int amountOfCutsceneAnimations;
@@ -180,18 +188,22 @@ public class CutscenesManager : MonoBehaviour
             switch (playerType)
             {
                 case PlayerTypes.BIG_SCHLUG:
+                    BigSchlugIntro?.Invoke();
                     animationName = "Schlug intro";
                     characterNameIntroText.text = "AS BIG SCHLUG";
                     break;
                 case PlayerTypes.DAVE:
+                    DaveIntro?.Invoke();
                     animationName = "Dave intro";
                     characterNameIntroText.text = "AS DAVE";
                     break;
                 case PlayerTypes.EL_MOSCO:
+                    ElMoscoIntro?.Invoke();
                     animationName = "El Mosco intro";
                     characterNameIntroText.text = "AS EL MOSCO";
                     break;
                 case PlayerTypes.HAMMER:
+                    HHHIntro?.Invoke();
                     animationName = "Hammer intro";
                     characterNameIntroText.text = "AS HAMMERHEAD HENRY";
                     break;
