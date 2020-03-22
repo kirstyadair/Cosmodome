@@ -68,6 +68,7 @@ public class SpikeTrapScript : MonoBehaviour
     IEnumerator FreezeShip(Collider ship)
     {
         GameObject newPS = Instantiate(sparksParticle, ship.transform);
+        newPS.GetComponent<ParticleSystem>().loop = true;
         Rigidbody shipRB = ship.gameObject.GetComponent<Rigidbody>();
         shipRB.constraints = RigidbodyConstraints.FreezeAll;
 

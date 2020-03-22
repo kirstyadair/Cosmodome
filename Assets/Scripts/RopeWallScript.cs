@@ -44,9 +44,11 @@ public class RopeWallScript : MonoBehaviour
         if (collision.gameObject.CompareTag("Ship"))
         {   
             shipRB = collision.gameObject.GetComponent<Rigidbody>();
-            if (!shipHit) prevShipMass = shipRB.mass;
-            shipHit = true;
-            
+            if (shipRB.velocity.magnitude > 10)
+            {
+                if (!shipHit) prevShipMass = shipRB.mass;
+                shipHit = true;
+            }
         }
     }
 
