@@ -44,7 +44,14 @@ public class RopeWallScript : MonoBehaviour
             ShipToBounce newShip = new ShipToBounce();
             newShip.shipRB = collision.gameObject.GetComponent<Rigidbody>();
 
-            if (newShip.originalMass == 0) newShip.originalMass = newShip.shipRB.mass;
+            // Prevent duplicates
+            foreach (ShipToBounce ship in ships)
+            {
+                if (ship.shipRB == newShip.shipRB) return;
+            }
+
+            if (!newShip.massStored) newShip.originalMass = newShip.shipRB.mass;
+            newShip.massStored = true;
             newShip.timeUntilRevertMass = 1.0f;
 
             ships.Add(newShip);
@@ -55,6 +62,7 @@ public class RopeWallScript : MonoBehaviour
     {
         foreach (ShipToBounce ship in ships)
         {
+            Debug.Log(ship.originalMass);
             ship.shipRB.mass = ship.originalMass;
             ShipController sc = ship.shipRB.gameObject.GetComponent<ShipController>();
             ship.directionOfShip = Vector3.Normalize(ship.shipRB.gameObject.transform.position - transform.position);
@@ -72,6 +80,7 @@ public class ShipToBounce : MonoBehaviour
 {
     public Rigidbody shipRB;
     public float originalMass = 0;
+    public bool massStored;
     public float timeUntilRevertMass;
     public int playerNumber;
     public Vector3 directionOfShip;
