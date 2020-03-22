@@ -8,6 +8,9 @@ public class AnnouncerDialouge : MonoBehaviour
 {
 
     public Text dialouge;
+    public GameObject dialougeObj;
+    //x -141 y 67 intro
+    //x 0 y 51 in game
 
     public string[] dialougePlayerOnPlayerCollision;
     public string[] dialougePlayerShot;
@@ -36,12 +39,15 @@ public class AnnouncerDialouge : MonoBehaviour
         if (newState == GameState.INGAME)
         {
             dialouge.color = new Color32(255, 255, 255, 255);
+            dialougeObj.GetComponent<RectTransform>().anchoredPosition = new Vector3(0, 51);
         }
         if(newState ==GameState.ROUND_START_CUTSCENE)
         {
             dialouge.color = new Color32(255, 255, 255, 255);
+            dialougeObj.GetComponent<RectTransform>().anchoredPosition = new Vector3(-191,127);
+
         }
-        if(newState==GameState.COUNTDOWN|| newState == GameState.END_OF_GAME|| newState == GameState.ROUND_END_CUTSCENE)
+        if (newState==GameState.COUNTDOWN|| newState == GameState.END_OF_GAME|| newState == GameState.ROUND_END_CUTSCENE)
         {
             dialouge.color = new Color32(0, 0, 0, 0);
         }
