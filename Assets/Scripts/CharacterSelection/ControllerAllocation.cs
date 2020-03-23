@@ -83,7 +83,7 @@ public class ControllerAllocation : MonoBehaviour
     {
         if (_isFinishedAllocating) return;
 
-        if (this.numControllersAssigned >= 1)
+        if (this.numControllersAssigned > 1)
         {
             _isFinishedAllocating = true;
             OnControllersAllocated?.Invoke();

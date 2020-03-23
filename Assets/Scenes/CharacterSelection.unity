@@ -97,7 +97,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -1146,16 +1146,16 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 320680825}
-  m_LocalRotation: {x: 0.7611662, y: 0.056878366, z: 0.06737986, w: 0.6425347}
-  m_LocalPosition: {x: 0, y: 0, z: -29}
+  m_LocalRotation: {x: 0.74486, y: 0.021925746, z: 0.032108106, w: 0.6660871}
+  m_LocalPosition: {x: 0, y: 0, z: -41.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 872938563}
   m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 103.95499, y: -46.75598, z: -45.89801}
+  m_LocalEulerAnglesHint: {x: 97.746, y: -34.860992, z: -34.033997}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 120, y: 274}
+  m_AnchoredPosition: {x: 116.2, y: 275.1}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!108 &320680827
@@ -2526,7 +2526,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "<color=red>DEV BUILD</color> \n19/03/2020"
+  m_Text: <color=red>EXTERNAL TEST BUILD</color> 23/03/2020
 --- !u!222 &443592443
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4072,7 +4072,7 @@ MonoBehaviour:
       his inferior opponents. *Being sponsored by one of Cosmodome\u2019s biggest
       investors has nothing to do with his achievements or this bio."
   allocatedControllers: []
-  shouldAllowOneController: 1
+  shouldAllowOneController: 0
 --- !u!4 &947845243
 Transform:
   m_ObjectHideFlags: 0
@@ -4365,17 +4365,17 @@ PrefabInstance:
     - target: {fileID: 465834404558243840, guid: d2daf2e3520dd8b40977ddad73023dd2,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 146.9
+      value: 140.8
       objectReference: {fileID: 0}
     - target: {fileID: 465834404558243840, guid: d2daf2e3520dd8b40977ddad73023dd2,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 8
+      value: 18
       objectReference: {fileID: 0}
     - target: {fileID: 465834404558243840, guid: d2daf2e3520dd8b40977ddad73023dd2,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -49.3
+      value: -68
       objectReference: {fileID: 0}
     - target: {fileID: 465834404558243840, guid: d2daf2e3520dd8b40977ddad73023dd2,
         type: 3}
@@ -6709,7 +6709,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 0, y: -17.999908}
+  m_AnchoredPosition: {x: 0, y: -17.999878}
   m_SizeDelta: {x: 0, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2000749228

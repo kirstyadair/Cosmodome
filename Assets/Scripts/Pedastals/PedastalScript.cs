@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -76,7 +77,13 @@ public class PedastalScript : MonoBehaviour
         foreach (Transform transform in _characterModelsContainer) {
             if (transform.gameObject.activeSelf) {
                 if (_placed == 1) transform.GetComponentInChildren<Animator>().Play("Victory");
-                else transform.GetComponentInChildren<Animator>().Play("Losing");
+                else {
+                    try {
+                    transform.GetComponentInChildren<Animator>().Play("Losing");
+                    } catch (Exception e) { 
+                        Debug.Log("Couldn't play losing animation for " + transform.gameObject.name);
+                    }
+                }
             }
         }
     }
