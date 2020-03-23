@@ -135,22 +135,22 @@ PrefabInstance:
     - target: {fileID: 8138961030536576306, guid: 53b8ae09761e3764394d6aed91cff398,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.9946964
+      value: 0.9779015
       objectReference: {fileID: 0}
     - target: {fileID: 8138961030536576306, guid: 53b8ae09761e3764394d6aed91cff398,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.000000055879354
+      value: -0.00000007450581
       objectReference: {fileID: 0}
     - target: {fileID: 8138961030536576306, guid: 53b8ae09761e3764394d6aed91cff398,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.000000029802322
+      value: 0.00000005960465
       objectReference: {fileID: 0}
     - target: {fileID: 8138961030536576306, guid: 53b8ae09761e3764394d6aed91cff398,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.10285492
+      value: 0.20906629
       objectReference: {fileID: 0}
     - target: {fileID: 8138961030536576306, guid: 53b8ae09761e3764394d6aed91cff398,
         type: 3}
@@ -160,17 +160,17 @@ PrefabInstance:
     - target: {fileID: 8138961030536576306, guid: 53b8ae09761e3764394d6aed91cff398,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.88
+      value: 2.64
       objectReference: {fileID: 0}
     - target: {fileID: 8138961030536576306, guid: 53b8ae09761e3764394d6aed91cff398,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 3.16
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8138961030536576306, guid: 53b8ae09761e3764394d6aed91cff398,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 168.193
+      value: 155.865
       objectReference: {fileID: 0}
     - target: {fileID: 7681888482554756457, guid: 53b8ae09761e3764394d6aed91cff398,
         type: 3}
@@ -201,7 +201,7 @@ PrefabInstance:
     - target: {fileID: 7597190773560785474, guid: 53b8ae09761e3764394d6aed91cff398,
         type: 3}
       propertyPath: m_Intensity
-      value: 9.02
+      value: 10.04
       objectReference: {fileID: 0}
     - target: {fileID: 7597190773560785474, guid: 53b8ae09761e3764394d6aed91cff398,
         type: 3}
@@ -212,6 +212,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_SpotAngle
       value: 68
+      objectReference: {fileID: 0}
+    - target: {fileID: 7597190773560785474, guid: 53b8ae09761e3764394d6aed91cff398,
+        type: 3}
+      propertyPath: m_Lightmapping
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 53b8ae09761e3764394d6aed91cff398, type: 3}
