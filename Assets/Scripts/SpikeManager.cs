@@ -26,6 +26,7 @@ public class SpikeManager : MonoBehaviour
         {
             spikeWalls.Add(wall.GetComponent<SpikeTrapScript>());
         }
+        Debug.Log(spikeWalls.Count);
     }
 
     void Update()
