@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Wall_Spike
+  m_Name: Wall_Break
   m_Shader: {fileID: -6465566751694194690, guid: 942aa05e2f066fa4e92781b657ccaed7,
     type: 3}
   m_ShaderKeywords: 
@@ -34,15 +34,15 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - Texture2D_1030B1F0:
-        m_Texture: {fileID: 2800000, guid: 1375a291df9e74c49812d2b83442ff6c, type: 3}
+        m_Texture: {fileID: 2800000, guid: 5b4299dd1b8f5c24c9cfdd820e05d6bc, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - Texture2D_80ECDE54:
-        m_Texture: {fileID: 2800000, guid: daba20e1a13421349a5fcca873a2104b, type: 3}
+        m_Texture: {fileID: 2800000, guid: 8edc22d7932639246bc4200688e66e9b, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - Texture2D_8104687C:
-        m_Texture: {fileID: 2800000, guid: d84e93393101a854d85f9be3e28cfdd8, type: 3}
+        m_Texture: {fileID: 2800000, guid: 09eb764598352394bb6f013597c8deea, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - Texture2D_8ECCD963:
@@ -50,7 +50,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - Texture2D_D12C8F3A:
-        m_Texture: {fileID: 2800000, guid: f4fa203763f8ece41be3b1ec400c3fc2, type: 3}
+        m_Texture: {fileID: 2800000, guid: 73fba6026ca02aa47a3f24b3bcf0c6a3, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BaseMap:
