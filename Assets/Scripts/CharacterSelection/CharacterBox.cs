@@ -56,6 +56,7 @@ public class CharacterBox : MonoBehaviour
 
     public void Selected(PlayerBox selected)
     {
+        Debug.Log("pressed");
         selectedBy = selected;
         isSelected = true;
         _animator.SetTrigger("Selected");

@@ -97,6 +97,7 @@ public class PlayerBox : MonoBehaviour
     /// </summary>
     public void AssignController(InputDevice controller)
     {
+        Debug.Log("sound goes here");
         _animator.SetTrigger("AssignController");
         _playerNameText.text = "PLAYER " + _playerNumber;
         _assignedBg.color = playerColour;

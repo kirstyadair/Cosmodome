@@ -97,7 +97,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -4068,11 +4068,11 @@ MonoBehaviour:
     sizeStat: 2
     weaponStat: MACHINE GUNS
     infoStat: "There\u2019s not much to say. He\u2019s a born loser. He apparently
-      hails from earth, but that disintegrated without trace to something called Global
-      Warming back in 2027, but everyone else was too busy enjoying the Cosmodome
+      hails from Earth, but that disintegrated without trace to something called global
+      warming back in 2027, but everyone else was too busy enjoying the Cosmodome
       to even notice. Dave likes to talk about how he feels cheated as he has won
       the Cosmodome at least 14 times but has always been disqualified thus forfeiting
-      his victory. For a guy that\u2019s won nothing he sure does have a big mouth. "
+      his victory. For a guy that\u2019s won nothing, he sure does have a big mouth. "
   - characterName: El Mosco
     playerType: 1
     characterColor: {r: 0.39026582, g: 1, b: 0.2216981, a: 1}
@@ -4080,13 +4080,12 @@ MonoBehaviour:
     speedStat: 3
     sizeStat: 1
     weaponStat: LASERS
-    infoStat: "The rumours are that this insect like creature has a long line of ancestors,
-      dating back to planet earth, which fell victim to being filled with pathetic
-      lifeforms. El Mosco is one of the most talented fighters within the walls of
-      the great arena and one of the most feared. He is a 29-time Cosmodome champion.
-      His great, great, great Grandfather\u2019s sister\u2019s boyfriend\u2019s son
-      was a champion in a similar type of event back on Earth. It\u2019s clear El
-      Mosco has been brewed into a winning family. "
+    infoStat: "The rumours are that this insect-like creature has a long line of ancestors
+      from the planet known as Earth. El Mosco is one of the most talented fighters
+      within the walls of the great arena and one of the most feared. He is a 29-time
+      Cosmodome champion. His great, great, great grandfather\u2019s sister\u2019s
+      boyfriend\u2019s son was a champion in a similar type of event back on Earth.
+      It\u2019s clear El Mosco was born into a winning family. "
   - characterName: Hammer-Head Henry
     playerType: 0
     characterColor: {r: 0.33490568, g: 0.8766344, b: 1, a: 1}
@@ -4094,13 +4093,13 @@ MonoBehaviour:
     speedStat: 2
     sizeStat: 3
     weaponStat: LIGHTBEAM
-    infoStat: "It\u2019s no entirely clear where Hammer-Head Henry originates from,
-      but he looks like something that may come from a hellish area of the universe.
+    infoStat: "It\u2019s not entirely clear where Hammer-Head Henry hails from, but
+      he looks like something that may come from some hellish area of the universe.
       Henry isn\u2019t exactly a crowd pleaser due to his rather unappealing appearance,
-      and he thrives on it. He hit\u2019s opponents with brute force and takes great
-      joy in doing so. Henry is one of the biggest and baddest champions Cosmodome
-      has ever seen, with 48 titles to his name. Cosmodome\u2019s very own Triple
-      H is one of the most assured competitors in this universe. "
+      and he thrives on it. He hits opponents with brute force and takes great joy
+      in doing so. Henry is one of the biggest and baddest champions Cosmodome has
+      ever seen, with 48 titles to his name. Cosmodome\u2019s very own Triple H is
+      one of the most assured competitors in this universe. "
   - characterName: Big Schlug
     playerType: 2
     characterColor: {r: 1, g: 0.48584908, b: 0.8540064, a: 1}
@@ -4108,9 +4107,9 @@ MonoBehaviour:
     speedStat: 1
     sizeStat: 3
     weaponStat: CANNON
-    infoStat: "What else is there to say? He\u2019s big, he\u2019s a slug, he\u2019s
-      BIG SCHLUG. The grandmaster of the Cosmodome arena, with a whopping 55 number
-      one finishes for the ageing veteran. His slow, robust and ruthless style within
+    infoStat: "What else is there to say? He\u2019s big, he\u2019s a slug...he\u2019s
+      BIG SCHLUG. The grandmaster of the Cosmodome arena, with a whopping 55 number-one
+      finishes for the ageing veteran. His slow, robust and ruthless style within
       the walls of the Cosmodome colosseum is what really gives him an advantage over
       his inferior opponents. *Being sponsored by one of Cosmodome\u2019s biggest
       investors has nothing to do with his achievements or this bio."
@@ -6753,7 +6752,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 0, y: -17.999878}
+  m_AnchoredPosition: {x: 0, y: -17.999908}
   m_SizeDelta: {x: 0, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2000749228
