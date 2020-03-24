@@ -21,7 +21,7 @@ public class AudioEvent : MonoBehaviour
 
     public AudioSource AudioPlayer;
 
-
+    Coroutine _waitForSoundCoroutine;
     public GameObject subtitle;
     
     public bool isPlaying = false;
@@ -59,6 +59,21 @@ public class AudioEvent : MonoBehaviour
         
     }
 
+    /// <summary>
+    /// Cancel a playing announcer line and close their subtitles
+    /// </summary>
+    public void Cancel() {
+        if (!isPlaying) return;
+
+        AudioPlayer.Stop();
+        isPlaying = false;
+        subtitle.GetComponent<AnnouncerDialouge>().CancelSubtitles();
+        
+        if (_waitForSoundCoroutine != null) {
+            StopCoroutine(_waitForSoundCoroutine);
+            _waitForSoundCoroutine = null;
+        }
+    }
 
     IEnumerator WaitForSound(AudioSource source)
     {
@@ -66,24 +81,20 @@ public class AudioEvent : MonoBehaviour
         source.Play();
         yield return new WaitForSeconds(source.clip.length);
 
-        
-        
-
+        _waitForSoundCoroutine = null;
         isPlaying = false;
         
     }
     void AudioPlayerChangeSoundClip(AudioClip[] audioArray, AudioSource source, int randomClip)
     {
-        
         source.clip = audioArray[randomClip];
         AudioPlayerPlaySound();
-        
-
     }
 
     void AudioPlayerPlaySound()
     {
-            StartCoroutine(WaitForSound(AudioPlayer));
+        if (_waitForSoundCoroutine != null) StopCoroutine(_waitForSoundCoroutine);
+        _waitForSoundCoroutine = StartCoroutine(WaitForSound(AudioPlayer));
     }
 
    

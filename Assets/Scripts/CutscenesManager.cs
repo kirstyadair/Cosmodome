@@ -32,9 +32,8 @@ public class CutscenesManager : MonoBehaviour
     public EndScreenStats endScreenStats;
     public SkipButton skipButton;
     public ControlsUIScript controls;
-
+    public AudioEvent announcer;
     public Animator countdownAnimator;
-
     public Text playerNameIntroText;
     public Text characterNameIntroText;
     public Pedastals pedastals;
@@ -58,6 +57,7 @@ public class CutscenesManager : MonoBehaviour
 
     PlayerTypes _currentIntroCutscene;
     bool _isPlayingInBetweenRoundCutscenes = false;
+    bool _skipCutscene = false;
 
     ScoreManager sm;
 
@@ -189,6 +189,7 @@ public class CutscenesManager : MonoBehaviour
         // make sure we start playing the countdown sound 3 seconds before we start the countdown
         StartCoroutine(PlayCountdownAfterSeeconds(secondsInScene - 3f));
 
+        int i = 0;
         foreach (GameObject plrShip in playerShips)
         {
             PlayerScript playerScript = plrShip.GetComponent<PlayerScript>();
@@ -238,9 +239,17 @@ public class CutscenesManager : MonoBehaviour
             yield return new WaitForSeconds(1f);
 
             // Bring skip button up, only the cutscened player can skip
-            StartCoroutine(ShowSkipButton(/*playerScript.inputDevice*/ InputManager.ActiveDevice, playerType, 8f, playerScript.playerData.playerColor));
+            StartCoroutine(ShowSkipButton(playerScript.inputDevice, playerType, 8f, playerScript.playerData.playerColor));
+        
+            yield return new WaitUntil(() => _skipCutscene || cameraAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime > 1 && !cameraAnimator.IsInTransition(0));
 
-            yield return new WaitUntil(() => cameraAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime > 1 && !cameraAnimator.IsInTransition(0));
+            if (i == playerShips.Count - 1) {
+                announcer.Cancel(); // if we skipped into the game, cancel the subtitles and announcer
+            }
+
+            _skipCutscene = false;
+
+            i++;
         }
 
         playerNameIntroText.gameObject.SetActive(false);
@@ -253,6 +262,7 @@ public class CutscenesManager : MonoBehaviour
     }
 
     IEnumerator ShowSkipButton(InputDevice controller, PlayerTypes type, float time, Color color) {
+        if (controller == null) controller = InputManager.ActiveDevice;
         skipButton.gameObject.SetActive(true); // Enable skip button if not active
         skipButton.Appear(color);
 
@@ -282,7 +292,9 @@ public class CutscenesManager : MonoBehaviour
                 heldDownFor += Time.deltaTime;
 
                  if (heldDownFor > _holdSkipButtonFor) {
-                    // SKIP HERE
+                    
+                    _skipCutscene = true;
+
                     skipButton.StopSelecting();
                     t = time + 1; // force out of this loop
                 }

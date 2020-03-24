@@ -68,6 +68,26 @@ public class AnnouncerDialouge : MonoBehaviour
         _hideSubtitlesCoroutine = StartCoroutine(HideSubtitlesWhenDone(time + 1));
     }
 
+    public void CancelSubtitles() {
+        if (!_subtitlesAreShowing) return;
+
+        if (_animateInSubtitlesCoroutine != null) {
+            StopCoroutine(_animateInSubtitlesCoroutine);
+            _animateInSubtitlesCoroutine = null;
+        }
+
+        if (_hideSubtitlesCoroutine != null) {
+            StopCoroutine(_hideSubtitlesCoroutine);
+            _hideSubtitlesCoroutine = null;
+        }
+
+
+        _animator.Play("Dissapear");
+        _queuedSubtitle = "";
+        _queuedTime = 0;
+        _subtitlesAreShowing = false;
+    }
+
     /// <summary>
     /// Called by animator event when we are ready to change the subtitle text
     /// </summary>
