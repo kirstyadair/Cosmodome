@@ -239,7 +239,7 @@ public class CutscenesManager : MonoBehaviour
             yield return new WaitForSeconds(1f);
 
             // Bring skip button up, only the cutscened player can skip
-            StartCoroutine(ShowSkipButton(playerScript.inputDevice, playerType, 8f, playerScript.playerData.playerColor));
+            StartCoroutine(ShowSkipButton(playerScript.inputDevice, playerType, 8f, playerScript.playerData.playerColor, playerScript));
         
             yield return new WaitUntil(() => _skipCutscene || cameraAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime > 1 && !cameraAnimator.IsInTransition(0));
 
@@ -261,11 +261,16 @@ public class CutscenesManager : MonoBehaviour
         yield return null;
     }
 
-    IEnumerator ShowSkipButton(InputDevice controller, PlayerTypes type, float time, Color color) {
+    IEnumerator ShowSkipButton(InputDevice controller, PlayerTypes type, float time, Color color, PlayerScript player) {
         if (controller == null) controller = InputManager.ActiveDevice;
+        else {
+            player.Vibrate(0.5f, 0.2f);
+        }
+
         skipButton.gameObject.SetActive(true); // Enable skip button if not active
         skipButton.Appear(color);
 
+        
 
         float t = 0;
 
