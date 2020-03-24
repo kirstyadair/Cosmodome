@@ -70,6 +70,8 @@ public class AnnouncerDialouge : MonoBehaviour
         dialouge_BigSchlugIntro = new string[16];
         dialouge_HHHIntro = new string[10];
 
+        InitLines();
+
     }
 
     void OnDisable() {
@@ -235,10 +237,6 @@ public class AnnouncerDialouge : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(isInit == false)
-        {
-            InitLines();
-        }
 
         if(!audioEvent.isPlaying)
         {

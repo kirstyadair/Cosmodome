@@ -26,6 +26,7 @@ public class PilotStand : MonoBehaviour
     /// </summary>
     /// <param name="timeToWalk">Time it takes to walk</param>
     public void WalkAndWave(float timeToWalk) {
+        characterAnimator = characterPoint.GetComponentInChildren<Animator>();
         if (characterAnimator != null) characterAnimator.Play("Walking");
 
         StartCoroutine(CharacterWalkAndWave(timeToWalk));
