@@ -92,8 +92,7 @@ public class BumperBall : MonoBehaviour
                 OnBumperBallExplodeOnPlayer?.Invoke(player);
             }
         }
-
-        Debug.Log("Destroying ya boi " + gameObject.name, gameObject);
+        
         Destroy(gameObject);
     }
 
