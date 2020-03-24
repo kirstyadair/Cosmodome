@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using InControl;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -20,7 +21,7 @@ public class CutscenesManager : MonoBehaviour
 
 
     [Header("Amount of 'Cutscene n' animations available")]
-    public int amountOfCutsceneAnimations;
+    public int amountOfAudiencePanAnimations;
 
     [Space(10)]
     public BetweenRoundText betweenRoundText;
@@ -29,6 +30,8 @@ public class CutscenesManager : MonoBehaviour
     public CameraMovement cameraMovement;
     public DeathSpotlight deathSpotlight;
     public EndScreenStats endScreenStats;
+    public SkipButton skipButton;
+    public ControlsUIScript controls;
 
     public Animator countdownAnimator;
 
@@ -42,12 +45,18 @@ public class CutscenesManager : MonoBehaviour
     public PilotStand elMoscoPilotStand;
     public PilotStand hhhPilotStand;
 
+
     [Header("How long to count down for before starting game")]
     public int countdownFrom = 3;
 
     [Header("Disable to not play intro cutscenes")]
     public bool shouldShowIntroCutscenes;
 
+    [Header("How much player needs to hold skip button for")]
+    [SerializeField]
+    float _holdSkipButtonFor;
+
+    PlayerTypes _currentIntroCutscene;
     bool _isPlayingInBetweenRoundCutscenes = false;
 
     ScoreManager sm;
@@ -130,7 +139,7 @@ public class CutscenesManager : MonoBehaviour
         _isPlayingInBetweenRoundCutscenes = true;
         sm.isCameraEnabled = false;
 
-        int currentClip = UnityEngine.Random.Range(1, amountOfCutsceneAnimations + 1);
+        int currentClip = UnityEngine.Random.Range(1, amountOfAudiencePanAnimations + 1);
         cameraAnimator.Play("Cutscene " + currentClip);
 
         while (_isPlayingInBetweenRoundCutscenes)
@@ -139,10 +148,10 @@ public class CutscenesManager : MonoBehaviour
             // animation is done
             if (cameraAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime > 1 && !cameraAnimator.IsInTransition(0))
             {
-                int nextClip = UnityEngine.Random.Range(1, amountOfCutsceneAnimations + 1);
+                int nextClip = UnityEngine.Random.Range(1, amountOfAudiencePanAnimations + 1);
 
                 // make sure nextClip is never the same as the currentClip
-                while (nextClip == currentClip) nextClip = UnityEngine.Random.Range(1, amountOfCutsceneAnimations + 1);
+                while (nextClip == currentClip) nextClip = UnityEngine.Random.Range(1, amountOfAudiencePanAnimations + 1);
 
                 cameraAnimator.Play("Cutscene " + nextClip);
             }
@@ -225,14 +234,72 @@ public class CutscenesManager : MonoBehaviour
 
             pilotStand.WalkAndWave(2f);
 
+            _currentIntroCutscene = playerType;
             yield return new WaitForSeconds(1f);
+
+            // Bring skip button up, only the cutscened player can skip
+            StartCoroutine(ShowSkipButton(/*playerScript.inputDevice*/ InputManager.ActiveDevice, playerType, 8f, playerScript.playerData.playerColor));
+
             yield return new WaitUntil(() => cameraAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime > 1 && !cameraAnimator.IsInTransition(0));
         }
 
         playerNameIntroText.gameObject.SetActive(false);
         cameraAnimator.enabled = false;
         recordingSquare.SetActive(false);
+
+        controls.ShowControlsAfter(0.5f);
         // done all the cutscenes
+        yield return null;
+    }
+
+    IEnumerator ShowSkipButton(InputDevice controller, PlayerTypes type, float time, Color color) {
+        skipButton.gameObject.SetActive(true); // Enable skip button if not active
+        skipButton.Appear(color);
+
+
+        float t = 0;
+
+        float heldDownFor = 0;
+
+        bool isSelecting = false;
+
+        // While we are playing the intro cutscene for the right type
+        while (t < time) {
+            // Wait until X is pressed on the controller
+            if (Input.GetKeyDown(KeyCode.X) || controller.Action1.WasPressed) {
+                skipButton.StartSelecting();
+                isSelecting = true;
+  
+            } else if (Input.GetKeyUp(KeyCode.X) || controller.Action1.WasReleased) {
+               
+                isSelecting = false;
+                skipButton.StopSelecting();
+            }
+
+            t += Time.deltaTime;
+
+            if (isSelecting) {
+                heldDownFor += Time.deltaTime;
+
+                 if (heldDownFor > _holdSkipButtonFor) {
+                    // SKIP HERE
+                    skipButton.StopSelecting();
+                    t = time + 1; // force out of this loop
+                }
+            } else {
+                heldDownFor -= Time.deltaTime * 2;
+
+                if (heldDownFor < 0) {
+                    heldDownFor = 0;
+                }
+            }
+
+            skipButton.UpdateProgress(heldDownFor / _holdSkipButtonFor);
+            yield return null;
+        }
+
+        // Have changed intro cutscene
+        skipButton.Dissapear();
         yield return null;
     }
 

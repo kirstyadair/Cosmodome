@@ -60,6 +60,8 @@ public class AnnouncerDialouge : MonoBehaviour
         // We will set the subtitle once the animation calls the event
         _queuedSubtitle = subtitle;
         _queuedTime = time;
+        if (shouldAnimate) _queuedTime -= 2; // make the text animate in a bit faster than the talking
+
         _shouldAnimateNextSubtitle = shouldAnimate;
 
         // And hide the subtitles after the given time

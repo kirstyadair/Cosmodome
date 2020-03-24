@@ -19,7 +19,7 @@ public class ControlsUIScript : MonoBehaviour
         animator.SetTrigger("Hide");
     }
 
-    public IEnumerator ShowControlsAfter(float time)
+    public IEnumerator ShowControlsAfterE(float time)
     {
         yield return new WaitForSeconds(time);
         ShowControls();
@@ -36,7 +36,11 @@ public class ControlsUIScript : MonoBehaviour
     void Start()
     {
         animator = GetComponent<Animator>();
-        StartCoroutine(ShowControlsAfter(delayBeforeShowingControls));
+      
+    }
+
+    public void ShowControlsAfter(float time) {
+          StartCoroutine(ShowControlsAfterE(delayBeforeShowingControls));
     }
 
     // Update is called once per frame
