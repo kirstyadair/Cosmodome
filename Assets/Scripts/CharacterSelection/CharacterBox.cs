@@ -27,6 +27,13 @@ public class CharacterBox : MonoBehaviour
     [SerializeField]
     Text _playerIndicatorText;
 
+    public delegate void SelectAudio();
+    public event SelectAudio OnSelectAudio;
+    public delegate void HoverAudio();
+    public event HoverAudio OnHoverAudio;
+    public delegate void DeniedAudio();
+    public event DeniedAudio OnDeniedAudio;
+
     /// <summary>
     /// Set the <see cref="CharacterSelectionOption"/> connected to the <see cref="PlayerTypes"/>
     /// </summary>
@@ -43,6 +50,7 @@ public class CharacterBox : MonoBehaviour
 
     public void Hover(PlayerBox hoveredPlayer)
     {
+        OnHoverAudio?.Invoke();
         _selectorImage.color = option.characterColor;
         _animator.SetBool("isHovered", true);
         isHovered = true;
@@ -56,7 +64,7 @@ public class CharacterBox : MonoBehaviour
 
     public void Selected(PlayerBox selected)
     {
-        Debug.Log("pressed");
+        OnSelectAudio?.Invoke();
         selectedBy = selected;
         isSelected = true;
         _animator.SetTrigger("Selected");
@@ -68,6 +76,7 @@ public class CharacterBox : MonoBehaviour
 
     public void Unavailable()
     {
+        OnDeniedAudio?.Invoke();
         _animator.SetTrigger("Unavailable");
     }
 }

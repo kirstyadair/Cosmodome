@@ -18,6 +18,7 @@ public class PlayerBox : MonoBehaviour
     public event PlayerBoxEvent OnSelectLeft;
     public event PlayerBoxEvent OnSelectRight;
     public event PlayerBoxEvent OnSelect;
+    public event PlayerBoxEvent OnSelectAudio;
 
     /// <summary>
     /// The current InControl device for this player box
@@ -97,7 +98,7 @@ public class PlayerBox : MonoBehaviour
     /// </summary>
     public void AssignController(InputDevice controller)
     {
-        Debug.Log("sound goes here");
+        OnSelectAudio?.Invoke();
         _animator.SetTrigger("AssignController");
         _playerNameText.text = "PLAYER " + _playerNumber;
         _assignedBg.color = playerColour;

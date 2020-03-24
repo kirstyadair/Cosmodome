@@ -1048,6 +1048,7 @@ GameObject:
   m_Component:
   - component: {fileID: 290715526}
   - component: {fileID: 290715525}
+  - component: {fileID: 290715527}
   m_Layer: 0
   m_Name: BGMusik
   m_TagString: Untagged
@@ -1165,6 +1166,35 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &290715527
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 290715524}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc8d78e0bd212944cba6461a50f0c71a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clips:
+  - clip: {fileID: 8300000, guid: 1e14f01ada333aa4d845d0157329e5bd, type: 3}
+    volume: 0.69
+  - clip: {fileID: 8300000, guid: 93e341412d32a684c8025e19ff23cf46, type: 3}
+    volume: 1
+  - clip: {fileID: 8300000, guid: 47023ec33e308ee4d9948568f4c4b7c2, type: 3}
+    volume: 1
+  playerBox:
+  - {fileID: 2017803694}
+  - {fileID: 177319533}
+  - {fileID: 1110426492}
+  - {fileID: 675363058}
+  characterBox:
+  - {fileID: 4185810321156627383}
+  - {fileID: 586952063}
+  - {fileID: 537232584}
+  - {fileID: 2131818831}
 --- !u!1 &320680825
 GameObject:
   m_ObjectHideFlags: 0
@@ -4114,7 +4144,7 @@ MonoBehaviour:
       his inferior opponents. *Being sponsored by one of Cosmodome\u2019s biggest
       investors has nothing to do with his achievements or this bio."
   allocatedControllers: []
-  allowControlAllWithOne: 0
+  allowControlAllWithOne: 1
   allowOnePlayer: 0
 --- !u!4 &947845243
 Transform:
