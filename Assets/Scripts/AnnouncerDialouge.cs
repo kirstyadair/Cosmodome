@@ -7,8 +7,7 @@ using UnityEngine.UI;
 public class AnnouncerDialouge : MonoBehaviour
 {
 
-    public Text dialouge;
-    public GameObject dialougeObj;
+    public Text subtitleText;
     //x -141 y 67 intro
     //x 0 y 51 in game
 
@@ -25,41 +24,98 @@ public class AnnouncerDialouge : MonoBehaviour
 
 
 
+    Animator _animator;
+    AudioEvent _audioEvent;
+    bool _subtitlesAreShowing = false;
+    Coroutine _hideSubtitlesCoroutine;
+    Coroutine _animateInSubtitlesCoroutine;
+    string _queuedSubtitle = "";
+    float _queuedTime = 0;
+    bool _shouldAnimateNextSubtitle = false;
 
-    string[] dialougePlayerTaunting;
+    /// <summary>
+    /// Show a subtitle for the specified amount of time, replacing any existing subtitle
+    /// </summary>
+    /// <param name="subtitle">The subtitle to show</param>
+    /// <param name="time">The time to show it for</param>
+    /// <param name="shouldAnimate">Whether or not the subtitles should be 'ticked' in or just appear</param>
+    void ShowSubtitle(string subtitle, float time, bool shouldAnimate) {
+        if (_subtitlesAreShowing) {
+            // We're already showing subtitles, swap them out
+            StopCoroutine(_hideSubtitlesCoroutine);
 
-    private AudioEvent audioEvent;
+            if (_animateInSubtitlesCoroutine != null) {
+                StopCoroutine(_animateInSubtitlesCoroutine);
+                _animateInSubtitlesCoroutine = null;
+            }
 
-    bool isInit = false;
-
-
-
-    public void OnStateChange(GameState newState, GameState oldState)
-    {
-        if (newState == GameState.INGAME)
-        {
-            dialouge.color = new Color32(255, 255, 255, 255);
-            dialougeObj.GetComponent<RectTransform>().anchoredPosition = new Vector3(0, 51);
+            _animator.Play("Swap");
+        } else {
+            // No subs showing right now, so play appear animation
+            _animator.Play("Appear");
         }
-        if(newState ==GameState.ROUND_START_CUTSCENE)
-        {
-            dialouge.color = new Color32(255, 255, 255, 255);
-            dialougeObj.GetComponent<RectTransform>().anchoredPosition = new Vector3(-191,127);
 
-        }
-        if (newState==GameState.COUNTDOWN|| newState == GameState.END_OF_GAME|| newState == GameState.ROUND_END_CUTSCENE)
-        {
-            dialouge.color = new Color32(0, 0, 0, 0);
+        _subtitlesAreShowing = true;
+
+        // We will set the subtitle once the animation calls the event
+        _queuedSubtitle = subtitle;
+        _queuedTime = time;
+        _shouldAnimateNextSubtitle = shouldAnimate;
+
+        // And hide the subtitles after the given time
+        _hideSubtitlesCoroutine = StartCoroutine(HideSubtitlesWhenDone(time + 1));
+    }
+
+    /// <summary>
+    /// Called by animator event when we are ready to change the subtitle text
+    /// </summary>
+    public void Animator_ChangeSubtitle() {
+        if (_queuedSubtitle != "") {
+            subtitleText.text = "";
+            if (_shouldAnimateNextSubtitle) {
+                _animateInSubtitlesCoroutine = StartCoroutine(AnimateInSubtitles(_queuedSubtitle, _queuedTime - 1f)); // minus -1 show the subtitles stay on screen for a second
+            } else {
+                subtitleText.text = _queuedSubtitle;
+                LayoutRebuilder.ForceRebuildLayoutImmediate(GetComponent<RectTransform>());
+            }
+        } else {
+            subtitleText.text = "";
         }
     }
 
+    /// <summary>
+    /// Slowly tick the subtitles in
+    /// </summary>
+    /// <param name="subtitle">The subtitle to show</param>
+    /// <param name="time">The total time to tick them in</param>
+    /// <returns></returns>
+    IEnumerator AnimateInSubtitles(string subtitle, float time) {
+        RectTransform trns = GetComponent<RectTransform>();
+        LayoutRebuilder.ForceRebuildLayoutImmediate(trns);
+
+        float timeBetweenCharacters = time / subtitle.Length;
+
+        for (int i = 0; i < subtitle.Length; i++) {
+            subtitleText.text += subtitle[i];
+            yield return new WaitForSeconds(timeBetweenCharacters);
+        }
+    }
+
+    IEnumerator HideSubtitlesWhenDone(float time) {
+        yield return new WaitForSeconds(time);
+
+        _animator.Play("Dissapear");
+        _queuedSubtitle = "";
+        _queuedTime = 0;
+        _subtitlesAreShowing = false;
+    }
 
     // Start is called before the first frame update
     void Start()
     {
-        ScoreManager.OnStateChanged += OnStateChange;
 
-        audioEvent = GameObject.Find("Announcer").GetComponent<AudioEvent>();
+        _animator = GetComponent<Animator>();
+        _audioEvent = GameObject.Find("Announcer").GetComponent<AudioEvent>();
         dialougePlayerShot = new string[11];
         dialougePlayerOnPlayerCollision = new string[24];
         dialougePlayerTrapSetup = new string[5];
@@ -74,10 +130,6 @@ public class AnnouncerDialouge : MonoBehaviour
 
     }
 
-    void OnDisable() {
-        ScoreManager.OnStateChanged -= OnStateChange;
-    }
-    
 
     void InitLines()
     {
@@ -194,57 +246,42 @@ public class AnnouncerDialouge : MonoBehaviour
         dialouge_HHHIntro[7] = "It's Hammerhead Henry, he's got eyes on either side of his head that COULD be counted as an unfair advantage but who knows?";
         dialouge_HHHIntro[8] = "Hammerhead Henry, he’s got one eye on the FIN-ISH line... heh. And one eye on tonight’s dinner, whatever sharks eat";
         dialouge_HHHIntro[9] = "With a head like that I bet he's gonna hammer the competition today *chuckles* (other announcer) shut up, that wasn't even funny.Umm... its Henry, sorry about that Henry.";
-
-
-        isInit = true;
     }
 
-    public void DisplayPlayerShotSubtitle(int subtitle)
+    public void DisplayPlayerShotSubtitle(int subtitle, float time)
     {
-        dialouge.text =dialougePlayerShot[subtitle];
+        ShowSubtitle(dialougePlayerShot[subtitle], time, false);
     }
 
-    public void DisplayPlayerOnPlayerCollisionSubtitle(int subtitle)
+    public void DisplayPlayerOnPlayerCollisionSubtitle(int subtitle, float time)
     {
-        dialouge.text = dialougePlayerOnPlayerCollision[subtitle];
+        ShowSubtitle(dialougePlayerOnPlayerCollision[subtitle], time, false);
     }
 
-    public void DisplayPlayerTrapSetupSubtitle(int subtitle)
+    public void DisplayPlayerTrapSetupSubtitle(int subtitle, float time) 
     {
-        dialouge.text = dialougePlayerTrapSetup[subtitle];
+        ShowSubtitle(dialougePlayerTrapSetup[subtitle], time, false);
     }
 
-    public void DisplayPlayerTrapTriggerSubtitle(int subtitle)
+    public void DisplayPlayerTrapTriggerSubtitle(int subtitle, float time)
     {
-        dialouge.text = dialougePlayerTrapTrigger[subtitle];
+        ShowSubtitle(dialougePlayerTrapTrigger[subtitle], time, false);
     }
 
-    public void DisplayDaveIntoSubtile(int subtitle)
+    public void DisplayDaveIntoSubtile(int subtitle, float time)
     {
-        dialouge.text = dialouge_DaveIntro[subtitle];
+        ShowSubtitle(dialouge_DaveIntro[subtitle], time, true);
     }
-    public void DisplayBigSchlugIntoSubtile(int subtitle)
+
+    public void DisplayBigSchlugIntoSubtile(int subtitle, float time)
     {
-        dialouge.text = dialouge_BigSchlugIntro[subtitle];
+        ShowSubtitle(dialouge_BigSchlugIntro[subtitle], time, true);
     }
-    public void DisplayHHHIntoSubtile(int subtitle)
+
+    public void DisplayHHHIntoSubtile(int subtitle, float time)
     {
-        dialouge.text = dialouge_HHHIntro[subtitle];
+        ShowSubtitle(dialouge_HHHIntro[subtitle], time, true);
     }
     //NEED TO ADD MOSCO LINES
 
-
-    // Update is called once per frame
-    void Update()
-    {
-
-        if(!audioEvent.isPlaying)
-        {
-            dialouge.enabled = false;
-        }
-        else
-        {
-            dialouge.enabled = true;
-        }
-    }
 }

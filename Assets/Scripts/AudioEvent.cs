@@ -59,6 +59,7 @@ public class AudioEvent : MonoBehaviour
         
     }
 
+
     IEnumerator WaitForSound(AudioSource source)
     {
         isPlaying = true;
@@ -93,7 +94,7 @@ public class AudioEvent : MonoBehaviour
         {
             int randomClip = Random.Range(0, AudioArrayPlyerEliminated.Length);
             AudioPlayerChangeSoundClip(AudioArrayPlyerEliminated, AudioPlayer, randomClip);
-            subtitle.GetComponent<AnnouncerDialouge>().DisplayPlayerShotSubtitle(randomClip);
+            subtitle.GetComponent<AnnouncerDialouge>().DisplayPlayerShotSubtitle(randomClip, AudioArrayPlyerEliminated[randomClip].length);
         }
     }
 
@@ -107,7 +108,7 @@ public class AudioEvent : MonoBehaviour
             {
                 int randomClip = Random.Range(0, AudioArrayPlayerShot.Length);
                 AudioPlayerChangeSoundClip(AudioArrayPlayerShot, AudioPlayer, randomClip);
-                subtitle.GetComponent<AnnouncerDialouge>().DisplayPlayerShotSubtitle(randomClip);
+                subtitle.GetComponent<AnnouncerDialouge>().DisplayPlayerShotSubtitle(randomClip, AudioArrayPlayerShot[randomClip].length);
             }
             
         }  
@@ -117,19 +118,19 @@ public class AudioEvent : MonoBehaviour
     {
         int randomClip = Random.Range(0, AudioArray_DaveIntro.Length);
         AudioPlayerChangeSoundClip(AudioArray_DaveIntro, AudioPlayer, randomClip);
-        subtitle.GetComponent<AnnouncerDialouge>().DisplayDaveIntoSubtile(randomClip);
+        subtitle.GetComponent<AnnouncerDialouge>().DisplayDaveIntoSubtile(randomClip, AudioArray_DaveIntro[randomClip].length);
     }
     void PlayBigSchlugIntro()
     {
         int randomClip = Random.Range(0, AudioArray_BigSchlugIntro.Length);
         AudioPlayerChangeSoundClip(AudioArray_BigSchlugIntro, AudioPlayer, randomClip);
-        subtitle.GetComponent<AnnouncerDialouge>().DisplayBigSchlugIntoSubtile(randomClip);
+        subtitle.GetComponent<AnnouncerDialouge>().DisplayBigSchlugIntoSubtile(randomClip, AudioArray_BigSchlugIntro[randomClip].length);
     }
     void PlayHHHIntro()
     {
         int randomClip = Random.Range(0, AudioArray_HHHIntro.Length);
         AudioPlayerChangeSoundClip(AudioArray_HHHIntro, AudioPlayer, randomClip);
-        subtitle.GetComponent<AnnouncerDialouge>().DisplayHHHIntoSubtile(randomClip);
+        subtitle.GetComponent<AnnouncerDialouge>().DisplayHHHIntoSubtile(randomClip, AudioArray_HHHIntro[randomClip].length);
     }
 
 
@@ -143,7 +144,7 @@ public class AudioEvent : MonoBehaviour
             {
                 int randomClip = Random.Range(0, AudioArrayPlayerTrapTrigger.Length);
                 AudioPlayerChangeSoundClip(AudioArrayPlayerTrapTrigger, AudioPlayer, randomClip);
-                subtitle.GetComponent<AnnouncerDialouge>().DisplayPlayerTrapTriggerSubtitle(randomClip);
+                subtitle.GetComponent<AnnouncerDialouge>().DisplayPlayerTrapTriggerSubtitle(randomClip, AudioArrayPlayerTrapTrigger[randomClip].length);
             }
             
         }
@@ -160,7 +161,7 @@ public class AudioEvent : MonoBehaviour
             {
                 int randomClip = Random.Range(0, AudioArrayPlayerTrapSetup.Length);
                 AudioPlayerChangeSoundClip(AudioArrayPlayerTrapSetup, AudioPlayer, randomClip);
-                subtitle.GetComponent<AnnouncerDialouge>().DisplayPlayerTrapSetupSubtitle(randomClip);
+                subtitle.GetComponent<AnnouncerDialouge>().DisplayPlayerTrapSetupSubtitle(randomClip, AudioArrayPlayerTrapSetup[randomClip].length);
             }
             
         }
@@ -176,7 +177,7 @@ public class AudioEvent : MonoBehaviour
             {
                 int randomClip = Random.Range(0, AudioArrayPlayerOnPlayerCollision.Length);
                 AudioPlayerChangeSoundClip(AudioArrayPlayerOnPlayerCollision, AudioPlayer, randomClip);
-                subtitle.GetComponent<AnnouncerDialouge>().DisplayPlayerOnPlayerCollisionSubtitle(randomClip);
+                subtitle.GetComponent<AnnouncerDialouge>().DisplayPlayerOnPlayerCollisionSubtitle(randomClip, AudioArrayPlayerOnPlayerCollision[randomClip].length);
             }
             
         }
