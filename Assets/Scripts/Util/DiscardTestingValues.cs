@@ -11,17 +11,21 @@ using UnityEngine.SceneManagement;
 [ExecuteInEditMode]
 public class DiscardTestingValues: MonoBehaviour
 {
+    [SerializeField]
+    [HideInInspector]
     bool _needsRestore = true;
 
-    void Awake() {
+    void Start() {
+        if (EditorApplication.isPlayingOrWillChangePlaymode) return;
         if (!_needsRestore) return;
         RestoreValues();
 
         EditorSceneManager.sceneClosing  += OnSceneClosing;
-        _needsRestore = false;
+        //_needsRestore = false;
     }
 
     void OnSceneClosing(Scene scene, bool removingScene) {
+        if (!removingScene) return;
         _needsRestore = true;
     }
 
@@ -46,13 +50,12 @@ public class DiscardTestingValues: MonoBehaviour
 
         if (testingValuesChanged.Count == 0) return; // We didn't need to change anything
 
-        string log = "<size=14><color=lightblue><b>DiscardTestingValues has set these values to defaults because test changes were pushed: </b></color>";
+        string log = "<color=lightblue><b>DiscardTestingValues has set these values to defaults because test changes were pushed: </b></color>";
 
         foreach (string valueChanged in testingValuesChanged) {
             log += "<i> || " + valueChanged + "</i>";
         }
 
-        log += "</size>";
         Debug.Log(log);
     }
 
@@ -76,7 +79,7 @@ public class DiscardTestingValues: MonoBehaviour
             changed = true;
         }
 
-        //if (!changed) return null;
+        if (!changed) return null;
 
         return "<b>Round length</b> changed to <b>60</b>";
     }
@@ -86,8 +89,7 @@ public class DiscardTestingValues: MonoBehaviour
             cm.shouldShowIntroCutscenes = true;
             return "Set <b>ShouldShowIntroCutScenes</b> to <b>true</b>";
         }
-        
-         return "Set <b>ShouldShowIntroCutScenes</b> to <b>true</b>";
+
         return null;
     }
 
