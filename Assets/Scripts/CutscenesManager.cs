@@ -36,6 +36,12 @@ public class CutscenesManager : MonoBehaviour
     public Text characterNameIntroText;
     public Pedastals pedastals;
 
+    [Space(10)]
+    public PilotStand davePilotStand;
+    public PilotStand bigSchlugPilotStand;
+    public PilotStand elMoscoPilotStand;
+    public PilotStand hhhPilotStand;
+
     [Header("How long to count down for before starting game")]
     public int countdownFrom = 3;
 
@@ -178,6 +184,7 @@ public class CutscenesManager : MonoBehaviour
         {
             PlayerScript playerScript = plrShip.GetComponent<PlayerScript>();
             PlayerTypes playerType = playerScript.playerType;
+            PilotStand pilotStand = null;
 
             playerNameIntroText.color = playerScript.playerColor.color;
             playerNameIntroText.text = "PLAYER " + playerScript.playerNumber;
@@ -189,21 +196,25 @@ public class CutscenesManager : MonoBehaviour
             {
                 case PlayerTypes.BIG_SCHLUG:
                     BigSchlugIntro?.Invoke();
+                    pilotStand = bigSchlugPilotStand;
                     animationName = "Schlug intro";
                     characterNameIntroText.text = "AS BIG SCHLUG";
                     break;
                 case PlayerTypes.DAVE:
                     DaveIntro?.Invoke();
+                    pilotStand = davePilotStand;
                     animationName = "Dave intro";
                     characterNameIntroText.text = "AS DAVE";
                     break;
                 case PlayerTypes.EL_MOSCO:
+                    pilotStand = elMoscoPilotStand;
                     ElMoscoIntro?.Invoke();
                     animationName = "El Mosco intro";
                     characterNameIntroText.text = "AS EL MOSCO";
                     break;
                 case PlayerTypes.HAMMER:
                     HHHIntro?.Invoke();
+                    pilotStand = hhhPilotStand;
                     animationName = "Hammer intro";
                     characterNameIntroText.text = "AS HAMMERHEAD HENRY";
                     break;
@@ -211,6 +222,8 @@ public class CutscenesManager : MonoBehaviour
 
             // play the correct cutscene animation
             cameraAnimator.Play(animationName);
+
+            pilotStand.WalkAndWave(2f);
 
             yield return new WaitForSeconds(1f);
             yield return new WaitUntil(() => cameraAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime > 1 && !cameraAnimator.IsInTransition(0));
