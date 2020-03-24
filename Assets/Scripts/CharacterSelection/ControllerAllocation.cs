@@ -60,7 +60,11 @@ public class ControllerAllocation : MonoBehaviour
 
     [SerializeField]
     [Header("Tick and you can keep pressing X with 1 controller to join")]
-    bool shouldAllowOneController;
+    public bool allowControlAllWithOne;
+
+    [SerializeField]
+    [Header("Tick and you will be able to start the game with one player joined")]
+    public bool allowOnePlayer;
 
     Coroutine countdownCoroutine;
     bool _isFinishedAllocating = false;
@@ -83,7 +87,7 @@ public class ControllerAllocation : MonoBehaviour
     {
         if (_isFinishedAllocating) return;
 
-        if (this.numControllersAssigned > 1)
+        if (this.numControllersAssigned > 1 || (allowOnePlayer && this.numControllersAssigned == 1)) 
         {
             _isFinishedAllocating = true;
             OnControllersAllocated?.Invoke();
@@ -100,7 +104,7 @@ public class ControllerAllocation : MonoBehaviour
         PlayerBox chosenBox = null;
         foreach (PlayerBox box in _playerBoxes)
         {
-            if (box.controller == controller && !shouldAllowOneController) return; // this controller is already allocated, ignore
+            if (box.controller == controller && !allowControlAllWithOne) return; // this controller is already allocated, ignore
             if (box.controller == null)
             {
                 chosenBox = box; // This is a box with no controller assigned, so assign it

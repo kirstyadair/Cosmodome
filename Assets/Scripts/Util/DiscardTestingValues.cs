@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEditor.SceneManagement;
@@ -11,44 +12,48 @@ using UnityEngine.SceneManagement;
 [ExecuteInEditMode]
 public class DiscardTestingValues: MonoBehaviour
 {
-    [SerializeField]
-    [HideInInspector]
-    bool _needsRestore = true;
-
     void Start() {
-        if (EditorApplication.isPlayingOrWillChangePlaymode) return;
-        if (!_needsRestore) return;
-        RestoreValues();
-
-        EditorSceneManager.sceneClosing  += OnSceneClosing;
-        //_needsRestore = false;
+        EditorSceneManager.sceneOpened  += OnSceneOpened;
     }
 
-    void OnSceneClosing(Scene scene, bool removingScene) {
-        if (!removingScene) return;
-        _needsRestore = true;
+    void OnSceneOpened(Scene scene, OpenSceneMode mode) {
+        if (EditorApplication.isPlayingOrWillChangePlaymode) return;
+        RestoreValues();
     }
 
     void RestoreValues() {
         List<string> testingValuesChanged = new List<string>();
 
         void CheckIfValueChanged(string result) {
-            if (result == null) return;
+            if (string.IsNullOrEmpty(result)) return;
             testingValuesChanged.Add(result);
         }
+        
+        GameObject scoreManager = GameObject.Find("ScoreManager");
+        GameObject cutscenesManager = GameObject.Find("CutscenesManager");
+        GameObject characterSelectionLogic = GameObject.Find("Character Selection Logic");
 
-        ScoreManager sm = GameObject.Find("ScoreManager").GetComponent<ScoreManager>();
-
-        if (sm != null) {
+        if (scoreManager != null) {
+            ScoreManager sm = scoreManager.GetComponent<ScoreManager>();
             CheckIfValueChanged(RestoreRoundTime(sm));
         }
 
-        CutscenesManager cm = GameObject.Find("CutscenesManager").GetComponent<CutscenesManager>();
-        if (cm != null) {
+        if (cutscenesManager != null) {
+            CutscenesManager cm = cutscenesManager.GetComponent<CutscenesManager>();
             CheckIfValueChanged(RestoreIntroCutscenes(cm));
         }
 
+        if (characterSelectionLogic != null) {
+            ControllerAllocation ca = characterSelectionLogic.GetComponent<ControllerAllocation>();
+            CheckIfValueChanged(RestoreAllowOnePlayer(ca));
+            CheckIfValueChanged(RestoreAllowManyControl(ca));
+        }
+
+
         if (testingValuesChanged.Count == 0) return; // We didn't need to change anything
+
+        // To allow saving
+        EditorSceneManager.MarkAllScenesDirty();
 
         string log = "<color=lightblue><b>DiscardTestingValues has set these values to defaults because test changes were pushed: </b></color>";
 
@@ -61,20 +66,19 @@ public class DiscardTestingValues: MonoBehaviour
 
 
 
-
-
     /// VALUE RESTORING METHODS
     /// return string is the friendly name to show in editor, or null if not changed
 
     string RestoreRoundTime(ScoreManager sm) {
         bool changed = false;
 
-        if (sm.timeLeftInRound != 60) {
+        // to account for float error
+        if (Mathf.RoundToInt(sm.timeLeftInRound) != 60) {
             sm.timeLeftInRound = 60;
             changed = true;
         }
 
-        if (sm.roundLength != 60) {
+        if (Mathf.RoundToInt(sm.roundLength) != 60) {
             sm.roundLength = 60;
             changed = true;
         }
@@ -93,5 +97,23 @@ public class DiscardTestingValues: MonoBehaviour
         return null;
     }
 
+
+    string RestoreAllowOnePlayer(ControllerAllocation ca) {
+        if (ca.allowOnePlayer) {
+            ca.allowOnePlayer = false;
+            return "Set <b>Allow one player</b> to <b>false</b>";
+        }
+
+        return null;
+    }
+
+    string RestoreAllowManyControl(ControllerAllocation ca) {
+        if (ca.allowControlAllWithOne) {
+            ca.allowControlAllWithOne = false;
+            return "Set <b>Allow control all with one</b> to <b>false</b>";
+        }
+
+        return null;
+    }
 
 }
