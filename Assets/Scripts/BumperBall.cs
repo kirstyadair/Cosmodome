@@ -17,6 +17,7 @@ public class BumperBall : MonoBehaviour
     public GameObject explosionFX;
     public GameObject trail;
 
+    bool _isDestroyed = false;
    
     [Header("The force the bumper ball should be shot out with")]
     public float spawnForce;
@@ -41,6 +42,7 @@ public class BumperBall : MonoBehaviour
 
     public void OnCollisionEnter(Collision collision)
     {
+        if (_isDestroyed) return;
         if (collision.gameObject.CompareTag("Ship"))
         {
             OnBumperBallHitPlayer?.Invoke(collision.gameObject.GetComponent<PlayerScript>());
@@ -73,12 +75,14 @@ public class BumperBall : MonoBehaviour
 
     public void Explode()
     {
+        _isDestroyed = true;
+
         OnBumperBallExplode?.Invoke();
         GameObject fx = Instantiate(explosionFX);
         fx.transform.position = this.transform.position;
-
-        trail.transform.SetParent(null);
         trail.GetComponent<TrailRenderer>().autodestruct = true;
+        trail.transform.SetParent(null);
+       
 
         foreach (PlayerScript player in ScoreManager.Instance.players)
         {
@@ -89,11 +93,14 @@ public class BumperBall : MonoBehaviour
             }
         }
 
+        Debug.Log("Destroying ya boi " + gameObject.name, gameObject);
         Destroy(gameObject);
     }
 
     private void Update()
     {
+         if (_isDestroyed) return;
+
         timeAlive += Time.deltaTime;
         if (timeAlive >= timeAliveBeforeExploding)
         {

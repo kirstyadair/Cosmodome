@@ -30,6 +30,7 @@ public class ExcitementMeterScript : MonoBehaviour
         BumperBall.OnBumperBallExplodeOnPlayer -= OnBBExplode;
         BumperBall.OnBumperBallHitPlayer -= OnBBHit;
         ExcitementManager.OnResetHype -= Reset;
+        ScoreManager.OnStateChanged -= OnStateChanged;
     }
 
     public void OnStateChanged(GameState newState, GameState oldState)
@@ -42,6 +43,13 @@ public class ExcitementMeterScript : MonoBehaviour
             BumperBall.OnBumperBallExplodeOnPlayer += OnBBExplode;
             BumperBall.OnBumperBallHitPlayer += OnBBHit;
             ExcitementManager.OnResetHype += Reset;
+        } else {
+            PlayerScript.OnPlayerCollision -= OnCollision;
+            PlayerScript.OnPlayerShot -= OnShot;
+            PlayerScript.OnPlayerHitByArenaCannon -= OnACShot;
+            BumperBall.OnBumperBallExplodeOnPlayer -= OnBBExplode;
+            BumperBall.OnBumperBallHitPlayer -= OnBBHit;
+            ExcitementManager.OnResetHype -= Reset;
         }
     }
 
