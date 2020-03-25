@@ -12,13 +12,34 @@ public class PilotStand : MonoBehaviour
 
     [SerializeField]
     Transform characterPoint;
+    
+    [SerializeField]
+    Light chairLight;
+
+    [SerializeField]
+    Light characterLight;
 
     Animator characterAnimator;
 
+    Coroutine _walkAndWaveCoroutine = null;
+
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         characterAnimator = characterPoint.GetComponentInChildren<Animator>();
+        Disable();
+    }
+
+    public void Enable() {
+        characterLight.enabled = true;
+        chairLight.enabled = true;
+        characterPoint.gameObject.SetActive(true);
+    }
+
+    public void Disable() {
+        characterLight.enabled = false;
+        chairLight.enabled = false;
+        characterPoint.gameObject.SetActive(false);
     }
 
     /// <summary>
@@ -27,9 +48,10 @@ public class PilotStand : MonoBehaviour
     /// <param name="timeToWalk">Time it takes to walk</param>
     public void WalkAndWave(float timeToWalk) {
         characterAnimator = characterPoint.GetComponentInChildren<Animator>();
+
         if (characterAnimator != null) characterAnimator.Play("Walking");
 
-        StartCoroutine(CharacterWalkAndWave(timeToWalk));
+        _walkAndWaveCoroutine = StartCoroutine(CharacterWalkAndWave(timeToWalk));
     }
 
     IEnumerator CharacterWalkAndWave(float time) {
@@ -53,11 +75,14 @@ public class PilotStand : MonoBehaviour
     }
 
     public void SitDown() {
+        if (_walkAndWaveCoroutine != null) StopCoroutine(_walkAndWaveCoroutine);
+        
         characterPoint.transform.position = seatedPoint.position;
         characterPoint.forward = seatedPoint.forward;
+        if (characterAnimator != null) characterAnimator.Play("Idle seated");
     }
 
     public void Eliminated() {
-        characterAnimator.Play("Eliminated");
+        if (characterAnimator != null) characterAnimator.Play("Eliminated");
     }
 }

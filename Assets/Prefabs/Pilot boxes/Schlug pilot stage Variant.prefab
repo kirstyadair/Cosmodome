@@ -10,7 +10,7 @@ PrefabInstance:
     - target: {fileID: 2421762012532897100, guid: 53b8ae09761e3764394d6aed91cff398,
         type: 3}
       propertyPath: m_Name
-      value: Schlug pilot stage
+      value: Schlug pilot stage Variant
       objectReference: {fileID: 0}
     - target: {fileID: 1711520006679299935, guid: 53b8ae09761e3764394d6aed91cff398,
         type: 3}
@@ -66,6 +66,46 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 564989453440776576, guid: 53b8ae09761e3764394d6aed91cff398,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 564989453440776576, guid: 53b8ae09761e3764394d6aed91cff398,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1.17
+      objectReference: {fileID: 0}
+    - target: {fileID: 564989453440776576, guid: 53b8ae09761e3764394d6aed91cff398,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.25562626
+      objectReference: {fileID: 0}
+    - target: {fileID: 564989453440776576, guid: 53b8ae09761e3764394d6aed91cff398,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.9667757
+      objectReference: {fileID: 0}
+    - target: {fileID: 564989453440776576, guid: 53b8ae09761e3764394d6aed91cff398,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -360.418
+      objectReference: {fileID: 0}
+    - target: {fileID: 564989453440776576, guid: 53b8ae09761e3764394d6aed91cff398,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.36
+      objectReference: {fileID: 0}
+    - target: {fileID: 564989453440776576, guid: 53b8ae09761e3764394d6aed91cff398,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 564989453440776576, guid: 53b8ae09761e3764394d6aed91cff398,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3673123567848636940, guid: 53b8ae09761e3764394d6aed91cff398,
         type: 3}

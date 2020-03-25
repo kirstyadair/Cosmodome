@@ -233,6 +233,7 @@ public class CutscenesManager : MonoBehaviour
             // play the correct cutscene animation
             cameraAnimator.Play(animationName);
 
+            pilotStand.Enable();
             pilotStand.WalkAndWave(2f);
 
             _currentIntroCutscene = playerType;
@@ -246,6 +247,8 @@ public class CutscenesManager : MonoBehaviour
             if (i == playerShips.Count - 1) {
                 announcer.Cancel(); // if we skipped into the game, cancel the subtitles and announcer
             }
+
+            pilotStand.SitDown();
 
             _skipCutscene = false;
 
