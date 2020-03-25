@@ -48,7 +48,7 @@ public class BreakableWallScript : MonoBehaviour
         {
             numOfHits++;
 
-            if (numOfHits == 1)
+            if (numOfHits > 0)
             {
                 GameObject ps = Instantiate(rockHitPs, other.transform.position, Quaternion.identity);
                 collider.isTrigger = true; // so the ship can pass straight through
@@ -91,6 +91,7 @@ public class BreakableWallScript : MonoBehaviour
         for (int i = 0; i < children.Length; i++)
         {
             meshRenderers[i].material = standardMat;
+            Debug.Log(meshRenderers[i].material.name);
             children[i].isKinematic = false;
             children[i].useGravity = true;
             previousPositions[i] = children[i].transform.position;

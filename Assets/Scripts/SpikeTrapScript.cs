@@ -17,7 +17,7 @@ public class SpikeTrapScript : MonoBehaviour
     Material standardMat;
     SpikeManager spikeManager;
     Animator animator;
-    bool isActive = false;
+    public bool isActive = false;
 
     public delegate void PlayerSpikeHit(PlayerScript hitPlayer);
     public static event PlayerSpikeHit OnPlayerSpikeHit;
