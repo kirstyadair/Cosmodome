@@ -19,6 +19,7 @@ public class BreakableWallScript : MonoBehaviour
     Quaternion[] previousRotations;
     BoxCollider collider;
     public bool isExploding = false;
+    public bool isRed = false;
 
     void Start()
     {
@@ -48,7 +49,7 @@ public class BreakableWallScript : MonoBehaviour
         {
             numOfHits++;
 
-            if (numOfHits > 0)
+            if (numOfHits == 1)
             {
                 GameObject ps = Instantiate(rockHitPs, other.transform.position, Quaternion.identity);
                 collider.isTrigger = true; // so the ship can pass straight through
@@ -72,7 +73,6 @@ public class BreakableWallScript : MonoBehaviour
             {
                 isExploding = true;
                 // Pass the ship to tile prefab script which then calls ExplodeChildren() on all active walls
-                //if (this.gameObject.tag == "SideWall") ExplodeChildren(other.gameObject);
                 tilePrefabScript.DisableAll(other.gameObject);
             }
             else
@@ -85,13 +85,13 @@ public class BreakableWallScript : MonoBehaviour
     // This is called in TilePrefabScript
     public void ExplodeChildren(GameObject ship)
     {
+        isRed = false;
         isExploding = true;
         collider.enabled = false;
 
         for (int i = 0; i < children.Length; i++)
         {
             meshRenderers[i].material = standardMat;
-            Debug.Log(meshRenderers[i].material.name);
             children[i].isKinematic = false;
             children[i].useGravity = true;
             previousPositions[i] = children[i].transform.position;
@@ -126,6 +126,8 @@ public class BreakableWallScript : MonoBehaviour
 
     public void TurnChildrenRed()
     {
+        isRed = true;
+
         foreach (MeshRenderer mr in meshRenderers)
         {
             mr.material = redMat;

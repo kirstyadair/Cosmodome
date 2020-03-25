@@ -614,6 +614,7 @@ MonoBehaviour:
   sparksParticle: {fileID: 0}
   redMat: {fileID: 0}
   standardMat: {fileID: 2100000, guid: cf2e8a888f7d29141bcecf29780e26b8, type: 2}
+  isActive: 0
 --- !u!1 &559828202265983523
 GameObject:
   m_ObjectHideFlags: 0
@@ -689,6 +690,7 @@ MonoBehaviour:
   sparksParticle: {fileID: 0}
   redMat: {fileID: 0}
   standardMat: {fileID: 2100000, guid: cf2e8a888f7d29141bcecf29780e26b8, type: 2}
+  isActive: 0
 --- !u!65 &8606658886902245816
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1124,6 +1126,7 @@ MonoBehaviour:
   sparksParticle: {fileID: 0}
   redMat: {fileID: 0}
   standardMat: {fileID: 2100000, guid: cf2e8a888f7d29141bcecf29780e26b8, type: 2}
+  isActive: 0
 --- !u!54 &1576978801274116867
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1303,7 +1306,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2.029869, y: 5, z: 3.88}
+  m_Size: {x: 2.029869, y: 5, z: 1.58}
   m_Center: {x: 3.9700544, y: 0.90518475, z: 0.09560895}
 --- !u!114 &6223496310611011770
 MonoBehaviour:
@@ -1323,6 +1326,7 @@ MonoBehaviour:
     type: 3}
   redMat: {fileID: 2100000, guid: 492ae1cab4ed75546bd85488d73965d6, type: 2}
   standardMat: {fileID: 2100000, guid: cf2e8a888f7d29141bcecf29780e26b8, type: 2}
+  isActive: 0
 --- !u!65 &8463037142672659825
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1334,7 +1338,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.9843817, y: 5, z: 3.88}
+  m_Size: {x: 1.9843817, y: 5, z: 1.58}
   m_Center: {x: 3.7665818, y: 0.90518475, z: 0.09560895}
 --- !u!114 &6486318985184786599
 MonoBehaviour:
@@ -1354,6 +1358,7 @@ MonoBehaviour:
     type: 3}
   redMat: {fileID: 2100000, guid: 492ae1cab4ed75546bd85488d73965d6, type: 2}
   standardMat: {fileID: 2100000, guid: cf2e8a888f7d29141bcecf29780e26b8, type: 2}
+  isActive: 0
 --- !u!54 &6307054646371047192
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1865,7 +1870,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2.0821397, y: 5, z: 3.88}
+  m_Size: {x: 2.0821397, y: 5, z: 1.58}
   m_Center: {x: 3.9353135, y: 0.90518475, z: 0.09560478}
 --- !u!114 &4108901736511613958
 MonoBehaviour:
@@ -1885,6 +1890,7 @@ MonoBehaviour:
     type: 3}
   redMat: {fileID: 2100000, guid: 492ae1cab4ed75546bd85488d73965d6, type: 2}
   standardMat: {fileID: 2100000, guid: cf2e8a888f7d29141bcecf29780e26b8, type: 2}
+  isActive: 0
 --- !u!114 &6683481742982245151
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2067,6 +2073,7 @@ MonoBehaviour:
   sparksParticle: {fileID: 0}
   redMat: {fileID: 0}
   standardMat: {fileID: 2100000, guid: cf2e8a888f7d29141bcecf29780e26b8, type: 2}
+  isActive: 0
 --- !u!54 &2067916182863111131
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2278,7 +2285,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.7819762, y: 5, z: 3.88}
+  m_Size: {x: 1.7819762, y: 5, z: 1.58}
   m_Center: {x: 3.8103974, y: 0.90518475, z: 0.09561076}
 --- !u!114 &7796522890492166378
 MonoBehaviour:
@@ -2298,6 +2305,7 @@ MonoBehaviour:
     type: 3}
   redMat: {fileID: 2100000, guid: 492ae1cab4ed75546bd85488d73965d6, type: 2}
   standardMat: {fileID: 2100000, guid: cf2e8a888f7d29141bcecf29780e26b8, type: 2}
+  isActive: 0
 --- !u!1 &2209391685759098595
 GameObject:
   m_ObjectHideFlags: 0
@@ -2515,6 +2523,7 @@ MonoBehaviour:
   sparksParticle: {fileID: 0}
   redMat: {fileID: 0}
   standardMat: {fileID: 2100000, guid: cf2e8a888f7d29141bcecf29780e26b8, type: 2}
+  isActive: 0
 --- !u!1 &2592573873899497108
 GameObject:
   m_ObjectHideFlags: 0
@@ -3763,6 +3772,7 @@ MonoBehaviour:
   sparksParticle: {fileID: 0}
   redMat: {fileID: 0}
   standardMat: {fileID: 2100000, guid: cf2e8a888f7d29141bcecf29780e26b8, type: 2}
+  isActive: 0
 --- !u!54 &8894639698078360938
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3966,6 +3976,7 @@ MonoBehaviour:
   sparksParticle: {fileID: 0}
   redMat: {fileID: 0}
   standardMat: {fileID: 2100000, guid: cf2e8a888f7d29141bcecf29780e26b8, type: 2}
+  isActive: 0
 --- !u!54 &7322199878069211380
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -4487,6 +4498,7 @@ MonoBehaviour:
   sparksParticle: {fileID: 0}
   redMat: {fileID: 0}
   standardMat: {fileID: 2100000, guid: cf2e8a888f7d29141bcecf29780e26b8, type: 2}
+  isActive: 0
 --- !u!54 &335824983216244242
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -4561,6 +4573,7 @@ MonoBehaviour:
   sparksParticle: {fileID: 0}
   redMat: {fileID: 0}
   standardMat: {fileID: 2100000, guid: cf2e8a888f7d29141bcecf29780e26b8, type: 2}
+  isActive: 0
 --- !u!54 &2688388835990996484
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -5667,7 +5680,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.802665, y: 5, z: 3.88}
+  m_Size: {x: 1.802665, y: 5, z: 1.58}
   m_Center: {x: 3.7299714, y: 0.90518475, z: 0.09560847}
 --- !u!114 &7966145668180615851
 MonoBehaviour:
@@ -5687,6 +5700,7 @@ MonoBehaviour:
     type: 3}
   redMat: {fileID: 2100000, guid: 492ae1cab4ed75546bd85488d73965d6, type: 2}
   standardMat: {fileID: 2100000, guid: cf2e8a888f7d29141bcecf29780e26b8, type: 2}
+  isActive: 0
 --- !u!114 &3657403839361421615
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6000,6 +6014,7 @@ MonoBehaviour:
   sparksParticle: {fileID: 0}
   redMat: {fileID: 0}
   standardMat: {fileID: 2100000, guid: cf2e8a888f7d29141bcecf29780e26b8, type: 2}
+  isActive: 0
 --- !u!1 &5678272820107947262
 GameObject:
   m_ObjectHideFlags: 0
@@ -6604,6 +6619,7 @@ MonoBehaviour:
   sparksParticle: {fileID: 0}
   redMat: {fileID: 0}
   standardMat: {fileID: 2100000, guid: cf2e8a888f7d29141bcecf29780e26b8, type: 2}
+  isActive: 0
 --- !u!54 &985192290902148620
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -7439,7 +7455,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2.5461843, y: 5, z: 3.88}
+  m_Size: {x: 2.5461843, y: 5, z: 1.58}
   m_Center: {x: 4.279164, y: 0.90519434, z: 0.095611975}
 --- !u!114 &9185907787699221438
 MonoBehaviour:
@@ -7459,6 +7475,7 @@ MonoBehaviour:
     type: 3}
   redMat: {fileID: 2100000, guid: 492ae1cab4ed75546bd85488d73965d6, type: 2}
   standardMat: {fileID: 2100000, guid: cf2e8a888f7d29141bcecf29780e26b8, type: 2}
+  isActive: 0
 --- !u!114 &123754672297495080
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7475,6 +7492,7 @@ MonoBehaviour:
   sparksParticle: {fileID: 0}
   redMat: {fileID: 0}
   standardMat: {fileID: 2100000, guid: cf2e8a888f7d29141bcecf29780e26b8, type: 2}
+  isActive: 0
 --- !u!54 &2998704617940839774
 Rigidbody:
   m_ObjectHideFlags: 0
