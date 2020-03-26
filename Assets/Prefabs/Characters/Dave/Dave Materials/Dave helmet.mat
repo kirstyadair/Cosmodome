@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Dave helmet
-  m_Shader: {fileID: -6465566751694194690, guid: e0a0ee866e67cdb4a9afcfeba850d8ec,
+  m_Shader: {fileID: -6465566751694194690, guid: 942aa05e2f066fa4e92781b657ccaed7,
     type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
@@ -29,7 +29,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - Texture2D_80ECDE54:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 8a9d07c7892548144b940570f0086ced, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - Texture2D_8104687C:
@@ -37,7 +37,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - Texture2D_8ECCD963:
-        m_Texture: {fileID: 2800000, guid: df324faea5a9490428edd9e77028d419, type: 3}
+        m_Texture: {fileID: 2800000, guid: 969bc15099bea1d46a6ce539f74a53ce, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - Texture2D_D12C8F3A:

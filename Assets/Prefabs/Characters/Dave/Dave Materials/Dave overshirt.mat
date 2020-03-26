@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Dave overshirt
-  m_Shader: {fileID: -6465566751694194690, guid: e0a0ee866e67cdb4a9afcfeba850d8ec,
+  m_Shader: {fileID: -6465566751694194690, guid: 942aa05e2f066fa4e92781b657ccaed7,
     type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
@@ -21,7 +21,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - Texture2D_1030B1F0:
-        m_Texture: {fileID: 2800000, guid: 7ead5855468b0f0498fe44a37e596a78, type: 3}
+        m_Texture: {fileID: 2800000, guid: 5c63aca843d922740b42ccf02f2e90e7, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - Texture2D_4C5B6AF4:
@@ -29,7 +29,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - Texture2D_80ECDE54:
-        m_Texture: {fileID: 2800000, guid: a196fd6788131ec459bfb26012466fc1, type: 3}
+        m_Texture: {fileID: 2800000, guid: e51157e408a6a4f448a047cf352e1c21, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - Texture2D_8104687C:

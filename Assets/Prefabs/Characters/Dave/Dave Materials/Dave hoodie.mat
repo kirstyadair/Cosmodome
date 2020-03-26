@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Dave hoodie
-  m_Shader: {fileID: -6465566751694194690, guid: e0a0ee866e67cdb4a9afcfeba850d8ec,
+  m_Shader: {fileID: -6465566751694194690, guid: 942aa05e2f066fa4e92781b657ccaed7,
     type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
@@ -21,7 +21,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - Texture2D_1030B1F0:
-        m_Texture: {fileID: 2800000, guid: 7ead5855468b0f0498fe44a37e596a78, type: 3}
+        m_Texture: {fileID: 2800000, guid: af1202db3e4899043ad1b653a5c98acd, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - Texture2D_4C5B6AF4:
@@ -29,7 +29,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - Texture2D_80ECDE54:
-        m_Texture: {fileID: 2800000, guid: a196fd6788131ec459bfb26012466fc1, type: 3}
+        m_Texture: {fileID: 2800000, guid: 81bb3a03f8d8de94cbd208c36687e1bd, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - Texture2D_8104687C:
@@ -79,7 +79,7 @@ Material:
     m_Floats:
     - Boolean_A0D0B588: 0
     - Vector1_A69B848E: 1
-    - Vector1_AC8525CF: 0.5
+    - Vector1_AC8525CF: 1
     - Vector1_B869DFD3: 0.361
     - Vector1_F9F2686: 1
     - _AlphaClip: 0
