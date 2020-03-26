@@ -51,6 +51,9 @@ public class CutscenesManager : MonoBehaviour
     [Header("Disable to not play intro cutscenes")]
     public bool shouldShowIntroCutscenes;
 
+    [Header("Disable to not play inbebtween-round cutscenes")]
+    public bool shouldShowEndofRoundCutscenes;
+
     [Header("How much player needs to hold skip button for")]
     [SerializeField]
     float _holdSkipButtonFor;
@@ -72,23 +75,6 @@ public class CutscenesManager : MonoBehaviour
     void Start()
     {
         sm = ScoreManager.Instance;
-    }
-
-    public IEnumerator InbetweenRoundCutscene(int round, int maxRounds, PlayerScript eliminatedPlayer)
-    {
-        if (!shouldShowIntroCutscenes) yield break;
-
-        StartCoroutine(DeathHighlightPlayer(eliminatedPlayer.gameObject, 2f));
-        StartCoroutine(StartPlayingInbetweenRoundCutscenes(3f));
-
-        // show the text that comes up with info between rounds
-        yield return betweenRoundText.ShowBetweenRoundText(eliminatedPlayer.playerNumber, eliminatedPlayer.playerColor.color, round, maxRounds);
-
-        // once text animation is done, stop playing the inbetween round cutscenes
-
-        yield return new WaitForSeconds(0.5f);
-
-        StopPlayingInbetweenRoundCutscenes();
     }
 
     public IEnumerator EndOfGameCutscene(PlayerScript eliminatedPlayer)
@@ -114,6 +100,64 @@ public class CutscenesManager : MonoBehaviour
         // now we hand control to endScreenStats to see when start is pressed
     }
 
+    public IEnumerator InbetweenRoundCutscene(int round, int maxRounds, PlayerScript eliminatedPlayer)
+    {
+        if (!shouldShowEndofRoundCutscenes) yield break;
+
+        // show the player being highlighted with the red beam for 2 seconds
+        StartCoroutine(DeathHighlightPlayer(eliminatedPlayer.gameObject, 2f));
+     
+
+        // show the "player n is eliminated" and then a few seconds later it will show the "round x/y"
+        StartCoroutine(betweenRoundText.ShowBetweenRoundText(eliminatedPlayer.playerNumber, eliminatedPlayer.playerColor.color, round, maxRounds));
+
+        // after we've shown the player exploding, zoom into the character looking sad
+        yield return new WaitForSeconds(4f);
+
+        recordingSquare.SetActive(true);
+        cameraAnimator.enabled = true;
+        sm.isCameraEnabled = false;
+
+        string eliminationCameraAnimation = "Nope";
+        PilotStand pilotStand = null;
+
+        PlayerTypes test = PlayerTypes.DAVE;
+        switch (test) {
+            case PlayerTypes.DAVE:
+                eliminationCameraAnimation = "Dave elimination";
+                pilotStand = davePilotStand;
+                break;
+            case PlayerTypes.BIG_SCHLUG:
+                eliminationCameraAnimation = "Big Schlug elimination";
+                pilotStand = davePilotStand;
+                break;
+            case PlayerTypes.HAMMER:
+                eliminationCameraAnimation = "Hammer elimination";
+                pilotStand = davePilotStand;
+                break;
+            case PlayerTypes.EL_MOSCO:
+                eliminationCameraAnimation = "El Mosco elimination";
+                pilotStand = davePilotStand;
+                break;
+            
+        }
+
+        pilotStand.Enable();
+        pilotStand.SitDown();
+
+        cameraAnimator.Play(eliminationCameraAnimation);
+        pilotStand.Eliminated();
+
+        yield return new WaitForSeconds(4f);
+
+        pilotStand.Disable();
+        StartCoroutine(StartPlayingInbetweenRoundCutscenes(0f));
+
+        yield return new WaitForSeconds(4f);
+
+        StopPlayingInbetweenRoundCutscenes();
+    }
+
     IEnumerator StartShowingPedastals(List<PlayerData> playerData)
     {
         sm.isCameraEnabled = false;
@@ -134,10 +178,8 @@ public class CutscenesManager : MonoBehaviour
     IEnumerator StartPlayingInbetweenRoundCutscenes(float after)
     {
         yield return new WaitForSeconds(after);
-        recordingSquare.SetActive(true);
-        cameraAnimator.enabled = true;
         _isPlayingInBetweenRoundCutscenes = true;
-        sm.isCameraEnabled = false;
+
 
         int currentClip = UnityEngine.Random.Range(1, amountOfAudiencePanAnimations + 1);
         cameraAnimator.Play("Cutscene " + currentClip);
