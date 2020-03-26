@@ -44,6 +44,7 @@ public class DiscardTestingValues: MonoBehaviour
         if (cutscenesManager != null) {
             CutscenesManager cm = cutscenesManager.GetComponent<CutscenesManager>();
             CheckIfValueChanged(RestoreIntroCutscenes(cm));
+            CheckIfValueChanged(RestoreEndOfRoundCutscenes(cm));
         }
 
         if (characterSelectionLogic != null) {
@@ -99,6 +100,17 @@ public class DiscardTestingValues: MonoBehaviour
 
         return null;
     }
+
+    
+    string RestoreEndOfRoundCutscenes(CutscenesManager cm) {
+        if (!cm.shouldShowEndofRoundCutscenes) {
+            cm.shouldShowEndofRoundCutscenes = true;
+            return "Set <b>ShouldShowEndofRoundCutscenes</b> to <b>true</b>";
+        }
+
+        return null;
+    }
+
 
 
     string RestoreAllowOnePlayer(ControllerAllocation ca) {
