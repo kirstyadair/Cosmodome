@@ -26,6 +26,7 @@ public class SpikeTrapScript : MonoBehaviour
     {
         spikeManager = GameObject.Find("SpikeManager").GetComponent<SpikeManager>();
         animator = GetComponent<Animator>();
+        animator.SetFloat("Speed", 1);
         // Get the spikes for this wall
         Spike[] allSpikes = GetComponentsInChildren<Spike>();
         foreach (Spike spike in allSpikes)
@@ -34,7 +35,7 @@ public class SpikeTrapScript : MonoBehaviour
             {
                 spikes.Add(spike.gameObject);
                 spikeMRs.Add(spike.skinnedMeshRenderer);
-                spike.gameObject.SetActive(false);
+                //spike.gameObject.SetActive(false);
             }
         }
     }
@@ -42,12 +43,13 @@ public class SpikeTrapScript : MonoBehaviour
     public void SpawnInWall()
     {
         isActive = true;
-        animator.SetFloat("Speed", 1);
         animator.SetTrigger("Active");
+        //animator.SetFloat("Speed", 1);
+        
         // Spawn in each spike and play a particle effect
         for (int i = 0; i < spikes.Count; i++)
         {
-            spikes[i].SetActive(true);
+            //spikes[i].SetActive(true);
             spikeMRs[i].material = redMat;
             GameObject ps = Instantiate(particleEffect, spikes[i].transform.position, spikes[i].transform.rotation);
         }
@@ -56,13 +58,13 @@ public class SpikeTrapScript : MonoBehaviour
     public void DisableTrap()
     {
         isActive = false;
-        animator.SetFloat("Speed", -1);
         animator.SetTrigger("Active");
+        //animator.SetFloat("Speed", -1);
         for (int i = 0; i < spikes.Count; i++)
         {
             GameObject ps = Instantiate(particleEffect, spikes[i].transform.position, spikes[i].transform.rotation);
             spikeMRs[i].material = standardMat;
-            spikes[i].SetActive(false);
+            //spikes[i].SetActive(false);
         }
     }
 
