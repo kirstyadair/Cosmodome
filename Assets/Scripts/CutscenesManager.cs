@@ -112,7 +112,7 @@ public class CutscenesManager : MonoBehaviour
         StartCoroutine(betweenRoundText.ShowBetweenRoundText(eliminatedPlayer.playerNumber, eliminatedPlayer.playerColor.color, round, maxRounds));
 
         // after we've shown the player exploding, zoom into the character looking sad
-        yield return new WaitForSeconds(4f);
+        yield return new WaitForSeconds(2.5f);
 
         recordingSquare.SetActive(true);
         cameraAnimator.enabled = true;
@@ -121,23 +121,22 @@ public class CutscenesManager : MonoBehaviour
         string eliminationCameraAnimation = "Nope";
         PilotStand pilotStand = null;
 
-        PlayerTypes test = PlayerTypes.DAVE;
-        switch (test) {
+        switch (eliminatedPlayer.playerType) {
             case PlayerTypes.DAVE:
                 eliminationCameraAnimation = "Dave elimination";
                 pilotStand = davePilotStand;
                 break;
             case PlayerTypes.BIG_SCHLUG:
                 eliminationCameraAnimation = "Big Schlug elimination";
-                pilotStand = davePilotStand;
+                pilotStand = bigSchlugPilotStand;
                 break;
             case PlayerTypes.HAMMER:
                 eliminationCameraAnimation = "Hammer elimination";
-                pilotStand = davePilotStand;
+                pilotStand = hhhPilotStand;
                 break;
             case PlayerTypes.EL_MOSCO:
                 eliminationCameraAnimation = "El Mosco elimination";
-                pilotStand = davePilotStand;
+                pilotStand = elMoscoPilotStand;
                 break;
             
         }
@@ -148,7 +147,7 @@ public class CutscenesManager : MonoBehaviour
         cameraAnimator.Play(eliminationCameraAnimation);
         pilotStand.Eliminated();
 
-        yield return new WaitForSeconds(4f);
+        yield return new WaitForSeconds(3f);
 
         pilotStand.Disable();
         StartCoroutine(StartPlayingInbetweenRoundCutscenes(0f));
