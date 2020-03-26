@@ -30,6 +30,7 @@ public class AnnouncerDialouge : MonoBehaviour
     Coroutine _hideSubtitlesCoroutine;
     Coroutine _animateInSubtitlesCoroutine;
     string _queuedSubtitle = "";
+    bool _isDramatic = false;
     float _queuedTime = 0;
     bool _shouldAnimateNextSubtitle = false;
 
@@ -38,8 +39,8 @@ public class AnnouncerDialouge : MonoBehaviour
     /// </summary>
     /// <param name="subtitle">The subtitle to show</param>
     /// <param name="time">The time to show it for</param>
-    /// <param name="shouldAnimate">Whether or not the subtitles should be 'ticked' in or just appear</param>
-    void ShowSubtitle(string subtitle, float time, bool shouldAnimate) {
+    /// <param name="dramatic">True for cutscenes where it's ticked in, false for more subtle in game version</param>
+    void ShowSubtitle(string subtitle, float time, bool dramatic) {
         if (_subtitlesAreShowing) {
             // We're already showing subtitles, swap them out
             StopCoroutine(_hideSubtitlesCoroutine);
@@ -49,20 +50,24 @@ public class AnnouncerDialouge : MonoBehaviour
                 _animateInSubtitlesCoroutine = null;
             }
 
-            _animator.Play("Swap");
+             if (dramatic) _animator.Play("Swap");
+             else _animator.Play("Swap ingame");
         } else {
             // No subs showing right now, so play appear animation
-            _animator.Play("Appear");
+            if (dramatic) _animator.Play("Appear");
+            else _animator.Play("Appear ingame");
         }
+
+        _isDramatic = dramatic;
 
         _subtitlesAreShowing = true;
 
         // We will set the subtitle once the animation calls the event
         _queuedSubtitle = subtitle;
         _queuedTime = time;
-        if (shouldAnimate) _queuedTime -= 2; // make the text animate in a bit faster than the talking
+        if (dramatic) _queuedTime -= 2; // make the text animate in a bit faster than the talking
 
-        _shouldAnimateNextSubtitle = shouldAnimate;
+        _shouldAnimateNextSubtitle = dramatic;
 
         // And hide the subtitles after the given time
         _hideSubtitlesCoroutine = StartCoroutine(HideSubtitlesWhenDone(time + 1));
@@ -82,7 +87,8 @@ public class AnnouncerDialouge : MonoBehaviour
         }
 
 
-        _animator.Play("Dissapear");
+        if (_isDramatic) _animator.Play("Dissapear");
+        else _animator.Play("Dissapear ingame");
         _queuedSubtitle = "";
         _queuedTime = 0;
         _subtitlesAreShowing = false;
@@ -126,10 +132,7 @@ public class AnnouncerDialouge : MonoBehaviour
     IEnumerator HideSubtitlesWhenDone(float time) {
         yield return new WaitForSeconds(time);
 
-        _animator.Play("Dissapear");
-        _queuedSubtitle = "";
-        _queuedTime = 0;
-        _subtitlesAreShowing = false;
+        CancelSubtitles();
     }
 
     // Start is called before the first frame update
