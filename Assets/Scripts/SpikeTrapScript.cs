@@ -80,6 +80,7 @@ public class SpikeTrapScript : MonoBehaviour
         yield return new WaitForSeconds(time);
         Destroy(newPS);
         shipRB.constraints = RigidbodyConstraints.None;
+        DisableTrap();
     }
 
     void OnTriggerEnter(Collider other)

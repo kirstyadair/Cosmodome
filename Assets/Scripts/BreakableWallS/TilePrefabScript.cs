@@ -34,7 +34,7 @@ public class TilePrefabScript : MonoBehaviour
         OnWallHit?.Invoke();
         foreach (BreakableWallScript wall in connectedWalls)
         {
-            if (wall.gameObject.activeInHierarchy && !wall.isRed) wall.TurnChildrenRed();
+            if (wall.gameObject.activeInHierarchy && !wall.isRed && !wall.isExploding) wall.TurnChildrenRed();
         }
 
         foreach (BreakableConnectorScript breakableConnector in connectorScripts)
