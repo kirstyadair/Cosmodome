@@ -58,7 +58,7 @@ public class AudioEvent : MonoBehaviour
         CutscenesManager.DaveIntro +=PlayDaveIntro;
         CutscenesManager.BigSchlugIntro +=PlayBigSchlugIntro;
         CutscenesManager.HHHIntro +=PlayHHHIntro;
-        //CutscenesManager.ElMoscoIntro +=;
+        CutscenesManager.ElMoscoIntro += PlayMoscoIntro;
     }
 
      void OnDisable()
@@ -72,6 +72,8 @@ public class AudioEvent : MonoBehaviour
         CutscenesManager.DaveIntro -= PlayDaveIntro;
         CutscenesManager.BigSchlugIntro -= PlayBigSchlugIntro;
         CutscenesManager.HHHIntro -= PlayHHHIntro;
+        CutscenesManager.ElMoscoIntro -= PlayMoscoIntro;
+
     }
 
     void Start()
@@ -163,8 +165,14 @@ public class AudioEvent : MonoBehaviour
         AudioPlayerChangeSoundClip(AudioArray_HHHIntro, AudioPlayer, randomClip);
         subtitle.GetComponent<AnnouncerDialouge>().DisplayHHHIntoSubtile(randomClip, AudioArray_HHHIntro[randomClip].length);
     }
+    void PlayMoscoIntro()
+    {
+        int randomClip = Random.Range(0, AudioArray_ElMoscoIntro.Length);
+        AudioPlayerChangeSoundClip(AudioArray_ElMoscoIntro, AudioPlayer, randomClip);
+        subtitle.GetComponent<AnnouncerDialouge>().DisplayMoscoIntoSubtile(randomClip, AudioArray_ElMoscoIntro[randomClip].length);
+    }
 
-    
+
 
     void AudioPlayerTrapTrigger(PlayerScript playerHit, Traps trapType)
     {

@@ -172,6 +172,7 @@ public class AnnouncerDialouge : MonoBehaviour
         dialouge_DaveIntro = new string[11];
         dialouge_BigSchlugIntro = new string[16];
         dialouge_HHHIntro = new string[10];
+        dialouge_ElMosoIntro = new string[11];
 
         dialouge_Coll_Dave_VS_HHH = new string[11];
         dialouge_Coll_Dave_VS_Mosco = new string[11];
@@ -413,7 +414,7 @@ public class AnnouncerDialouge : MonoBehaviour
         dialouge_BigSchlugIntro[7] = "With only one lung, and a terrifying amount of surprisingly slippery muscle, it’s big schlug!";
         dialouge_BigSchlugIntro[8] = "Spending most of his time underground plotting to take over at least 3 asteroid belts, it’s big schlug!";
         dialouge_BigSchlugIntro[9] = "Coming from the only planet that counts table salt as illegal contraband, it’s big schlug!";
-        dialouge_BigSchlugIntro[10] = "Being huge and scary has it’s benefits! Like how I don’t want to make fun of him in case I suddenly disappear in the near future. Its big schlug!";
+        dialouge_BigSchlugIntro[10] = "Being the scariest and strongest is tough, when a sprinkle of salt can melt you. It's Big Schlug!";
         dialouge_BigSchlugIntro[11] = "Coming from a planet that mainly slides to get from one point to another its big schlug!";
         dialouge_BigSchlugIntro[12] = "Their entire species began when someone decided to put steroids into a garden slug, it’s big schlug!";
         dialouge_BigSchlugIntro[13] = "The bigger they are, the harder they slide away without a trace and come back when you least expect it, it’s big schlug!";
@@ -430,7 +431,25 @@ public class AnnouncerDialouge : MonoBehaviour
         dialouge_HHHIntro[7] = "It's Hammerhead Henry, he's got eyes on either side of his head that COULD be counted as an unfair advantage but who knows?";
         dialouge_HHHIntro[8] = "Hammerhead Henry, he’s got one eye on the FIN-ISH line... heh. And one eye on tonight’s dinner, whatever sharks eat";
         dialouge_HHHIntro[9] = "With a head like that I bet he's gonna hammer the competition today *chuckles* (other announcer) shut up, that wasn't even funny.Umm... its Henry, sorry about that Henry.";
+
+        dialouge_ElMosoIntro[0] = "If you ever thought a fly buzzing was annoying, imagine how annoying a massive one is! Its El Mosco!";
+        dialouge_ElMosoIntro[1] = "El Mosco is here! And at first you probably think he hails from Moscow, Russia, And you may be correct but I don’t even know to tell you the truth.";
+        dialouge_ElMosoIntro[2] = "Is there a giant, flesh eating insect flying around in here? Oh no, it’s just our cuddly friend, El Mosco!";
+        dialouge_ElMosoIntro[3] = "El Mosco is ready to buzz, win and buzz some more! He also enjoys oil paintings in his spare time.";
+        dialouge_ElMosoIntro[4] = "Getting into your opponent's head is a good way to win in a competition, but a constant buzzing noise works just as well. Its El Mosco";
+        dialouge_ElMosoIntro[5] = "A character of culture our El Mosco, he enjoys fine wine and annoying Dave and the other guys, but mostly Dave. ";
+        dialouge_ElMosoIntro[6] = "Contrary to popular belief El Mosco doesn't suck blood, he actually sucks out brain juice which is far worse in my opinion.";
+        dialouge_ElMosoIntro[7] = "After bug repellent spray was invented, he went into hiding and made a human repellent gun, it’s El Mosco!";
+        dialouge_ElMosoIntro[8] = "Why have a spaceship when you can fly already? Maybe to show everyone how multi talented you are, its El Mosco!";
+        dialouge_ElMosoIntro[9] = "Quick on his feet and hard to catch in a cup and put outside, its El Mosco!";
+        dialouge_ElMosoIntro[10] = "Fast and efficient is the two words I'd use to describe El Mosco, but if I had to pick a third one I think it would have to be unsettling.";
+
+
+
+
     }
+
+
 
     public void DisplayPlayerShotSubtitle(int subtitle, float time)
     {
@@ -466,7 +485,10 @@ public class AnnouncerDialouge : MonoBehaviour
     {
         ShowSubtitle(dialouge_HHHIntro[subtitle], time, true);
     }
-    //NEED TO ADD MOSCO LINES
+    public void DisplayMoscoIntoSubtile(int subtitle, float time)
+    {
+        ShowSubtitle(dialouge_ElMosoIntro[subtitle], time, true);
+    }
 
 
     public void DisplayDaveCollisionSubtitle(string playerBeingHit, int randomLine, float time)
