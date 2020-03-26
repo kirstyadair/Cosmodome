@@ -418,7 +418,7 @@ public class AnnouncerDialouge : MonoBehaviour
         dialouge_BigSchlugIntro[11] = "Coming from a planet that mainly slides to get from one point to another its big schlug!";
         dialouge_BigSchlugIntro[12] = "Their entire species began when someone decided to put steroids into a garden slug, it’s big schlug!";
         dialouge_BigSchlugIntro[13] = "The bigger they are, the harder they slide away without a trace and come back when you least expect it, it’s big schlug!";
-        dialouge_BigSchlugIntro[14] = "Being a vegetarian is tough when your packing same amount of muscle as a wild bear, its big schlug!";
+        dialouge_BigSchlugIntro[14] = "Being a vegetarian is tough when your packing same amount of muscle as a wild bear with a gym membership, its big schlug!";
         dialouge_BigSchlugIntro[15] = "With one eye that stares deep and long into your terrified husk of a body, it’s big schlug!";
 
         dialouge_HHHIntro[0] = "Most sharks dream of one day being able to walk outside of the water, but Henry, he just decided to go to space and crash into people.";
