@@ -150,6 +150,7 @@ public class CutscenesManager : MonoBehaviour
             {
                 int nextClip = UnityEngine.Random.Range(1, amountOfAudiencePanAnimations + 1);
 
+       
                 // make sure nextClip is never the same as the currentClip
                 while (nextClip == currentClip) nextClip = UnityEngine.Random.Range(1, amountOfAudiencePanAnimations + 1);
 
