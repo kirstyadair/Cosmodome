@@ -60,7 +60,7 @@ public class BreakableConnectorScript : MonoBehaviour
             if (numOfHits == 1)
             {
                 tilePrefabScript.MakeAllRed();
-                collider.isTrigger = true;
+                if (collider!= null) collider.isTrigger = true;
             }
 
             if (numOfHits >= maxNumOfHits) tilePrefabScript.DisableAll(other.gameObject);
