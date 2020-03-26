@@ -23,6 +23,29 @@ public class AnnouncerDialouge : MonoBehaviour
     public string[] dialouge_ElMosoIntro;
 
 
+    public string[] dialouge_Coll_Dave_VS_Mosco;
+    public string[] dialouge_Coll_Dave_VS_HHH;
+    public string[] dialouge_Coll_Dave_VS_Schlug;
+
+    public string[] dialouge_Coll_Schlug_VS_Dave;
+    public string[] dialouge_Coll_Schlug_VS_Mosco;
+    public string[] dialouge_Coll_Schlug_VS_HHH;
+
+    public string[] dialouge_Coll_Mosco_VS_Dave;
+    public string[] dialouge_Coll_Mosco_VS_Schlug;
+    public string[] dialouge_Coll_Mosco_VS_HHH;
+
+    public string[] dialouge_Coll_HHH_VS_Dave;
+    public string[] dialouge_Coll_HHH_VS_Mosco;
+    public string[] dialouge_Coll_HHH_VS_Schlug;
+
+
+
+
+
+
+
+
 
     Animator _animator;
     AudioEvent _audioEvent;

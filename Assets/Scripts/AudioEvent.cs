@@ -18,6 +18,27 @@ public class AudioEvent : MonoBehaviour
     public AudioClip[] AudioArray_ElMoscoIntro;
 
 
+    [Header("Dave Collision Lines")]
+    public AudioClip[] AudioArray_Coll_Dave_VS_Mosco;
+    public AudioClip[] AudioArray_Coll_Dave_VS_HHH;
+    public AudioClip[] AudioArray_Coll_Dave_VS_Schlug;
+
+    [Header("Schlug Collision Lines")]
+    public AudioClip[] AudioArray_Coll_Schlug_VS_Dave;
+    public AudioClip[] AudioArray_Coll_Schlug_VS_Mosco;
+    public AudioClip[] AudioArray_Coll_Schlug_VS_HHH;
+
+    [Header("Mosco Collision Lines")]
+    public AudioClip[] AudioArray_Coll_Mosco_VS_Dave;
+    public AudioClip[] AudioArray_Coll_Mosco_VS_Schlug;
+    public AudioClip[] AudioArray_Coll_Mosco_VS_HHH;
+
+    [Header("HHH Collision Lines")]
+    public AudioClip[] AudioArray_Coll_HHH_VS_Dave;
+    public AudioClip[] AudioArray_Coll_HHH_VS_Mosco;
+    public AudioClip[] AudioArray_Coll_HHH_VS_Schlug;
+
+
 
     public AudioSource AudioPlayer;
 
@@ -182,15 +203,71 @@ public class AudioEvent : MonoBehaviour
     {
         if (!isPlaying)
         {
-            float chance = 0.50f;
-            float rand = Random.value;
-            if (rand <= chance)
+            if(playerAttacking.GetComponent<PlayerScript>().playerType == PlayerTypes.DAVE)
             {
-                int randomClip = Random.Range(0, AudioArrayPlayerOnPlayerCollision.Length);
-                AudioPlayerChangeSoundClip(AudioArrayPlayerOnPlayerCollision, AudioPlayer, randomClip);
-                subtitle.GetComponent<AnnouncerDialouge>().DisplayPlayerOnPlayerCollisionSubtitle(randomClip, AudioArrayPlayerOnPlayerCollision[randomClip].length);
+                if(playerHit.GetComponent<PlayerScript>().playerType == PlayerTypes.EL_MOSCO)
+                {
+
+                }
+                if (playerHit.GetComponent<PlayerScript>().playerType == PlayerTypes.BIG_SCHLUG)
+                {
+
+                }
+                if (playerHit.GetComponent<PlayerScript>().playerType == PlayerTypes.HAMMER)
+                {
+
+                }
             }
-            
+
+            if (playerAttacking.GetComponent<PlayerScript>().playerType == PlayerTypes.BIG_SCHLUG)
+            {
+                if (playerHit.GetComponent<PlayerScript>().playerType == PlayerTypes.DAVE)
+                {
+
+                }
+                if (playerHit.GetComponent<PlayerScript>().playerType == PlayerTypes.EL_MOSCO)
+                {
+
+                }
+                if (playerHit.GetComponent<PlayerScript>().playerType == PlayerTypes.HAMMER)
+                {
+
+                }
+            }
+
+            if (playerAttacking.GetComponent<PlayerScript>().playerType == PlayerTypes.EL_MOSCO)
+            {
+                if (playerHit.GetComponent<PlayerScript>().playerType == PlayerTypes.DAVE)
+                {
+
+                }
+                if (playerHit.GetComponent<PlayerScript>().playerType == PlayerTypes.BIG_SCHLUG)
+                {
+
+                }
+                if (playerHit.GetComponent<PlayerScript>().playerType == PlayerTypes.HAMMER)
+                {
+
+                }
+            }
+
+            if (playerAttacking.GetComponent<PlayerScript>().playerType == PlayerTypes.HAMMER)
+            {
+                if (playerHit.GetComponent<PlayerScript>().playerType == PlayerTypes.DAVE)
+                {
+
+                }
+                if (playerHit.GetComponent<PlayerScript>().playerType == PlayerTypes.EL_MOSCO)
+                {
+
+                }
+                if (playerHit.GetComponent<PlayerScript>().playerType == PlayerTypes.BIG_SCHLUG)
+                {
+
+                }
+            }
+
+
         }
     }
 
