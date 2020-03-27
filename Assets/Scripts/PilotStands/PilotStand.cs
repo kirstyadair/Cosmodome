@@ -27,7 +27,13 @@ public class PilotStand : MonoBehaviour
     void Awake()
     {
         characterAnimator = characterPoint.GetComponentInChildren<Animator>();
-        Disable();
+        //Disable();
+
+        
+    }
+
+    void Start() {
+        WalkAndWave(2f);
     }
 
     public void Enable() {
