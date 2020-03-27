@@ -17,7 +17,10 @@ public class SpikeTrapScript : MonoBehaviour
     Material standardMat;
     SpikeManager spikeManager;
     Animator animator;
-    public bool isActive = false;
+    bool isActive = false;
+    bool shipHit = false;
+    Vector3 direction;
+    ShipController sc;
 
     public delegate void PlayerSpikeHit(PlayerScript hitPlayer);
     public static event PlayerSpikeHit OnPlayerSpikeHit;
@@ -82,12 +85,17 @@ public class SpikeTrapScript : MonoBehaviour
         Destroy(newPS);
         shipRB.constraints = RigidbodyConstraints.None;
         DisableTrap();
+        sc.PushBack(direction * 50);
+        shipHit = false;
     }
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Ship") && isActive)
-        { 
+        if (other.CompareTag("Ship") && isActive && !shipHit)
+        {
+            shipHit = true;
+            direction = Vector3.Normalize(other.gameObject.transform.position - transform.position);
+            sc = other.gameObject.GetComponent<ShipController>();
             StartCoroutine(FreezeShip(other));
             OnPlayerSpikeHit?.Invoke(other.gameObject.GetComponent<PlayerScript>());
         }
