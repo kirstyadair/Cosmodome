@@ -70,6 +70,10 @@ public class ControllerAllocation : MonoBehaviour
     bool _isFinishedAllocating = false;
 
     string _statusBarText;
+
+    [SerializeField] Image quitButtonImage;
+    float fillAmount;
+
     private void Update()
     {
         InputDevice controller = InputManager.ActiveDevice;
@@ -78,6 +82,19 @@ public class ControllerAllocation : MonoBehaviour
         // Was X pressed?
         if (controller.Action1.WasPressed) AllocateController(controller);
         if (controller.Command.WasPressed) StartButtonPressed();
+        if (controller.Action2.IsPressed)
+        {
+            fillAmount += Time.deltaTime / 2;
+            quitButtonImage.fillAmount = fillAmount;
+            if (fillAmount >= 1) QuitGame();
+        }
+        if (controller.Action2.WasReleased)
+        {
+            fillAmount = 0;
+            quitButtonImage.fillAmount = fillAmount;
+        }
+
+
     }
 
     /// <summary>
@@ -237,5 +254,11 @@ public class ControllerAllocation : MonoBehaviour
 
             allocatedControllers.Add(allocatedController);
         }
+    }
+
+    void QuitGame()
+    {
+        Debug.Log("Quitting game");
+        Application.Quit();
     }
 }

@@ -4220,6 +4220,7 @@ MonoBehaviour:
   allocatedControllers: []
   allowControlAllWithOne: 0
   allowOnePlayer: 0
+  quitButtonImage: {fileID: 2061674487}
 --- !u!4 &947845243
 Transform:
   m_ObjectHideFlags: 0
@@ -7167,7 +7168,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.26415092, g: 0.26415092, b: 0.26415092, a: 1}
+  m_Color: {r: 0.007843138, g: 0.039215688, b: 0.07450981, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -7177,7 +7178,7 @@ MonoBehaviour:
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 0
-  m_FillAmount: 0
+  m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
