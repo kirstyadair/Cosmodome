@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PilotStand : MonoBehaviour
 {
@@ -27,13 +28,21 @@ public class PilotStand : MonoBehaviour
     void Awake()
     {
         characterAnimator = characterPoint.GetComponentInChildren<Animator>();
-        //Disable();
+         if (!ShouldTest()) Disable();
 
         
     }
 
     void Start() {
-        WalkAndWave(2f);
+        if (ShouldTest()) WalkAndWave(2f);
+    }
+
+    /// <summary>
+    /// If we're in the PilotStandsDev scene, then we should automatically walk to test animations
+    /// </summary>
+    /// <returns></returns>
+    bool ShouldTest() {
+        return SceneManager.GetActiveScene().name == "PilotStandsDev";
     }
 
     public void Enable() {
