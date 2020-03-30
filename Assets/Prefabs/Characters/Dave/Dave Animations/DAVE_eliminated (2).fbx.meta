@@ -9,6 +9,9 @@ ModelImporter:
   - first:
       74: -203655887218126122
     second: Eliminated
+  - first:
+      74: -203655887218126122
+    second: mixamo.com
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -38,7 +41,7 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Eliminated
+      name: mixamo.com
       takeName: mixamo.com
       internalID: 0
       firstFrame: 0
@@ -121,7 +124,7 @@ ModelImporter:
     hasTranslationDoF: 0
     hasExtraRoot: 0
     skeletonHasParents: 1
-  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: c9d39dc35e1b12142a75ea08c458c19f,
+  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: dfe786d705cc8844b9e50a5499397c8f,
     type: 3}
   animationType: 2
   humanoidOversampling: 1
