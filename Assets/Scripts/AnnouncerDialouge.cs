@@ -62,7 +62,7 @@ public class AnnouncerDialouge : MonoBehaviour
     /// <param name="subtitle">The subtitle to show</param>
     /// <param name="time">The time to show it for</param>
     /// <param name="dramatic">True for cutscenes where it's ticked in, false for more subtle in game version</param>
-    void ShowSubtitle(string subtitle, float time, bool dramatic) {
+    void ShowSubtitle(string subtitle, float time, bool dramatic) { 
         if (_subtitlesAreShowing) {
             // We're already showing subtitles, swap them out
             StopCoroutine(_hideSubtitlesCoroutine);
@@ -72,8 +72,8 @@ public class AnnouncerDialouge : MonoBehaviour
                 _animateInSubtitlesCoroutine = null;
             }
 
-             if (dramatic) _animator.Play("Swap");
-             else _animator.Play("Swap ingame");
+             if (dramatic) _animator.Play("Swap", -1, 0);
+             else _animator.Play("Swap ingame", -1, 0);
         } else {
             // No subs showing right now, so play appear animation
             if (dramatic) _animator.Play("Appear");
@@ -120,6 +120,8 @@ public class AnnouncerDialouge : MonoBehaviour
     /// Called by animator event when we are ready to change the subtitle text
     /// </summary>
     public void Animator_ChangeSubtitle() {
+        Debug.Log("Changing subtitle: " + _queuedSubtitle);
+
         if (_queuedSubtitle != "") {
             subtitleText.text = "";
             if (_shouldAnimateNextSubtitle) {
