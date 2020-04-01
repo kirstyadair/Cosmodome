@@ -219,7 +219,7 @@ public class AnnouncerDialouge : MonoBehaviour
         dialouge_Coll_Dave_VS_Mosco[1] = "Oh my god! I hope<color=green> El Mosco</color> is okay after what <color=red>Dave </color>just done to them!";
         dialouge_Coll_Dave_VS_Mosco[2] = "Oh! Look at <color=red>Dave </color>doin the crashy smashy with <color=green>El Mosco</color>";
         dialouge_Coll_Dave_VS_Mosco[3] = "There’s <color=red>Dave </color>using his fairground experience to bump <color=green>El Mosco</color> away!";
-        dialouge_Coll_Dave_VS_Mosco[4] = "Hey <color=green>El Mosco</color>! <color=red>Dave just made a fool of you, why arent you bumping him back?";
+        dialouge_Coll_Dave_VS_Mosco[4] = "Hey <color=green>El Mosco</color>! <color=red>Dave</color> just made a fool of you, why arent you bumping him back?";
         dialouge_Coll_Dave_VS_Mosco[5] = "Ohhhh, <color=green>El Mosco</color> will need a new paintjob after what <color=red>Dave</color> just did.";
         dialouge_Coll_Dave_VS_Mosco[6] = "If this was a game of pinball, then that hit between <color=red>Dave</color> and <color=green>El Mosco</color> would have got <color=red>Dave</color> some big points. But its not pinball.";
         dialouge_Coll_Dave_VS_Mosco[7] = "An absolutely great hit from <color=red>Dave</color>! I wonder if <color=green>El Mosco</color> will retaliate?";
@@ -243,7 +243,7 @@ public class AnnouncerDialouge : MonoBehaviour
         dialouge_Coll_Dave_VS_Schlug[1] = "Oh my god! I hope<color=purple> Big Schlug</color> is okay after what <color=red>Dave </color>just done to them!";
         dialouge_Coll_Dave_VS_Schlug[2] = "Oh! Look at <color=red>Dave </color>doin the crashy smashy with <color=purple>Big Schlug</color>";
         dialouge_Coll_Dave_VS_Schlug[3] = "There’s <color=red>Dave </color>using his fairground experience to bump <color=purple>Big Schlug</color> away!";
-        dialouge_Coll_Dave_VS_Schlug[4] = "Hey <color=purple>Big Schlug</color>! <color=red>Dave just made a fool of you, why arent you bumping him back?";
+        dialouge_Coll_Dave_VS_Schlug[4] = "Hey <color=purple>Big Schlug</color>! <color=red>Dave</color> just made a fool of you, why arent you bumping him back?";
         dialouge_Coll_Dave_VS_Schlug[5] = "Ohhhh, <color=purple>Big Schlug</color> will need a new paintjob after what <color=red>Dave</color> just did.";
         dialouge_Coll_Dave_VS_Schlug[6] = "If this was a game of pinball, then that hit between <color=red>Dave</color> and <color=purple>Big Schlug</color> would have got <color=red>Dave</color> some big points. But its not pinball.";
         dialouge_Coll_Dave_VS_Schlug[7] = "An absolutely great hit from <color=red>Dave</color>! I wonder if <color=purple>Big Schlug</color> will retaliate?";
