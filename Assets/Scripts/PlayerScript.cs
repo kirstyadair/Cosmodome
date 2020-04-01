@@ -271,11 +271,10 @@ public class PlayerScript : MonoBehaviour
 
     public void WasHitByBullet(BulletDeleter bullet)
     {
-        Debug.Log("C");
+        
         if (hitByBulletCooldown > 0) return;
 
-        Debug.Log("D");
-
+      
         Vibrate(0.5f, 0.2f);
         hitByBulletCooldown = timeBetweenHitByBullet;
         OnPlayerShot?.Invoke(this, bullet.shooter.GetComponent<PlayerScript>());
