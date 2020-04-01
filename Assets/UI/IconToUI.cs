@@ -4,19 +4,26 @@ using UnityEngine;
 using UnityEngine.UI;
 public class IconToUI : MonoBehaviour
 {
-    public Image iconMaster;
+    [SerializeField] Image iconMaster;
+    [SerializeField] Sprite greenIcon;
+    [SerializeField] Sprite redIcon;
     public Vector3 iconOffset;
     public GameObject target;
 
 
 
-    void Start()
+    void OnEnable()
     {
-        PlayerScript.OnPlayerCollision += CreateIcon;
+        PlayerScript.OnPlayerCollision += CreateGreenIcon;
+        SpikeTrapScript.OnPlayerSpikeHit += CreateRedIcon;
+        PlayerScript.OnPlayerHitByArenaCannon += CreateRedIcon;
     }
 
-    void OnDisable() {
-        PlayerScript.OnPlayerCollision -= CreateIcon;
+    void OnDisable()
+    {
+        PlayerScript.OnPlayerCollision -= CreateGreenIcon;
+        SpikeTrapScript.OnPlayerSpikeHit -= CreateRedIcon;
+        PlayerScript.OnPlayerHitByArenaCannon -= CreateRedIcon;
     }
 
 
@@ -26,23 +33,35 @@ public class IconToUI : MonoBehaviour
         return icon.transform.position = iconPos + iconOffset;
     }
 
-    void CreateIcon(PlayerScript playerHit, PlayerScript playerAttacking)
+    void CreateGreenIcon(PlayerScript playerHit, PlayerScript playerAttacking)
     {
-        
         if(playerAttacking.gameObject==gameObject)
         {
             Image newIcon;
             newIcon = Instantiate(iconMaster);
+            newIcon.sprite = greenIcon;
             Vector3 newIconPos = GetPosition(newIcon, playerAttacking.gameObject);
             newIcon.transform.SetParent(GameObject.Find("MainUICanvas").transform, false);
             newIcon.transform.position = newIconPos + iconOffset;
 
             StartCoroutine(MoveIcon(newIcon, 1f));
         }
-        
-
     }
 
+    void CreateRedIcon(PlayerScript playerHit)
+    {
+        if (playerHit.gameObject == gameObject)
+        {
+            Image newIcon;
+            newIcon = Instantiate(iconMaster);
+            newIcon.sprite = redIcon;
+            Vector3 newIconPos = GetPosition(newIcon, playerHit.gameObject);
+            newIcon.transform.SetParent(GameObject.Find("MainUICanvas").transform, false);
+            newIcon.transform.position = newIconPos + iconOffset;
+
+            StartCoroutine(MoveIcon(newIcon, 1f));
+        }
+    }
 
     IEnumerator MoveIcon(Image icon,float overTime)
     {
@@ -58,13 +77,6 @@ public class IconToUI : MonoBehaviour
             Destroy(icon);
         }
         
-    }
-
-
-    void Update()
-    {
-        
-
     }
 
 }
