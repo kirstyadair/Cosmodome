@@ -371,10 +371,11 @@ public class ScoreManager : MonoBehaviour
 
     void PlayerShot(PlayerScript shotPlayer, PlayerScript shooter)
     {
+        Debug.Log("E");
         int bulletDamageRate = 0;
         if (shooter.basicWeaponScript != null) bulletDamageRate = shooter.basicWeaponScript.damage;
         if (shooter.chargeWeaponScript != null) bulletDamageRate = shooter.chargeWeaponScript.damage;
-
+        
         shotPlayer.approval.ChangeApproval(-bulletDamageRate);
         shooter.approval.ChangeApproval(bulletDamageRate);
 

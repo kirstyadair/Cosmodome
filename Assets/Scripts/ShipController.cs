@@ -138,7 +138,7 @@ public class ShipController : MonoBehaviour
         }
 
         rb.AddForce(bullet.transform.forward * hitByBulletForce, ForceMode.Impulse);
-
+        Debug.Log("B");
         playerScript.WasHitByBullet(bullet);
     }
     

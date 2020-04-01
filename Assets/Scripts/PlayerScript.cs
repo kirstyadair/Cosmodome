@@ -58,7 +58,7 @@ public class PlayerScript : MonoBehaviour
     public float flashGaps;
 
     public float hitByBulletCooldown = 0;
-    public float timeBetweenHitByBullet = 0.5f;
+    public float timeBetweenHitByBullet;
 
     ShipController controller;
     public PlayerApproval approval = new PlayerApproval();
@@ -271,7 +271,10 @@ public class PlayerScript : MonoBehaviour
 
     public void WasHitByBullet(BulletDeleter bullet)
     {
+        Debug.Log("C");
         if (hitByBulletCooldown > 0) return;
+
+        Debug.Log("D");
 
         Vibrate(0.5f, 0.2f);
         hitByBulletCooldown = timeBetweenHitByBullet;

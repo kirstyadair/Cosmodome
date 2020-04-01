@@ -62,6 +62,7 @@ public class BulletDeleter : MonoBehaviour
             }
             else
             {
+                Debug.Log("A");
                 other.GetComponent<ShipController>().HitByBullet(this);
                 other.GetComponent<ShipController>().PushBack((other.transform.position - this.transform.position) * _pushbackPower);
             }
