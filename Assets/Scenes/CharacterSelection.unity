@@ -2673,7 +2673,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: <color=red>EXTERNAL TEST BUILD</color> 23/03/2020
+  m_Text: <color=red>HLG BUILD</color> 01/04/2020
 --- !u!222 &443592443
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2773,6 +2773,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: Dave's ship (1)
       objectReference: {fileID: 0}
+    - target: {fileID: -5097543003843294816, guid: 036ebfa56a2625b4eb4a5857a5ee95de,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 3063da559b7cca84ba9ecc191dfb27bd, type: 2}
+    - target: {fileID: 106206116153664855, guid: 036ebfa56a2625b4eb4a5857a5ee95de,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 3063da559b7cca84ba9ecc191dfb27bd, type: 2}
+    - target: {fileID: -1504981713932161579, guid: 036ebfa56a2625b4eb4a5857a5ee95de,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 3063da559b7cca84ba9ecc191dfb27bd, type: 2}
     - target: {fileID: -4216859302048453862, guid: 036ebfa56a2625b4eb4a5857a5ee95de,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2843,21 +2858,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 119.75995
       objectReference: {fileID: 0}
-    - target: {fileID: -5097543003843294816, guid: 036ebfa56a2625b4eb4a5857a5ee95de,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 3063da559b7cca84ba9ecc191dfb27bd, type: 2}
-    - target: {fileID: 106206116153664855, guid: 036ebfa56a2625b4eb4a5857a5ee95de,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 3063da559b7cca84ba9ecc191dfb27bd, type: 2}
-    - target: {fileID: -1504981713932161579, guid: 036ebfa56a2625b4eb4a5857a5ee95de,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 3063da559b7cca84ba9ecc191dfb27bd, type: 2}
     - target: {fileID: -4248753850757417055, guid: 036ebfa56a2625b4eb4a5857a5ee95de,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -4224,8 +4224,8 @@ MonoBehaviour:
       his inferior opponents. *Being sponsored by one of Cosmodome\u2019s biggest
       investors has nothing to do with his achievements or this bio."
   allocatedControllers: []
-  allowControlAllWithOne: 0
-  allowOnePlayer: 1
+  allowControlAllWithOne: 1
+  allowOnePlayer: 0
   quitButtonImage: {fileID: 2061674487}
 --- !u!4 &947845243
 Transform:

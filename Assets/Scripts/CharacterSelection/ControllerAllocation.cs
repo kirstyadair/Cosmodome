@@ -82,16 +82,20 @@ public class ControllerAllocation : MonoBehaviour
         // Was X pressed?
         if (controller.Action1.WasPressed) AllocateController(controller);
         if (controller.Command.WasPressed) StartButtonPressed();
-        if (controller.Action2.IsPressed)
-        {
-            fillAmount += Time.deltaTime / 2;
-            quitButtonImage.fillAmount = fillAmount;
-            if (fillAmount >= 1) QuitGame();
-        }
-        if (controller.Action2.WasReleased)
-        {
-            fillAmount = 0;
-            quitButtonImage.fillAmount = fillAmount;
+
+        // allow quit button only on first screen
+        if (!_isFinishedAllocating) {
+            if (controller.Action2.IsPressed)
+            {
+                fillAmount += Time.deltaTime / 2;
+                quitButtonImage.fillAmount = fillAmount;
+                if (fillAmount >= 1) QuitGame();
+            }
+            if (controller.Action2.WasReleased)
+            {
+                fillAmount = 0;
+                quitButtonImage.fillAmount = fillAmount;
+            }
         }
 
 
