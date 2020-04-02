@@ -92,11 +92,15 @@ public class ShipController : MonoBehaviour
     ChargeWeaponScript _chargingWeaponScript;
     Animator _animator;
 
+    void Awake() {
+        _animator = GetComponent<Animator>();
+    }
+    
     public void Start()
     {
         // only if we're a player that uses this
         _chargingWeaponScript = GetComponent<ChargeWeaponScript>();
-        _animator = GetComponent<Animator>();
+        
         
         playerScript = GetComponent<PlayerScript>();
         postProcessProfile = Camera.main.GetComponent<PostProcessVolume>().profile;
