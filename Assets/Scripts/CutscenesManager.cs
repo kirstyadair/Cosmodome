@@ -235,12 +235,17 @@ public class CutscenesManager : MonoBehaviour
         foreach (GameObject plrShip in playerShips)
         {
             PlayerScript playerScript = plrShip.GetComponent<PlayerScript>();
+            ShipController shipController = plrShip.GetComponent<ShipController>();
+
             PlayerTypes playerType = playerScript.playerType;
             PilotStand pilotStand = null;
 
             playerNameIntroText.color = playerScript.playerColor.color;
             playerNameIntroText.text = "PLAYER " + playerScript.playerNumber;
 
+
+            // Reduces brightness of emitters on ship for close up view
+            shipController.ToneDownShip();
 
             string animationName = "";
 
@@ -293,6 +298,9 @@ public class CutscenesManager : MonoBehaviour
             pilotStand.SitDown();
 
             _skipCutscene = false;
+
+            // Get ship ready for in-game view
+            shipController.StopToningDownShip();
 
             i++;
         }

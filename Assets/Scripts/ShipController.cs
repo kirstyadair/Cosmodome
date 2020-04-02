@@ -90,13 +90,14 @@ public class ShipController : MonoBehaviour
     public static event PlayerReload OnPlayerNoBullets;
 
     ChargeWeaponScript _chargingWeaponScript;
-
+    Animator _animator;
 
     public void Start()
     {
         // only if we're a player that uses this
         _chargingWeaponScript = GetComponent<ChargeWeaponScript>();
-
+        _animator = GetComponent<Animator>();
+        
         playerScript = GetComponent<PlayerScript>();
         postProcessProfile = Camera.main.GetComponent<PostProcessVolume>().profile;
     }
@@ -108,6 +109,20 @@ public class ShipController : MonoBehaviour
         float relativeXVelocity = transform.InverseTransformVector(rb.velocity).x;
 
         rb.AddRelativeForce(new Vector3(-relativeXVelocity/2, 0, 0), ForceMode.VelocityChange);
+    }
+
+    /// <summary>
+    ///  Plays the "tone down" animation which reduces headlights, lasers, etc, for closup viewss. At the moment just used for character intros.
+    /// </summary>
+    public void ToneDownShip() {
+        _animator.Play("Tone down");
+    }
+
+    /// <summary>
+    /// Set to normal light intensitiess
+    /// </summary>
+    public void StopToningDownShip() {
+        _animator.Play("Base");
     }
 
     public void AimTurret()
