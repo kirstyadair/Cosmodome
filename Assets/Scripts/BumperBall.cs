@@ -60,8 +60,7 @@ public class BumperBall : MonoBehaviour
         GameObject particleFX = Instantiate(hitWallParticleFX);
         particleFX.transform.position = collision.GetContact(0).point;
 
-        // to stop it getting stuck in a rut
-        rb.AddForce(new Vector3(Random.Range(-bouncificier, bouncificier), 0, Random.Range(-bouncificier, bouncificier)), ForceMode.Impulse);
+        if (rb != null) rb.AddForce(new Vector3(Random.Range(-bouncificier, bouncificier), 0, Random.Range(-bouncificier, bouncificier)), ForceMode.Impulse);
     }
 
     public void Spawn(Vector3 position, Vector3 direction)

@@ -21,18 +21,38 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: CannonBase
-  m_Shader: {fileID: 4800000, guid: 933532a4fcc9baf4fa0491de14d08ed7, type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: 942aa05e2f066fa4e92781b657ccaed7,
+    type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: 2050
-  stringTagMap:
-    RenderType: Opaque
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
   disabledShaderPasses: []
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - Texture2D_1030B1F0:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - Texture2D_80ECDE54:
+        m_Texture: {fileID: 2800000, guid: a196fd6788131ec459bfb26012466fc1, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - Texture2D_8104687C:
+        m_Texture: {fileID: 2800000, guid: a196fd6788131ec459bfb26012466fc1, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - Texture2D_8ECCD963:
+        m_Texture: {fileID: 2800000, guid: 207cd7d6bdf48884581528e5cefd1cd7, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - Texture2D_D12C8F3A:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _BaseMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -78,6 +98,10 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
+    - Boolean_A0D0B588: 0
+    - Vector1_A69B848E: 1
+    - Vector1_AC8525CF: 1
+    - Vector1_F9F2686: 1
     - _AlphaClip: 0
     - _Blend: 0
     - _BumpScale: 1
@@ -104,6 +128,8 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
+    - Color_48F5D2C2: {r: 0.509434, g: 0.509434, b: 0.509434, a: 0}
+    - Color_929401B: {r: 0, g: 0, b: 0, a: 0}
     - _BaseColor: {r: 0.2735849, g: 0.2735849, b: 0.2735849, a: 1}
     - _Color: {r: 0.2735849, g: 0.2735849, b: 0.2735849, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}

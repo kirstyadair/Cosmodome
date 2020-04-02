@@ -120,8 +120,6 @@ public class AnnouncerDialouge : MonoBehaviour
     /// Called by animator event when we are ready to change the subtitle text
     /// </summary>
     public void Animator_ChangeSubtitle() {
-        Debug.Log("Changing subtitle: " + _queuedSubtitle);
-
         if (_queuedSubtitle != "") {
             subtitleText.text = "";
             if (_shouldAnimateNextSubtitle) {
