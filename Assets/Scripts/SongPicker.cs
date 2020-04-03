@@ -69,7 +69,7 @@ public class SongPicker : MonoBehaviour
     {
         ScoreManager.OnStateChanged += OnStateChange;
 
-        int songtoPick = 3;//Random.Range(0, songs.Count);
+        int songtoPick = Random.Range(0, songs.Count);
         currentSong = songs[songtoPick];
         musicSource.clip = currentSong;
 
