@@ -7,6 +7,7 @@ public class AudioManager : MonoBehaviour
 {
     [SerializeField] AudioSource mainAudioSource;
     [SerializeField] AudioSource characterIntroAudioSource; // has a seperate source so we can Stop() it when the cutscene is skipped
+    [SerializeField] AudioSource countdownSource; // seperate source for countdown so we can start playing at a given offset
 
     public AudioClips[] clips;
 
@@ -222,10 +223,18 @@ public class AudioManager : MonoBehaviour
         characterIntroAudioSource.Stop();
     }
 
-    void Countdown()
+    void Countdown(float offset)
     {
-        mainAudioSource.volume = countdownSound.volume;
-        mainAudioSource.PlayOneShot(countdownSound.clip);
+        // Stop any existing countdown sound - for example, if it starts playing then the character skips, start playing from offset
+        countdownSource.Stop();
+
+        countdownSource.volume = countdownSound.volume;
+        countdownSource.clip = countdownSound.clip;
+        
+
+        countdownSource.Play();
+        countdownSource.time = offset;
+       
     }
 
     void RoundStart()

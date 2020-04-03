@@ -16,8 +16,10 @@ public class CutscenesManager : MonoBehaviour
 
     public delegate void CutsceneEvent();
     public static event CutsceneEvent OnRoundStart;
-    public static event CutsceneEvent OnPlayCountdown;
 
+
+    public delegate void CountdownEvent(float offset);
+    public static event CountdownEvent OnPlayCountdown;
 
     public delegate void CutSceneAudio();
     public static event CutSceneAudio DaveIntro;
@@ -70,13 +72,15 @@ public class CutscenesManager : MonoBehaviour
     bool _skipCutscene = false;
 
     ScoreManager sm;
+    Coroutine playCountdownafterSecondsCoroutine = null;
 
     public IEnumerator PlayCountdownAfterSeeconds(float time)
     {
         if (time < 0) time = 0;
         yield return new WaitForSeconds(time);
 
-        OnPlayCountdown?.Invoke();
+        OnPlayCountdown?.Invoke(0);
+        playCountdownafterSecondsCoroutine = null;
     }
 
     void Start()
@@ -231,11 +235,18 @@ public class CutscenesManager : MonoBehaviour
         playerNameIntroText.gameObject.SetActive(true);
         cameraAnimator.enabled = true;
 
-        float secondsInScene = playerShips.Count * 1.5f;
+        float totalSecondsOfCharacterCutscenes = playerShips.Count * 10f;
 
+        // The countdown sound is 3 seconds of buildup and 3 seconds of actually counting down, so start it 2    seconds early before the numbers show up
+        // We store this coroutine in case we need to cancel it if the player skips straight into the game
+        playCountdownafterSecondsCoroutine = StartCoroutine(PlayCountdownAfterSeeconds(totalSecondsOfCharacterCutscenes - 4f));
+        
         int i = 0;
         foreach (GameObject plrShip in playerShips)
         {
+            // This is a new cutscene, so we haven't skipped it yet
+            _skipCutscene = false;
+
             PlayerScript playerScript = plrShip.GetComponent<PlayerScript>();
             ShipController shipController = plrShip.GetComponent<ShipController>();
 
@@ -278,7 +289,7 @@ public class CutscenesManager : MonoBehaviour
                     characterNameIntroText.text = "AS HAMMERHEAD HENRY";
                     break;
             }
-            Debug.Log("About to trigger character intro", playerScript);
+
             // For triggering the character intro
             OnCharacterIntroStarted?.Invoke(playerScript);
 
@@ -301,9 +312,14 @@ public class CutscenesManager : MonoBehaviour
                 OnCharacterIntroEnded?.Invoke(playerScript);
             }
 
+            if (_skipCutscene) {
+                if (playCountdownafterSecondsCoroutine != null) StopCoroutine(playCountdownafterSecondsCoroutine);
+                totalSecondsOfCharacterCutscenes = (playerShips.Count - i - 1) * 10f; // recalculate the seconds left with the remaining cutscenes
+                playCountdownafterSecondsCoroutine = StartCoroutine(PlayCountdownAfterSeeconds(totalSecondsOfCharacterCutscenes - 4f));
+            }
+
             pilotStand.SitDown();
 
-            _skipCutscene = false;
 
             // Get ship ready for in-game view
             shipController.StopToningDownShip();
@@ -315,8 +331,15 @@ public class CutscenesManager : MonoBehaviour
         cameraAnimator.enabled = false;
         recordingSquare.SetActive(false);
 
-        // make sure we start playing the countdown sound 3 seconds before we start the countdown
-        StartCoroutine(PlayCountdownAfterSeeconds(secondsInScene - 3f));
+
+
+        
+        if (_skipCutscene) {  
+            // If the last cutscene was skipped, play the countdown sound immediately, with offset of 3 seconds so it starts right from the numbers
+            if (playCountdownafterSecondsCoroutine != null) StopCoroutine(playCountdownafterSecondsCoroutine);
+            OnPlayCountdown?.Invoke(3);
+        }
+
 
         controls.ShowControlsAfter(0.5f);
         // done all the cutscenes
