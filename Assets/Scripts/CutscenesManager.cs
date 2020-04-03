@@ -8,12 +8,16 @@ using UnityEngine.UI;
 public class CutscenesManager : MonoBehaviour
 {
     public delegate void CutsceneCharacterEvent(PlayerScript player);
-    public static event CutsceneCharacterEvent OnPlayCharacterIntro;
+    public static event CutsceneCharacterEvent OnCharacterIntroStarted;
+
+    // Called when the current character intro has ended, either naturally or when skipped
+    public static event CutsceneCharacterEvent OnCharacterIntroEnded;
     
 
     public delegate void CutsceneEvent();
     public static event CutsceneEvent OnRoundStart;
     public static event CutsceneEvent OnPlayCountdown;
+
 
     public delegate void CutSceneAudio();
     public static event CutSceneAudio DaveIntro;
@@ -229,9 +233,6 @@ public class CutscenesManager : MonoBehaviour
 
         float secondsInScene = playerShips.Count * 1.5f;
 
-        // make sure we start playing the countdown sound 3 seconds before we start the countdown
-        StartCoroutine(PlayCountdownAfterSeeconds(secondsInScene - 3f));
-
         int i = 0;
         foreach (GameObject plrShip in playerShips)
         {
@@ -279,7 +280,7 @@ public class CutscenesManager : MonoBehaviour
             }
             Debug.Log("About to trigger character intro", playerScript);
             // For triggering the character intro
-            OnPlayCharacterIntro?.Invoke(playerScript);
+            OnCharacterIntroStarted?.Invoke(playerScript);
 
             // play the correct cutscene animation
             cameraAnimator.Play(animationName);
@@ -297,6 +298,7 @@ public class CutscenesManager : MonoBehaviour
 
             if (i == playerShips.Count - 1) {
                 announcer.Cancel(); // if we skipped into the game, cancel the subtitles and announcer
+                OnCharacterIntroEnded?.Invoke(playerScript);
             }
 
             pilotStand.SitDown();
@@ -312,6 +314,9 @@ public class CutscenesManager : MonoBehaviour
         playerNameIntroText.gameObject.SetActive(false);
         cameraAnimator.enabled = false;
         recordingSquare.SetActive(false);
+
+        // make sure we start playing the countdown sound 3 seconds before we start the countdown
+        StartCoroutine(PlayCountdownAfterSeeconds(secondsInScene - 3f));
 
         controls.ShowControlsAfter(0.5f);
         // done all the cutscenes

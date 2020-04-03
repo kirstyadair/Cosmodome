@@ -5,7 +5,9 @@ using UnityEngine;
 
 public class AudioManager : MonoBehaviour
 {
-    AudioSource audioSource;
+    [SerializeField] AudioSource mainAudioSource;
+    [SerializeField] AudioSource characterIntroAudioSource; // has a seperate source so we can Stop() it when the cutscene is skipped
+
     public AudioClips[] clips;
 
     [Header("Character shooting sounds")]
@@ -43,8 +45,11 @@ public class AudioManager : MonoBehaviour
         TilePrefabScript.OnWallHit += WallHit;
 
         CutscenesManager.OnPlayCountdown += Countdown;
-        CutscenesManager.OnPlayCharacterIntro += CharacterIntro;
+        CutscenesManager.OnCharacterIntroStarted += CharacterIntro;
+        CutscenesManager.OnCharacterIntroEnded += OnCharacterIntroEnded;
         CutscenesManager.OnRoundStart += RoundStart;
+
+        
     }
 
     void OnDisable() {
@@ -64,22 +69,23 @@ public class AudioManager : MonoBehaviour
         TilePrefabScript.OnWallHit -= WallHit;
 
         CutscenesManager.OnPlayCountdown -= Countdown;
-        CutscenesManager.OnPlayCharacterIntro -= CharacterIntro;
+        CutscenesManager.OnCharacterIntroStarted -= CharacterIntro;
+        CutscenesManager.OnCharacterIntroEnded -= OnCharacterIntroEnded;
         CutscenesManager.OnRoundStart -= RoundStart;
     }
 
     // Update is called once per frame
     void Start()
     {
-        audioSource = GetComponent<AudioSource>();
+        mainAudioSource = GetComponent<AudioSource>();
     }
 
     void PlayerCollision(PlayerScript playerHit, PlayerScript playerAttacking)
     {
-        audioSource.volume = clips[5].volume;
-        audioSource.pitch = 0.5f + UnityEngine.Random.value;
-        audioSource.PlayOneShot(clips[5].clip);
-        audioSource.PlayOneShot(clips[8].clip);
+        mainAudioSource.volume = clips[5].volume;
+        mainAudioSource.pitch = 0.5f + UnityEngine.Random.value;
+        mainAudioSource.PlayOneShot(clips[5].clip);
+        mainAudioSource.PlayOneShot(clips[8].clip);
     }
 
 
@@ -87,42 +93,42 @@ public class AudioManager : MonoBehaviour
     {
         int shipSound = ship.shootingClipNumber - 1;
 
-        audioSource.volume = shootingSounds[shipSound].volume;
+        mainAudioSource.volume = shootingSounds[shipSound].volume;
         //audioSource.pitch = UnityEngine.Random.value * 2;
-        audioSource.PlayOneShot(shootingSounds[shipSound].clip);
+        mainAudioSource.PlayOneShot(shootingSounds[shipSound].clip);
     }
 
     void PlayerScream()
     {
         int rand = UnityEngine.Random.Range(16, 18);
-        audioSource.volume = clips[rand].volume;
-        audioSource.PlayOneShot(clips[rand].clip);
+        mainAudioSource.volume = clips[rand].volume;
+        mainAudioSource.PlayOneShot(clips[rand].clip);
     }
 
     void OpenCannon()
     {
-        audioSource.volume = clips[3].volume;
-        audioSource.pitch = UnityEngine.Random.value * 2;
-        audioSource.PlayOneShot(clips[3].clip);
+        mainAudioSource.volume = clips[3].volume;
+        mainAudioSource.pitch = UnityEngine.Random.value * 2;
+        mainAudioSource.PlayOneShot(clips[3].clip);
     }
 
 
     void FireCannon()
     {
-        audioSource.volume = clips[4].volume;
-        audioSource.pitch = UnityEngine.Random.value * 2;
-        audioSource.PlayOneShot(clips[4].clip);
+        mainAudioSource.volume = clips[4].volume;
+        mainAudioSource.pitch = UnityEngine.Random.value * 2;
+        mainAudioSource.PlayOneShot(clips[4].clip);
     }
 
 
     void ExplodePlayer()
     {
-        audioSource.volume = clips[15].volume;
-        audioSource.PlayOneShot(clips[15].clip);
-        audioSource.volume = clips[7].volume;
-        audioSource.PlayOneShot(clips[7].clip);
-        audioSource.volume = clips[0].volume;
-        audioSource.PlayOneShot(clips[0].clip);
+        mainAudioSource.volume = clips[15].volume;
+        mainAudioSource.PlayOneShot(clips[15].clip);
+        mainAudioSource.volume = clips[7].volume;
+        mainAudioSource.PlayOneShot(clips[7].clip);
+        mainAudioSource.volume = clips[0].volume;
+        mainAudioSource.PlayOneShot(clips[0].clip);
         PlayerScream();
         
     }
@@ -130,56 +136,56 @@ public class AudioManager : MonoBehaviour
 
     void TrapActivated()
     {
-        audioSource.volume = clips[12].volume;
-        audioSource.PlayOneShot(clips[12].clip);
+        mainAudioSource.volume = clips[12].volume;
+        mainAudioSource.PlayOneShot(clips[12].clip);
     }
 
 
     void Reload()
     {
-        audioSource.volume = clips[9].volume;
-        audioSource.PlayOneShot(clips[9].clip);
+        mainAudioSource.volume = clips[9].volume;
+        mainAudioSource.PlayOneShot(clips[9].clip);
     }
 
 
     void BBShoot()
     {
-        audioSource.volume = clips[1].volume;
-        audioSource.PlayOneShot(clips[1].clip);
+        mainAudioSource.volume = clips[1].volume;
+        mainAudioSource.PlayOneShot(clips[1].clip);
     }
 
 
     void BBExplode()
     {
-        audioSource.volume = clips[2].volume;
-        audioSource.PlayOneShot(clips[2].clip);
+        mainAudioSource.volume = clips[2].volume;
+        mainAudioSource.PlayOneShot(clips[2].clip);
     }
 
 
     void BBHit(PlayerScript p)
     {
-        audioSource.volume = clips[5].volume;
-        audioSource.pitch = UnityEngine.Random.value * 2;
-        audioSource.PlayOneShot(clips[5].clip);
+        mainAudioSource.volume = clips[5].volume;
+        mainAudioSource.pitch = UnityEngine.Random.value * 2;
+        mainAudioSource.PlayOneShot(clips[5].clip);
     }
 
 
     void BBHitWall()
     {
-        audioSource.volume = clips[6].volume;
-        audioSource.PlayOneShot(clips[6].clip);
+        mainAudioSource.volume = clips[6].volume;
+        mainAudioSource.PlayOneShot(clips[6].clip);
     }
 
     void WallHit()
     {
-        audioSource.volume = clips[20].volume;
-        audioSource.PlayOneShot(clips[20].clip);
+        mainAudioSource.volume = clips[20].volume;
+        mainAudioSource.PlayOneShot(clips[20].clip);
     }
 
     void WallExplode()
     {
-        audioSource.volume = clips[19].volume;
-        audioSource.PlayOneShot(clips[19].clip);
+        mainAudioSource.volume = clips[19].volume;
+        mainAudioSource.PlayOneShot(clips[19].clip);
     }
 
     void CharacterIntro(PlayerScript player)
@@ -206,21 +212,26 @@ public class AudioManager : MonoBehaviour
                 break;
         }
 
-        Debug.Log("Playing character intro " + chosenIntroSound.clip.name + " for " + player.playerData.playerType);
-        audioSource.volume = chosenIntroSound.volume;
-        audioSource.PlayOneShot(chosenIntroSound.clip);
+        characterIntroAudioSource.volume = chosenIntroSound.volume;
+        characterIntroAudioSource.clip = chosenIntroSound.clip;
+        characterIntroAudioSource.Play();
+    }
+
+    void OnCharacterIntroEnded(PlayerScript player) {
+        // end the current character intro
+        characterIntroAudioSource.Stop();
     }
 
     void Countdown()
     {
-        audioSource.volume = countdownSound.volume;
-        audioSource.PlayOneShot(countdownSound.clip);
+        mainAudioSource.volume = countdownSound.volume;
+        mainAudioSource.PlayOneShot(countdownSound.clip);
     }
 
     void RoundStart()
     {
-        audioSource.volume = roundStartSound.volume;
-        audioSource.PlayOneShot(roundStartSound.clip);
+        mainAudioSource.volume = roundStartSound.volume;
+        mainAudioSource.PlayOneShot(roundStartSound.clip);
     }
 }
 
