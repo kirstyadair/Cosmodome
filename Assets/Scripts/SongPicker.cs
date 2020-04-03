@@ -34,15 +34,20 @@ public class SongPicker : MonoBehaviour
         }
         if (newState == GameState.ROUND_END_CUTSCENE)
         {
-
+            Mathf.Round(songPosition);
             timeToStartFrom = songPosition;
             musicSource.Stop();
             countBeats = false;
             fillSource.clip = currentSongFill;
             fillSource.Play();
         }
+        if(newState==GameState.ROUND_START_CUTSCENE)
+        {
+            countBeats = false;
+        }
         if (newState == GameState.INGAME)
         {
+            Mathf.Round(timepassed);
             fillSource.Stop();
             countBeats = true;
             musicSource.clip = currentSong;
@@ -93,6 +98,15 @@ public class SongPicker : MonoBehaviour
             fillSource.volume = 0.6f;
 
         }
+        if (songtoPick == 3)
+        {
+            songBpm = 128f;
+            currentSongFill = songFills[3];
+            musicSource.volume = 0.6f;
+            fillSource.volume = 0.6f;
+
+        }
+
 
         secPerBeat = 60f / songBpm;
         currentSongTime = (float)AudioSettings.dspTime;
