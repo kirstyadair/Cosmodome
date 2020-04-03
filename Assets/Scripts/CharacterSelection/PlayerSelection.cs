@@ -33,6 +33,13 @@ public class PlayerSelection : MonoBehaviour
     [SerializeField]
     CharacterModelDisplay _characterModelDisplay;
 
+    [SerializeField] HorizontalScrollingBackground characterScrollingBackground;
+    [SerializeField] Sprite neutralBackground;
+    [SerializeField] Sprite daveBackground;
+    [SerializeField] Sprite bigSchlugBackground;
+    [SerializeField] Sprite elMoscoBackground;
+    [SerializeField] Sprite hhhBackground;
+
     public CharacterBox[] characterBoxes;
 
     bool _readyToActivateNextScene = false;
@@ -297,5 +304,24 @@ public class PlayerSelection : MonoBehaviour
 
         // swap out the character model
         _characterModelDisplay.SwapModel(characterBox.option.characterName);
+
+        Sprite newCharBackground = null;
+        switch (characterBox.type) {
+            case PlayerTypes.DAVE:
+                newCharBackground = daveBackground;
+                break;
+            case PlayerTypes.EL_MOSCO:
+                newCharBackground = elMoscoBackground;
+                break;
+            case PlayerTypes.HAMMER:
+                newCharBackground = hhhBackground;
+                break;
+            case PlayerTypes.BIG_SCHLUG:
+                newCharBackground = bigSchlugBackground;
+                break;
+
+        }
+
+        characterScrollingBackground.ChangeBackground(newCharBackground);
     }
 }
