@@ -8,9 +8,6 @@ public class AudioManager : MonoBehaviour
     AudioSource audioSource;
     public AudioClips[] clips;
 
-    [Header("Sounds to randomly play on character intro")]
-    public AudioClips[] introSounds;
-
     [Header("Character shooting sounds")]
     public AudioClips[] shootingSounds;
 
@@ -19,6 +16,12 @@ public class AudioManager : MonoBehaviour
 
     [Header("Round start sound")]
     public AudioClips roundStartSound;
+
+    [SerializeField] [Header("Dave character intro bgm")] AudioClips daveIntro;
+    [SerializeField] [Header("Big Schlug character intro bgm")] AudioClips schlugIntro;
+    [SerializeField] [Header("El Mosco character intro bgm")] AudioClips moscoIntro;
+    [SerializeField] [Header("Hammerhead Henry character intro bgm")] AudioClips hhhIntro;
+
 
 
     // Start is called before the first frame update
@@ -179,10 +182,31 @@ public class AudioManager : MonoBehaviour
         audioSource.PlayOneShot(clips[19].clip);
     }
 
-    void CharacterIntro()
+    void CharacterIntro(PlayerScript player)
     {
-        // pick a random character intro sound
-        AudioClips chosenIntroSound = introSounds[UnityEngine.Random.Range(0, introSounds.Length)];
+
+        // Pick the intro BGM to match the character
+        AudioClips chosenIntroSound = null;
+
+        switch (player.playerType) {
+            case PlayerTypes.DAVE:
+                chosenIntroSound = daveIntro;
+                break;
+            
+            case PlayerTypes.BIG_SCHLUG:
+                chosenIntroSound = schlugIntro;
+                break;
+            
+            case PlayerTypes.HAMMER:
+                chosenIntroSound = hhhIntro;
+                break;
+            
+            case PlayerTypes.EL_MOSCO:
+                chosenIntroSound = moscoIntro;
+                break;
+        }
+
+        Debug.Log("Playing character intro " + chosenIntroSound.clip.name + " for " + player.playerData.playerType);
         audioSource.volume = chosenIntroSound.volume;
         audioSource.PlayOneShot(chosenIntroSound.clip);
     }

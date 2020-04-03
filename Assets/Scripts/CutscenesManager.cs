@@ -7,16 +7,19 @@ using UnityEngine.UI;
 
 public class CutscenesManager : MonoBehaviour
 {
+    public delegate void CutsceneCharacterEvent(PlayerScript player);
+    public static event CutsceneCharacterEvent OnPlayCharacterIntro;
+    
+
     public delegate void CutsceneEvent();
-    public static event CutsceneEvent OnPlayCountdown;
-    public static event CutsceneEvent OnPlayCharacterIntro;
     public static event CutsceneEvent OnRoundStart;
+    public static event CutsceneEvent OnPlayCountdown;
+
     public delegate void CutSceneAudio();
     public static event CutSceneAudio DaveIntro;
     public static event CutSceneAudio BigSchlugIntro;
     public static event CutSceneAudio HHHIntro;
     public static event CutSceneAudio ElMoscoIntro;
-
 
 
 
@@ -51,7 +54,7 @@ public class CutscenesManager : MonoBehaviour
     [Header("Disable to not play intro cutscenes")]
     public bool shouldShowIntroCutscenes;
 
-    [Header("Disable to not play inbebtween-round cutscenes")]
+    [Header("Disable to not play inbetweene-round cutscenes")]
     public bool shouldShowEndofRoundCutscenes;
 
     [Header("How much player needs to hold skip button for")]
@@ -216,8 +219,6 @@ public class CutscenesManager : MonoBehaviour
     {
         if (!shouldShowIntroCutscenes) yield break;
 
-        OnPlayCharacterIntro?.Invoke();
-
         recordingSquare.SetActive(true);
         List<GameObject> playerShips = new List<GameObject>(GameObject.FindGameObjectsWithTag("Ship"));
 
@@ -276,6 +277,9 @@ public class CutscenesManager : MonoBehaviour
                     characterNameIntroText.text = "AS HAMMERHEAD HENRY";
                     break;
             }
+            Debug.Log("About to trigger character intro", playerScript);
+            // For triggering the character intro
+            OnPlayCharacterIntro?.Invoke(playerScript);
 
             // play the correct cutscene animation
             cameraAnimator.Play(animationName);
