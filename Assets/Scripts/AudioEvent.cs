@@ -17,8 +17,17 @@ public class AudioEvent : MonoBehaviour
     public AudioClip[] AudioArray_HHHIntro;
     public AudioClip[] AudioArray_ElMoscoIntro;
 
+    [Header("End round Lines")]
+    public AudioClip[] AudioArray_Announcer_Banter;
+    public AudioClip[] AudioArray_Dave_Out;
+    public AudioClip[] AudioArray_HHH_Out;
+    public AudioClip[] AudioArray_Mosco_Out;
+    public AudioClip[] AudioArray_Schlug_Out;
 
-    [Header("Dave Collision Lines")]
+
+
+
+[Header("Dave Collision Lines")]
     public AudioClip[] AudioArray_Coll_Dave_VS_Mosco;
     public AudioClip[] AudioArray_Coll_Dave_VS_HHH;
     public AudioClip[] AudioArray_Coll_Dave_VS_Schlug;

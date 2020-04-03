@@ -16,10 +16,19 @@ public class AnnouncerDialouge : MonoBehaviour
     public string[] dialougePlayerTrapTrigger;
 
     public string[] dialouge_WelcomeToTheCosmodome;
+
+    [Header("Character Introductions")]
     public string[] dialouge_DaveIntro;
     public string[] dialouge_BigSchlugIntro;
     public string[] dialouge_HHHIntro;
     public string[] dialouge_ElMosoIntro;
+
+    [Header("End of round lines")]
+    public string[] dialouge_EndOfRoundBanter;
+    public string[] dialouge_DaveOut;
+    public string[] dialouge_HHHOut;
+    public string[] dialouge_MoscoOut;
+    public string[] dialouge_SchlugOut;
 
     [Header("Dave Collision Lines")]
     public string[] dialouge_Coll_Dave_VS_Mosco;
@@ -168,11 +177,18 @@ public class AnnouncerDialouge : MonoBehaviour
         dialougePlayerTrapSetup = new string[5];
         dialougePlayerTrapTrigger = new string[16];
 
-        dialouge_WelcomeToTheCosmodome = new string[11];
+        dialouge_WelcomeToTheCosmodome = new string[10];
         dialouge_DaveIntro = new string[11];
         dialouge_BigSchlugIntro = new string[16];
         dialouge_HHHIntro = new string[10];
         dialouge_ElMosoIntro = new string[11];
+
+
+        dialouge_EndOfRoundBanter = new string[27];
+        dialouge_DaveOut = new string[13];
+        dialouge_HHHOut = new string[9];
+        dialouge_MoscoOut = new string[10];
+        dialouge_SchlugOut = new string[14];
 
         dialouge_Coll_Dave_VS_HHH = new string[11];
         dialouge_Coll_Dave_VS_Mosco = new string[11];
@@ -391,6 +407,91 @@ public class AnnouncerDialouge : MonoBehaviour
         dialouge_WelcomeToTheCosmodome[8] = "Welcome to the CosmoDome! Now sponsored by spearizate! If you need a new grator for your otiation drive then don’t hesitate, go spearizate!";
         dialouge_WelcomeToTheCosmodome[9] = "Welcome to the CosmoDome! The current record holder of the smallest establishment that a has class-7 licence to laser weapons! Take that StarSystemSphere™";
         dialouge_WelcomeToTheCosmodome[10] = "Welcome everybody to the cosmodome! I would like to remind you that after the event, feel free to visit our new cosmoStore! Where you can buy smaller, less nuclear volatile models of all of the ships that our contestants are using today!";
+
+        dialouge_EndOfRoundBanter[0] = "C'mon, C'mon hurry up I want to see the next round! C'mon hurry. Hurry c'mon.";
+        dialouge_EndOfRoundBanter[1] = "Oh-ho-ho, I don't know whats gonna happen but I bet it's gonna be cool! Next round!";
+        dialouge_EndOfRoundBanter[2] = "Your guess as good as mine as to whats up next but... It's probably gonna be another round.";
+        dialouge_EndOfRoundBanter[3] = "(to technician) Be honest with me am I doing a good job? I don't feel like I'm doing a good job. (notices mic is on) OH... Next round.";
+        dialouge_EndOfRoundBanter[4] = "(to technician) I can't belive they paid that much for a ticket, front row? You're gonna die! (notices mic is on) OH... Next round.";
+        dialouge_EndOfRoundBanter[5] = "Uhh, if there's any ladies in the crowd that uhh, want to see me later my number is 0-6-2-4-7 (tecnican pulls him away from mic)";
+        dialouge_EndOfRoundBanter[6] = "And now a word from our mid-game sponsor... uhh corn... yum!";
+        dialouge_EndOfRoundBanter[7] = "Who is gonna win, I don't know. All I wanna see is ships smashin'.";
+        dialouge_EndOfRoundBanter[8] = "Two words! Don't go! p-please, aww that's three. It's gonna get good I swear!";
+        dialouge_EndOfRoundBanter[9] = "(to technician) Am I getting paid for this? How much? ehhh- (to mic) Next round.";
+        dialouge_EndOfRoundBanter[10] = "After the event I'll be doing a book signing for my new book: How to be bad at everything but still get a job.";
+        dialouge_EndOfRoundBanter[11] = "Whats gonna happen next?... No really tell me 'cause I don't know!";
+        dialouge_EndOfRoundBanter[12] = "(sad) If my mum and dad could see me now... It think they'd be gravely disappointed. Next round. Go.";
+        dialouge_EndOfRoundBanter[13] = "Phew! What a game, I wonder who's gonna get put out next.";
+        dialouge_EndOfRoundBanter[14] = "Oh it's really heating up now, I wonder who is gonna win? Or lose.";
+        dialouge_EndOfRoundBanter[15] = "There can only be one winner folks, who's it gonna be?";
+        dialouge_EndOfRoundBanter[16] = "Ha ha, point at the loser and laugh, laugh at the loser! Up next: is the next round obviously.";
+        dialouge_EndOfRoundBanter[17] = "Now it's time for our mid-game sponsor! D-uhh... I forgot.";
+        dialouge_EndOfRoundBanter[18] = "S-uhh, uhh... um. Time for... next round. Round time! Whoo! Let's go!";
+        dialouge_EndOfRoundBanter[19] = "Ooo I wonder who's gonna win the game, probably that guy that I'm pointing at... yeaa.";
+        dialouge_EndOfRoundBanter[20] = "Well you b-uhh, better buckle your seatbelts and get ready for the next round 'cause it's gonna be a wild one!";
+        dialouge_EndOfRoundBanter[21] = "Buckle your seatbelts and hold onto your butts 'cause it's gonna be a wild next round!";
+        dialouge_EndOfRoundBanter[22] = "(to technician) Hey where'd my sandwich go? Yea that's it there! (to mic) Oh-next round.";
+        dialouge_EndOfRoundBanter[23] = "Buckle up cause next rounds gonna be crazy!";
+        dialouge_EndOfRoundBanter[24] = "Who's gonna win? I don't know! I don't know what's going on! I don't even know who I am!";
+        dialouge_EndOfRoundBanter[25] = "I don't know about you but I'm gonna have to lay down after this game!";
+        dialouge_EndOfRoundBanter[26] = "*cough* OH, somebody farted in the commentator booth and it's horrible!";
+        dialouge_EndOfRoundBanter[27] = "Am I doin a good job? Like, am I-I doin' okay? Cheer if I'm doin' a good job cause I don't know what's going on.";
+
+        dialouge_DaveOut[0] = "And that's Dave the human out, human Dave...Dave human, eww.";
+        dialouge_DaveOut[1] = "Gross human known as Dave is out... Ewwww, bye-bye!";
+        dialouge_DaveOut[2] = "Oh! Bye-bye Dave bye-bye, you're not good, bye!";
+        dialouge_DaveOut[3] = "Well! Looks like Dave's gonna be out this round!";
+        dialouge_DaveOut[4] = "See you later Dave! You're out! Bye-bye!";
+        dialouge_DaveOut[5] = "Oh! Looks like Dave's the one getting put out this round!";
+        dialouge_DaveOut[6] = "And the crowd DOESN'T go wild for Dave!";
+        dialouge_DaveOut[7] = "Well looks like you're sittin' this one out Dave!";
+        dialouge_DaveOut[8] = "Oh, say bye-be to Dave everybody! Bye-bye!";
+        dialouge_DaveOut[9] = "Oh it was close but Dave's out this round!";
+        dialouge_DaveOut[10] = "And comin' in at last place is Dave!";
+        dialouge_DaveOut[11] = "Gross human person is out, go away, bye-bye!";
+        dialouge_DaveOut[12] = "And that's Dave the human gone, gross Dave, Dave human. Bye-bye!";
+        dialouge_DaveOut[13] = "-Name's got four letters and he's out. It's Dave!";
+
+        dialouge_HHHOut[0] = "Weird shark-thing is out... Henry bye.";
+        dialouge_HHHOut[1] = "Henry's out of the game. Hammerhead Henry, fish guy.";
+        dialouge_HHHOut[2] = "Annd Hammerhead Henry is out of the game. Sorry Henry.";
+        dialouge_HHHOut[3] = "Annd Henry's out, bye Henry. You're out. You're bad.";
+        dialouge_HHHOut[4] = "He's got fins and he's out! It's Henry! Bye Henry.";
+        dialouge_HHHOut[5] = "And Henry's out, he's bad, you're bad. B-uhhh bye.";
+        dialouge_HHHOut[6] = "Henry you're out. You're not a shark, you're a loser. Bye-bye.";
+        dialouge_HHHOut[7] = "Aww and Henry's out. Out of the game. Sorry Henry.";
+        dialouge_HHHOut[8] = "Smelly Henry's out, stinky Henry, gross Henry. You're out, bye.";
+        dialouge_HHHOut[9] = "He smells and he's out. It's ! Smells like fish, 'cause he's a shark.";
+
+        dialouge_MoscoOut[0] = "Don't hit your face on the door on your way out Mosco.";
+        dialouge_MoscoOut[1] = "Oh! And Mosco's out!";
+        dialouge_MoscoOut[2] = "And Mosco's outta the game!";
+        dialouge_MoscoOut[3] = "Looks like you weren't fast enough Mosco 'cause you're out!";
+        dialouge_MoscoOut[4] = "And Mosco's the one going out this round!";
+        dialouge_MoscoOut[5] = "Mosquito Man's out. Big, scary mosquito man, bye-bye.";
+        dialouge_MoscoOut[6] = "And Mosco's out of the game... sorry.";
+        dialouge_MoscoOut[7] = "And Mosco's gonna take home nothing today 'cause he's out!";
+        dialouge_MoscoOut[8] = "And the mosquito's out! Bye-bye El Mosco.";
+        dialouge_MoscoOut[9] = "Look like you were too slow El Mosco! Bye-bye-bye.";
+        dialouge_MoscoOut[10] = "That's you out Mosco. Bye-bye, sit down, bye-bye!";
+
+        dialouge_SchlugOut[0] = "And it looks like Sclug's gonna be the one that's out.";
+        dialouge_SchlugOut[1] = "Hate to say it but Sclug's out. Don't kill me Sclug please.";
+        dialouge_SchlugOut[2] = "Big scary Sclug being's out, bye-bye Big Sclug.";
+        dialouge_SchlugOut[3] = "And Sclug's outta here, sit down Sclug!";
+        dialouge_SchlugOut[4] = "Put the kettle on 'cause Sclug'sout!";
+        dialouge_SchlugOut[5] = "Slimey and gross lookin' thing's out. Bye Sclug!";
+        dialouge_SchlugOut[6] = "It was close but Sclug's gone. Bye Sclug.";
+        dialouge_SchlugOut[7] = "I'm gonna go into hinding now 'cause Sclug's out. He's out.";
+        dialouge_SchlugOut[8] = "And Big Sclug's outta the game. I'm sorry Sclug don't beat me up.";
+        dialouge_SchlugOut[9] = "He's slimey and he's a sore loser, It's Schlug, you're out!";
+        dialouge_SchlugOut[10] = "This muscle has got you far, but not far enough. Schlug's out.";
+        dialouge_SchlugOut[11] = "Hope your seats comfortable Schlug, 'cause you're gonna be watching everyone else. You're out.";
+        dialouge_SchlugOut[12] = "Bye Schlug you're out. Bye-bye, bye you're bad.";
+        dialouge_SchlugOut[13] = "Strong and muscly but also todays loser, it's Schlug. Bye-bye.";
+        dialouge_SchlugOut[14] = "And Schlug's outta the game!";
+
+
 
         dialouge_DaveIntro[0]= "With only 3 hours experience of controlling a grade 4 jet propulsion machines. Its Dave!";
         dialouge_DaveIntro[1]= "Making his debut entrance into ship fighting, even though he’s got 6 points on his licence, its Dave!";
