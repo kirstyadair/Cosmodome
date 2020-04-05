@@ -71,7 +71,12 @@ public class AnnouncerDialouge : MonoBehaviour
     /// <param name="subtitle">The subtitle to show</param>
     /// <param name="time">The time to show it for</param>
     /// <param name="dramatic">True for cutscenes where it's ticked in, false for more subtle in game version</param>
-    void ShowSubtitle(string subtitle, float time, bool dramatic) { 
+    void ShowSubtitle(string subtitle, float time, bool dramatic) {
+        if (subtitle == null)
+        {
+            Debug.LogError("<size=22>Looks like the one of the subtitle arrays are the wrong length!</size>");
+        }
+
         if (_subtitlesAreShowing) {
             // We're already showing subtitles, swap them out
             StopCoroutine(_hideSubtitlesCoroutine);
@@ -167,7 +172,7 @@ public class AnnouncerDialouge : MonoBehaviour
     }
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
 
         _animator = GetComponent<Animator>();
@@ -177,18 +182,18 @@ public class AnnouncerDialouge : MonoBehaviour
         dialougePlayerTrapSetup = new string[5];
         dialougePlayerTrapTrigger = new string[16];
 
-        dialouge_WelcomeToTheCosmodome = new string[10];
+        dialouge_WelcomeToTheCosmodome = new string[11];
         dialouge_DaveIntro = new string[11];
         dialouge_BigSchlugIntro = new string[16];
         dialouge_HHHIntro = new string[10];
         dialouge_ElMosoIntro = new string[11];
 
 
-        dialouge_EndOfRoundBanter = new string[27];
-        dialouge_DaveOut = new string[13];
-        dialouge_HHHOut = new string[9];
-        dialouge_MoscoOut = new string[10];
-        dialouge_SchlugOut = new string[14];
+        dialouge_EndOfRoundBanter = new string[28];
+        dialouge_DaveOut = new string[14];
+        dialouge_HHHOut = new string[10];
+        dialouge_MoscoOut = new string[11];
+        dialouge_SchlugOut = new string[15];
 
         dialouge_Coll_Dave_VS_HHH = new string[11];
         dialouge_Coll_Dave_VS_Mosco = new string[11];
