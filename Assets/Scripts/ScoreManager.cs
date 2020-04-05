@@ -74,10 +74,8 @@ public class ScoreManager : MonoBehaviour
 
     [Header("Approval Rates")]
     //public int bulletDamageRate;
-    public int lowDamageRate;
-    public int medDamageRate;
-    public int highDamageRate;
-    public int highestDamageRate;
+    public int collisionDamageRate;
+    public int trapDamageRate;
     public int arenaCannonRate;
     public int bumperBallExplosionRate;
     public int spikeHitDamageRate;
@@ -237,7 +235,6 @@ public class ScoreManager : MonoBehaviour
         PlayerScript.OnPlayerCollision += PlayerCollision;
         PlayerScript.OnPlayerHitByArenaCannon += PlayerHitByArenaCannon;
         WallScript.OnTrapHit += PlayerHitTrap;
-        WallScript.OnTrapSabotaged += PlayerAttemptSabotage;
         SpikeTrapScript.OnPlayerSpikeHit += PlayerHitSpike;
         BumperBall.OnBumperBallExplodeOnPlayer += BumperBallExplodesOnPlayer;
         ScoreManager.OnStateChanged += WhenStateHasChanged;
@@ -398,7 +395,7 @@ public class ScoreManager : MonoBehaviour
 
     void PlayerCollision(PlayerScript player, PlayerScript playerAttacking)
     {
-        player.approval.ChangeApproval(-lowDamageRate);
+        player.approval.ChangeApproval(-collisionDamageRate);
         OnUpdateScore?.Invoke();
         UpdatePercentages();
         StartCoroutine(player.FlashWithDamage());
@@ -406,7 +403,7 @@ public class ScoreManager : MonoBehaviour
 
     void PlayerHitTrap(PlayerScript player, Traps trapType)
     {
-        player.approval.ChangeApproval(-lowDamageRate);
+        player.approval.ChangeApproval(-collisionDamageRate);
         OnUpdateScore?.Invoke();
         UpdatePercentages();
 
@@ -416,21 +413,6 @@ public class ScoreManager : MonoBehaviour
         }
     }
 
-    void PlayerAttemptSabotage(PlayerScript player, Traps trapType, bool successful)
-    {
-        if (successful)
-        {
-            player.approval.ChangeApproval(highestDamageRate);
-            OnUpdateScore?.Invoke();
-            UpdatePercentages();
-        }
-        else
-        {
-            player.approval.ChangeApproval(-highestDamageRate);
-            OnUpdateScore?.Invoke();
-            UpdatePercentages();
-        }
-    }
 
     void UpdatePercentages()
     {
@@ -469,7 +451,6 @@ public class ScoreManager : MonoBehaviour
         PlayerScript.OnPlayerCollision -= PlayerCollision;
         PlayerScript.OnPlayerHitByArenaCannon -= PlayerHitByArenaCannon;
         WallScript.OnTrapHit -= PlayerHitTrap;
-        WallScript.OnTrapSabotaged -= PlayerAttemptSabotage;
         SpikeTrapScript.OnPlayerSpikeHit -= PlayerHitSpike;
         BumperBall.OnBumperBallExplodeOnPlayer -= BumperBallExplodesOnPlayer;
         ScoreManager.OnStateChanged -= WhenStateHasChanged;
