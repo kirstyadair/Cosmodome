@@ -10,7 +10,11 @@ public class PercentageBar : MonoBehaviour
     public List<GameObject> percentageColours = new List<GameObject>();
     public List<GameObject> playerArray = new List<GameObject>();
 
+    public Text debugApprovalText;
+
     public ApprovalChangeUI thisPlayer;
+    
+    PlayerScript _thisPlayerScript;
 
     public Text statusText;
 
@@ -64,6 +68,7 @@ public class PercentageBar : MonoBehaviour
 
     void CheckPlayers()
     {
+        _thisPlayerScript = thisPlayer.player.GetComponent<PlayerScript>();
         for (int i = 0; i < playerArray.Count; i++)
         {
             if (!playerArray[i].activeSelf)
@@ -81,6 +86,7 @@ public class PercentageBar : MonoBehaviour
         }
 
         statusText.text = GetStatusText(thisPlayer.approval / 100, percentageColours.Count);
+        if (debugApprovalText != null && _thisPlayerScript != null) debugApprovalText.text = _thisPlayerScript.playerType + " APR: " + _thisPlayerScript.approval.value;
     }
 
     // Update is called once per frame

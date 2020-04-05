@@ -26,7 +26,6 @@ public class BumperBallManager : MonoBehaviour
 
     void Fire()
     {
-        Debug.Log("Firing!");   
         if (Random.Range(0f, 1f) <= chanceOfFiringMultiple) Fire();
 
         List<BumperBallPipe> pipesReadyToFire = new List<BumperBallPipe>();
