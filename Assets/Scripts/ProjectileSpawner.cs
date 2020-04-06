@@ -18,6 +18,8 @@ public class ProjectileSpawner : MonoBehaviour
 
     void FireProjectile()
     {
+        if (Random.value > 0.5f) return;
+
         GameObject newObj = Instantiate(projectile, transform.position, transform.rotation);
     }
 }
