@@ -149,7 +149,7 @@ public class CutscenesManager : MonoBehaviour
         StartCoroutine(betweenRoundText.ShowBetweenRoundText(eliminatedPlayer.playerNumber, eliminatedPlayer.playerColor.color, round, maxRounds));
 
         yield return new WaitForSeconds(1f);
-
+        
         OnCharacterOut?.Invoke(eliminatedPlayer.playerType);
 
         // after we've shown the player exploding, zoom into the character looking sad
@@ -158,8 +158,6 @@ public class CutscenesManager : MonoBehaviour
         recordingSquare.SetActive(true);
         cameraAnimator.enabled = true;
         sm.isCameraEnabled = false;
-
-      
 
 
 
