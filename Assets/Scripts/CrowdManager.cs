@@ -19,10 +19,12 @@ public class CrowdManager : MonoBehaviour
     void OnEnable()
     {
         ScoreManager.OnUpdateScore += UpdateCrowdSupport;
+        ExcitementManager.OnResetHype += CrowdBoo;
     }
 
     void OnDisable() {
         ScoreManager.OnUpdateScore -= UpdateCrowdSupport;
+        ExcitementManager.OnResetHype -= CrowdBoo;
     }
 
     // Start is called before the first frame update
@@ -86,5 +88,12 @@ public class CrowdManager : MonoBehaviour
         playerCount = sm.players.Count;
         playerScores = new float[playerCount];
         numOfSupporters = new float[playerCount];
+    }
+
+    void CrowdBoo()
+    {
+        if (Random.value < 0.5f) return;
+
+        Debug.Log("throwing something");
     }
 }

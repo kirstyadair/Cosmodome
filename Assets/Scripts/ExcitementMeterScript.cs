@@ -8,6 +8,7 @@ public class ExcitementMeterScript : MonoBehaviour
     public ExcitementManager em;
     ScoreManager sm;
     PlayerScript ps;
+    public float timer;
 
     // Start is called before the first frame update
     void OnEnable()
@@ -20,6 +21,18 @@ public class ExcitementMeterScript : MonoBehaviour
         sm = ScoreManager.Instance;
         ScoreManager.OnStateChanged += OnStateChanged;
         ps = GetComponent<PlayerScript>();
+    }
+
+    void Update()
+    {
+        if (comboScore > 0)
+        {
+            timer -= Time.deltaTime;
+            if (timer < 0)
+            {
+                ResetHype();
+            }
+        }
     }
 
     
@@ -57,7 +70,7 @@ public class ExcitementMeterScript : MonoBehaviour
     {
         if (playerHit == this.gameObject.GetComponent<PlayerScript>())
         {
-            comboScore = 0;
+            ResetHype();
         }
 
         em.UpdateHype();
@@ -67,7 +80,7 @@ public class ExcitementMeterScript : MonoBehaviour
     {
         if (playerHit == ps)
         {
-            comboScore = 0;
+            ResetHype();
         }
 
         em.UpdateHype();
@@ -77,7 +90,7 @@ public class ExcitementMeterScript : MonoBehaviour
     {
         if (playerHit == this.gameObject.GetComponent<PlayerScript>())
         {
-            comboScore = 0;
+            ResetHype();
         }
 
         em.UpdateHype();
@@ -87,7 +100,7 @@ public class ExcitementMeterScript : MonoBehaviour
     {
         if (playerHit == this.gameObject)
         {
-            comboScore = 0;
+            ResetHype();
         }
 
         em.UpdateHype();
@@ -97,10 +110,16 @@ public class ExcitementMeterScript : MonoBehaviour
     {
         if (playerHit == this.gameObject)
         {
-            comboScore = 0;
+            ResetHype();
         }
 
         em.UpdateHype();
+    }
+
+    private void ResetHype()
+    {
+        // Trigger a boo from the crowd if the combo was over 4
+        if (comboScore > 4) em.TriggerReset();
     }
 
     private void Reset()

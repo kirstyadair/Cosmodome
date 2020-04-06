@@ -44,7 +44,7 @@ public class AudioManager : MonoBehaviour
         BumperBall.OnBumperBallHitWall += BBHitWall;
         TilePrefabScript.OnWallExplode += WallExplode;
         TilePrefabScript.OnWallHit += WallHit;
-
+        ExcitementManager.OnResetHype += CrowdBoo;
         CutscenesManager.OnPlayCountdown += Countdown;
         CutscenesManager.OnCharacterIntroStarted += CharacterIntro;
         CutscenesManager.OnCharacterIntroEnded += OnCharacterIntroEnded;
@@ -68,7 +68,7 @@ public class AudioManager : MonoBehaviour
         BumperBall.OnBumperBallHitWall -= BBHitWall;
         TilePrefabScript.OnWallExplode -= WallExplode;
         TilePrefabScript.OnWallHit -= WallHit;
-
+        ExcitementManager.OnResetHype -= CrowdBoo;
         CutscenesManager.OnPlayCountdown -= Countdown;
         CutscenesManager.OnCharacterIntroStarted -= CharacterIntro;
         CutscenesManager.OnCharacterIntroEnded -= OnCharacterIntroEnded;
@@ -181,6 +181,13 @@ public class AudioManager : MonoBehaviour
     {
         mainAudioSource.volume = clips[20].volume;
         mainAudioSource.PlayOneShot(clips[20].clip);
+    }
+
+    void CrowdBoo()
+    {
+        Debug.Log("Booing");
+        mainAudioSource.volume = clips[21].volume;
+        mainAudioSource.PlayOneShot(clips[21].clip);
     }
 
     void WallExplode()

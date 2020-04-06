@@ -19,7 +19,7 @@ public class ExcitementManager : MonoBehaviour
     public float speedIncrement;
     public float maxHypeTimer;
     public int hypeLevel;
-    float hypeTimer;
+    public float hypeTimer;
 
     public delegate void ComboIncrease(PlayerData playerData);
     public static event ComboIncrease OnComboIncrease;
@@ -64,16 +64,19 @@ public class ExcitementManager : MonoBehaviour
 
     void Update()
     {
-        if (hypeTimer >= 0)
+        if (hypeTimer > 0)
         {
             hypeTimer -= Time.deltaTime;
-            if (hypeTimer < 0)
+            if (hypeTimer <= 0)
             {
                 hypeLevel = 0;
                 speedIncrement = 1;
+                Debug.Log("Hype Reset");
                 OnResetHype?.Invoke();
             }
         }
+
+        
     }
 
     void AddToHype(PlayerScript hitPlayer, PlayerScript shootingPlayer)
@@ -86,6 +89,7 @@ public class ExcitementManager : MonoBehaviour
         {
             // Add to the combo of the attacking player
             shootingPlayerExcitement.comboScore++;
+            shootingPlayerExcitement.timer = maxHypeTimer;
             OnComboIncrease?.Invoke(shootingPlayer.playerData);
 
             if (shootingPlayerExcitement.comboScore > shootingPlayer.playerData.comboHi) shootingPlayer.playerData.comboHi = shootingPlayerExcitement.comboScore;
@@ -111,5 +115,10 @@ public class ExcitementManager : MonoBehaviour
             audio.PlayOneShot(cheer1);
             audio.PlayOneShot(cheer2);
         }
+    }
+
+    public void TriggerReset()
+    {
+        OnResetHype?.Invoke();
     }
 }
