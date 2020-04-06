@@ -153,7 +153,7 @@ public class CutscenesManager : MonoBehaviour
         OnCharacterOut?.Invoke(eliminatedPlayer.playerType);
 
         // after we've shown the player exploding, zoom into the character looking sad
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(1f);
 
         recordingSquare.SetActive(true);
         cameraAnimator.enabled = true;
@@ -172,7 +172,7 @@ public class CutscenesManager : MonoBehaviour
         pilotStand.Disable();
         StartCoroutine(StartPlayingInbetweenRoundCutscenes(0f));
 
-        yield return new WaitForSeconds(4f);
+        yield return new WaitForSeconds(7f);
 
         StopPlayingInbetweenRoundCutscenes();
     }
