@@ -10,7 +10,14 @@ public class ParticleSpawnerScript : MonoBehaviour
     
     void OnEnable()
     {
-        ExcitementManager.OnComboIncrease += BurstFire;
+        ExcitementManager.OnComboIncrease += Fireworks;
+        ScoreManager.OnRemovePlayer += Fireworks;
+    }
+
+    void OnDestroy()
+    {
+        ExcitementManager.OnComboIncrease -= BurstFire;
+        ScoreManager.OnRemovePlayer -= Fireworks;
     }
 
     void Start()
@@ -24,8 +31,9 @@ public class ParticleSpawnerScript : MonoBehaviour
         ps.GetComponent<ParticleSystem>().startColor = playerData.playerColor;
     }
 
-    void Fireworks()
+    void Fireworks(PlayerData playerData)
     {
         GameObject ps = Instantiate(fireworksPS, transform.position, transform.rotation);
+        ps.GetComponent<ParticleSystem>().startColor = playerData.playerColor;
     }
 }

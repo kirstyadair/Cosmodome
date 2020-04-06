@@ -54,6 +54,8 @@ public class ScoreManager : MonoBehaviour
     public static event ExplodePlayer OnExplodePlayer;
     public delegate void PlayerEliminated();
     public static event PlayerEliminated OnPlayerEliminated;
+    public delegate void RemovePlayer(PlayerData playerData);
+    public static event RemovePlayer OnRemovePlayer;
 
     public delegate void StateEvent(GameState newState, GameState oldState);
     public static event StateEvent OnStateChanged;
@@ -480,7 +482,7 @@ public class ScoreManager : MonoBehaviour
         yield return new WaitForSeconds(0.1f);
         OnExplodePlayer.Invoke();
         OnPlayerEliminated?.Invoke();
-
+        OnRemovePlayer?.Invoke(currentLowest.playerData);
 
         players.Remove(currentLowest);
         //cm.colors.Remove(currentLowest.playerColor);
