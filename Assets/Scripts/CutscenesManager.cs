@@ -15,7 +15,7 @@ public class CutscenesManager : MonoBehaviour
     
 
     public delegate void CutsceneEvent();
-    public static event CutsceneEvent OnRoundStart;
+    public static event CutsceneEvent OnRoundStart; 
 
 
     public delegate void CountdownEvent(float offset);
@@ -26,6 +26,9 @@ public class CutscenesManager : MonoBehaviour
     public static event CutSceneAudio BigSchlugIntro;
     public static event CutSceneAudio HHHIntro;
     public static event CutSceneAudio ElMoscoIntro;
+
+    public delegate void BetweenRoundSound(PlayerTypes playerType);
+    public static event BetweenRoundSound OnCharacterOut;
 
 
 
@@ -111,27 +114,13 @@ public class CutscenesManager : MonoBehaviour
         // now we hand control to endScreenStats to see when start is pressed
     }
 
+
     public IEnumerator InbetweenRoundCutscene(int round, int maxRounds, PlayerScript eliminatedPlayer)
     {
         if (!shouldShowEndofRoundCutscenes) yield break;
 
-        // show the player being highlighted with the red beam for 2 seconds
-        StartCoroutine(DeathHighlightPlayer(eliminatedPlayer.gameObject, 2f));
-     
-
-        // show the "player n is eliminated" and then a few seconds later it will show the "round x/y"
-        StartCoroutine(betweenRoundText.ShowBetweenRoundText(eliminatedPlayer.playerNumber, eliminatedPlayer.playerColor.color, round, maxRounds));
-
-        // after we've shown the player exploding, zoom into the character looking sad
-        yield return new WaitForSeconds(2.5f);
-
-        recordingSquare.SetActive(true);
-        cameraAnimator.enabled = true;
-        sm.isCameraEnabled = false;
-
         string eliminationCameraAnimation = "Nope";
         PilotStand pilotStand = null;
-
         switch (eliminatedPlayer.playerType) {
             case PlayerTypes.DAVE:
                 eliminationCameraAnimation = "Dave elimination";
@@ -151,6 +140,28 @@ public class CutscenesManager : MonoBehaviour
                 break;
             
         }
+
+        // show the player being highlighted with the red beam for 2 seconds
+        StartCoroutine(DeathHighlightPlayer(eliminatedPlayer.gameObject, 2f));
+     
+
+        // show the "player n is eliminated" and then a few seconds later it will show the "round x/y"
+        StartCoroutine(betweenRoundText.ShowBetweenRoundText(eliminatedPlayer.playerNumber, eliminatedPlayer.playerColor.color, round, maxRounds));
+
+        yield return new WaitForSeconds(1f);
+
+        OnCharacterOut?.Invoke(eliminatedPlayer.playerType);
+
+        // after we've shown the player exploding, zoom into the character looking sad
+        yield return new WaitForSeconds(1.5f);
+
+        recordingSquare.SetActive(true);
+        cameraAnimator.enabled = true;
+        sm.isCameraEnabled = false;
+
+      
+
+
 
         pilotStand.Enable();
         pilotStand.SitDown();
