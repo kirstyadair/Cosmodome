@@ -10,7 +10,7 @@ public class ParticleSpawnerScript : MonoBehaviour
     
     void OnEnable()
     {
-        ExcitementManager.OnComboIncrease += Fireworks;
+        ExcitementManager.OnComboIncrease += BurstFire;
         ScoreManager.OnRemovePlayer += Fireworks;
     }
 
