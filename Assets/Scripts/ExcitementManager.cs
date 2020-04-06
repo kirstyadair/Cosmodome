@@ -11,7 +11,6 @@ public class ExcitementManager : MonoBehaviour
     AudioSource audio;
     public AudioClip cheer1;
     public AudioClip cheer2;
-    public ParticleSystem[] particleBursts;
     ExcitementMeterScript topPlayer;
     public static event ResetHype OnResetHype;
     public delegate void ResetHype();
@@ -21,6 +20,9 @@ public class ExcitementManager : MonoBehaviour
     public float maxHypeTimer;
     public int hypeLevel;
     float hypeTimer;
+
+    public delegate void ComboIncrease(PlayerData playerData);
+    public static event ComboIncrease OnComboIncrease;
 
 
     // Start is called before the first frame update
@@ -84,6 +86,7 @@ public class ExcitementManager : MonoBehaviour
         {
             // Add to the combo of the attacking player
             shootingPlayerExcitement.comboScore++;
+            OnComboIncrease?.Invoke(shootingPlayer.playerData);
 
             if (shootingPlayerExcitement.comboScore > shootingPlayer.playerData.comboHi) shootingPlayer.playerData.comboHi = shootingPlayerExcitement.comboScore;
             
@@ -107,10 +110,6 @@ public class ExcitementManager : MonoBehaviour
             audio.pitch = ((float)hypeLevel / 10) + 0.5f;
             audio.PlayOneShot(cheer1);
             audio.PlayOneShot(cheer2);
-            foreach (ParticleSystem particle in particleBursts)
-            {
-                particle.Play();
-            }
         }
     }
 }

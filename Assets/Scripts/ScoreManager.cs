@@ -384,7 +384,7 @@ public class ScoreManager : MonoBehaviour
 
     void PlayerHitByArenaCannon(PlayerScript shotPlayer)
     {
-        Debug.Log("AC changed approval of " + shotPlayer + " by " + (-arenaCannonRate));
+        //Debug.Log("AC changed approval of " + shotPlayer + " by " + (-arenaCannonRate));
         shotPlayer.approval.ChangeApproval(-arenaCannonRate);
 
         OnUpdateScore?.Invoke();

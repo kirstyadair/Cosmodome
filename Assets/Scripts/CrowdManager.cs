@@ -74,7 +74,7 @@ public class CrowdManager : MonoBehaviour
                 }
                 if(j >= minVal && j < (minVal + numOfSupporters[i]))
                 {
-                    crowdMemberScripts[j].glowstickMR.material.SetColor("_EmissionColor", sm.players[i].playerColor.color);
+                    crowdMemberScripts[j].glowstickMR.material.SetColor("_EmissionColor", sm.players[i].playerColor.color * 5);
                 }
             }
             minVal += numOfSupporters[i];
