@@ -15,6 +15,9 @@ public class CrowdManager : MonoBehaviour
     public GameObject[] crowdMembers;
     public List<CrowdMemberScript> crowdMemberScripts = new List<CrowdMemberScript>();
 
+    public delegate void ProjectileThrow();
+    public static event ProjectileThrow OnProjectileThrow;
+
 
     void OnEnable()
     {
@@ -92,8 +95,8 @@ public class CrowdManager : MonoBehaviour
 
     void CrowdBoo()
     {
-        if (Random.value < 0.5f) return;
+        //if (Random.value < 0.5f) return;
 
-        Debug.Log("throwing something");
+        OnProjectileThrow?.Invoke();
     }
 }

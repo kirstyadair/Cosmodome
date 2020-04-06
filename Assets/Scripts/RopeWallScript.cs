@@ -62,7 +62,7 @@ public class RopeWallScript : MonoBehaviour
     {
         foreach (ShipToBounce ship in ships)
         {
-            Debug.Log(ship.originalMass);
+
             ship.shipRB.mass = ship.originalMass;
             ShipController sc = ship.shipRB.gameObject.GetComponent<ShipController>();
             ship.directionOfShip = Vector3.Normalize(ship.shipRB.gameObject.transform.position - transform.position);
