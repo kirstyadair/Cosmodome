@@ -2,18 +2,28 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
+public class Song
+{
+    public AudioClip song;
+    public AudioClip[] songFills;
+    public int songBPM;
+}
+
+
 public class SongPicker : MonoBehaviour
 {
-    public List<AudioClip> songs;
-    public List<AudioClip> songFills;
+    public List<Song> theSongs = new List<Song>();
 
-    public AudioSource musicSource;
-    public AudioSource fillSource;
-    AudioClip currentSong;
-    AudioClip currentSongFill;
+    public List<AudioClip> songs;
+   
+    public AudioSource currentSong;
+    public AudioSource currentSongFill;
+
+    public int roundCounter = 1;
+    int songChosen;
 
     public float timepassed;
-    public float songBpm;
     public float secPerBeat;
     public float songPosition;
     public float songPositionInBeats;
@@ -34,12 +44,11 @@ public class SongPicker : MonoBehaviour
         }
         if (newState == GameState.ROUND_END_CUTSCENE)
         {
-            Mathf.Round(songPosition);
             timeToStartFrom = songPosition;
-            musicSource.Stop();
+            currentSong.Stop();
             countBeats = false;
-            fillSource.clip = currentSongFill;
-            fillSource.Play();
+            currentSongFill.Play();
+            roundCounter++;
         }
         if(newState==GameState.ROUND_START_CUTSCENE)
         {
@@ -47,13 +56,20 @@ public class SongPicker : MonoBehaviour
         }
         if (newState == GameState.INGAME)
         {
-            Mathf.Round(timepassed);
-            fillSource.Stop();
+            currentSongFill.Stop();
+            if(roundCounter>2)
+            {
+                currentSongFill.clip = null;
+            }
+            else
+            {
+                currentSongFill.clip = theSongs[songChosen].songFills[roundCounter - 1];
+            }
+            
+
             countBeats = true;
-            musicSource.clip = currentSong;
-            musicSource.loop = false;
-            musicSource.time = timeToStartFrom;
-            musicSource.Play();
+            currentSong.time = timeToStartFrom;
+            currentSong.Play();
         }
 
     }
@@ -69,46 +85,14 @@ public class SongPicker : MonoBehaviour
     {
         ScoreManager.OnStateChanged += OnStateChange;
 
-        int songtoPick = Random.Range(0, songs.Count);
-        currentSong = songs[songtoPick];
-        musicSource.clip = currentSong;
+        int songtoPick = Random.Range(0, theSongs.Count);
+        songChosen = songtoPick;
+        
+        secPerBeat = 60f/theSongs[songtoPick].songBPM;
 
+        currentSong.clip = theSongs[songtoPick].song;
+        currentSongFill.clip = theSongs[songtoPick].songFills[0];
 
-
-        if (songtoPick == 0)
-        {
-            songBpm = 110f;
-            currentSongFill = songFills[0];
-            musicSource.volume = 0.5f;
-            fillSource.volume = 0.5f;
-        }
-        if (songtoPick==1)
-        {
-            songBpm = 128f;
-            currentSongFill = songFills[1];
-            musicSource.volume = 0.4f;
-            fillSource.volume = 0.4f;
-
-        }
-        if (songtoPick == 2)
-        {
-            songBpm = 128f;
-            currentSongFill = songFills[2];
-            musicSource.volume = 0.6f;
-            fillSource.volume = 0.6f;
-
-        }
-        if (songtoPick == 3)
-        {
-            songBpm = 128f;
-            currentSongFill = songFills[3];
-            musicSource.volume = 0.6f;
-            fillSource.volume = 0.6f;
-
-        }
-
-
-        secPerBeat = 60f / songBpm;
         currentSongTime = (float)AudioSettings.dspTime;
 
 
@@ -117,7 +101,7 @@ public class SongPicker : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (musicSource.isPlaying && countBeats == true)
+        if (currentSong.isPlaying && countBeats == true)
         {
             songPosition = (float)(AudioSettings.dspTime - currentSongTime - firstBeatOffset - timepassed);
             songPositionInBeats = songPosition / secPerBeat;
