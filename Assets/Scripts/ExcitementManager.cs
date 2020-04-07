@@ -21,6 +21,8 @@ public class ExcitementManager : MonoBehaviour
     public int hypeLevel;
     public float hypeTimer;
 
+    [SerializeField] GameObject crowdCheerPrefab;
+
     public delegate void ComboIncrease(PlayerData playerData);
     public static event ComboIncrease OnComboIncrease;
 
@@ -105,14 +107,14 @@ public class ExcitementManager : MonoBehaviour
         UpdateHype();
 
         // Add hype
-        if (shootingPlayer == topPlayer.gameObject)
+        if (shootingPlayer == topPlayer.GetComponent<PlayerScript>())
         {
             hypeLevel++;
             hypeTimer = maxHypeTimer;
-            speedIncrement += 2;
+            speedIncrement += 0.1f;
             OnAddHype?.Invoke();
-            audio.pitch = ((float)hypeLevel / 10) + 0.5f;
-            audio.PlayOneShot(cheer1);
+            //audio.pitch = ((float)hypeLevel / 10) + 0.5f;
+            audio.volume += 0.1f;
             audio.PlayOneShot(cheer2);
         }
     }

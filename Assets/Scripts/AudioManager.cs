@@ -8,6 +8,7 @@ public class AudioManager : MonoBehaviour
     [SerializeField] AudioSource mainAudioSource;
     [SerializeField] AudioSource characterIntroAudioSource; // has a seperate source so we can Stop() it when the cutscene is skipped
     [SerializeField] AudioSource countdownSource; // seperate source for countdown so we can start playing at a given offset
+    
 
     public AudioClips[] clips;
 

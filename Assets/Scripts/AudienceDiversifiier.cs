@@ -41,7 +41,7 @@ public class AudienceDiversifiier : MonoBehaviour
     {
         foreach (Animator alien in aliens)
         {
-            speed = Random.Range(animatorSpeedRange.x, animatorSpeedRange.y) * sm.em.hypeLevel;
+            speed = Random.Range(animatorSpeedRange.x, animatorSpeedRange.y) + sm.em.speedIncrement;
             if (sm.em.hypeLevel == 0) speed = 0.5f;
             alien.SetFloat("Speed", speed);
         }
