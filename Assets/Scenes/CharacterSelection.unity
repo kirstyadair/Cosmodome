@@ -1849,6 +1849,11 @@ PrefabInstance:
       propertyPath: m_LocalRotation.w
       value: 0.9914458
       objectReference: {fileID: 0}
+    - target: {fileID: 6354893151727708474, guid: dab8f9540d8fdd245a4d619abd84a730,
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4397096143710821264, guid: dab8f9540d8fdd245a4d619abd84a730,
         type: 3}
       propertyPath: m_LocalRotation.x
@@ -2789,11 +2794,6 @@ PrefabInstance:
       propertyPath: m_LocalRotation.w
       value: 0.99999577
       objectReference: {fileID: 0}
-    - target: {fileID: 6354893151727708474, guid: dab8f9540d8fdd245a4d619abd84a730,
-        type: 3}
-      propertyPath: m_CastShadows
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dab8f9540d8fdd245a4d619abd84a730, type: 3}
 --- !u!1 &443592440
@@ -2864,7 +2864,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: <color=red>HLG BUILD</color> 03/04/2020
+  m_Text: 'INTERNAL BUILD
+
+    07/04/2020'
 --- !u!222 &443592443
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3048,21 +3050,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Dave's ship (1)
       objectReference: {fileID: 0}
-    - target: {fileID: -5097543003843294816, guid: 036ebfa56a2625b4eb4a5857a5ee95de,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 3063da559b7cca84ba9ecc191dfb27bd, type: 2}
-    - target: {fileID: 106206116153664855, guid: 036ebfa56a2625b4eb4a5857a5ee95de,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 3063da559b7cca84ba9ecc191dfb27bd, type: 2}
-    - target: {fileID: -1504981713932161579, guid: 036ebfa56a2625b4eb4a5857a5ee95de,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 3063da559b7cca84ba9ecc191dfb27bd, type: 2}
     - target: {fileID: -4216859302048453862, guid: 036ebfa56a2625b4eb4a5857a5ee95de,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3133,6 +3120,21 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 111.07501
       objectReference: {fileID: 0}
+    - target: {fileID: -5097543003843294816, guid: 036ebfa56a2625b4eb4a5857a5ee95de,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 3063da559b7cca84ba9ecc191dfb27bd, type: 2}
+    - target: {fileID: 106206116153664855, guid: 036ebfa56a2625b4eb4a5857a5ee95de,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 3063da559b7cca84ba9ecc191dfb27bd, type: 2}
+    - target: {fileID: -1504981713932161579, guid: 036ebfa56a2625b4eb4a5857a5ee95de,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 3063da559b7cca84ba9ecc191dfb27bd, type: 2}
     - target: {fileID: -4248753850757417055, guid: 036ebfa56a2625b4eb4a5857a5ee95de,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -4515,7 +4517,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 882235897}
   m_LocalRotation: {x: 0.3996755, y: -0.30053368, z: 0.07736193, w: 0.8625277}
-  m_LocalPosition: {x: 0, y: 0, z: -112}
+  m_LocalPosition: {x: 0, y: 0, z: -163.8}
   m_LocalScale: {x: 1.0000185, y: 1.0000185, z: 1.0000186}
   m_Children: []
   m_Father: {fileID: 806115066}
@@ -4523,7 +4525,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 132.611, y: -222.409, z: -189.074}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 181, y: 242}
+  m_AnchoredPosition: {x: 157.5, y: 236.2}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!108 &882235899
