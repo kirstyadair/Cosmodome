@@ -12,7 +12,8 @@ public class CutscenesManager : MonoBehaviour
 
     // Called when the current character intro has ended, either naturally or when skipped
     public static event CutsceneCharacterEvent OnCharacterIntroEnded;
-    
+
+
 
     public delegate void CutsceneEvent();
     public static event CutsceneEvent OnRoundStart; 
@@ -73,7 +74,8 @@ public class CutscenesManager : MonoBehaviour
     PlayerTypes _currentIntroCutscene;
     bool _isPlayingInBetweenRoundCutscenes = false;
     bool _skipCutscene = false;
-
+    PilotStand _currentShowingPilotStand = null;
+    
     ScoreManager sm;
     Coroutine playCountdownafterSecondsCoroutine = null;
 
@@ -227,6 +229,14 @@ public class CutscenesManager : MonoBehaviour
         cameraMovement.ResetCamera();
     }
 
+    /// <summary>
+    /// Triggered by the camera animator when the character should sit down
+    /// </summary>
+    public void Animator_OnCharactersSitDown()
+    {
+        _currentShowingPilotStand.SitDown();
+    }
+
     void  StopPlayingInbetweenRoundCutscenes()
     {
         _isPlayingInBetweenRoundCutscenes = false;
@@ -260,7 +270,7 @@ public class CutscenesManager : MonoBehaviour
             ShipController shipController = plrShip.GetComponent<ShipController>();
 
             PlayerTypes playerType = playerScript.playerType;
-            PilotStand pilotStand = null;
+            _currentShowingPilotStand = null;
 
             playerNameIntroText.color = playerScript.playerColor.color;
             playerNameIntroText.text = "PLAYER " + playerScript.playerNumber;
@@ -275,25 +285,25 @@ public class CutscenesManager : MonoBehaviour
             {
                 case PlayerTypes.BIG_SCHLUG:
                     BigSchlugIntro?.Invoke();
-                    pilotStand = bigSchlugPilotStand;
+                    _currentShowingPilotStand = bigSchlugPilotStand;
                     animationName = "Schlug intro";
                     characterNameIntroText.text = "AS BIG SCHLUG";
                     break;
                 case PlayerTypes.DAVE:
                     DaveIntro?.Invoke();
-                    pilotStand = davePilotStand;
+                    _currentShowingPilotStand = davePilotStand;
                     animationName = "Dave intro";
                     characterNameIntroText.text = "AS DAVE";
                     break;
                 case PlayerTypes.EL_MOSCO:
-                    pilotStand = elMoscoPilotStand;
+                    _currentShowingPilotStand = elMoscoPilotStand;
                     ElMoscoIntro?.Invoke();
                     animationName = "El Mosco intro";
                     characterNameIntroText.text = "AS EL MOSCO";
                     break;
                 case PlayerTypes.HAMMER:
                     HHHIntro?.Invoke();
-                    pilotStand = hhhPilotStand;
+                    _currentShowingPilotStand = hhhPilotStand;
                     animationName = "Hammer intro";
                     characterNameIntroText.text = "AS HAMMERHEAD HENRY";
                     break;
@@ -305,8 +315,8 @@ public class CutscenesManager : MonoBehaviour
             // play the correct cutscene animation
             cameraAnimator.Play(animationName);
 
-            pilotStand.Enable();
-            pilotStand.WalkAndWave(2f);
+            _currentShowingPilotStand.Enable();
+            _currentShowingPilotStand.WalkAndWave(2f);
 
             _currentIntroCutscene = playerType;
             yield return new WaitForSeconds(1f);
@@ -327,7 +337,7 @@ public class CutscenesManager : MonoBehaviour
                 playCountdownafterSecondsCoroutine = StartCoroutine(PlayCountdownAfterSeeconds(totalSecondsOfCharacterCutscenes - 4f));
             }
 
-            pilotStand.SitDown();
+            _currentShowingPilotStand.SitDown();
 
 
             // Get ship ready for in-game view

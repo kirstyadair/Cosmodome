@@ -34,7 +34,10 @@ public class PilotStand : MonoBehaviour
     }
 
     void Start() {
-        if (ShouldTest()) WalkAndWave(2f);
+        if (ShouldTest()) {
+            SitDown();
+            Eliminated();//WalkAndWave(2f);
+        }
     }
 
     /// <summary>
