@@ -14,20 +14,18 @@ public class CrowdManager : MonoBehaviour
     ScoreManager sm;
     public GameObject[] crowdMembers;
     public List<CrowdMemberScript> crowdMemberScripts = new List<CrowdMemberScript>();
-
-    public delegate void ProjectileThrow();
-    public static event ProjectileThrow OnProjectileThrow;
+    
 
 
     void OnEnable()
     {
         ScoreManager.OnUpdateScore += UpdateCrowdSupport;
-        ExcitementManager.OnResetHype += CrowdBoo;
+
     }
 
     void OnDisable() {
         ScoreManager.OnUpdateScore -= UpdateCrowdSupport;
-        ExcitementManager.OnResetHype -= CrowdBoo;
+
     }
 
     // Start is called before the first frame update
@@ -91,12 +89,5 @@ public class CrowdManager : MonoBehaviour
         playerCount = sm.players.Count;
         playerScores = new float[playerCount];
         numOfSupporters = new float[playerCount];
-    }
-
-    void CrowdBoo()
-    {
-        //if (Random.value < 0.5f) return;
-
-        OnProjectileThrow?.Invoke();
     }
 }

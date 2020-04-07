@@ -11,6 +11,7 @@ public class ExcitementManager : MonoBehaviour
     AudioSource audio;
     public AudioClip cheer1;
     public AudioClip cheer2;
+    public AudioClip booing;
     ExcitementMeterScript topPlayer;
     public static event ResetHype OnResetHype;
     public delegate void ResetHype();
@@ -73,8 +74,7 @@ public class ExcitementManager : MonoBehaviour
             {
                 hypeLevel = 0;
                 speedIncrement = 1;
-                Debug.Log("Hype Reset");
-                OnResetHype?.Invoke();
+                TriggerReset();
             }
         }
 
@@ -114,13 +114,23 @@ public class ExcitementManager : MonoBehaviour
             speedIncrement += 0.1f;
             OnAddHype?.Invoke();
             //audio.pitch = ((float)hypeLevel / 10) + 0.5f;
-            audio.volume += 0.1f;
+            audio.volume += 0.05f;
             audio.PlayOneShot(cheer2);
         }
     }
 
     public void TriggerReset()
     {
+        audio.Stop();
+        StartCoroutine(Boo());
+        
         OnResetHype?.Invoke();
+    }
+
+    IEnumerator Boo()
+    {
+        audio.PlayOneShot(booing);
+        yield return new WaitForSeconds(booing.length);
+        audio.volume = 0.1f;
     }
 }

@@ -8,18 +8,16 @@ public class ProjectileSpawner : MonoBehaviour
 
     private void OnEnable()
     {
-        CrowdManager.OnProjectileThrow += FireProjectile;
+        ExcitementManager.OnResetHype += FireProjectile;
     }
 
     private void OnDisable()
     {
-        CrowdManager.OnProjectileThrow -= FireProjectile;
+        ExcitementManager.OnResetHype -= FireProjectile;
     }
 
     void FireProjectile()
     {
-        if (Random.value > 0.5f) return;
-
         GameObject newObj = Instantiate(projectile, transform.position, transform.rotation);
     }
 }
