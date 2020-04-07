@@ -83,8 +83,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afbca010cf10d3140a473d3302f2d77c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  standard: {fileID: 2100000, guid: cf2e8a888f7d29141bcecf29780e26b8, type: 2}
-  redMaterial: {fileID: 2100000, guid: 492ae1cab4ed75546bd85488d73965d6, type: 2}
+  standard: {fileID: 2100000, guid: 36429c7cabf3118478fcf96256f2b458, type: 2}
+  redMaterial: {fileID: 2100000, guid: 7e5a969d8904d7e45899cb8fceb2ab27, type: 2}
   tilePrefabScript: {fileID: 5006138961879408010}
   maxNumOfHits: 2
 --- !u!54 &1633443637605187964
@@ -396,8 +396,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afbca010cf10d3140a473d3302f2d77c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  standard: {fileID: 2100000, guid: cf2e8a888f7d29141bcecf29780e26b8, type: 2}
-  redMaterial: {fileID: 2100000, guid: 492ae1cab4ed75546bd85488d73965d6, type: 2}
+  standard: {fileID: 2100000, guid: ed0cb0741a679014cb5c5c344330661d, type: 2}
+  redMaterial: {fileID: 2100000, guid: 7e5a969d8904d7e45899cb8fceb2ab27, type: 2}
   tilePrefabScript: {fileID: 5006138961879408010}
   maxNumOfHits: 2
 --- !u!54 &1457309038619881079
@@ -614,7 +614,6 @@ MonoBehaviour:
   sparksParticle: {fileID: 0}
   redMat: {fileID: 0}
   standardMat: {fileID: 2100000, guid: cf2e8a888f7d29141bcecf29780e26b8, type: 2}
-  isActive: 0
 --- !u!1 &559828202265983523
 GameObject:
   m_ObjectHideFlags: 0
@@ -690,7 +689,6 @@ MonoBehaviour:
   sparksParticle: {fileID: 0}
   redMat: {fileID: 0}
   standardMat: {fileID: 2100000, guid: cf2e8a888f7d29141bcecf29780e26b8, type: 2}
-  isActive: 0
 --- !u!65 &8606658886902245816
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -720,7 +718,7 @@ MonoBehaviour:
   ps: {fileID: 2887851164101499027}
   rockHitPs: {fileID: 1040608886635896, guid: a97415c6b57076f41a6621a7b51d63a3, type: 3}
   tilePrefabScript: {fileID: 5006138961879408010}
-  redMat: {fileID: 2100000, guid: 492ae1cab4ed75546bd85488d73965d6, type: 2}
+  redMat: {fileID: 2100000, guid: 7e5a969d8904d7e45899cb8fceb2ab27, type: 2}
   standardMat: {fileID: 2100000, guid: a5305050de24c7f458df6691706e4a11, type: 2}
   isExploding: 0
   isRed: 0
@@ -753,7 +751,7 @@ MonoBehaviour:
   ps: {fileID: 2887851164101499027}
   rockHitPs: {fileID: 1040608886635896, guid: a97415c6b57076f41a6621a7b51d63a3, type: 3}
   tilePrefabScript: {fileID: 5006138961879408010}
-  redMat: {fileID: 2100000, guid: 492ae1cab4ed75546bd85488d73965d6, type: 2}
+  redMat: {fileID: 2100000, guid: 7e5a969d8904d7e45899cb8fceb2ab27, type: 2}
   standardMat: {fileID: 2100000, guid: a5305050de24c7f458df6691706e4a11, type: 2}
   isExploding: 0
   isRed: 0
@@ -786,7 +784,7 @@ MonoBehaviour:
   ps: {fileID: 2887851164101499027}
   rockHitPs: {fileID: 1040608886635896, guid: a97415c6b57076f41a6621a7b51d63a3, type: 3}
   tilePrefabScript: {fileID: 5006138961879408010}
-  redMat: {fileID: 2100000, guid: 492ae1cab4ed75546bd85488d73965d6, type: 2}
+  redMat: {fileID: 2100000, guid: 7e5a969d8904d7e45899cb8fceb2ab27, type: 2}
   standardMat: {fileID: 2100000, guid: a5305050de24c7f458df6691706e4a11, type: 2}
   isExploding: 0
   isRed: 0
@@ -1049,7 +1047,7 @@ MonoBehaviour:
   ps: {fileID: 2887851164101499027}
   rockHitPs: {fileID: 1040608886635896, guid: a97415c6b57076f41a6621a7b51d63a3, type: 3}
   tilePrefabScript: {fileID: 5006138961879408010}
-  redMat: {fileID: 2100000, guid: 492ae1cab4ed75546bd85488d73965d6, type: 2}
+  redMat: {fileID: 2100000, guid: 7e5a969d8904d7e45899cb8fceb2ab27, type: 2}
   standardMat: {fileID: 2100000, guid: a5305050de24c7f458df6691706e4a11, type: 2}
   isExploding: 0
   isRed: 0
@@ -1082,7 +1080,7 @@ MonoBehaviour:
   ps: {fileID: 2887851164101499027}
   rockHitPs: {fileID: 1040608886635896, guid: a97415c6b57076f41a6621a7b51d63a3, type: 3}
   tilePrefabScript: {fileID: 5006138961879408010}
-  redMat: {fileID: 2100000, guid: 492ae1cab4ed75546bd85488d73965d6, type: 2}
+  redMat: {fileID: 2100000, guid: 7e5a969d8904d7e45899cb8fceb2ab27, type: 2}
   standardMat: {fileID: 2100000, guid: a5305050de24c7f458df6691706e4a11, type: 2}
   isExploding: 0
   isRed: 0
@@ -1131,7 +1129,6 @@ MonoBehaviour:
   sparksParticle: {fileID: 0}
   redMat: {fileID: 0}
   standardMat: {fileID: 2100000, guid: cf2e8a888f7d29141bcecf29780e26b8, type: 2}
-  isActive: 0
 --- !u!54 &1576978801274116867
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1202,8 +1199,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afbca010cf10d3140a473d3302f2d77c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  standard: {fileID: 2100000, guid: cf2e8a888f7d29141bcecf29780e26b8, type: 2}
-  redMaterial: {fileID: 2100000, guid: 492ae1cab4ed75546bd85488d73965d6, type: 2}
+  standard: {fileID: 2100000, guid: ed0cb0741a679014cb5c5c344330661d, type: 2}
+  redMaterial: {fileID: 2100000, guid: 7e5a969d8904d7e45899cb8fceb2ab27, type: 2}
   tilePrefabScript: {fileID: 5006138961879408010}
   maxNumOfHits: 2
 --- !u!54 &3459979806452480735
@@ -1329,9 +1326,8 @@ MonoBehaviour:
     type: 3}
   sparksParticle: {fileID: 1995403933065894, guid: 4961a16ba01e09547be3e1c9d16d5ad0,
     type: 3}
-  redMat: {fileID: 2100000, guid: 492ae1cab4ed75546bd85488d73965d6, type: 2}
+  redMat: {fileID: 0}
   standardMat: {fileID: 2100000, guid: cf2e8a888f7d29141bcecf29780e26b8, type: 2}
-  isActive: 0
 --- !u!65 &8463037142672659825
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1361,9 +1357,8 @@ MonoBehaviour:
     type: 3}
   sparksParticle: {fileID: 1995403933065894, guid: 4961a16ba01e09547be3e1c9d16d5ad0,
     type: 3}
-  redMat: {fileID: 2100000, guid: 492ae1cab4ed75546bd85488d73965d6, type: 2}
+  redMat: {fileID: 0}
   standardMat: {fileID: 2100000, guid: cf2e8a888f7d29141bcecf29780e26b8, type: 2}
-  isActive: 0
 --- !u!54 &6307054646371047192
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1637,8 +1632,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afbca010cf10d3140a473d3302f2d77c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  standard: {fileID: 2100000, guid: cf2e8a888f7d29141bcecf29780e26b8, type: 2}
-  redMaterial: {fileID: 2100000, guid: 492ae1cab4ed75546bd85488d73965d6, type: 2}
+  standard: {fileID: 2100000, guid: 5b8a0b9a2acf46840b126c6607e5468c, type: 2}
+  redMaterial: {fileID: 2100000, guid: 7e5a969d8904d7e45899cb8fceb2ab27, type: 2}
   tilePrefabScript: {fileID: 5006138961879408010}
   maxNumOfHits: 2
 --- !u!1 &1524323608232292756
@@ -1893,9 +1888,8 @@ MonoBehaviour:
     type: 3}
   sparksParticle: {fileID: 1995403933065894, guid: 4961a16ba01e09547be3e1c9d16d5ad0,
     type: 3}
-  redMat: {fileID: 2100000, guid: 492ae1cab4ed75546bd85488d73965d6, type: 2}
+  redMat: {fileID: 0}
   standardMat: {fileID: 2100000, guid: cf2e8a888f7d29141bcecf29780e26b8, type: 2}
-  isActive: 0
 --- !u!114 &6683481742982245151
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2078,7 +2072,6 @@ MonoBehaviour:
   sparksParticle: {fileID: 0}
   redMat: {fileID: 0}
   standardMat: {fileID: 2100000, guid: cf2e8a888f7d29141bcecf29780e26b8, type: 2}
-  isActive: 0
 --- !u!54 &2067916182863111131
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2244,7 +2237,7 @@ MonoBehaviour:
   ps: {fileID: 2887851164101499027}
   rockHitPs: {fileID: 1040608886635896, guid: a97415c6b57076f41a6621a7b51d63a3, type: 3}
   tilePrefabScript: {fileID: 5006138961879408010}
-  redMat: {fileID: 2100000, guid: 492ae1cab4ed75546bd85488d73965d6, type: 2}
+  redMat: {fileID: 2100000, guid: 7e5a969d8904d7e45899cb8fceb2ab27, type: 2}
   standardMat: {fileID: 2100000, guid: a5305050de24c7f458df6691706e4a11, type: 2}
   isExploding: 0
   isRed: 0
@@ -2277,7 +2270,7 @@ MonoBehaviour:
   ps: {fileID: 2887851164101499027}
   rockHitPs: {fileID: 1040608886635896, guid: a97415c6b57076f41a6621a7b51d63a3, type: 3}
   tilePrefabScript: {fileID: 5006138961879408010}
-  redMat: {fileID: 2100000, guid: 492ae1cab4ed75546bd85488d73965d6, type: 2}
+  redMat: {fileID: 2100000, guid: 7e5a969d8904d7e45899cb8fceb2ab27, type: 2}
   standardMat: {fileID: 2100000, guid: a5305050de24c7f458df6691706e4a11, type: 2}
   isExploding: 0
   isRed: 0
@@ -2310,9 +2303,8 @@ MonoBehaviour:
     type: 3}
   sparksParticle: {fileID: 1995403933065894, guid: 4961a16ba01e09547be3e1c9d16d5ad0,
     type: 3}
-  redMat: {fileID: 2100000, guid: 492ae1cab4ed75546bd85488d73965d6, type: 2}
+  redMat: {fileID: 0}
   standardMat: {fileID: 2100000, guid: cf2e8a888f7d29141bcecf29780e26b8, type: 2}
-  isActive: 0
 --- !u!1 &2209391685759098595
 GameObject:
   m_ObjectHideFlags: 0
@@ -2426,8 +2418,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afbca010cf10d3140a473d3302f2d77c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  standard: {fileID: 2100000, guid: cf2e8a888f7d29141bcecf29780e26b8, type: 2}
-  redMaterial: {fileID: 2100000, guid: 492ae1cab4ed75546bd85488d73965d6, type: 2}
+  standard: {fileID: 2100000, guid: 5b8a0b9a2acf46840b126c6607e5468c, type: 2}
+  redMaterial: {fileID: 2100000, guid: 7e5a969d8904d7e45899cb8fceb2ab27, type: 2}
   tilePrefabScript: {fileID: 5006138961879408010}
   maxNumOfHits: 2
 --- !u!54 &8785978700782312538
@@ -2530,7 +2522,6 @@ MonoBehaviour:
   sparksParticle: {fileID: 0}
   redMat: {fileID: 0}
   standardMat: {fileID: 2100000, guid: cf2e8a888f7d29141bcecf29780e26b8, type: 2}
-  isActive: 0
 --- !u!1 &2592573873899497108
 GameObject:
   m_ObjectHideFlags: 0
@@ -2692,7 +2683,7 @@ MonoBehaviour:
   ps: {fileID: 2887851164101499027}
   rockHitPs: {fileID: 1040608886635896, guid: a97415c6b57076f41a6621a7b51d63a3, type: 3}
   tilePrefabScript: {fileID: 5006138961879408010}
-  redMat: {fileID: 2100000, guid: 492ae1cab4ed75546bd85488d73965d6, type: 2}
+  redMat: {fileID: 2100000, guid: 7e5a969d8904d7e45899cb8fceb2ab27, type: 2}
   standardMat: {fileID: 2100000, guid: a5305050de24c7f458df6691706e4a11, type: 2}
   isExploding: 0
   isRed: 0
@@ -3183,8 +3174,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afbca010cf10d3140a473d3302f2d77c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  standard: {fileID: 2100000, guid: cf2e8a888f7d29141bcecf29780e26b8, type: 2}
-  redMaterial: {fileID: 2100000, guid: 492ae1cab4ed75546bd85488d73965d6, type: 2}
+  standard: {fileID: 2100000, guid: ed0cb0741a679014cb5c5c344330661d, type: 2}
+  redMaterial: {fileID: 2100000, guid: 7e5a969d8904d7e45899cb8fceb2ab27, type: 2}
   tilePrefabScript: {fileID: 5006138961879408010}
   maxNumOfHits: 2
 --- !u!65 &1294757343809763513
@@ -3216,7 +3207,7 @@ MonoBehaviour:
   ps: {fileID: 2887851164101499027}
   rockHitPs: {fileID: 1040608886635896, guid: a97415c6b57076f41a6621a7b51d63a3, type: 3}
   tilePrefabScript: {fileID: 5006138961879408010}
-  redMat: {fileID: 2100000, guid: 492ae1cab4ed75546bd85488d73965d6, type: 2}
+  redMat: {fileID: 2100000, guid: 7e5a969d8904d7e45899cb8fceb2ab27, type: 2}
   standardMat: {fileID: 2100000, guid: a5305050de24c7f458df6691706e4a11, type: 2}
   isExploding: 0
   isRed: 0
@@ -3291,7 +3282,7 @@ MonoBehaviour:
   ps: {fileID: 2887851164101499027}
   rockHitPs: {fileID: 1040608886635896, guid: a97415c6b57076f41a6621a7b51d63a3, type: 3}
   tilePrefabScript: {fileID: 5006138961879408010}
-  redMat: {fileID: 2100000, guid: 492ae1cab4ed75546bd85488d73965d6, type: 2}
+  redMat: {fileID: 2100000, guid: 7e5a969d8904d7e45899cb8fceb2ab27, type: 2}
   standardMat: {fileID: 2100000, guid: a5305050de24c7f458df6691706e4a11, type: 2}
   isExploding: 0
   isRed: 0
@@ -3621,7 +3612,7 @@ MonoBehaviour:
   ps: {fileID: 2887851164101499027}
   rockHitPs: {fileID: 1040608886635896, guid: a97415c6b57076f41a6621a7b51d63a3, type: 3}
   tilePrefabScript: {fileID: 5006138961879408010}
-  redMat: {fileID: 2100000, guid: 492ae1cab4ed75546bd85488d73965d6, type: 2}
+  redMat: {fileID: 2100000, guid: 7e5a969d8904d7e45899cb8fceb2ab27, type: 2}
   standardMat: {fileID: 2100000, guid: a5305050de24c7f458df6691706e4a11, type: 2}
   isExploding: 0
   isRed: 0
@@ -3783,7 +3774,6 @@ MonoBehaviour:
   sparksParticle: {fileID: 0}
   redMat: {fileID: 0}
   standardMat: {fileID: 2100000, guid: cf2e8a888f7d29141bcecf29780e26b8, type: 2}
-  isActive: 0
 --- !u!54 &8894639698078360938
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3825,8 +3815,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afbca010cf10d3140a473d3302f2d77c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  standard: {fileID: 2100000, guid: cf2e8a888f7d29141bcecf29780e26b8, type: 2}
-  redMaterial: {fileID: 2100000, guid: 492ae1cab4ed75546bd85488d73965d6, type: 2}
+  standard: {fileID: 2100000, guid: 5b8a0b9a2acf46840b126c6607e5468c, type: 2}
+  redMaterial: {fileID: 2100000, guid: 7e5a969d8904d7e45899cb8fceb2ab27, type: 2}
   tilePrefabScript: {fileID: 5006138961879408010}
   maxNumOfHits: 2
 --- !u!54 &4720687040028660173
@@ -3987,7 +3977,6 @@ MonoBehaviour:
   sparksParticle: {fileID: 0}
   redMat: {fileID: 0}
   standardMat: {fileID: 2100000, guid: cf2e8a888f7d29141bcecf29780e26b8, type: 2}
-  isActive: 0
 --- !u!54 &7322199878069211380
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -4075,7 +4064,7 @@ MonoBehaviour:
   ps: {fileID: 2887851164101499027}
   rockHitPs: {fileID: 1040608886635896, guid: a97415c6b57076f41a6621a7b51d63a3, type: 3}
   tilePrefabScript: {fileID: 5006138961879408010}
-  redMat: {fileID: 2100000, guid: 492ae1cab4ed75546bd85488d73965d6, type: 2}
+  redMat: {fileID: 2100000, guid: 7e5a969d8904d7e45899cb8fceb2ab27, type: 2}
   standardMat: {fileID: 2100000, guid: a5305050de24c7f458df6691706e4a11, type: 2}
   isExploding: 0
   isRed: 0
@@ -4510,7 +4499,6 @@ MonoBehaviour:
   sparksParticle: {fileID: 0}
   redMat: {fileID: 0}
   standardMat: {fileID: 2100000, guid: cf2e8a888f7d29141bcecf29780e26b8, type: 2}
-  isActive: 0
 --- !u!54 &335824983216244242
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -4585,7 +4573,6 @@ MonoBehaviour:
   sparksParticle: {fileID: 0}
   redMat: {fileID: 0}
   standardMat: {fileID: 2100000, guid: cf2e8a888f7d29141bcecf29780e26b8, type: 2}
-  isActive: 0
 --- !u!54 &2688388835990996484
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -5296,8 +5283,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afbca010cf10d3140a473d3302f2d77c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  standard: {fileID: 2100000, guid: cf2e8a888f7d29141bcecf29780e26b8, type: 2}
-  redMaterial: {fileID: 2100000, guid: 492ae1cab4ed75546bd85488d73965d6, type: 2}
+  standard: {fileID: 2100000, guid: 5b8a0b9a2acf46840b126c6607e5468c, type: 2}
+  redMaterial: {fileID: 2100000, guid: 7e5a969d8904d7e45899cb8fceb2ab27, type: 2}
   tilePrefabScript: {fileID: 5006138961879408010}
   maxNumOfHits: 2
 --- !u!54 &4504313912108817941
@@ -5710,9 +5697,8 @@ MonoBehaviour:
     type: 3}
   sparksParticle: {fileID: 1995403933065894, guid: 4961a16ba01e09547be3e1c9d16d5ad0,
     type: 3}
-  redMat: {fileID: 2100000, guid: 492ae1cab4ed75546bd85488d73965d6, type: 2}
+  redMat: {fileID: 0}
   standardMat: {fileID: 2100000, guid: cf2e8a888f7d29141bcecf29780e26b8, type: 2}
-  isActive: 0
 --- !u!114 &3657403839361421615
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5755,7 +5741,7 @@ MonoBehaviour:
   ps: {fileID: 2887851164101499027}
   rockHitPs: {fileID: 1040608886635896, guid: a97415c6b57076f41a6621a7b51d63a3, type: 3}
   tilePrefabScript: {fileID: 5006138961879408010}
-  redMat: {fileID: 2100000, guid: 492ae1cab4ed75546bd85488d73965d6, type: 2}
+  redMat: {fileID: 2100000, guid: 7e5a969d8904d7e45899cb8fceb2ab27, type: 2}
   standardMat: {fileID: 2100000, guid: a5305050de24c7f458df6691706e4a11, type: 2}
   isExploding: 0
   isRed: 0
@@ -5895,7 +5881,7 @@ MonoBehaviour:
   ps: {fileID: 2887851164101499027}
   rockHitPs: {fileID: 1040608886635896, guid: a97415c6b57076f41a6621a7b51d63a3, type: 3}
   tilePrefabScript: {fileID: 5006138961879408010}
-  redMat: {fileID: 2100000, guid: 492ae1cab4ed75546bd85488d73965d6, type: 2}
+  redMat: {fileID: 2100000, guid: 7e5a969d8904d7e45899cb8fceb2ab27, type: 2}
   standardMat: {fileID: 2100000, guid: a5305050de24c7f458df6691706e4a11, type: 2}
   isExploding: 0
   isRed: 0
@@ -6028,7 +6014,6 @@ MonoBehaviour:
   sparksParticle: {fileID: 0}
   redMat: {fileID: 0}
   standardMat: {fileID: 2100000, guid: cf2e8a888f7d29141bcecf29780e26b8, type: 2}
-  isActive: 0
 --- !u!1 &5678272820107947262
 GameObject:
   m_ObjectHideFlags: 0
@@ -6413,8 +6398,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afbca010cf10d3140a473d3302f2d77c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  standard: {fileID: 2100000, guid: cf2e8a888f7d29141bcecf29780e26b8, type: 2}
-  redMaterial: {fileID: 2100000, guid: 492ae1cab4ed75546bd85488d73965d6, type: 2}
+  standard: {fileID: 2100000, guid: 5b8a0b9a2acf46840b126c6607e5468c, type: 2}
+  redMaterial: {fileID: 2100000, guid: 7e5a969d8904d7e45899cb8fceb2ab27, type: 2}
   tilePrefabScript: {fileID: 5006138961879408010}
   maxNumOfHits: 2
 --- !u!54 &100625610020673181
@@ -6633,7 +6618,6 @@ MonoBehaviour:
   sparksParticle: {fileID: 0}
   redMat: {fileID: 0}
   standardMat: {fileID: 2100000, guid: cf2e8a888f7d29141bcecf29780e26b8, type: 2}
-  isActive: 0
 --- !u!54 &985192290902148620
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -6675,8 +6659,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afbca010cf10d3140a473d3302f2d77c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  standard: {fileID: 2100000, guid: cf2e8a888f7d29141bcecf29780e26b8, type: 2}
-  redMaterial: {fileID: 2100000, guid: 492ae1cab4ed75546bd85488d73965d6, type: 2}
+  standard: {fileID: 2100000, guid: ed0cb0741a679014cb5c5c344330661d, type: 2}
+  redMaterial: {fileID: 2100000, guid: 7e5a969d8904d7e45899cb8fceb2ab27, type: 2}
   tilePrefabScript: {fileID: 5006138961879408010}
   maxNumOfHits: 2
 --- !u!54 &7224288893565020480
@@ -6750,7 +6734,7 @@ MonoBehaviour:
   ps: {fileID: 2887851164101499027}
   rockHitPs: {fileID: 1040608886635896, guid: a97415c6b57076f41a6621a7b51d63a3, type: 3}
   tilePrefabScript: {fileID: 5006138961879408010}
-  redMat: {fileID: 2100000, guid: 492ae1cab4ed75546bd85488d73965d6, type: 2}
+  redMat: {fileID: 2100000, guid: 7e5a969d8904d7e45899cb8fceb2ab27, type: 2}
   standardMat: {fileID: 2100000, guid: a5305050de24c7f458df6691706e4a11, type: 2}
   isExploding: 0
   isRed: 0
@@ -6888,7 +6872,7 @@ MonoBehaviour:
   ps: {fileID: 2887851164101499027}
   rockHitPs: {fileID: 1040608886635896, guid: a97415c6b57076f41a6621a7b51d63a3, type: 3}
   tilePrefabScript: {fileID: 5006138961879408010}
-  redMat: {fileID: 2100000, guid: 492ae1cab4ed75546bd85488d73965d6, type: 2}
+  redMat: {fileID: 2100000, guid: 7e5a969d8904d7e45899cb8fceb2ab27, type: 2}
   standardMat: {fileID: 2100000, guid: a5305050de24c7f458df6691706e4a11, type: 2}
   isExploding: 0
   isRed: 0
@@ -6933,8 +6917,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afbca010cf10d3140a473d3302f2d77c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  standard: {fileID: 2100000, guid: cf2e8a888f7d29141bcecf29780e26b8, type: 2}
-  redMaterial: {fileID: 2100000, guid: 492ae1cab4ed75546bd85488d73965d6, type: 2}
+  standard: {fileID: 2100000, guid: 5b8a0b9a2acf46840b126c6607e5468c, type: 2}
+  redMaterial: {fileID: 2100000, guid: 7e5a969d8904d7e45899cb8fceb2ab27, type: 2}
   tilePrefabScript: {fileID: 5006138961879408010}
   maxNumOfHits: 2
 --- !u!54 &6513832062987807326
@@ -7082,7 +7066,7 @@ MonoBehaviour:
   ps: {fileID: 2887851164101499027}
   rockHitPs: {fileID: 1040608886635896, guid: a97415c6b57076f41a6621a7b51d63a3, type: 3}
   tilePrefabScript: {fileID: 5006138961879408010}
-  redMat: {fileID: 2100000, guid: 492ae1cab4ed75546bd85488d73965d6, type: 2}
+  redMat: {fileID: 2100000, guid: 7e5a969d8904d7e45899cb8fceb2ab27, type: 2}
   standardMat: {fileID: 2100000, guid: a5305050de24c7f458df6691706e4a11, type: 2}
   isExploding: 0
   isRed: 0
@@ -7127,8 +7111,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afbca010cf10d3140a473d3302f2d77c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  standard: {fileID: 2100000, guid: cf2e8a888f7d29141bcecf29780e26b8, type: 2}
-  redMaterial: {fileID: 2100000, guid: 492ae1cab4ed75546bd85488d73965d6, type: 2}
+  standard: {fileID: 2100000, guid: ed0cb0741a679014cb5c5c344330661d, type: 2}
+  redMaterial: {fileID: 2100000, guid: 7e5a969d8904d7e45899cb8fceb2ab27, type: 2}
   tilePrefabScript: {fileID: 5006138961879408010}
   maxNumOfHits: 2
 --- !u!54 &4801660695748373194
@@ -7490,9 +7474,8 @@ MonoBehaviour:
     type: 3}
   sparksParticle: {fileID: 1995403933065894, guid: 4961a16ba01e09547be3e1c9d16d5ad0,
     type: 3}
-  redMat: {fileID: 2100000, guid: 492ae1cab4ed75546bd85488d73965d6, type: 2}
+  redMat: {fileID: 0}
   standardMat: {fileID: 2100000, guid: cf2e8a888f7d29141bcecf29780e26b8, type: 2}
-  isActive: 0
 --- !u!114 &123754672297495080
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7509,7 +7492,6 @@ MonoBehaviour:
   sparksParticle: {fileID: 0}
   redMat: {fileID: 0}
   standardMat: {fileID: 2100000, guid: cf2e8a888f7d29141bcecf29780e26b8, type: 2}
-  isActive: 0
 --- !u!54 &2998704617940839774
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -8466,8 +8448,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afbca010cf10d3140a473d3302f2d77c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  standard: {fileID: 2100000, guid: cf2e8a888f7d29141bcecf29780e26b8, type: 2}
-  redMaterial: {fileID: 2100000, guid: 492ae1cab4ed75546bd85488d73965d6, type: 2}
+  standard: {fileID: 2100000, guid: ed0cb0741a679014cb5c5c344330661d, type: 2}
+  redMaterial: {fileID: 2100000, guid: 7e5a969d8904d7e45899cb8fceb2ab27, type: 2}
   tilePrefabScript: {fileID: 5006138961879408010}
   maxNumOfHits: 2
 --- !u!54 &7255047765997576020
@@ -9267,7 +9249,7 @@ MonoBehaviour:
   ps: {fileID: 2887851164101499027}
   rockHitPs: {fileID: 1040608886635896, guid: a97415c6b57076f41a6621a7b51d63a3, type: 3}
   tilePrefabScript: {fileID: 5006138961879408010}
-  redMat: {fileID: 2100000, guid: 492ae1cab4ed75546bd85488d73965d6, type: 2}
+  redMat: {fileID: 2100000, guid: 7e5a969d8904d7e45899cb8fceb2ab27, type: 2}
   standardMat: {fileID: 2100000, guid: a5305050de24c7f458df6691706e4a11, type: 2}
   isExploding: 0
   isRed: 0
