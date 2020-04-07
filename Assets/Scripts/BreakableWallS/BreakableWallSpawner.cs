@@ -15,6 +15,7 @@ public class WallPattern
 
 public class BreakableWallSpawner : MonoBehaviour
 {
+    [SerializeField] GameObject smokePuff;
     public WallPattern[] wallPatterns;
     public float timeBetweenSpawns;
     public float timeUntilDestroyed;
@@ -47,6 +48,13 @@ public class BreakableWallSpawner : MonoBehaviour
         int randomInt = UnityEngine.Random.Range(0, wallPatterns.Length);
         currentWall = wallPatterns[randomInt];
         wallNull = false;
+
+        StartCoroutine(EnableSmokePuffs(currentWall));
+    }
+
+
+    void ActivatePattern()
+    {
         // Activate all walls in this pattern
         for (int i = 0; i < currentWall.walls.Length; i++)
         {
@@ -112,5 +120,17 @@ public class BreakableWallSpawner : MonoBehaviour
             currentWall.walls[i].SetActive(true);
             if (i < currentWall.particleSystems.Length) currentWall.particleSystems[i].Play();
         }
+    }
+
+    IEnumerator EnableSmokePuffs(WallPattern wall)
+    {
+        foreach (GameObject wallPiece in wall.walls)
+        {
+           GameObject newPS = Instantiate(smokePuff, new Vector3(wallPiece.transform.position.x, 0, wallPiece.transform.position.z), transform.rotation);
+        }
+
+        yield return new WaitForSeconds(2);
+
+        ActivatePattern();
     }
 }
