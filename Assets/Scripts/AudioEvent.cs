@@ -65,12 +65,16 @@ public class AudioEvent : MonoBehaviour
         WallScript.OnTrapHit += AudioPlayerTrapTrigger;
         WallScript.OnTrapSabotaged += AudioPlayerTrapSetup;
         PlayerScript.OnPlayerCollision += AudioPlayerOnPlayerCollision;
-        ScoreManager.OnPlayerEliminated += AudioPlayerEliminated;
+        CutscenesManager.OnCharacterOut += AudioPlayerPlayerOut;
+
+
 
         CutscenesManager.DaveIntro +=PlayDaveIntro;
         CutscenesManager.BigSchlugIntro +=PlayBigSchlugIntro;
         CutscenesManager.HHHIntro +=PlayHHHIntro;
         CutscenesManager.ElMoscoIntro += PlayMoscoIntro;
+
+        CutscenesManager.OnAnnouncerBanter += AudioPlayerEndOfRoundbanter;
     }
 
      void OnDisable()
@@ -79,12 +83,16 @@ public class AudioEvent : MonoBehaviour
         WallScript.OnTrapHit -= AudioPlayerTrapTrigger;
         WallScript.OnTrapSabotaged -= AudioPlayerTrapSetup;
         PlayerScript.OnPlayerCollision -= AudioPlayerOnPlayerCollision;
-        ScoreManager.OnPlayerEliminated -= AudioPlayerEliminated;
 
         CutscenesManager.DaveIntro -= PlayDaveIntro;
         CutscenesManager.BigSchlugIntro -= PlayBigSchlugIntro;
         CutscenesManager.HHHIntro -= PlayHHHIntro;
         CutscenesManager.ElMoscoIntro -= PlayMoscoIntro;
+        CutscenesManager.OnCharacterOut -= AudioPlayerPlayerOut;
+
+        CutscenesManager.OnAnnouncerBanter -= AudioPlayerEndOfRoundbanter;
+
+
 
     }
 
@@ -133,14 +141,42 @@ public class AudioEvent : MonoBehaviour
 
    
     
-    void AudioPlayerEliminated()
+    void AudioPlayerPlayerOut(PlayerTypes playerType)
     {
-        if (!isPlaying)
+        if(playerType == PlayerTypes.DAVE)
         {
-            int randomClip = Random.Range(0, AudioArrayPlyerEliminated.Length);
-            AudioPlayerChangeSoundClip(AudioArrayPlyerEliminated, AudioPlayer, randomClip);
-            subtitle.GetComponent<AnnouncerDialouge>().DisplayPlayerShotSubtitle(randomClip, AudioArrayPlyerEliminated[randomClip].length);
+            int randomClip = Random.Range(0, AudioArray_Dave_Out.Length);
+            AudioPlayerChangeSoundClip(AudioArray_Dave_Out, AudioPlayer, randomClip);
+            subtitle.GetComponent<AnnouncerDialouge>().DisplayPlayerOutSubtitle(randomClip, playerType, AudioArray_Dave_Out [randomClip].length);
         }
+        if(playerType == PlayerTypes.EL_MOSCO)
+        {
+            int randomClip = Random.Range(0, AudioArray_Mosco_Out.Length);
+            AudioPlayerChangeSoundClip(AudioArray_Mosco_Out, AudioPlayer, randomClip);
+            subtitle.GetComponent<AnnouncerDialouge>().DisplayPlayerOutSubtitle(randomClip, playerType, AudioArray_Mosco_Out[randomClip].length);
+        }
+        if (playerType == PlayerTypes.HAMMER)
+        {
+            int randomClip = Random.Range(0, AudioArray_HHH_Out.Length);
+            AudioPlayerChangeSoundClip(AudioArray_HHH_Out, AudioPlayer, randomClip);
+            subtitle.GetComponent<AnnouncerDialouge>().DisplayPlayerOutSubtitle(randomClip, playerType, AudioArray_HHH_Out[randomClip].length);
+
+        }
+        if (playerType == PlayerTypes.BIG_SCHLUG)
+        {
+            int randomClip = Random.Range(0, AudioArray_Schlug_Out.Length);
+            AudioPlayerChangeSoundClip(AudioArray_Schlug_Out, AudioPlayer, randomClip);
+            subtitle.GetComponent<AnnouncerDialouge>().DisplayPlayerOutSubtitle(randomClip, playerType, AudioArray_Schlug_Out[randomClip].length);
+
+        }
+    }
+
+    void AudioPlayerEndOfRoundbanter()
+    {
+        int randomClip = Random.Range(0, AudioArray_Announcer_Banter.Length);
+        AudioPlayerChangeSoundClip(AudioArray_Announcer_Banter, AudioPlayer, randomClip);
+        subtitle.GetComponent<AnnouncerDialouge>().DisplayAnnouncerBanter(randomClip,AudioArray_Announcer_Banter[randomClip].length );
+
     }
 
     void AudioPlayerShot(PlayerScript playerHit, PlayerScript shooter)

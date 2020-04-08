@@ -714,4 +714,30 @@ public class AnnouncerDialouge : MonoBehaviour
         ShowSubtitle(dialouge_Coll_Generic[randomLine], time, false);
     }
 
+    public void DisplayAnnouncerBanter(int randomLine, float time)
+    {
+        ShowSubtitle(dialouge_EndOfRoundBanter[randomLine], time, true);
+
+    }
+
+    public void DisplayPlayerOutSubtitle(int randomLine, PlayerTypes playerType, float time)
+    {
+        if(playerType == PlayerTypes.DAVE)
+        {
+            ShowSubtitle(dialouge_DaveOut[randomLine], time, true);
+        }
+        if (playerType == PlayerTypes.EL_MOSCO)
+        {
+            ShowSubtitle(dialouge_MoscoOut[randomLine], time, true);
+        }
+        if (playerType == PlayerTypes.HAMMER)
+        {
+            ShowSubtitle(dialouge_HHHOut[randomLine], time, true);
+        }
+        if (playerType == PlayerTypes.BIG_SCHLUG)
+        {
+            ShowSubtitle(dialouge_SchlugOut[randomLine], time, true);
+        }
+    }
+
 }
