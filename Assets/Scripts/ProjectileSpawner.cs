@@ -5,6 +5,12 @@ using UnityEngine;
 public class ProjectileSpawner : MonoBehaviour
 {
     [SerializeField] GameObject projectile;
+    ScoreManager scoreManager;
+
+    private void Start()
+    {
+        scoreManager = ScoreManager.Instance;
+    }
 
     private void OnEnable()
     {
@@ -18,6 +24,8 @@ public class ProjectileSpawner : MonoBehaviour
 
     void FireProjectile()
     {
+        if (scoreManager.gameState != GameState.INGAME) return;
+
         GameObject newObj = Instantiate(projectile, transform.position, transform.rotation);
     }
 }
