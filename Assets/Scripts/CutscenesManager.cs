@@ -27,6 +27,7 @@ public class CutscenesManager : MonoBehaviour
     public static event CutSceneAudio BigSchlugIntro;
     public static event CutSceneAudio HHHIntro;
     public static event CutSceneAudio ElMoscoIntro;
+    public static event CutSceneAudio OnAnnouncerBanter;
 
     public delegate void BetweenRoundSound(PlayerTypes playerType);
     public static event BetweenRoundSound OnCharacterOut;
@@ -173,6 +174,7 @@ public class CutscenesManager : MonoBehaviour
 
         pilotStand.Disable();
         StartCoroutine(StartPlayingInbetweenRoundCutscenes(0f));
+        OnAnnouncerBanter?.Invoke();
 
         yield return new WaitForSeconds(7f);
 
