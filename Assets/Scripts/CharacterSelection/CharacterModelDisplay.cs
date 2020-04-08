@@ -39,11 +39,28 @@ public class CharacterModelDisplay : MonoBehaviour
         }
     }
 
+    public void HoverAnim() {
+        foreach (Transform transform in modelContainer)
+        {
+            if (transform.gameObject.name == _modelName) {
+                try {
+                    transform.GetComponentInChildren<Animator>().Play("Hover");
+                } catch (Exception e) {
+                    Debug.Log("Error playing Hover animation");
+                }
+
+            }
+        }
+    }
+
     public void AnimatorSwapModel()
     {
         foreach (Transform transform in modelContainer)
         {
-            if (transform.gameObject.name == _modelName) transform.gameObject.SetActive(true);
+            if (transform.gameObject.name == _modelName) {
+                transform.gameObject.SetActive(true);
+                HoverAnim();
+            }
             else if (transform.gameObject.GetComponent<Light>() == null) transform.gameObject.SetActive(false);
         }
     }
