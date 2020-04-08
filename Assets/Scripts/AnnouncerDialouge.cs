@@ -46,7 +46,8 @@ public class AnnouncerDialouge : MonoBehaviour
     public string[] dialouge_Coll_HHH_VS_Dave;
     public string[] dialouge_Coll_HHH_VS_Mosco;
     public string[] dialouge_Coll_HHH_VS_Schlug;
-
+    [Header("Generic Collision Lines")]
+    public string[] dialouge_Coll_Generic;
 
 
 
@@ -210,6 +211,8 @@ public class AnnouncerDialouge : MonoBehaviour
         dialouge_Coll_HHH_VS_Dave = new string[9];
         dialouge_Coll_HHH_VS_Schlug = new string[9];
         dialouge_Coll_HHH_VS_Mosco = new string[9];
+
+        dialouge_Coll_Generic = new string[42];
 
 
 
@@ -377,6 +380,49 @@ public class AnnouncerDialouge : MonoBehaviour
         dialouge_Coll_HHH_VS_Schlug[8] = "<color=blue>Henry's</color> taking all the risks hitting <color=purple>Big Schlug</color> like that!";
 
 
+        dialouge_Coll_Generic[0] = "That was some T-bone!";
+        dialouge_Coll_Generic[1] = "Ummm, I don't think intergalactic health insurance will cover that.";
+        dialouge_Coll_Generic[2] = "That was brutal!";
+        dialouge_Coll_Generic[3] = "Now that is one way to take out your anger issues!";
+        dialouge_Coll_Generic[4] = "Haaa- huhh, ooo d-uhh oh.";
+        dialouge_Coll_Generic[5] = "Ah-ohh...";
+        dialouge_Coll_Generic[6] = "Ohhhhhhhh...";
+        dialouge_Coll_Generic[7] = "Ooof.";
+        dialouge_Coll_Generic[8] = "Awwwww.";
+        dialouge_Coll_Generic[9] = "Owwww.";
+        dialouge_Coll_Generic[10] = "Ewww.";
+        dialouge_Coll_Generic[11] = "OHHH!";
+        dialouge_Coll_Generic[12] = "Oh no!";
+        dialouge_Coll_Generic[13] = "That looked painful.";
+        dialouge_Coll_Generic[14] = "Hoooooo-";
+        dialouge_Coll_Generic[15] = "That looked sore!";
+        dialouge_Coll_Generic[16] = "Aw that was a big hit!";
+        dialouge_Coll_Generic[17] = "Massive hit!";
+        dialouge_Coll_Generic[18] = "Big ol' bump!";
+        dialouge_Coll_Generic[19] = "Hayooog hit!";
+        dialouge_Coll_Generic[20] = "Massive crash!";
+        dialouge_Coll_Generic[21] = "Smashin' and crashin'";
+        dialouge_Coll_Generic[22] = "Crashin' and smashin'";
+        dialouge_Coll_Generic[23] = "That was a good hit!";
+        dialouge_Coll_Generic[24] = "An am amazing hit!";
+        dialouge_Coll_Generic[25] = "Oooo, looks like they're not afraid to trade some paint!";
+        dialouge_Coll_Generic[26] = "That was brutal!";
+        dialouge_Coll_Generic[27] = "I can't believe that just happened!";
+        dialouge_Coll_Generic[28] = "Metal on metal!";
+        dialouge_Coll_Generic[29] = "That hurt to watch!";
+        dialouge_Coll_Generic[20] = "Now that's gonna sting in the morning!";
+        dialouge_Coll_Generic[31] = "Oh! Well, you know... Walk it off.";
+        dialouge_Coll_Generic[32] = "Oh that was a nasty hit.";
+        dialouge_Coll_Generic[33] = "Let's hope they can walk after that one!";
+        dialouge_Coll_Generic[34] = "Great hit!";
+        dialouge_Coll_Generic[35] = "Oh! That looked like it hurt!";
+        dialouge_Coll_Generic[36] = "Is there a doctor in here? 'Cause something tells me you might need one after that.";
+        dialouge_Coll_Generic[37] = "Oooo! I hope your ship can still run after that!";
+        dialouge_Coll_Generic[38] = "Somebody's gonna need a new paintjob.";
+        dialouge_Coll_Generic[39] = "That was a good hit!";
+        dialouge_Coll_Generic[40] = "That one, I felt.";
+        dialouge_Coll_Generic[41] = "Ohh, I felt that one.";
+        
 
         dialougePlayerTrapSetup[0] = "Somebody is setting up a trap!";
         dialougePlayerTrapSetup[1] = "Looks like there's a trap being activated!";
@@ -661,6 +707,11 @@ public class AnnouncerDialouge : MonoBehaviour
         {
             ShowSubtitle(dialouge_Coll_HHH_VS_Schlug[randomLine], time, false);
         }
+    }
+
+    public void DisplayGenericCollisionSubtitle(int randomLine, float time)
+    {
+        ShowSubtitle(dialouge_Coll_Generic[randomLine], time, false);
     }
 
 }

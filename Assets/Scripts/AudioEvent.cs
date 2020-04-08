@@ -27,7 +27,7 @@ public class AudioEvent : MonoBehaviour
 
 
 
-[Header("Dave Collision Lines")]
+    [Header("Dave Collision Lines")]
     public AudioClip[] AudioArray_Coll_Dave_VS_Mosco;
     public AudioClip[] AudioArray_Coll_Dave_VS_HHH;
     public AudioClip[] AudioArray_Coll_Dave_VS_Schlug;
@@ -46,6 +46,9 @@ public class AudioEvent : MonoBehaviour
     public AudioClip[] AudioArray_Coll_HHH_VS_Dave;
     public AudioClip[] AudioArray_Coll_HHH_VS_Mosco;
     public AudioClip[] AudioArray_Coll_HHH_VS_Schlug;
+
+    [Header("Generic Collision Lines")]
+    public AudioClip[] AudioArray_Coll_Generic;
 
 
     public AudioSource AudioPlayer;
@@ -220,15 +223,32 @@ public class AudioEvent : MonoBehaviour
     {
         if (!isPlaying)
         {
+
+            //Insert generic voice line stuff
+
             float chance = 0.75f;
             float rand = Random.value;
-            if (rand <= chance)
+            if (rand <= chance)//Determine if a voice clip will be played
             {
-                if (playerAttacking.GetComponent<PlayerScript>().playerType == PlayerTypes.DAVE)
+                
+                float random = Random.value;
+
+                if(random<0.5f)//play a generic voice line
+                {
+                    int randomClip = Random.Range(0, AudioArray_Coll_Generic.Length);
+                    AudioPlayerChangeSoundClip(AudioArray_Coll_Generic, AudioPlayer, randomClip);
+                    subtitle.GetComponent<AnnouncerDialouge>().DisplayGenericCollisionSubtitle(randomClip, AudioArray_Coll_Generic[randomClip].length);
+                }
+                else//Play a player specific clip
+                {
+                    if (playerAttacking.GetComponent<PlayerScript>().playerType == PlayerTypes.DAVE)
                 {
                     if (playerHit.GetComponent<PlayerScript>().playerType == PlayerTypes.EL_MOSCO)
                     {
+                        
                         int randomClip = Random.Range(0, AudioArray_Coll_Dave_VS_Mosco.Length);
+                       
+
                         AudioPlayerChangeSoundClip(AudioArray_Coll_Dave_VS_Mosco, AudioPlayer, randomClip);
                         subtitle.GetComponent<AnnouncerDialouge>().DisplayDaveCollisionSubtitle("Mosco", randomClip, AudioArray_Coll_Dave_VS_Mosco[randomClip].length);
 
@@ -313,7 +333,9 @@ public class AudioEvent : MonoBehaviour
                         subtitle.GetComponent<AnnouncerDialouge>().DisplayHHHCollisionSubtitle("Schlug", randomClip, AudioArray_Coll_HHH_VS_Schlug[randomClip].length);
                     }
                 }
+              }
             }
+                
             
 
 
