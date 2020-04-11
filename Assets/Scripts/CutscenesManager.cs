@@ -31,6 +31,7 @@ public class CutscenesManager : MonoBehaviour
 
     public delegate void BetweenRoundSound(PlayerTypes playerType);
     public static event BetweenRoundSound OnCharacterOut;
+    public static event BetweenRoundSound OnCharacterWin;
 
 
 
@@ -96,25 +97,67 @@ public class CutscenesManager : MonoBehaviour
 
     public IEnumerator EndOfGameCutscene(PlayerScript eliminatedPlayer)
     {
+        string eliminationCameraAnimation = "Nope";
+        PilotStand pilotStand = null;
+
+        switch (eliminatedPlayer.playerType) {
+            case PlayerTypes.DAVE:
+                eliminationCameraAnimation = "Dave elimination";
+                pilotStand = davePilotStand;
+                break;
+            case PlayerTypes.BIG_SCHLUG:
+                eliminationCameraAnimation = "Big Schlug elimination";
+                pilotStand = bigSchlugPilotStand;
+                break;
+            case PlayerTypes.HAMMER:
+                eliminationCameraAnimation = "Hammer elimination";
+                pilotStand = hhhPilotStand;
+                break;
+            case PlayerTypes.EL_MOSCO:
+                eliminationCameraAnimation = "El Mosco elimination";
+                pilotStand = elMoscoPilotStand;
+                break;
+            
+        }
+
         List<PlayerData> playerData = sm.GetFinalPlayerData();
         //if (!shouldShowIntroCutscenes) yield break;
 
         StartCoroutine(DeathHighlightPlayer(eliminatedPlayer.gameObject, 2f));
         //StartCoroutine(StartPlayingInbetweenRoundCutscenes(3f));
 
-        // show the text that comes up with info between rounds
-        yield return betweenRoundText.ShowGameOverText(eliminatedPlayer.playerNumber, eliminatedPlayer.playerColor.color);
+        // show the game over text
+        StartCoroutine(betweenRoundText.ShowGameOverText(eliminatedPlayer.playerNumber, eliminatedPlayer.playerColor.color));
 
-        // once text animation is done, stop playing the inbetween round cutscenes
+        yield return new WaitForSeconds(1f);
 
-        yield return new WaitForSeconds(0.5f);
+        OnCharacterWin?.Invoke(eliminatedPlayer.playerType);
+
+        yield return new WaitForSeconds(1f);
+
+
+        recordingSquare.SetActive(true);
+        cameraAnimator.enabled = true;
+        sm.isCameraEnabled = false;
+
+        pilotStand.Enable();
+        pilotStand.SitDown();
+
+        cameraAnimator.Play(eliminationCameraAnimation);
+        pilotStand.Eliminated();
+
+        yield return new WaitForSeconds(3f);
+
+        pilotStand.Disable();
+
 
         yield return StartShowingPedastals(playerData);
-
+        
+        // now we hand control to endScreenStats to see when start is pressed
         endScreenStats.gameObject.SetActive(true);
         endScreenStats.Setup(playerData);
 
-        // now we hand control to endScreenStats to see when start is pressed
+        
     }
 
 
