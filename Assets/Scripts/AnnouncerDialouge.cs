@@ -313,40 +313,43 @@ public class AnnouncerDialouge : MonoBehaviour
 
 
         dialouge_Coll_Mosco_VS_Dave[0] = "There’s <color=green>Mosco</color> doing what he does best, annoying <color=red>Dave</color>.";
-        dialouge_Coll_Mosco_VS_Dave[2] = "And <color=red>Daves</color> been bumped hard! I hope they know that isn’t the last they’ll see of <color=green>Mosco</color>!";
-        dialouge_Coll_Mosco_VS_Dave[3] = "<color=green>Mosco</color> going straight for <color=red>Dave</color>, like a cat on a caffeine buzz.";
-        dialouge_Coll_Mosco_VS_Dave[4] = "Oh my! <color=green>Mosco</color> just laid <color=red>Dave</color> out, I would be embarrassed if I were them.";
-        dialouge_Coll_Mosco_VS_Dave[5] = "<color=green>Mosco</color> flying straight into the face of <color=red>Dave</color>.";
-        dialouge_Coll_Mosco_VS_Dave[6] = "I see <color=red>Dave's</color> gettin' the ol' one two off of <color=green>El Mosco</color>.";
-        dialouge_Coll_Mosco_VS_Dave[7] = "OH! <color=green>Mosco</color> comes in with a quick hit on <color=red>Dave</color>.";
-        dialouge_Coll_Mosco_VS_Dave[8] = "Quick in, quick out, just what <color=green>Mosco</color> does, bet that stung <color=red>Dave</color>!";
-        dialouge_Coll_Mosco_VS_Dave[9] = "Oooo, and <color=green>Mosco</color> comes in and shows <color=red>Dave</color> who’s boss.";
-        dialouge_Coll_Mosco_VS_Dave[10] = "Oh! <color=green>Mosco</color> takes a swipe at <color=red>Dave</color> and it connects!";
-        dialouge_Coll_Mosco_VS_Dave[11] = "<color=green>Mosco</color> goes off the metaphorical top rope and slams into <color=red>Dave</color>!";
+        dialouge_Coll_Mosco_VS_Dave[1] = "And <color=red>Daves</color> been bumped hard! I hope they know that isn’t the last they’ll see of <color=green>Mosco</color>!";
+        dialouge_Coll_Mosco_VS_Dave[2] = "<color=green>Mosco</color> going straight for <color=red>Dave</color>, like a cat on a caffeine buzz.";
+        dialouge_Coll_Mosco_VS_Dave[3] = "Oh my! <color=green>Mosco</color> just laid <color=red>Dave</color> out, I would be embarrassed if I were them.";
+        dialouge_Coll_Mosco_VS_Dave[4] = "<color=green>Mosco</color> flying straight into the face of <color=red>Dave</color>.";
+        dialouge_Coll_Mosco_VS_Dave[5] = "I see <color=red>Dave's</color> gettin' the ol' one two off of <color=green>El Mosco</color>.";
+        dialouge_Coll_Mosco_VS_Dave[6] = "OH! <color=green>Mosco</color> comes in with a quick hit on <color=red>Dave</color>.";
+        dialouge_Coll_Mosco_VS_Dave[7] = "Quick in, quick out, just what <color=green>Mosco</color> does, bet that stung <color=red>Dave</color>!";
+        dialouge_Coll_Mosco_VS_Dave[8] = "Oooo, and <color=green>Mosco</color> comes in and shows <color=red>Dave</color> who’s boss.";
+        dialouge_Coll_Mosco_VS_Dave[9] = "Oh! <color=green>Mosco</color> takes a swipe at <color=red>Dave</color> and it connects!";
+        dialouge_Coll_Mosco_VS_Dave[10] = "<color=green>Mosco</color> goes off the metaphorical top rope and slams into <color=red>Dave</color>!";
+        dialouge_Coll_Mosco_VS_Dave[11] = "<color=green>Mosco</color> sips in and takes a chunk out of <color=red>Dave</color>!";
 
         dialouge_Coll_Mosco_VS_Schlug[0] = "There’s <color=green>Mosco</color> doing what he does best, annoying <color=purple>Big Schlug</color>.";
-        dialouge_Coll_Mosco_VS_Schlug[2] = "And <color=purple>Big Schlugs</color> been bumped hard! I hope they know that isn’t the last they’ll see of <color=green>Mosco</color>!";
-        dialouge_Coll_Mosco_VS_Schlug[3] = "<color=green>Mosco</color> going straight for <color=purple>Big Schlug</color>, like a cat on a caffeine buzz.";
-        dialouge_Coll_Mosco_VS_Schlug[4] = "Oh my! <color=green>Mosco</color> just laid <color=purple>Big Schlug</color> out, I would be embarrassed if I were them.";
-        dialouge_Coll_Mosco_VS_Schlug[5] = "<color=green>Mosco</color> flying straight into the face of <color=purple>Big Schlug</color>.";
-        dialouge_Coll_Mosco_VS_Schlug[6] = "I see <color=purple>Big Schlug's</color> gettin' the ol' one two off of <color=green>El Mosco</color>.";
-        dialouge_Coll_Mosco_VS_Schlug[7] = "OH! <color=green>Mosco</color> comes in with a quick hit on <color=purple>Big Schlug</color>.";
-        dialouge_Coll_Mosco_VS_Schlug[8] = "Quick in, quick out, just what <color=green>Mosco</color> does, bet that stung <color=purple>Big Schlug</color>!";
-        dialouge_Coll_Mosco_VS_Schlug[9] = "Oooo, and <color=green>Mosco</color> comes in and shows <color=purple>Big Schlug</color> who’s boss.";
-        dialouge_Coll_Mosco_VS_Schlug[10] = "Oh! <color=green>Mosco</color> takes a swipe at <color=purple>Big Schlug</color> and it connects!";
-        dialouge_Coll_Mosco_VS_Schlug[11] = "<color=green>Mosco</color> goes off the metaphorical top rope and slams into <color=purple>Big Schlug</color>!";
+        dialouge_Coll_Mosco_VS_Schlug[1] = "And <color=purple>Big Schlugs</color> been bumped hard! I hope they know that isn’t the last they’ll see of <color=green>Mosco</color>!";
+        dialouge_Coll_Mosco_VS_Schlug[2] = "<color=green>Mosco</color> going straight for <color=purple>Big Schlug</color>, like a cat on a caffeine buzz.";
+        dialouge_Coll_Mosco_VS_Schlug[3] = "Oh my! <color=green>Mosco</color> just laid <color=purple>Big Schlug</color> out, I would be embarrassed if I were them.";
+        dialouge_Coll_Mosco_VS_Schlug[4] = "<color=green>Mosco</color> flying straight into the face of <color=purple>Big Schlug</color>.";
+        dialouge_Coll_Mosco_VS_Schlug[5] = "I see <color=purple>Big Schlug's</color> gettin' the ol' one two off of <color=green>El Mosco</color>.";
+        dialouge_Coll_Mosco_VS_Schlug[6] = "OH! <color=green>Mosco</color> comes in with a quick hit on <color=purple>Big Schlug</color>.";
+        dialouge_Coll_Mosco_VS_Schlug[7] = "Quick in, quick out, just what <color=green>Mosco</color> does, bet that stung <color=purple>Big Schlug</color>!";
+        dialouge_Coll_Mosco_VS_Schlug[8] = "Oooo, and <color=green>Mosco</color> comes in and shows <color=purple>Big Schlug</color> who’s boss.";
+        dialouge_Coll_Mosco_VS_Schlug[9] = "Oh! <color=green>Mosco</color> takes a swipe at <color=purple>Big Schlug</color> and it connects!";
+        dialouge_Coll_Mosco_VS_Schlug[10] = "<color=green>Mosco</color> goes off the metaphorical top rope and slams into <color=purple>Big Schlug</color>!";
+        dialouge_Coll_Mosco_VS_Schlug[11] = "<color=green>Mosco</color> sips in and takes a chunk out of <color=purple>Big Schlug</color>!";
 
         dialouge_Coll_Mosco_VS_HHH[0] = "There’s <color=green>Mosco</color> doing what he does best, annoying <color=blue>Henry</color>.";
-        dialouge_Coll_Mosco_VS_HHH[2] = "And <color=blue>Henrys</color> been bumped hard! I hope they know that isn’t the last they’ll see of <color=green>Mosco</color>!";
-        dialouge_Coll_Mosco_VS_HHH[3] = "<color=green>Mosco</color> going straight for <color=blue>Henry</color>, like a cat on a caffeine buzz.";
-        dialouge_Coll_Mosco_VS_HHH[4] = "Oh my! <color=green>Mosco</color> just laid <color=blue>Henry</color> out, I would be embarrassed if I were them.";
-        dialouge_Coll_Mosco_VS_HHH[5] = "<color=green>Mosco</color> flying straight into the face of <color=blue>Henry</color>.";
-        dialouge_Coll_Mosco_VS_HHH[6] = "I see <color=blue>Henry's</color> gettin' the ol' one two off of <color=green>El Mosco</color>.";
-        dialouge_Coll_Mosco_VS_HHH[7] = "OH! <color=green>Mosco</color> comes in with a quick hit on <color=blue>Henry</color>.";
-        dialouge_Coll_Mosco_VS_HHH[8] = "Quick in, quick out, just what <color=green>Mosco</color> does, bet that stung <color=blue>Henry</color>!";
-        dialouge_Coll_Mosco_VS_HHH[9] = "Oooo, and <color=green>Mosco</color> comes in and shows <color=blue>Henry</color> who’s boss.";
-        dialouge_Coll_Mosco_VS_HHH[10] = "Oh! <color=green>Mosco</color> takes a swipe at <color=blue>Henry</color> and it connects!";
-        dialouge_Coll_Mosco_VS_HHH[11] = "<color=green>Mosco</color> goes off the metaphorical top rope and slams into <color=blue>Henry</color>!";
+        dialouge_Coll_Mosco_VS_HHH[1] = "And <color=blue>Henrys</color> been bumped hard! I hope they know that isn’t the last they’ll see of <color=green>Mosco</color>!";
+        dialouge_Coll_Mosco_VS_HHH[2] = "<color=green>Mosco</color> going straight for <color=blue>Henry</color>, like a cat on a caffeine buzz.";
+        dialouge_Coll_Mosco_VS_HHH[3] = "Oh my! <color=green>Mosco</color> just laid <color=blue>Henry</color> out, I would be embarrassed if I were them.";
+        dialouge_Coll_Mosco_VS_HHH[4] = "<color=green>Mosco</color> flying straight into the face of <color=blue>Henry</color>.";
+        dialouge_Coll_Mosco_VS_HHH[5] = "I see <color=blue>Henry's</color> gettin' the ol' one two off of <color=green>El Mosco</color>.";
+        dialouge_Coll_Mosco_VS_HHH[6] = "OH! <color=green>Mosco</color> comes in with a quick hit on <color=blue>Henry</color>.";
+        dialouge_Coll_Mosco_VS_HHH[7] = "Quick in, quick out, just what <color=green>Mosco</color> does, bet that stung <color=blue>Henry</color>!";
+        dialouge_Coll_Mosco_VS_HHH[8] = "Oooo, and <color=green>Mosco</color> comes in and shows <color=blue>Henry</color> who’s boss.";
+        dialouge_Coll_Mosco_VS_HHH[9] = "Oh! <color=green>Mosco</color> takes a swipe at <color=blue>Henry</color> and it connects!";
+        dialouge_Coll_Mosco_VS_HHH[10] = "<color=green>Mosco</color> goes off the metaphorical top rope and slams into <color=blue>Henry</color>!";
+        dialouge_Coll_Mosco_VS_HHH[11] = "<color=green>Mosco</color> sips in and takes a chunk out of <color=blue>Henry</color>!";
 
 
         dialouge_Coll_HHH_VS_Dave[0] = "And there’s <color=blue>Henry</color> bringing the hammer down on <color=red>Dave</color>!";

@@ -269,7 +269,7 @@ public class AudioEvent : MonoBehaviour
                 
                 float random = Random.value;
 
-                if(random<0.5f)//play a generic voice line
+                if (random < 0.5f)//play a generic voice line
                 {
                     int randomClip = Random.Range(0, AudioArray_Coll_Generic.Length);
                     AudioPlayerChangeSoundClip(AudioArray_Coll_Generic, AudioPlayer, randomClip);
@@ -278,105 +278,109 @@ public class AudioEvent : MonoBehaviour
                 else//Play a player specific clip
                 {
                     if (playerAttacking.GetComponent<PlayerScript>().playerType == PlayerTypes.DAVE)
-                {
-                    if (playerHit.GetComponent<PlayerScript>().playerType == PlayerTypes.EL_MOSCO)
                     {
-                        
-                        int randomClip = Random.Range(0, AudioArray_Coll_Dave_VS_Mosco.Length);
-                       
+                        if (playerHit.GetComponent<PlayerScript>().playerType == PlayerTypes.EL_MOSCO)
+                        {
 
-                        AudioPlayerChangeSoundClip(AudioArray_Coll_Dave_VS_Mosco, AudioPlayer, randomClip);
-                        subtitle.GetComponent<AnnouncerDialouge>().DisplayDaveCollisionSubtitle("Mosco", randomClip, AudioArray_Coll_Dave_VS_Mosco[randomClip].length);
+                            int randomClip = Random.Range(0, AudioArray_Coll_Dave_VS_Mosco.Length);
 
+
+                            AudioPlayerChangeSoundClip(AudioArray_Coll_Dave_VS_Mosco, AudioPlayer, randomClip);
+                            subtitle.GetComponent<AnnouncerDialouge>().DisplayDaveCollisionSubtitle("Mosco", randomClip, AudioArray_Coll_Dave_VS_Mosco[randomClip].length);
+
+                        }
+                        if (playerHit.GetComponent<PlayerScript>().playerType == PlayerTypes.BIG_SCHLUG)
+                        {
+                            int randomClip = Random.Range(0, AudioArray_Coll_Dave_VS_Schlug.Length);
+                            AudioPlayerChangeSoundClip(AudioArray_Coll_Dave_VS_Schlug, AudioPlayer, randomClip);
+                            subtitle.GetComponent<AnnouncerDialouge>().DisplayDaveCollisionSubtitle("Schlug", randomClip, AudioArray_Coll_Dave_VS_Schlug[randomClip].length);
+                        }
+                        if (playerHit.GetComponent<PlayerScript>().playerType == PlayerTypes.HAMMER)
+                        {
+                            int randomClip = Random.Range(0, AudioArray_Coll_Dave_VS_HHH.Length);
+                            AudioPlayerChangeSoundClip(AudioArray_Coll_Dave_VS_HHH, AudioPlayer, randomClip);
+                            subtitle.GetComponent<AnnouncerDialouge>().DisplayDaveCollisionSubtitle("HHH", randomClip, AudioArray_Coll_Dave_VS_HHH[randomClip].length);
+                        }
                     }
-                    if (playerHit.GetComponent<PlayerScript>().playerType == PlayerTypes.BIG_SCHLUG)
+
+
+                    if (playerAttacking.GetComponent<PlayerScript>().playerType == PlayerTypes.BIG_SCHLUG)
                     {
-                        int randomClip = Random.Range(0, AudioArray_Coll_Dave_VS_Schlug.Length);
-                        AudioPlayerChangeSoundClip(AudioArray_Coll_Dave_VS_Schlug, AudioPlayer, randomClip);
-                        subtitle.GetComponent<AnnouncerDialouge>().DisplayDaveCollisionSubtitle("Schlug", randomClip, AudioArray_Coll_Dave_VS_Schlug[randomClip].length);
+                        if (playerHit.GetComponent<PlayerScript>().playerType == PlayerTypes.DAVE)
+                        {
+                            int randomClip = Random.Range(0, AudioArray_Coll_Schlug_VS_Dave.Length);
+                            AudioPlayerChangeSoundClip(AudioArray_Coll_Schlug_VS_Dave, AudioPlayer, randomClip);
+                            subtitle.GetComponent<AnnouncerDialouge>().DisplaySchlugCollisionSubtitle("Dave", randomClip, AudioArray_Coll_Schlug_VS_Dave[randomClip].length);
+                        }
+                        if (playerHit.GetComponent<PlayerScript>().playerType == PlayerTypes.EL_MOSCO)
+                        {
+                            int randomClip = Random.Range(0, AudioArray_Coll_Schlug_VS_Mosco.Length);
+                            AudioPlayerChangeSoundClip(AudioArray_Coll_Schlug_VS_Mosco, AudioPlayer, randomClip);
+                            subtitle.GetComponent<AnnouncerDialouge>().DisplaySchlugCollisionSubtitle("Mosco", randomClip, AudioArray_Coll_Schlug_VS_Mosco[randomClip].length);
+                        }
+                        if (playerHit.GetComponent<PlayerScript>().playerType == PlayerTypes.HAMMER)
+                        {
+                            int randomClip = Random.Range(0, AudioArray_Coll_Schlug_VS_HHH.Length);
+                            AudioPlayerChangeSoundClip(AudioArray_Coll_Schlug_VS_HHH, AudioPlayer, randomClip);
+                            subtitle.GetComponent<AnnouncerDialouge>().DisplaySchlugCollisionSubtitle("HHH", randomClip, AudioArray_Coll_Schlug_VS_HHH[randomClip].length);
+                        }
                     }
-                    if (playerHit.GetComponent<PlayerScript>().playerType == PlayerTypes.HAMMER)
+
+                    if (playerAttacking.GetComponent<PlayerScript>().playerType == PlayerTypes.EL_MOSCO)
                     {
-                        int randomClip = Random.Range(0, AudioArray_Coll_Dave_VS_HHH.Length);
-                        AudioPlayerChangeSoundClip(AudioArray_Coll_Dave_VS_HHH, AudioPlayer, randomClip);
-                        subtitle.GetComponent<AnnouncerDialouge>().DisplayDaveCollisionSubtitle("HHH", randomClip, AudioArray_Coll_Dave_VS_HHH[randomClip].length);
+                        if (playerHit.GetComponent<PlayerScript>().playerType == PlayerTypes.DAVE)
+                        {
+                            int randomClip = Random.Range(0, AudioArray_Coll_Mosco_VS_Dave.Length);
+                            AudioPlayerChangeSoundClip(AudioArray_Coll_Mosco_VS_Dave, AudioPlayer, randomClip);
+                            subtitle.GetComponent<AnnouncerDialouge>().DisplayMoscoCollisionSubtitle("Dave", randomClip, AudioArray_Coll_Mosco_VS_Dave[randomClip].length);
+                        }
+                        if (playerHit.GetComponent<PlayerScript>().playerType == PlayerTypes.BIG_SCHLUG)
+                        {
+                            int randomClip = Random.Range(0, AudioArray_Coll_Mosco_VS_Schlug.Length);
+                            AudioPlayerChangeSoundClip(AudioArray_Coll_Mosco_VS_Schlug, AudioPlayer, randomClip);
+                            subtitle.GetComponent<AnnouncerDialouge>().DisplayMoscoCollisionSubtitle("Schlug", randomClip, AudioArray_Coll_Mosco_VS_Schlug[randomClip].length);
+                        }
+                        if (playerHit.GetComponent<PlayerScript>().playerType == PlayerTypes.HAMMER)
+                        {
+                            int randomClip = Random.Range(0, AudioArray_Coll_Mosco_VS_HHH.Length);
+                            AudioPlayerChangeSoundClip(AudioArray_Coll_Mosco_VS_HHH, AudioPlayer, randomClip);
+                            subtitle.GetComponent<AnnouncerDialouge>().DisplayMoscoCollisionSubtitle("HHH", randomClip, AudioArray_Coll_Mosco_VS_HHH[randomClip].length);
+                        }
                     }
-                    
+
+                    if (playerAttacking.GetComponent<PlayerScript>().playerType == PlayerTypes.HAMMER)
+                    {
+                        if (playerHit.GetComponent<PlayerScript>().playerType == PlayerTypes.DAVE)
+                        {
+                            int randomClip = Random.Range(0, AudioArray_Coll_HHH_VS_Dave.Length);
+                            AudioPlayerChangeSoundClip(AudioArray_Coll_HHH_VS_Dave, AudioPlayer, randomClip);
+                            subtitle.GetComponent<AnnouncerDialouge>().DisplayHHHCollisionSubtitle("Dave", randomClip, AudioArray_Coll_HHH_VS_Dave[randomClip].length);
+                        }
+                        if (playerHit.GetComponent<PlayerScript>().playerType == PlayerTypes.EL_MOSCO)
+                        {
+                            int randomClip = Random.Range(0, AudioArray_Coll_HHH_VS_Mosco.Length);
+                            AudioPlayerChangeSoundClip(AudioArray_Coll_HHH_VS_Mosco, AudioPlayer, randomClip);
+                            subtitle.GetComponent<AnnouncerDialouge>().DisplayHHHCollisionSubtitle("Mosco", randomClip, AudioArray_Coll_HHH_VS_Mosco[randomClip].length);
+                        }
+                        if (playerHit.GetComponent<PlayerScript>().playerType == PlayerTypes.BIG_SCHLUG)
+                        {
+                            int randomClip = Random.Range(0, AudioArray_Coll_HHH_VS_Schlug.Length);
+                            AudioPlayerChangeSoundClip(AudioArray_Coll_HHH_VS_Schlug, AudioPlayer, randomClip);
+                            subtitle.GetComponent<AnnouncerDialouge>().DisplayHHHCollisionSubtitle("Schlug", randomClip, AudioArray_Coll_HHH_VS_Schlug[randomClip].length);
+                        }
+                    }
                 }
 
-                if (playerAttacking.GetComponent<PlayerScript>().playerType == PlayerTypes.BIG_SCHLUG)
-                {
-                    if (playerHit.GetComponent<PlayerScript>().playerType == PlayerTypes.DAVE)
-                    {
-                        int randomClip = Random.Range(0, AudioArray_Coll_Schlug_VS_Dave.Length);
-                        AudioPlayerChangeSoundClip(AudioArray_Coll_Schlug_VS_Dave, AudioPlayer, randomClip);
-                        subtitle.GetComponent<AnnouncerDialouge>().DisplaySchlugCollisionSubtitle("Dave", randomClip, AudioArray_Coll_Schlug_VS_Dave[randomClip].length);
-                    }
-                    if (playerHit.GetComponent<PlayerScript>().playerType == PlayerTypes.EL_MOSCO)
-                    {
-                        int randomClip = Random.Range(0, AudioArray_Coll_Schlug_VS_Mosco.Length);
-                        AudioPlayerChangeSoundClip(AudioArray_Coll_Schlug_VS_Mosco, AudioPlayer, randomClip);
-                        subtitle.GetComponent<AnnouncerDialouge>().DisplaySchlugCollisionSubtitle("Mosco", randomClip, AudioArray_Coll_Schlug_VS_Mosco[randomClip].length);
-                    }
-                    if (playerHit.GetComponent<PlayerScript>().playerType == PlayerTypes.HAMMER)
-                    {
-                        int randomClip = Random.Range(0, AudioArray_Coll_Schlug_VS_HHH.Length);
-                        AudioPlayerChangeSoundClip(AudioArray_Coll_Schlug_VS_HHH, AudioPlayer, randomClip);
-                        subtitle.GetComponent<AnnouncerDialouge>().DisplaySchlugCollisionSubtitle("HHH", randomClip, AudioArray_Coll_Schlug_VS_HHH[randomClip].length);
-                    }
-                }
-
-                if (playerAttacking.GetComponent<PlayerScript>().playerType == PlayerTypes.EL_MOSCO)
-                {
-                    if (playerHit.GetComponent<PlayerScript>().playerType == PlayerTypes.DAVE)
-                    {
-                        int randomClip = Random.Range(0, AudioArray_Coll_Mosco_VS_Dave.Length);
-                        AudioPlayerChangeSoundClip(AudioArray_Coll_Mosco_VS_Dave, AudioPlayer, randomClip);
-                        subtitle.GetComponent<AnnouncerDialouge>().DisplayMoscoCollisionSubtitle("Dave", randomClip, AudioArray_Coll_Mosco_VS_Dave[randomClip].length);
-                    }
-                    if (playerHit.GetComponent<PlayerScript>().playerType == PlayerTypes.BIG_SCHLUG)
-                    {
-                        int randomClip = Random.Range(0, AudioArray_Coll_Mosco_VS_Schlug.Length);
-                        AudioPlayerChangeSoundClip(AudioArray_Coll_Mosco_VS_Schlug, AudioPlayer, randomClip);
-                        subtitle.GetComponent<AnnouncerDialouge>().DisplayMoscoCollisionSubtitle("Schlug", randomClip, AudioArray_Coll_Mosco_VS_Schlug[randomClip].length);
-                    }
-                    if (playerHit.GetComponent<PlayerScript>().playerType == PlayerTypes.HAMMER)
-                    {
-                        int randomClip = Random.Range(0, AudioArray_Coll_Mosco_VS_HHH.Length);
-                        AudioPlayerChangeSoundClip(AudioArray_Coll_Mosco_VS_HHH, AudioPlayer, randomClip);
-                        subtitle.GetComponent<AnnouncerDialouge>().DisplayMoscoCollisionSubtitle("HHH", randomClip, AudioArray_Coll_Mosco_VS_HHH[randomClip].length);
-                    }
-                }
-
-                if (playerAttacking.GetComponent<PlayerScript>().playerType == PlayerTypes.HAMMER)
-                {
-                    if (playerHit.GetComponent<PlayerScript>().playerType == PlayerTypes.DAVE)
-                    {
-                        int randomClip = Random.Range(0, AudioArray_Coll_HHH_VS_Dave.Length);
-                        AudioPlayerChangeSoundClip(AudioArray_Coll_HHH_VS_Dave, AudioPlayer, randomClip);
-                        subtitle.GetComponent<AnnouncerDialouge>().DisplayHHHCollisionSubtitle("Dave", randomClip, AudioArray_Coll_HHH_VS_Dave[randomClip].length);
-                    }
-                    if (playerHit.GetComponent<PlayerScript>().playerType == PlayerTypes.EL_MOSCO)
-                    {
-                        int randomClip = Random.Range(0, AudioArray_Coll_HHH_VS_Mosco.Length);
-                        AudioPlayerChangeSoundClip(AudioArray_Coll_HHH_VS_Mosco, AudioPlayer, randomClip);
-                        subtitle.GetComponent<AnnouncerDialouge>().DisplayHHHCollisionSubtitle("Mosco", randomClip, AudioArray_Coll_HHH_VS_Mosco[randomClip].length);
-                    }
-                    if (playerHit.GetComponent<PlayerScript>().playerType == PlayerTypes.BIG_SCHLUG)
-                    {
-                        int randomClip = Random.Range(0, AudioArray_Coll_HHH_VS_Schlug.Length);
-                        AudioPlayerChangeSoundClip(AudioArray_Coll_HHH_VS_Schlug, AudioPlayer, randomClip);
-                        subtitle.GetComponent<AnnouncerDialouge>().DisplayHHHCollisionSubtitle("Schlug", randomClip, AudioArray_Coll_HHH_VS_Schlug[randomClip].length);
-                    }
-                }
-              }
             }
+
+                
+        }
                 
             
 
 
-        }
     }
+    
 
     void AudioPlayerTaunting()
     {
