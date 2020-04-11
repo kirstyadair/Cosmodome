@@ -133,7 +133,7 @@ public class CutscenesManager : MonoBehaviour
 
         OnCharacterWin?.Invoke(eliminatedPlayer.playerType);
 
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(1.5f);
 
 
         recordingSquare.SetActive(true);
@@ -199,7 +199,7 @@ public class CutscenesManager : MonoBehaviour
         OnCharacterOut?.Invoke(eliminatedPlayer.playerType);
 
         // after we've shown the player exploding, zoom into the character looking sad
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(1.5f);
 
         recordingSquare.SetActive(true);
         cameraAnimator.enabled = true;
@@ -234,9 +234,18 @@ public class CutscenesManager : MonoBehaviour
 
         pedastals.Setup(playerData);
 
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(2f);
 
         pedastals.Show();
+
+        yield return new WaitForSeconds(2f);
+        cameraAnimator.enabled = false;
+        Vector3 winningPlayerPosition = pedastals.GetWinnerPosition();
+
+        GameObject blah = Instantiate(new GameObject());
+        blah.name = "AAAAAAAAAAAA";
+        blah.transform.position = winningPlayerPosition;
+        Debug.Log("AAAAAAAAAA", blah);
 
         yield return new WaitForSeconds(5f);
     }

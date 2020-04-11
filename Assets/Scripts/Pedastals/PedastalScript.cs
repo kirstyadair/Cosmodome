@@ -26,6 +26,9 @@ public class PedastalScript : MonoBehaviour
 
     int _placed;
 
+    public Transform characterModel;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -42,8 +45,8 @@ public class PedastalScript : MonoBehaviour
     public void Setup(int playerNumber, Color playerColour, int placed, int approvalPercentage, string characterName)
     {
         _placed = placed;
-        _spotlight1.color = playerColour;
-        _spotlight2.color = playerColour;
+        //_spotlight1.color = playerColour;
+        //_spotlight2.color = playerColour;
 
         _playerNameText.text = "PLAYER " + playerNumber;
         _playerNameText.color = playerColour;
@@ -59,9 +62,16 @@ public class PedastalScript : MonoBehaviour
         EnableCharacterModel(characterName);
     }
 
+
     void EnableCharacterModel(string characterName) {
         foreach (Transform transform in _characterModelsContainer) {
-            if (transform.gameObject.name == characterName) transform.gameObject.SetActive(true);
+            if (transform.gameObject.name == characterName) {
+                transform.gameObject.SetActive(true);
+                characterModel = transform;
+                try {
+                transform.GetComponentInChildren<Animator>().Play("Hover");
+                } catch (Exception e){}
+            }
         }
     }
 

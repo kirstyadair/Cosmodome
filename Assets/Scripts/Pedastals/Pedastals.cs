@@ -11,6 +11,7 @@ public class Pedastals : MonoBehaviour
 
     public float gapBetweenPedastals;
 
+    PedastalScript _winningPedastal;
 
     /// <summary>
     /// Sets up the pedatals, ready to be shown
@@ -33,13 +34,19 @@ public class Pedastals : MonoBehaviour
 
             PlayerData data = playerData[i];
             pedaScript.Setup(data.playerNumber, data.playerColor, data.placed, data.approvalPercentage, data.characterName);
-
+            
+            if (data.placed == 1) _winningPedastal = pedaScript;
             _pedastals.Add(pedaScript);
         }
     }
 
-    void Update()
-    {
+    
+    /// <summary>
+    /// Gets the general position of the winning player, used by CutscenesManager to zoom the camera in on it
+    /// </summary>
+    /// <returns>Winning player pedastal position</returns>
+    public Vector3 GetWinnerPosition() {
+        return _winningPedastal.characterModel.transform.position;
     }
 
     /// <summary>
