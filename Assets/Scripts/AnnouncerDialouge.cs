@@ -175,7 +175,7 @@ public class AnnouncerDialouge : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-
+        
         _animator = GetComponent<Animator>();
         _audioEvent = GameObject.Find("Announcer").GetComponent<AudioEvent>();
         dialougePlayerShot = new string[11];

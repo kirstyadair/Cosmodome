@@ -400,7 +400,7 @@ public class ScoreManager : MonoBehaviour
 
     void PlayerCollision(PlayerScript player, PlayerScript playerAttacking)
     {
-        player.approval.ChangeApproval(-collisionDamageRate);
+        playerAttacking.approval.ChangeApproval(collisionDamageRate);
         OnUpdateScore?.Invoke();
         UpdatePercentages();
         StartCoroutine(player.FlashWithDamage());

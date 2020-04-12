@@ -20,7 +20,7 @@ public class PlayerApproval {
     public void ChangeApproval(int amount)
     {
         value += amount;
-        if (value > 100) value = 100;
+        if (value > 500) value = 500;
         if (value < 1) value = 1;
     }
 }
