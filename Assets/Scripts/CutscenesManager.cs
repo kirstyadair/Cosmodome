@@ -39,7 +39,7 @@ public class CutscenesManager : MonoBehaviour
     [Header("Amount of 'Cutscene n' animations available")]
     public int amountOfAudiencePanAnimations;
 
-    [Space(10)]
+    [Space(30)]
     public BetweenRoundText betweenRoundText;
     public GameObject recordingSquare;
     public Animator cameraAnimator;
@@ -54,15 +54,17 @@ public class CutscenesManager : MonoBehaviour
     public Text characterNameIntroText;
     public Pedastals pedastals;
     public GameObject winnerText;
+    [Space(30)]
 
-    [Space(10)]
     public PilotStand davePilotStand;
     public PilotStand bigSchlugPilotStand;
     public PilotStand elMoscoPilotStand;
     public PilotStand hhhPilotStand;
 
 
+    
     [Header("How long to count down for before starting game")]
+    [Space(30)]
     public int countdownFrom = 3;
 
     [Header("Disable to not play intro cutscenes")]
@@ -71,9 +73,20 @@ public class CutscenesManager : MonoBehaviour
     [Header("Disable to not play inbetweene-round cutscenes")]
     public bool shouldShowEndofRoundCutscenes;
 
-    [Header("How much player needs to hold skip button for")]
+    [Header("How long player needs to hold skip button for")]
     [SerializeField]
     float _holdSkipButtonFor;
+
+
+    [Header("Closeness to winner in end screen")]
+    [Range(0, 1)]
+    [Space(30)]
+    [SerializeField]
+    float _closenessToWinner;
+
+    [Header("Amount of time to zoom into winner in end screen")]
+    [SerializeField]
+    float _timeToZoomToWinner;
 
     PlayerTypes _currentIntroCutscene;
     bool _isPlayingInBetweenRoundCutscenes = false;
@@ -256,9 +269,9 @@ public class CutscenesManager : MonoBehaviour
         Vector3 winningPlayerPosition = pedastals.GetWinnerPosition() - new Vector3(0, 1, 0);
 
         Quaternion targetCameraRotation = Quaternion.LookRotation(winningPlayerPosition - cameraAnimator.transform.position);
-        Vector3 targetCameraPosition = cameraAnimator.transform.position + (winningPlayerPosition - cameraAnimator.transform.position) * 0.5f;
+        Vector3 targetCameraPosition = cameraAnimator.transform.position + (winningPlayerPosition - cameraAnimator.transform.position) * _closenessToWinner;
 
-        cameraMovement.LerpToPoint(targetCameraPosition, targetCameraRotation, 2f);
+        cameraMovement.LerpToPoint(targetCameraPosition, targetCameraRotation, _timeToZoomToWinner);
 
         yield return new WaitForSeconds(1.5f);
 

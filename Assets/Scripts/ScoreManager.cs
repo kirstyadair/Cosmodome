@@ -480,7 +480,6 @@ public class ScoreManager : MonoBehaviour
 
         GameObject.Instantiate(currentLowest.ps, currentLowest.transform.position, Quaternion.identity);
         currentLowest.Die();
-        Debug.Log("updating " + currentLowest.playerData.playerType + " to " + players.Count);
     
         
         yield return new WaitForSeconds(0.1f);
