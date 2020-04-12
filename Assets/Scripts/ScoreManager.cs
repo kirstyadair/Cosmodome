@@ -25,6 +25,7 @@ public class PlayerData
     public int rams;
     public int comboHi;
     public PlayerTypes playerType;
+    public PlayerScript player;
 }
 
 /// <summary>
@@ -186,6 +187,7 @@ public class ScoreManager : MonoBehaviour
             data.playerNumber = player.playerNumber;
             data.characterName = player.gameObject.name;
             data.playerType = player.playerType;
+            data.player = player;
 
             results.Add(data);
         }
@@ -473,11 +475,13 @@ public class ScoreManager : MonoBehaviour
 
     IEnumerator Explode(PlayerScript currentLowest, float time)
     {
+        currentLowest.playerData.placed = players.Count;
         yield return new WaitForSeconds(time);
 
         GameObject.Instantiate(currentLowest.ps, currentLowest.transform.position, Quaternion.identity);
         currentLowest.Die();
-        currentLowest.playerData.placed = players.Count;
+        Debug.Log("updating " + currentLowest.playerData.playerType + " to " + players.Count);
+    
         
         yield return new WaitForSeconds(0.1f);
         OnExplodePlayer.Invoke();

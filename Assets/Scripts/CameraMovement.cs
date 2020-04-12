@@ -47,6 +47,8 @@ public class CameraMovement : MonoBehaviour
     private Vector3 moveVelocity; //Speed for the smoothing of the camera movement
     //public Vector3 centerPoint;
 
+    Coroutine _lerpToPointCoroutine; // to ensure we only have one running
+
     void Start()
     {
         startPosition = this.transform.position;
@@ -204,11 +206,6 @@ public class CameraMovement : MonoBehaviour
     }
 
 
-    private void Zoom()
-    {
-
-    }
-
 
 
     public void SetStartPositionAndSize()
@@ -219,6 +216,37 @@ public class CameraMovement : MonoBehaviour
 
 
     }
+
+    /// <summary>
+    /// Starts a coroutine that lerps the camera to the given position and rotation in the specified time
+    /// </summary>
+    /// <param name="position"></param>
+    /// <param name="rotation"></param>
+    public void LerpToPoint(Vector3 position, Quaternion rotation, float time) {
+        if (_lerpToPointCoroutine != null) StopCoroutine(_lerpToPointCoroutine);
+        _lerpToPointCoroutine = StartCoroutine(LerpToPointCoroutine(position, rotation, time));
+    }
+
+    private IEnumerator LerpToPointCoroutine(Vector3 position, Quaternion rotation, float time) {
+        float timePassed = 0;
+        Vector3 startPosition = this.transform.position;
+        Quaternion startRotation = this.transform.rotation;
+
+        while (timePassed < time) {
+            float t = timePassed / time;
+
+            transform.position = Vector3.Lerp(startPosition, position, Mathf.SmoothStep(0.0f, 1.0f, t));
+            transform.rotation = Quaternion.Slerp(startRotation, rotation, Mathf.SmoothStep(0.0f, 1.0f, t));
+            yield return null;
+            timePassed += Time.deltaTime;
+        }
+
+        transform.position = position;
+        transform.rotation = rotation;
+
+        _lerpToPointCoroutine = null;;
+    }
+
     // Update is called once per frame
     void LateUpdate()
     {

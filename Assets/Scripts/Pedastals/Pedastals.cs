@@ -46,7 +46,7 @@ public class Pedastals : MonoBehaviour
     /// </summary>
     /// <returns>Winning player pedastal position</returns>
     public Vector3 GetWinnerPosition() {
-        return _winningPedastal.characterModel.transform.position;
+        return _winningPedastal.characterModel.transform.Find("FaceLocation").position;
     }
 
     /// <summary>

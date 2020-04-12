@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using InControl;
 using UnityEngine;
 using UnityEngine.UI;
@@ -52,6 +53,7 @@ public class CutscenesManager : MonoBehaviour
     public Text playerNameIntroText;
     public Text characterNameIntroText;
     public Pedastals pedastals;
+    public GameObject winnerText;
 
     [Space(10)]
     public PilotStand davePilotStand;
@@ -121,6 +123,17 @@ public class CutscenesManager : MonoBehaviour
         }
 
         List<PlayerData> playerData = sm.GetFinalPlayerData();
+
+        var blah = playerData.OrderByDescending((a) => a.placed).ToList();
+        foreach (PlayerData data in playerData) {
+            Debug.Log("AA " + data.playerType + " placed " + data.placed);
+        }
+
+        // get the winning PlayerScript
+        PlayerScript winningPlayer = playerData.OrderBy((a) => a.placed).ToList()[0].player;
+
+        Debug.Log("winning player: " + winningPlayer.playerType.ToString());
+
         //if (!shouldShowIntroCutscenes) yield break;
 
         StartCoroutine(DeathHighlightPlayer(eliminatedPlayer.gameObject, 2f));
@@ -131,7 +144,7 @@ public class CutscenesManager : MonoBehaviour
 
         yield return new WaitForSeconds(1f);
 
-        OnCharacterWin?.Invoke(eliminatedPlayer.playerType);
+        OnCharacterWin?.Invoke(winningPlayer.playerType);
 
         yield return new WaitForSeconds(1.5f);
 
@@ -150,7 +163,7 @@ public class CutscenesManager : MonoBehaviour
 
         pilotStand.Disable();
 
-
+        ShowCharacterIntroText(winningPlayer);
         yield return StartShowingPedastals(playerData);
         
         // now we hand control to endScreenStats to see when start is pressed
@@ -240,14 +253,22 @@ public class CutscenesManager : MonoBehaviour
 
         yield return new WaitForSeconds(2f);
         cameraAnimator.enabled = false;
-        Vector3 winningPlayerPosition = pedastals.GetWinnerPosition();
+        Vector3 winningPlayerPosition = pedastals.GetWinnerPosition() - new Vector3(0, 1, 0);
 
-        GameObject blah = Instantiate(new GameObject());
-        blah.name = "AAAAAAAAAAAA";
-        blah.transform.position = winningPlayerPosition;
-        Debug.Log("AAAAAAAAAA", blah);
+        Quaternion targetCameraRotation = Quaternion.LookRotation(winningPlayerPosition - cameraAnimator.transform.position);
+        Vector3 targetCameraPosition = cameraAnimator.transform.position + (winningPlayerPosition - cameraAnimator.transform.position) * 0.5f;
 
-        yield return new WaitForSeconds(5f);
+        cameraMovement.LerpToPoint(targetCameraPosition, targetCameraRotation, 2f);
+
+        yield return new WaitForSeconds(1.5f);
+
+        playerNameIntroText.gameObject.SetActive(true);
+        winnerText.SetActive(true);
+
+        yield return new WaitForSeconds(3f);
+
+        winnerText.SetActive(false);
+        playerNameIntroText.gameObject.SetActive(false);
     }
 
     IEnumerator StartPlayingInbetweenRoundCutscenes(float after)
@@ -296,6 +317,27 @@ public class CutscenesManager : MonoBehaviour
         _isPlayingInBetweenRoundCutscenes = false;
     }
 
+    void ShowCharacterIntroText(PlayerScript player) {
+        playerNameIntroText.color = player.playerColor.color;
+        playerNameIntroText.text = "PLAYER " + player.playerNumber;
+
+        switch (player.playerType)
+            {
+                case PlayerTypes.BIG_SCHLUG:
+                    characterNameIntroText.text = "AS BIG SCHLUG";
+                    break;
+                case PlayerTypes.DAVE:
+                    characterNameIntroText.text = "AS DAVE";
+                    break;
+                case PlayerTypes.EL_MOSCO:
+                    characterNameIntroText.text = "AS EL MOSCO";
+                    break;
+                case PlayerTypes.HAMMER:
+                    characterNameIntroText.text = "AS HAMMERHEAD HENRY";
+                    break;
+            }
+    }
+
     public IEnumerator StartRoundCutscene()
     {
         if (!shouldShowIntroCutscenes) yield break;
@@ -309,6 +351,8 @@ public class CutscenesManager : MonoBehaviour
         cameraAnimator.enabled = true;
 
         float totalSecondsOfCharacterCutscenes = playerShips.Count * 10f;
+
+        playerNameIntroText.gameObject.SetActive(true);
 
         // The countdown sound is 3 seconds of buildup and 3 seconds of actually counting down, so start it 2    seconds early before the numbers show up
         // We store this coroutine in case we need to cancel it if the player skips straight into the game
@@ -326,13 +370,12 @@ public class CutscenesManager : MonoBehaviour
             PlayerTypes playerType = playerScript.playerType;
             _currentShowingPilotStand = null;
 
-            playerNameIntroText.color = playerScript.playerColor.color;
-            playerNameIntroText.text = "PLAYER " + playerScript.playerNumber;
-
 
             // Reduces brightness of emitters on ship for close up view
             shipController.ToneDownShip();
 
+            // for the PLAYER 1 AS HAMMERHEAD HENRY text
+            ShowCharacterIntroText(playerScript);
             string animationName = "";
 
             switch (playerType)
@@ -341,25 +384,21 @@ public class CutscenesManager : MonoBehaviour
                     BigSchlugIntro?.Invoke();
                     _currentShowingPilotStand = bigSchlugPilotStand;
                     animationName = "Schlug intro";
-                    characterNameIntroText.text = "AS BIG SCHLUG";
                     break;
                 case PlayerTypes.DAVE:
                     DaveIntro?.Invoke();
                     _currentShowingPilotStand = davePilotStand;
                     animationName = "Dave intro";
-                    characterNameIntroText.text = "AS DAVE";
                     break;
                 case PlayerTypes.EL_MOSCO:
                     _currentShowingPilotStand = elMoscoPilotStand;
                     ElMoscoIntro?.Invoke();
                     animationName = "El Mosco intro";
-                    characterNameIntroText.text = "AS EL MOSCO";
                     break;
                 case PlayerTypes.HAMMER:
                     HHHIntro?.Invoke();
                     _currentShowingPilotStand = hhhPilotStand;
                     animationName = "Hammer intro";
-                    characterNameIntroText.text = "AS HAMMERHEAD HENRY";
                     break;
             }
 
