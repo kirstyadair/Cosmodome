@@ -4761,7 +4761,7 @@ MonoBehaviour:
       It\u2019s clear El Mosco was born into a winning family. "
   - characterName: Hammer-Head Henry
     playerType: 0
-    characterColor: {r: 0.33490568, g: 0.8766344, b: 1, a: 1}
+    characterColor: {r: 0, g: 0.4509163, b: 1, a: 1}
     chosenBy: 
     speedStat: 2
     sizeStat: 3
@@ -7747,7 +7747,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 0, y: -17.999954}
+  m_AnchoredPosition: {x: 0, y: -17.999939}
   m_SizeDelta: {x: 0, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2000749228
