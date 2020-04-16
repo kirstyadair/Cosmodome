@@ -326,7 +326,7 @@ public class AudioEvent : MonoBehaviour
                             subtitle.GetComponent<AnnouncerDialouge>().DisplaySchlugCollisionSubtitle("HHH", randomClip, AudioArray_Coll_Schlug_VS_HHH[randomClip].length);
                         }
                     }
-
+                    ///sorrry
                     if (playerAttacking.GetComponent<PlayerScript>().playerType == PlayerTypes.EL_MOSCO)
                     {
                         if (playerHit.GetComponent<PlayerScript>().playerType == PlayerTypes.DAVE)

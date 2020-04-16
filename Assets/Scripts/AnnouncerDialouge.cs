@@ -674,7 +674,7 @@ public class AnnouncerDialouge : MonoBehaviour
     {
         if (playerBeingHit == "Dave")
         {
-            ShowSubtitle(dialouge_Coll_Mosoco_VS_Dave[randomLine], time, false);
+            ShowSubtitle(dialouge_Coll_Mosco_VS_Dave[randomLine], time, false);
         }
         if (playerBeingHit == "Schlug")
         {
