@@ -49,7 +49,8 @@ public class AudioEvent : MonoBehaviour
 
     [Header("Generic Collision Lines")]
     public AudioClip[] AudioArray_Coll_Generic;
-
+    [Header("Generic Shooting Lines")]
+    public AudioClip[] AudioArray_Shoot_Generic;
 
     public AudioSource AudioPlayer;
 
@@ -187,9 +188,9 @@ public class AudioEvent : MonoBehaviour
             float rand = Random.value;
             if (rand <= chance)
             {
-                int randomClip = Random.Range(0, AudioArrayPlayerShot.Length);
-                AudioPlayerChangeSoundClip(AudioArrayPlayerShot, AudioPlayer, randomClip);
-                subtitle.GetComponent<AnnouncerDialouge>().DisplayPlayerShotSubtitle(randomClip, AudioArrayPlayerShot[randomClip].length);
+                int randomClip = Random.Range(0, AudioArray_Shoot_Generic.Length);
+                AudioPlayerChangeSoundClip(AudioArray_Shoot_Generic, AudioPlayer, randomClip);
+                subtitle.GetComponent<AnnouncerDialouge>().DisplayPlayerShotSubtitle(randomClip, AudioArray_Shoot_Generic[randomClip].length);
             }
             
         }  

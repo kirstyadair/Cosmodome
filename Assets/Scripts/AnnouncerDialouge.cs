@@ -48,6 +48,8 @@ public class AnnouncerDialouge : MonoBehaviour
     public string[] dialouge_Coll_HHH_VS_Schlug;
     [Header("Generic Collision Lines")]
     public string[] dialouge_Coll_Generic;
+    [Header("Generic Shot Lines")]
+    public string[] dialouge_Shot_Generic;
 
 
 
@@ -213,6 +215,7 @@ public class AnnouncerDialouge : MonoBehaviour
         dialouge_Coll_HHH_VS_Mosco = new string[9];
 
         dialouge_Coll_Generic = new string[42];
+        dialouge_Shot_Generic = new string[15];
 
 
 
@@ -223,19 +226,24 @@ public class AnnouncerDialouge : MonoBehaviour
 
     void InitLines()
     {
-        
-        
-        dialougePlayerShot[0] = "Oh! Longshot!";
-        dialougePlayerShot[1] = "Pinpoint precision";
-        dialougePlayerShot[2] = "Oh ho! Looks like the wind was blowing in their favour";
-        dialougePlayerShot[3] = "Oh ho, there's a new sherrif in town!";
-        dialougePlayerShot[4] = "Shooting like their life depended on it";
-        dialougePlayerShot[5] = "Sharpshooter!";
-        dialougePlayerShot[6] = "Oh! That shot landed.";
-        dialougePlayerShot[7] = "Somebody get this cowboy a horse!";
-        dialougePlayerShot[8] = "Ooo! Shooting like it's just target practice!";
-        dialougePlayerShot[9] = "Oh ho-hoo! Gunslinger!";
-        dialougePlayerShot[10] = "Oh ho, their rooting, tooting, pointing and shooting!";
+
+
+        dialouge_Shot_Generic[0] = "Shooting like their life depended on it!";
+        dialouge_Shot_Generic[1] = "Oh, he's rootin' tootin' pointin' and shootin'!";
+        dialouge_Shot_Generic[2] = "Pinpoint precision!";
+        dialouge_Shot_Generic[3] = "Looks like there's a new sherrif in town!";
+        dialouge_Shot_Generic[4] = "Now there's a sharpshooter!";
+        dialouge_Shot_Generic[5] = "That shot landed!";
+        dialouge_Shot_Generic[6] = "Somebody get this cowboy a horse!";
+        dialouge_Shot_Generic[7] = "Oh-ho gunslinger!";
+        dialouge_Shot_Generic[8] = "Spray and pray!";
+        dialouge_Shot_Generic[9] = "Colour me impressed that was a good shot!";
+        dialouge_Shot_Generic[10] = "Who needs to crash when you can just shoot!";
+        dialouge_Shot_Generic[11] = "Have you got previous military experience cause that was a good shot!";
+        dialouge_Shot_Generic[12] = "Oh-ho look at Mr Dead Eye over there!";
+        dialouge_Shot_Generic[13] = "He's definitely got a big iron on his hip!";
+        dialouge_Shot_Generic[14] = "Looks like all those fps games paid off!";
+       
 
         dialouge_Coll_Dave_VS_Mosco[0] = "<color=red>Dave</color> absolutely just smacked <color=green>El Mosco</color>";
         dialouge_Coll_Dave_VS_Mosco[1] = "Oh my god! I hope<color=green> El Mosco</color> is okay after what <color=red>Dave </color>just done to them!";
@@ -323,7 +331,7 @@ public class AnnouncerDialouge : MonoBehaviour
         dialouge_Coll_Mosco_VS_Dave[8] = "Oooo, and <color=green>Mosco</color> comes in and shows <color=red>Dave</color> who’s boss.";
         dialouge_Coll_Mosco_VS_Dave[9] = "Oh! <color=green>Mosco</color> takes a swipe at <color=red>Dave</color> and it connects!";
         dialouge_Coll_Mosco_VS_Dave[10] = "<color=green>Mosco</color> goes off the metaphorical top rope and slams into <color=red>Dave</color>!";
-        dialouge_Coll_Mosco_VS_Dave[11] = "<color=green>Mosco</color> sips in and takes a chunk out of <color=red>Dave</color>!";
+        dialouge_Coll_Mosco_VS_Dave[11] = "<color=green>Mosco</color> zips in and takes a chunk out of <color=red>Dave</color>!";
 
         dialouge_Coll_Mosco_VS_Schlug[0] = "There’s <color=green>Mosco</color> doing what he does best, annoying <color=purple>Big Schlug</color>.";
         dialouge_Coll_Mosco_VS_Schlug[1] = "And <color=purple>Big Schlugs</color> been bumped hard! I hope they know that isn’t the last they’ll see of <color=green>Mosco</color>!";
@@ -336,7 +344,7 @@ public class AnnouncerDialouge : MonoBehaviour
         dialouge_Coll_Mosco_VS_Schlug[8] = "Oooo, and <color=green>Mosco</color> comes in and shows <color=purple>Big Schlug</color> who’s boss.";
         dialouge_Coll_Mosco_VS_Schlug[9] = "Oh! <color=green>Mosco</color> takes a swipe at <color=purple>Big Schlug</color> and it connects!";
         dialouge_Coll_Mosco_VS_Schlug[10] = "<color=green>Mosco</color> goes off the metaphorical top rope and slams into <color=purple>Big Schlug</color>!";
-        dialouge_Coll_Mosco_VS_Schlug[11] = "<color=green>Mosco</color> sips in and takes a chunk out of <color=purple>Big Schlug</color>!";
+        dialouge_Coll_Mosco_VS_Schlug[11] = "<color=green>Mosco</color> zips in and takes a chunk out of <color=purple>Big Schlug</color>!";
 
         dialouge_Coll_Mosco_VS_HHH[0] = "There’s <color=green>Mosco</color> doing what he does best, annoying <color=blue>Henry</color>.";
         dialouge_Coll_Mosco_VS_HHH[1] = "And <color=blue>Henrys</color> been bumped hard! I hope they know that isn’t the last they’ll see of <color=green>Mosco</color>!";
@@ -349,7 +357,7 @@ public class AnnouncerDialouge : MonoBehaviour
         dialouge_Coll_Mosco_VS_HHH[8] = "Oooo, and <color=green>Mosco</color> comes in and shows <color=blue>Henry</color> who’s boss.";
         dialouge_Coll_Mosco_VS_HHH[9] = "Oh! <color=green>Mosco</color> takes a swipe at <color=blue>Henry</color> and it connects!";
         dialouge_Coll_Mosco_VS_HHH[10] = "<color=green>Mosco</color> goes off the metaphorical top rope and slams into <color=blue>Henry</color>!";
-        dialouge_Coll_Mosco_VS_HHH[11] = "<color=green>Mosco</color> sips in and takes a chunk out of <color=blue>Henry</color>!";
+        dialouge_Coll_Mosco_VS_HHH[11] = "<color=green>Mosco</color> zips in and takes a chunk out of <color=blue>Henry</color>!";
 
 
         dialouge_Coll_HHH_VS_Dave[0] = "And there’s <color=blue>Henry</color> bringing the hammer down on <color=red>Dave</color>!";
@@ -608,7 +616,7 @@ public class AnnouncerDialouge : MonoBehaviour
 
     public void DisplayPlayerShotSubtitle(int subtitle, float time)
     {
-        ShowSubtitle(dialougePlayerShot[subtitle], time, false);
+        ShowSubtitle(dialouge_Shot_Generic[subtitle], time, false);
     }
 
     public void DisplayPlayerOnPlayerCollisionSubtitle(int subtitle, float time)
