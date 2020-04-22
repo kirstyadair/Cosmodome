@@ -363,7 +363,7 @@ public class AnnouncerDialouge : MonoBehaviour
         dialouge_Coll_HHH_VS_Dave[0] = "And there’s <color=blue>Henry</color> bringing the hammer down on <color=red>Dave</color>!";
         dialouge_Coll_HHH_VS_Dave[1] = "<color=blue>Henry</color> comes up and bashes <color=red>Dave</color>!";
         dialouge_Coll_HHH_VS_Dave[2] = "<color=blue>Henry</color> coming out of nowhere and taking <color=red>Dave</color> out!";
-        dialouge_Coll_HHH_VS_Dave[3] = "OH! And <color=red>Dave</color> get chomped by <color=blue>Henry</color>!";
+        dialouge_Coll_HHH_VS_Dave[3] = "OH! And <color=red>Dave</color> gets chomped by <color=blue>Henry</color>!";
         dialouge_Coll_HHH_VS_Dave[4] = "No pain no gain <color=red>Dave</color>! But there is no gain and just lots of pain because <color=blue>Henry</color> did it.";
         dialouge_Coll_HHH_VS_Dave[5] = "There’s <color=blue>Henry</color> using his predatory instincts to take a bite out of <color=red>Dave</color>.";
         dialouge_Coll_HHH_VS_Dave[6] = "Oh and thats <color=red>Dave</color> being spun out by <color=blue>Henry</color>, the big shark-scary thing!";
@@ -373,7 +373,7 @@ public class AnnouncerDialouge : MonoBehaviour
         dialouge_Coll_HHH_VS_Mosco[0] = "And there’s <color=blue>Henry</color> bringing the hammer down on <color=green>El Mosco</color>!";
         dialouge_Coll_HHH_VS_Mosco[1] = "<color=blue>Henry</color> comes up and bashes <color=green>El Mosco</color>!";
         dialouge_Coll_HHH_VS_Mosco[2] = "<color=blue>Henry</color> coming out of nowhere and taking <color=green>El Mosco</color> out!";
-        dialouge_Coll_HHH_VS_Mosco[3] = "OH! And <color=green>El Mosco</color> get chomped by <color=blue>Henry</color>!";
+        dialouge_Coll_HHH_VS_Mosco[3] = "OH! And <color=green>El Mosco</color> gets chomped by <color=blue>Henry</color>!";
         dialouge_Coll_HHH_VS_Mosco[4] = "No pain no gain <color=green>El Mosco</color>! But there is no gain and just lots of pain because <color=blue>Henry</color> did it.";
         dialouge_Coll_HHH_VS_Mosco[5] = "There’s <color=blue>Henry</color> using his predatory instincts to take a bite out of <color=green>El Mosco</color>.";
         dialouge_Coll_HHH_VS_Mosco[6] = "Oh and thats <color=green>El Mosco</color> being spun out by <color=blue>Henry</color>, the big shark-scary thing!";
@@ -383,7 +383,7 @@ public class AnnouncerDialouge : MonoBehaviour
         dialouge_Coll_HHH_VS_Schlug[0] = "And there’s <color=blue>Henry</color> bringing the hammer down on <color=purple>Big Schlug</color>!";
         dialouge_Coll_HHH_VS_Schlug[1] = "<color=blue>Henry</color> comes up and bashes <color=purple>Big Schlug</color>!";
         dialouge_Coll_HHH_VS_Schlug[2] = "<color=blue>Henry</color> coming out of nowhere and taking <color=purple>Big Schlug</color> out!";
-        dialouge_Coll_HHH_VS_Schlug[3] = "OH! And <color=purple>Big Schlug</color> get chomped by <color=blue>Henry</color>!";
+        dialouge_Coll_HHH_VS_Schlug[3] = "OH! And <color=purple>Big Schlug</color> gets chomped by <color=blue>Henry</color>!";
         dialouge_Coll_HHH_VS_Schlug[4] = "No pain no gain <color=purple>Big Schlug</color>! But there is no gain and just lots of pain because <color=blue>Henry</color> did it.";
         dialouge_Coll_HHH_VS_Schlug[5] = "There’s <color=blue>Henry</color> using his predatory instincts to take a bite out of <color=purple>Big Schlug</color>.";
         dialouge_Coll_HHH_VS_Schlug[6] = "Oh and thats <color=purple>Big Schlug</color> being spun out by <color=blue>Henry</color>, the big shark-scary thing!";
