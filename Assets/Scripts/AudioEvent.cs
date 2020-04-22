@@ -366,6 +366,7 @@ public class AudioEvent : MonoBehaviour
                         if (playerHit.GetComponent<PlayerScript>().playerType == PlayerTypes.BIG_SCHLUG)
                         {
                             int randomClip = Random.Range(0, AudioArray_Coll_HHH_VS_Schlug.Length);
+                            Debug.Log(randomClip);
                             AudioPlayerChangeSoundClip(AudioArray_Coll_HHH_VS_Schlug, AudioPlayer, randomClip);
                             subtitle.GetComponent<AnnouncerDialouge>().DisplayHHHCollisionSubtitle("Schlug", randomClip, AudioArray_Coll_HHH_VS_Schlug[randomClip].length);
                         }
